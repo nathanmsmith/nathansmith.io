@@ -9,10 +9,10 @@
 		{% endif %}
 	</title>
 	
-	<link rel="stylesheet" href="{{ "/resources/css/main.css" | prepend: site.baseurl }}">
+	<link rel="stylesheet" href="{{ site.baseurl }}resources/css/main.css">
 	
-	<script type="text/javascript" src="/resources/js/jquery-1.12.1.min.js"></script>
-	<script type="text/javascript" src="/resources/js/bigfoot.min.js"></script>
+	<script type="text/javascript" src="{{ site.baseurl }}resources/js/jquery-1.12.1.min.js"></script>
+	<script type="text/javascript" src="{{ site.baseurl }}resources/js/bigfoot.min.js"></script>
 	<script type="text/javascript">
 		var bigfoot = $.bigfoot(
 			{

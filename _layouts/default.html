@@ -7,7 +7,11 @@
 			<a href="{{ site.baseurl }}" title="Home">nathun smitty dot&nbsp;com</a>
 		</h1>
 		<nav>
-			<a href="">about</a>
+	        {% for page in site.pages %}
+	          {% if page.title %}
+	          <a href="{{ page.url }}">{{ page.title }}</a>
+	          {% endif %}
+	        {% endfor %}
 			<a href="">rss</a>
 		</nav>
 	</header>

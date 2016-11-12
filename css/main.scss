@@ -1,10 +1,10 @@
 ---
 # Obligatory front matter
 ---
-@charset "utf-8";
+@charset 'utf-8';
 
 // Our variables
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
@@ -41,58 +41,60 @@ $on-laptop:        800px;
     }
 }
 
-/**
+/*!
  * Reset some basic elements
  */
 
 h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /**
  * Basic styling
  */
 body {
-	
-    font-size: 16px;
-    line-height: 1.7;
-    font-weight: 300;
-	
-	position: relative;
-	width: $content-width;
-	margin: 0 auto;
-	
-    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-    color: $text-color;
-    background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-feature-settings: "kern" 1;
-    -moz-font-feature-settings: "kern" 1;
-    -o-font-feature-settings: "kern" 1;
-    font-feature-settings: "kern" 1;
-    font-kerning: normal;
+  position: relative;
+  width: $content-width;
+
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+
+
+  margin: 0 auto;
+
+  /*!
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+  background-color: $background-color;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: 'kern' 1;
+  -moz-font-feature-settings: 'kern' 1;
+  -o-font-feature-settings: 'kern' 1;
+  font-feature-settings: 'kern' 1;
+  font-kerning: normal;*/
 }
 
 header {
 	p {margin: 0;}
-	
+
 	h1 {
 		font-weight: bold;
 		font-size: 70px;
 	}
-	
+
 	a {
 		text-decoration: none;
-		
-		&:hover { 
-			color: #0099bb; 
+
+		&:hover {
+			color: #0099bb;
 		}
 		&:visited {
 			color: $text-color;
 		};
 	}
-	
+
 	nav {
 		margin-top: -10px;
 		a {
@@ -106,29 +108,29 @@ header {
 }
 
 article {
-	
+
 	display: block;
 	margin-top: 4em;
-	
+
 	header {
 		h2 {
 			font-size: 48px;
 		}
-		
+
 		time {
 			color: #aaa;
 			font-size: 1.125em;
 		}
-		
+
 		a {
 			text-decoration: none;
 		}
-		
+
 		margin-bottom: 0.4em;
 	}
-	
+
 }
 
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import "bigfoot-number";
+@import 'bigfoot-number';

@@ -5,23 +5,20 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
 
-permalink: /:title/
+# permalink: /:title/
 
 # Site settings
-title: nathun smitty dot com
-tagline: the playground of Nathan Smith
-email: your-email@domain.com
-description: Nathan Smith lives here
-baseurl: / 
-url: "http://nathunsmitty.com"
-twitter_username: jekyllrb
-github_username:  jekyll
+title: Nathan Smith
+description: Nathan Smith in HTML
+author:
+  name: Nathan Smith
+  email: nathan.smith@ucla.edu
+baseurl: /
+url: "nathansmith.io"
 
 license:
  text: "Some rights reserved"
  url: http://creativecommons.org/licenses/by-sa/4.0/
- 
-
 
 # Build settings
 markdown: kramdown

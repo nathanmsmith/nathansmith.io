@@ -1,25 +1,10 @@
 <head>
-	<meta charset="utf-8">
-	
-	<title>
-		{% if page.title == "Home" %}
-			{{ site.title }}
-		{% else %}
-			{{ page.title }} &middot; {{ site.title }}
-		{% endif %}
-	</title>
-	
-	<link rel="stylesheet" href="{{ site.baseurl }}resources/css/main.css">
-	
-	<script type="text/javascript" src="{{ site.baseurl }}resources/js/jquery-1.12.1.min.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}resources/js/bigfoot.min.js"></script>
-	<script type="text/javascript">
-		var bigfoot = $.bigfoot(
-			{
-			actionOriginalFN: "ignore",
-			positionContent: "true"
-			}
-		);
-	</script>
-	
+  <meta charset="utf-8">
+
+  <title>
+    {{ site.title }}
+  </title>
+
+  <link rel="stylesheet" href="/css/main.css" />
+
 </head>

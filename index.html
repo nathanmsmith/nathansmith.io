@@ -3,19 +3,19 @@ layout: default
 ---
 
 <div class="posts">
-	{% for post in site.posts limit: 6 %}
-		<article class="post">
-			<header>
-				<h2 class="post-title">{{ post.title }}</h2>
-				<p>
-					<time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</time>
-					<a href="{{ post.url }}">&infin;</a>
-				</p>
-			</header>
-	
-			{{ post.content }}
-	
-		</article>
-	{% endfor %}
+  {% for post in site.posts limit: 6 %}
+    <article class="post">
+      <header>
+        <h2 class="post-title"><a href="{% if post.link %}{{ post.link }}{% else %}{{ post.url }}{% endif %}">{{ post.title }}</a>{% if post.link %}<span class="link-arrow"> &rarr;</span>{% endif %}</h1>
+        <p>
+          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</time>
+          <a href="{{ post.url }}">&infin;</a>
+        </p>
+      </header>
+
+      {{ post.content }}
+
+    </article>
+  {% endfor %}
 </div>
 

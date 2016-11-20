@@ -1,0 +1,72 @@
+==================================================================
+https://keybase.io/nathunsmitty
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://nathansmith.io
+  * I am nathunsmitty (https://keybase.io/nathunsmitty) on keybase.
+  * I have a public key with fingerprint BC75 90C5 44B8 EE56 FBD7  C5D1 3B9B A490 BA8C CFE7
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01019a87720e06067057ef70dab873c28b0eb500b976fd4534ba95b32c00843a50830a",
+            "fingerprint": "bc7590c544b8ee56fbd7c5d13b9ba490ba8ccfe7",
+            "host": "keybase.io",
+            "key_id": "3b9ba490ba8ccfe7",
+            "kid": "01019a87720e06067057ef70dab873c28b0eb500b976fd4534ba95b32c00843a50830a",
+            "uid": "c867cee214a2a14af2b95ce8ee89a319",
+            "username": "nathunsmitty"
+        },
+        "service": {
+            "hostname": "nathansmith.io",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1479667535,
+    "expire_in": 157680000,
+    "prev": "ffe992e347971d69c898d53a9f7194a67891da3a851277e65c35c8660466b786",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUntQVFUcXhBDdrDANR2CEi4PUXbg3r2Pc+/ySJ1FJXrATILM2Cz3cZa9sOxd
+9kHCwpgIRvGQFioeIVnOaKk8HAaKIQEtxZxR1LIczXB2iEeGlYxB5NC9VDP90Z+d
+P86Zc37f953v+82vYfUKldonse1ow0DtlUmfS9Ocajd2P8uNcJJQgujdSAFcPqBF
+gA6nsUAUED2CYijGsDQAOhSiFEoBlATQBFCB5WiA8zqaQyFHoijHAMokECROcCxD
+criOR1GawFkSpXGURbSISbTmQbvNLlqdsizHA5JBeZIgOBpCkjJxAuBJAcM5hmMJ
+BuVYmudNEMhEs+RQGLI5jnXAeFGS3+SLcdnef+D/Z9+uZTmepgAPoQ4jWB0rbyYd
+x5A8lL3TDItjjAJ0QLuVLYQy2so6zS6ro1B0OkuQci0iV4pFHirNVdL8C8Uuo8x/
+pbLZJafESxa5ZnY6bXqF6iyxKdhXIWf8W8XIiVZBbqZMKIZ2hyhZET0mI3mnqMhi
+BGAoCpA4qUXgXptoh0ZRQZCAolF5Kd/AYlnSZHoFMowO4jIBYALF8DRDCyTOMiaA
+MQRLAZrBBBZnaRLTAQApksdJuQ8USlAUB2gKUYIVWSVET8g+2TxZ0yHmyalcdoiU
+q9/wDfNT+ahVj630VcZMpQ4I+mf2vmgMUlUXR2C/nU07nvz5wL1RY/tcfosUVVrh
+cy5lSed+6U7QjYPngocexpVQHff7NIfnpadKp3vj6mZW1QQGtMRc+GXVti2lLSGB
+T4dqZqMrW7PXNfnGPNJvODh/crZztqF22pq6KXP4o5Dg1GQXHPmgvoHunNxW//CJ
+Mvv6svCkAz1FP6dd9nT8usvy/MS4YbNYfbhqZChnNmxBMzOY6uYPxY1pdnT/cVEw
+Rz5Qb056OeZLTHvxqvDNZzdX7PFBX8xOOH43uvUE3/XxYubp8I0d7fe+6uz3rSoz
+UFOJp88c27kALc0TLwTPH+qnFvvK3wzRNJ613QqYq471WzPzk/37E3xPZG5fz491
+nqaIqeGk8eiiY3f8s3ZOj6VvXVz3qKa/b2zhVtqexNpL+fEnH7wf3gsSrmWuqeA+
+TTfkbq/qeCajThsb3JVRVVyZVlRw4b3GwNCc0SH/y0tH9x2Ze3dL+65vw/Jr5q97
+NWfa9Lffem5weCo+5eqoVF75+g/bvfVHzK07NnR40scOZAdfGe7Zvy/n9tqm2GSQ
+03ZzevAUkxWF7n2HVVUMZDi857sim1Xdn3w9FeIf1OqqjOy73q+PABZvwndR7q1L
+hvLHe3ePXaPW1n/odph/n/X6LXS/5tFnhU2YyACD59QNv2bPepdx0/n+0BFYuLQf
+C7c8OXjX/9mNuTWalZMpb68e9/4J
+=IzKq
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/nathunsmitty
+
+==================================================================

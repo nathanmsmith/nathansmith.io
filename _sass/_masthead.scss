@@ -6,6 +6,11 @@
   padding-top:    1rem;
   padding-bottom: 1rem;
   margin-bottom: 3rem;
+
+  nav a {
+    text-transform: lowercase;
+    padding-right: 5px;
+  }
 }
 
 .masthead-title {
@@ -15,6 +20,9 @@
 
   a {
     color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   small {

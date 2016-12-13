@@ -1,27 +1,17 @@
 <head>
-  <meta charset="utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
     {{ site.title }}
   </title>
 
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />-->
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
 
 
-  <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
 <script type="text/javascript" src="/js/bigfoot.min.js"></script>
 <script type="text/javascript">
-	var bigfoot = $.bigfoot(
-		{
-		actionOriginalFN: "ignore",
-		positionContent: "true"
-		}
-	);
+  $.bigfoot();
 </script>
-
 </head>

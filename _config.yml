@@ -1,24 +1,14 @@
-# Welcome to Jekyll!
+# Setup
+title:               Nathan Smith in HTML
+url:                 http://nathansmith.io
+
+# Assets
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
 
-# permalink: /:title/
-
-# Site settings
-title: Nathan Smith
-description: Nathan Smith in HTML
+# About/contact
 author:
-  name: Nathan Smith
-  email: nathan.smith@ucla.edu
-baseurl: /
-url: "nathansmith.io"
-
-license:
- text: "Some rights reserved"
- url: http://creativecommons.org/licenses/by-sa/4.0/
-
-# Build settings
-markdown: kramdown
+  name:              Nathan Smith
+  email:             nathan.smith@ucla.edu

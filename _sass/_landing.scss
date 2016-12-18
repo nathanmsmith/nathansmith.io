@@ -1,11 +1,16 @@
 .landing {
   .nathan {
     display: block;
-    margin: 10px auto 35px;
+    margin: 0 auto 35px;
     border-radius: 50%;
-    width: 100%;
-    max-width: 45%;
-    border: 15px solid rgba(0, 0, 0, 0.025);
+
+    @media (min-width: $large-breakpoint) {
+      max-width: 45%;
+      border: 15px solid rgba(0, 0, 0, 0.025);
+    }
+    
+    max-width: 85%;
+    border: 8px solid rgba(0, 0, 0, 0.025);
   }
 
   a {

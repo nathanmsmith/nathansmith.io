@@ -1,8 +1,8 @@
 ---
 title: Footnote Test
-layout: post
+layout: default
 ---
 
 This is a footnote[^1] test.
 
-[^1]: If you can see this, it works!
+[^1]:	If you can see this, it works!

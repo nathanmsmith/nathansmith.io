@@ -3,13 +3,14 @@
     display: block;
     margin: 0 auto 35px;
     border-radius: 50%;
+    max-width: 15em;
 
-    @media (min-width: $large-breakpoint) {
-      max-width: 45%;
+    @include media('>=tablet') {
+      // max-width: em;
       border: 15px solid rgba(0, 0, 0, 0.025);
     }
-    
-    max-width: 85%;
+
+
     border: 8px solid rgba(0, 0, 0, 0.025);
   }
 

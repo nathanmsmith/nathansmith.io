@@ -2,6 +2,8 @@
 title:               Nathan Smith in HTML
 url:                 http://nathansmith.io
 
+permalink: /:title
+
 # Assets
 #
 # We specify the directory for Jekyll so we can use @imports.

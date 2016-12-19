@@ -3,9 +3,13 @@
 # only main files contain this front matter, not partials.
 ---
 
+@import "lib/bigfoot-default";
+@import "lib/include-media";
+
 @import "variables";
 @import "base";
 @import "type";
 @import "layout";
-@import "bigfoot-default";
 @import "landing";
+@import "archive";
+@import "masthead";

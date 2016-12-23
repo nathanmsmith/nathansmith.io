@@ -1,13 +1,14 @@
 ---
+title: Nathan Smith in HTML
 layout: default
 ---
 <img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG">
 
 Hi, I'm **Nathan**.
 
-I'm a student at [UCLA][1] studying Computer Science & Engineering. I currently work at my [school newspaper][2] and my [school radio station][3] as a web developer. If you’re interested in what I do, you can check out my [portfolio][4] or find me on [Github][5].
+I'm a student at [UCLA][1] studying Computer Science & Engineering. I currently work at my [school newspaper][2] as a web developer and my [school radio station][3] as a mobile developer. If you’re interested in what I do, you can check out my [portfolio][4] or find me on [Github][5].
 
-I enjoy writing, and occasionally post [here][6].
+I also enjoy writing for humans, and occasionally post [here][6].
 
 Please feel free to [say hi][7][^1]; I love talking to new people!
 

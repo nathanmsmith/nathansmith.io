@@ -1,6 +1,6 @@
 ---
 title: Footnote Test
-layout: default
+layout: post
 ---
 
 This is a footnote[^1] test.

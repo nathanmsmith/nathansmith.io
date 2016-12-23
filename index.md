@@ -4,7 +4,7 @@ layout: default
 ---
 <img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG">
 
-Hi, I'm **Nathan**.
+Hi, I'm Nathan.
 
 I'm a student at [UCLA][1] studying Computer Science & Engineering. I currently work at my [school newspaper][2] as a web developer and my [school radio station][3] as a mobile developer. If you’re interested in what I do, you can check out my [portfolio][4] or find me on [Github][5].
 

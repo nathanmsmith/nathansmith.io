@@ -2,15 +2,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>
-    {{ site.title }}
-  </title>
-
-  
+  <!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.baseurl }}feed/">
 
   {% if page.title == site.title %}
+    <title>{{ site.title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/bigfoot-default.css">
   {% else %}
+    <title>{{ page.title }} &middot; {{ site.title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/bigfoot-number.css">
   {% endif %}
 

@@ -4,7 +4,7 @@ layout: page
 permalink: /posts
 ---
 
-<p>Below is a collection of things I've written.</p>
+<p>Below is a collection of things I've written. If you like what you read, you may want to consider subscribing to the site's <a href="#">feed</a> in order to always be notified of new posts.</p>
 
 <ul class="archived-posts">
   {% for post in site.posts %}
@@ -21,7 +21,7 @@ permalink: /posts
 
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
-      <time datetime="{{ site.time | date_to_xmlschema }}">{{ post.date | date: '%B %d, %Y' }}</time>
+      <time datetime="{{ site.time | date_to_xmlschema }}">{{ post.date | date: '%B %D, %Y' }}</time>
     </li>
   {% endfor %}
 </ul>

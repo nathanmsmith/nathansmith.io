@@ -51,7 +51,7 @@ Thankfully, [much][26] [better][27] [philosophers][28] than I have attempted to 
 
 [^8]:	He also took the companion [astronomy lab class][11].
 
-[^9]:	While there, Rohit [wrote about the Chinese Remainder Theorem][15]. This happens to be one of the top Google results for “[Rohit Yelamanchili][16]”.
+[^9]:	While there, Rohit [wrote about the Chinese Remainder Theorem][15].
 
 [^10]:	He didn’t—AP tests are scored from 1 to 5. This particular rumor started when Espen Scheuer “repeatedly” told Inès Guéneau that Rohit got a 6. Scheuer later said, “I'll never forget the day I walked into physics to hear Inès trying to convince Jackie that Rohit got a 6. I've never been more proud.”
 
@@ -79,7 +79,7 @@ Thankfully, [much][26] [better][27] [philosophers][28] than I have attempted to 
 [12]:	http://www.marin.edu/Apps/Directory/CourseInfo.aspx?ID=367
 [13]:	http://www.marin.edu/Apps/Directory/CourseInfo.aspx?ID=615
 [14]:	http://cosmos.ucdavis.edu
-[15]:	http://cosmos.ucdavis.edu/archives/2013/cluster6/YELAMANCHILI_ROHIT.pdf
+[15]:	https://web-beta.archive.org/web/20150604051136/http://cosmos.ucdavis.edu/archives/2013/cluster6/YELAMANCHILI_ROHIT.pdf
 [16]:	http://lmgtfy.com/?q=rohit+yelamanchili
 [17]:	https://summerinstitutes.stanford.edu
 [18]:	https://itun.es/us/4xZO5?i=966997567

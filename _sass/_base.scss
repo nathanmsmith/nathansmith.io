@@ -34,12 +34,14 @@ body {
 // No `:visited` state is required by default (browsers will use `a`)
 a {
   color: black;
+  font-weight: bold;
   text-decoration: none;
 
   // `:focus` is linked to `:hover` for basic accessibility
   &:hover,
   &:focus {
-    text-decoration: underline;
+    text-decoration: none;
+    color: $gray-3;
   }
 
   strong {

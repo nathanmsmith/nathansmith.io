@@ -2,7 +2,7 @@
 //
 // Super small header above the content for site name and short description.
 
-header {
+.masthead {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
@@ -11,6 +11,10 @@ header {
 
   h1 {
     display: inline-block;
+
+    a:hover {
+      color: black;
+    }
   }
 
   nav {

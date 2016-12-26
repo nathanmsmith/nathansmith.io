@@ -22,7 +22,7 @@
     display: inline-block;
     float: right;
 
-    @include media('<=phone') {
+    @include media('<=large-phone') {
       margin-top: 0;
       display: inherit;
       float: inherit;

@@ -25,7 +25,7 @@ Thankfully, [much][26] [better][27] [philosophers][28] than I have attempted to 
 
 ---
 
-*Rohit has since graduated Terra Linda High School with various awards and honors (including Senior of the Year) and now attends UC Berkeley as an Electrical Engineering and Computer Science major.*
+*Rohit has since graduated from Terra Linda with various awards and honors (including Senior of the Year) and now attends UC Berkeley, where he is majoring in Electrical Engineering and Computer Science major.*
 
 [^1]:	Julia Wilson and Liam Goff, respectively. While both were just as deserving of the awards they received as Rohit, they are both markedly different from him.
 

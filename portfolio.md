@@ -8,7 +8,7 @@ I enjoy building things, especially when those things can be used by anyone to s
 
 ### UCLA Radio: [UCLA Radio for iOS][1] (October 2016 – Present)
 ![UCLA Radio app icon][image-1]
-I help to maintain the UCLA Radio iOS app. As an internet-only radio station, the maintenance of UCLA Radio's website and app is vital to it's presence. Most recently, I've been working on localizing show times across timezones and implementing reminder push notifications for specific shows. ([Source][2])
+I help to maintain the UCLA Radio iOS app. As an internet-only radio station, the maintenance of UCLA Radio's website and app is vital to its presence. Most recently, I've been working on localizing show times across timezones and implementing reminder push notifications for specific shows. ([Source][2])
 
 ### Daily Bruin: [Women's Volleyball Rides the Wave of United Longtime Companionship][3] (November 2016)
 ![Screenshot of volleyball page][image-2]

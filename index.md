@@ -21,5 +21,5 @@ Please feel free to [say hi][8][^1]; I love talking to new people!
 [5]:	https://www.linkedin.com/in/nathanmatthewsmith
 [6]:	https://github.com/nathunsmitty
 [7]:	/posts
-[8]:	mailto:nathan.smith@ucla.edu
+[8]:	mailto:{{ site.author.email }}
 [9]:	https://keybase.io/nathunsmitty

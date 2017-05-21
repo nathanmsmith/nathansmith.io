@@ -16,7 +16,8 @@ In my second quarter of working for UCLA Radio, I began to do some work on our m
 I help to maintain the UCLA Radio iOS app. As an internet-only radio station, the maintenance of UCLA Radio's website and app is vital to its presence. Most recently, I've been working on localizing show times across timezones and implementing reminder push notifications for specific shows. ([Source][4])
 
 ### [lonesierra.com][5] (February 2017)
-A simple website made for a friend to help promote his music. ([Source][6])
+
+A small website made for a friend to help promote his music. ([Source][6])
 
 ### [Site Tracker](http://sitetracker.nathansmith.io) (January 2017)
 

@@ -8,13 +8,8 @@ I enjoy building things, especially when those things can be used by everyone to
 
 ### UCLA Radio: [uclaradio.com][1] (February 2017 – Present)
 
-([Source][2])
 In my second quarter of working for UCLA Radio, I began to do some work on our main site. After going through some tutorials on React, I was able to social links to show pages as well as a modal popup notifying listeners about our pledge drive during the month of May. Aside from that, I've written (and rewritten) documentation on getting the uclaradio.com development environment set up, contributing guidelines, and our API documentation. ([Source][2])
 
-### Daily Bruin: Alexandria (January 2017
-
-### Daily Bruin: Caeruleum (December 2016 – Present)
-Caeruleum is the name of the Daily Bruin’s custom Wordpress theme, essentially  
 
 ### UCLA Radio: [UCLA Radio for iOS][3] (October 2016 – Present)
 ![UCLA Radio app icon][image-1]
@@ -23,7 +18,6 @@ I help to maintain the UCLA Radio iOS app. As an internet-only radio station, th
 ### [lonesierra.com][5] (February 2017)
 A simple website made for a friend to help promote his music. ([Source][6])
 
-### Site Tracker (January 2017)
 ### [Site Tracker](http://sitetracker.nathansmith.io) (January 2017)
 
 A very simple (and still very in progress) utility that periodically checks specified websites for updates and sends emails accordingly. It was created out of a need to know when professors updated their class sites with important information.

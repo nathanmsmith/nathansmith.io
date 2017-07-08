@@ -2,24 +2,14 @@
 title: Nathan Smith in HTML
 layout: default
 ---
-<img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG">
+<img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG" title="I'm not actually graduating, this is someone else's graduation sash.">
 
 Hi, I'm Nathan.
 
-I'm a student at [UCLA][1] studying Computer Science & Engineering. I currently work at my [school newspaper][2] as a web developer and my [school radio station][3] as a mobile developer. Interested in the details? Feel free to peruse my [portfolio][4], [Linkedin][5], or [Github][6].
+I'm a student at [UCLA](http://www.ucla.edu) studying Computer Science & Engineering. This summer, I'm interning at [Autodesk](https://www.autodesk.com), where I'm working on internal website development. Back at UCLA, I really love student media and enabling others to reach the world with their stories. I help run the online department of our [school newspaper](http://dailybruin.com) as well as co-manage the web department of our [school radio station](https://uclaradio.com). Interested in the details? Feel free to peruse my [portfolio](/portfolio), [Linkedin](https://www.linkedin.com/in/nathanmatthewsmith), or [Github](https://github.com/nathunsmitty).
 
-I also enjoy writing for humans, and occasionally post [here][7].
+When I'm not writing code for computers, I enjoy writing words for humans, and occasionally post thoughts [here](/posts).
 
-Please feel free to [say hi][8][^1]; I love talking to new people!
+Please feel free to [say hi](mailto:{{ site.author.email }})[^keybase]; I love talking to new people!
 
-[^1]:	For additional security, my public key can be found on [keybase.io][9].
-
-[1]:	http://www.ucla.edu
-[2]:	http://dailybruin.com
-[3]:	https://uclaradio.com
-[4]:	/portfolio
-[5]:	https://www.linkedin.com/in/nathanmatthewsmith
-[6]:	https://github.com/nathunsmitty
-[7]:	/posts
-[8]:	mailto:{{ site.author.email }}
-[9]:	https://keybase.io/nathunsmitty
+[^keybase]:	For additional security, my public key can be found on [keybase.io](https://keybase.io/nathunsmitty).

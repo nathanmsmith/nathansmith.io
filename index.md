@@ -2,7 +2,7 @@
 title: Nathan Smith in HTML
 layout: default
 ---
-<img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG" title="I'm not actually graduating, this is someone else's graduation sash.">
+<img class="nathan" src="images/nathan.jpg" alt="Nathan Smith as a JPEG" title="Despite the sash, I'm actually not graduating anytime soon.">
 
 Hi, I'm Nathan. 👋
 

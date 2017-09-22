@@ -6,10 +6,11 @@ layout: default
 
 Hi, I'm Nathan. 👋
 
-I'm a rising sophomore at [UCLA](http://www.ucla.edu) studying Computer Science & Engineering. This summer, I'm interning at [Autodesk](https://www.autodesk.com), where I'm working on internal website development. Back at UCLA, I help run the online department of our [school newspaper](http://dailybruin.com) as well as co-manage the web department of our [school radio station](https://uclaradio.com). Interested in the details? Feel free to peruse my [portfolio](/portfolio), [Linkedin](https://www.linkedin.com/in/nathanmatthewsmith), or [Github](https://github.com/nathunsmitty).
+I'm a sophomore at [UCLA](http://www.ucla.edu) studying Computer Science & Engineering. This past summer, I interned at [Autodesk](https://www.autodesk.com), where I worked on internal website development. At UCLA, I currently help run the online department of our [school newspaper](http://dailybruin.com) as well as co-manage the web department of our [school radio station](https://uclaradio.com).[^studentmedia] Interested in the details? Feel free to peruse my [portfolio](/portfolio), [Linkedin](https://www.linkedin.com/in/nathanmatthewsmith), or [Github](https://github.com/nathunsmitty).
 
 When I'm not writing code for computers, I enjoy writing words for humans, and very infrequently post thoughts [here](/posts).
 
 Please feel free to [say hi](mailto:{{ site.author.email }})[^keybase]; I love talking to new people!
 
+[^studentmedia]: I really like student media.
 [^keybase]: For additional security, my public key can be found on [keybase.io](https://keybase.io/nathunsmitty).

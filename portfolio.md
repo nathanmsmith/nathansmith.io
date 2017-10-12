@@ -14,9 +14,14 @@ I started working on UCLA Radio's website in my second quarter both in radio and
 ![UCLA Radio app Screenshot](images/uclaradio-ios1.png)
 I also maintain the UCLA Radio's iOS app written in [Swift](https://swift.org), which accounts for a good portion of our mobile traffic. I initially worked on localizing show times across timezones and implementing reminder push notifications for specific shows; lately I've been focused on refactoring our codebase and integrating new interns on the project. ([Source](https://github.com/uclaradio/uclaradio-iOS))
 
+### Daily Bruin: [Registration Issue 2017](https://features.dailybruin.com/regissue-2017/) (September 2017)
+Registration Issue is the Daily Bruin's first issue of the new school year. Similar to our work for Graduation Issue, I and my other Online Editors created a centerpiece page to showcase all of the content written by the Bruin's staff. We also took this oppurtunity to create a tooling template for DB Online static projects. 
+
 ### Daily Bruin: [Graduation Issue 2017](http://gradissue2017.dailybruin.com) (June 2017)
 ![Daily Bruin graduation issue 2017](images/db-grad-issue-2017.png)
 Traditionally, the Daily Bruin's Graduation Issue is written by next year's incoming staff. As an incoming Assistant Online Editor, I worked with my other Online Editors to create a digital homepage for the last Daily Bruin issue of the 2016–2017 school year. During the tight deadline, I learned a lot about npm build scripts, Javascript templating engines, CSS post-processors, and just how little sleep on I could run on. ([Source](https://github.com/daily-bruin/gradissue-2017))
+
+
 
 ### [lonesierra.com](http://lonesierra.com) (February 2017)
 A small website made for a friend to help promote his music. ([Source](https://github.com/nathunsmitty/lonesierra.com))

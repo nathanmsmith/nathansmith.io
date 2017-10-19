@@ -6,7 +6,7 @@ layout: default
 
 Hi, I'm Nathan. 👋
 
-I'm a sophomore at [UCLA](http://www.ucla.edu) studying Computer Science & Engineering. This past summer, I interned at [Autodesk](https://www.autodesk.com), where I worked on developing and designing an internal website to connect engineers within the company. When I'm not studying for class, I help run the online department of our [school newspaper](http://dailybruin.com) as well as co-manage the web department of our [school radio station](https://uclaradio.com).[^studentmedia] Interested in the details? Feel free to peruse my [portfolio](/portfolio), [Linkedin](https://www.linkedin.com/in/nathanmatthewsmith), [Github](https://github.com/nathunsmitty), or [résumé](/resume.pdf).
+I'm a sophomore at [UCLA](http://www.ucla.edu) studying Computer Science. This past summer, I interned at [Autodesk](https://www.autodesk.com), where I worked on developing and designing an internal website to connect engineers within the company. When I'm not studying for class, I help run the online department of our [school newspaper](http://dailybruin.com) as well as co-manage the web department of our [school radio station](https://uclaradio.com).[^studentmedia] Interested in the details? Feel free to peruse my [portfolio](/portfolio), [Linkedin](https://www.linkedin.com/in/nathanmatthewsmith), [Github](https://github.com/nathunsmitty), or [résumé](/resume.pdf).
 
 When I'm not writing code for computers, I enjoy writing words for humans, and very infrequently post thoughts [here](/posts).
 

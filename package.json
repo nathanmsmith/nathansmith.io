@@ -1,0 +1,35 @@
+{
+  "name": "nathansmith.io",
+  "description": "nathan smith in html.",
+  "version": "1.0.0",
+  "author": "Nathan Smith <nathan@nathansmith.io>",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "scripts": {
+    "start": "gatsby develop --port 1234",
+    "build": "gatsby build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "emotion": "^9.2.5",
+    "emotion-server": "^9.2.5",
+    "gatsby": "^1.9.247",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-emotion": "^1.1.17",
+    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby-plugin-typescript": "^1.4.20",
+    "gatsby-source-filesystem": "^1.5.39",
+    "gatsby-transformer-remark": "^1.7.44",
+    "polished": "^1.9.3",
+    "react-emotion": "^9.2.5",
+    "react-helmet": "^5.2.0",
+    "rehype-react": "^3.0.2",
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.0"
+  }
+}

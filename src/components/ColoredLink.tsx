@@ -7,6 +7,9 @@ export default function ColoredLink({ href, children }) {
   switch (true) {
     case href.includes('#fn-'):
       return <a href={href}>{children}</a>
+    case href.includes('mailto:'):
+      color = '#000'
+      break
     case href.includes('ucla.edu'):
       color = '#3284BF'
       break
@@ -33,7 +36,7 @@ export default function ColoredLink({ href, children }) {
       color = '#0077B5'
       break
     default:
-      color = 'black'
+      color = '#000'
       break
   }
 

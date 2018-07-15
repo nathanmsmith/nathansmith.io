@@ -1,6 +1,3 @@
-_site
-.sass-cache
-.jekyll-metadata
-.DS_Store
-_sass/.DS_Store
-/_posts/.UlyssesRoot
+/public
+/node_modules
+/.cache

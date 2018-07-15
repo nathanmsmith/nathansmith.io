@@ -3,6 +3,7 @@ module.exports = {
     title: 'Nathan Smith in HTML',
   },
   plugins: [
+    'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

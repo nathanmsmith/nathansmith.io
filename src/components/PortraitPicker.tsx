@@ -19,6 +19,7 @@ export default function PortraitPicker({ images }) {
         border: 12px solid rgba(0, 0, 0, 0.025);
       `}
       fixed={image.node.fixed}
+      alt="A photo of Nathan Smith."
     />
   );
 }

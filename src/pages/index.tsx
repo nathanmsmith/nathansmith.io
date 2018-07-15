@@ -5,16 +5,17 @@ import PortraitPicker from '../components/PortraitPicker';
 import renderAst from '../utils/renderAst';
 
 export const query = graphql`
-  {
+  query IndexQuery {
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
-    images: allImageSharp {
-      edges {
-        node {
-          sizes(maxWidth: 800, maxHeight: 800) {
-            ...GatsbyImageSharpSizes
-          }
+    images: file(relativePath: { regex: "/kerck.jpeg/" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 320) {
+          ...GatsbyImageSharpFixed
+          aspectRatio
         }
       }
     }
@@ -24,7 +25,7 @@ export const query = graphql`
 export default function Index({ data }) {
   return (
     <Container>
-      <PortraitPicker images={data.images} />
+      <PortraitPicker image={data.images} />
       {renderAst(data.markdownRemark.htmlAst)}
     </Container>
   );

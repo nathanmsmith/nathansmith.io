@@ -3,16 +3,23 @@ module.exports = {
     title: 'Nathan Smith in HTML',
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'src',
-        path: `${__dirname}/src/`,
+        name: 'pages',
+        path: `${__dirname}/src/pages/content`,
       },
     },
-    'gatsby-plugin-emotion',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'img',
+        path: `${__dirname}/src/images`,
+      },
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     'gatsby-transformer-remark',
     'gatsby-plugin-typescript',
   ],
-}
+};

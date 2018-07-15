@@ -9,13 +9,13 @@ export const query = graphql`
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
-    images: file(relativePath: { regex: "/kerck.jpeg/" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 320) {
-          ...GatsbyImageSharpFixed
-          aspectRatio
+    images: allImageSharp {
+      edges {
+        node {
+          fixed(width: 320, height: 320) {
+            ...GatsbyImageSharpFixed
+            aspectRatio
+          }
         }
       }
     }
@@ -25,7 +25,7 @@ export const query = graphql`
 export default function Index({ data }) {
   return (
     <Container>
-      <PortraitPicker image={data.images} />
+      <PortraitPicker images={data.images} />
       {renderAst(data.markdownRemark.htmlAst)}
     </Container>
   );

@@ -43,6 +43,7 @@ class ProjectGrid extends React.Component<any, any> {
         <Modal
           isOpen={this.state.modalIsOpen}
           contentLabel="Minimal Modal Example"
+          onRequestClose={this.closeModal}
         >
           <button onClick={this.closeModal}>Close Modal</button>
         </Modal>

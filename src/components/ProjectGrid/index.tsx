@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 
 import ProjectGridItem from './ProjectGridItem';
 
+Modal.setAppElement('#___gatsby');
+
 class ProjectGrid extends React.Component<any, any> {
   state = {
     modalIsOpen: false,

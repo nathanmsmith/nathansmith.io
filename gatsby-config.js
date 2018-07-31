@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Nathan Smith in HTML',
+    description: 'The personal website of Nathan Smith',
   },
   plugins: [
     'gatsby-plugin-emotion',

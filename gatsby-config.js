@@ -3,6 +3,8 @@ module.exports = {
     title: 'Nathan Smith in HTML',
     description:
       'The personal website of Nathan Smith, UCLA computer science student, web developer, and board game enthusiast.',
+    url: 'https://nathansmith.io',
+    twitter: '@nathunsmitty',
   },
   plugins: [
     {

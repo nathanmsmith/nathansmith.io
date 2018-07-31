@@ -1,9 +1,18 @@
 module.exports = {
   siteMetadata: {
     title: 'Nathan Smith in HTML',
-    description: 'The personal website of Nathan Smith',
+    description:
+      'The personal website of Nathan Smith, UCLA computer science student, web developer, and board game enthusiast.',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-92890809-1',
+        anonymize: true,
+      },
+    },
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-source-filesystem',

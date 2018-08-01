@@ -26,7 +26,7 @@
     "react-dom": "16.4.1",
     "react-emotion": "9.2.5",
     "react-helmet": "5.2.0",
-    "rehype-react": "3.0.2",
+    "rehype-react": "3.0.3",
     "typescript": "2.9.2"
   }
 }

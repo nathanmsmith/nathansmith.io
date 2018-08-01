@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import Head from '../components/Head';
-import Container from '../components/Container';
-import PortraitPicker from '../components/PortraitPicker';
-import renderAst from '../utils/renderAst';
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import Head from '../components/Head'
+import Container from '../components/Container'
+import PortraitPicker from '../components/PortraitPicker'
+import renderAst from '../utils/renderAst'
 
 export const query = graphql`
   query IndexQuery {
@@ -29,7 +29,7 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
 export default function Index({ data }) {
   return (
@@ -45,5 +45,5 @@ export default function Index({ data }) {
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
     </>
-  );
+  )
 }

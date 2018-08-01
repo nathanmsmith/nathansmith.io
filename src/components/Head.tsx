@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Helmet } from 'react-helmet';
+import * as React from 'react'
+import { Helmet } from 'react-helmet'
 
 interface HeadProps {
-  title: string;
-  description: string;
-  url: string;
-  twitter: string;
+  title: string
+  description: string
+  url: string
+  twitter: string
 }
 
 export default function Head(props: HeadProps) {
@@ -37,5 +37,5 @@ export default function Head(props: HeadProps) {
 
       <html lang="en" />
     </Helmet>
-  );
+  )
 }

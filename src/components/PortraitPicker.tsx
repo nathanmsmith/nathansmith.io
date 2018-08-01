@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { css } from 'emotion';
-import Img from 'gatsby-image';
-import randomInt from '../utils/randomInt';
+import * as React from 'react'
+import { css } from 'emotion'
+import Img from 'gatsby-image'
+import randomInt from '../utils/randomInt'
 
 export default function PortraitPicker({ images }) {
-  const image = images.edges[randomInt(0, images.edges.length)];
+  const image = images.edges[randomInt(0, images.edges.length)]
 
   return (
     <Img
@@ -21,5 +21,5 @@ export default function PortraitPicker({ images }) {
       fixed={image.node.fixed}
       alt="A photo of Nathan Smith."
     />
-  );
+  )
 }

@@ -28,8 +28,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "^0.1.0",
-    "emotion": "9.2.5",
-    "emotion-server": "9.2.5",
+    "emotion": "9.2.6",
+    "emotion-server": "9.2.6",
     "gatsby": "next",
     "gatsby-image": "next",
     "gatsby-plugin-emotion": "next",
@@ -44,16 +44,16 @@
     "polished": "1.9.3",
     "react": "16.4.1",
     "react-dom": "16.4.1",
-    "react-emotion": "9.2.5",
+    "react-emotion": "9.2.6",
     "react-helmet": "5.2.0",
     "react-typography": "^0.16.13",
     "rehype-react": "3.0.3",
-    "typescript": "2.9.2",
+    "typescript": "3.0.1",
     "typography": "^0.16.17"
   },
   "devDependencies": {
-    "husky": "^1.0.0-rc.13",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.14.0"
+    "husky": "1.0.0-rc.13",
+    "lint-staged": "7.2.0",
+    "prettier": "1.14.0"
   }
 }

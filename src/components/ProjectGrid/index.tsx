@@ -1,23 +1,21 @@
-import * as React from 'react';
-import { css } from 'emotion';
-import Modal from 'react-modal';
+import * as React from 'react'
+import { css } from 'emotion'
 
-import ProjectGridItem from './ProjectGridItem';
-
-Modal.setAppElement('#___gatsby');
+import ProjectGridItem from './ProjectGridItem'
+import ProjectGridModal, { Project } from './ProjectGridModal'
 
 class ProjectGrid extends React.Component<any, any> {
   state = {
-    modalIsOpen: false,
-  };
+    selectedProject: null,
+  }
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  };
+  openModal = (project: Project) => {
+    this.setState({ selectedProject: project })
+  }
 
   closeModal = () => {
-    this.setState({ modalIsOpen: false });
-  };
+    this.setState({ selectedProject: null })
+  }
 
   render() {
     return (
@@ -31,25 +29,24 @@ class ProjectGrid extends React.Component<any, any> {
             grid-row-gap: 15px;
           `}
         >
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
-          <ProjectGridItem onClick={this.openModal} />
+          {this.props.projects.map((project, index) => (
+            <ProjectGridItem
+              key={index}
+              onClick={() =>
+                this.openModal({
+                  title: project.node.frontmatter.title as string,
+                })
+              }
+            />
+          ))}
         </section>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          contentLabel="Minimal Modal Example"
-          onRequestClose={this.closeModal}
-        >
-          <button onClick={this.closeModal}>Close Modal</button>
-        </Modal>
+        <ProjectGridModal
+          project={this.state.selectedProject}
+          onClose={this.closeModal}
+        />
       </>
-    );
+    )
   }
 }
 
-export default ProjectGrid;
+export default ProjectGrid

@@ -29,6 +29,20 @@ export const query = graphql`
         }
       }
     }
+    projects: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/projects/" } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            link
+            role
+          }
+          html
+        }
+      }
+    }
   }
 `
 
@@ -45,7 +59,7 @@ export default function Index({ data }) {
         <PortraitPicker images={data.images} />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
-      <ProjectGrid />
+      <ProjectGrid projects={data.projects.edges} />
     </>
   )
 }

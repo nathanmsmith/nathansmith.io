@@ -8,14 +8,10 @@ export default function PortraitPicker({ images }) {
 
   return (
     <Img
-      style={{
-        display: 'block',
-      }}
+      style={{ display: 'block' }}
       className={css`
         margin: 2rem auto;
         border-radius: 50%;
-        width: 320px;
-        height: 320px;
         border: 12px solid rgba(0, 0, 0, 0.025);
       `}
       fixed={image.node.fixed}

@@ -10,4 +10,8 @@ export default styled('div')`
   margin: 2rem auto;
   font-family: 'Overpass', 'Helvetica Neue', 'Helvetica', 'Lato', sans-serif;
   font-size: 1.3rem;
+
+  @media (max-width: 480px) {
+    margin: 2rem 1rem;
+  }
 `

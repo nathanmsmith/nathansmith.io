@@ -3,6 +3,7 @@
   "description": "Nathan Smith in HTML",
   "author": "Nathan Smith <nathan@nathansmith.io>",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "start": "gatsby develop -p 1234",
     "build": "gatsby build",

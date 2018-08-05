@@ -21,7 +21,7 @@ export const query = graphql`
     images: allImageSharp {
       edges {
         node {
-          fixed(width: 320, height: 320, quality: 75, cropFocus: ATTENTION) {
+          fixed(width: 320, height: 320, quality: 85, cropFocus: ATTENTION) {
             ...GatsbyImageSharpFixed_withWebp_noBase64
             aspectRatio
           }

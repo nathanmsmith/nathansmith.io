@@ -2,9 +2,14 @@ import * as React from 'react'
 import { css } from 'emotion'
 import Img from 'gatsby-image'
 import randomInt from '../utils/randomInt'
+import { backgroundImages } from '../../node_modules/polished'
 
-export default function PortraitPicker({ images }) {
-  const image = images.edges[randomInt(0, images.edges.length)]
+interface PortraitPickerProps {
+  images: any
+}
+
+export default function PortraitPicker(props: PortraitPickerProps) {
+  const image = props.images.edges[randomInt(0, props.images.edges.length)]
 
   return (
     <Img

@@ -22,7 +22,7 @@ export const query = graphql`
       edges {
         node {
           fixed(width: 280, height: 280) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_tracedSVG
             aspectRatio
           }
         }
@@ -31,7 +31,7 @@ export const query = graphql`
   }
 `
 
-export default function Index({ data }) {
+export default function Index({ data }: any) {
   return (
     <>
       <Head

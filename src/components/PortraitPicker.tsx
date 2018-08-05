@@ -3,18 +3,22 @@ import { css } from 'emotion'
 import Img from 'gatsby-image'
 import randomInt from '../utils/randomInt'
 
-export default function PortraitPicker({ images }) {
-  const image = images.edges[randomInt(0, images.edges.length)]
+interface PortraitPickerProps {
+  images: any
+}
 
+export default function PortraitPicker(props: PortraitPickerProps) {
+  const image = props.images.edges[randomInt(0, props.images.edges.length)].node
   return (
     <Img
       style={{ display: 'block' }}
       className={css`
+        color: transparent;
         margin: 2rem auto;
         border-radius: 50%;
         border: 12px solid rgba(0, 0, 0, 0.025);
       `}
-      fixed={image.node.fixed}
+      fixed={image.fixed}
       alt="A photo of Nathan Smith."
     />
   )

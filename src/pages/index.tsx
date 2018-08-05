@@ -21,8 +21,8 @@ export const query = graphql`
     images: allImageSharp {
       edges {
         node {
-          fixed(width: 280, height: 280) {
-            ...GatsbyImageSharpFixed
+          fixed(width: 320, height: 320, quality: 85, cropFocus: ATTENTION) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
             aspectRatio
           }
         }
@@ -31,7 +31,7 @@ export const query = graphql`
   }
 `
 
-export default function Index({ data }) {
+export default function Index({ data }: any) {
   return (
     <>
       <Head

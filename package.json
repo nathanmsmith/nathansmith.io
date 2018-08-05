@@ -3,6 +3,7 @@
   "description": "Nathan Smith in HTML",
   "author": "Nathan Smith <nathan@nathansmith.io>",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "start": "gatsby develop -p 1234",
     "build": "gatsby build",
@@ -26,8 +27,11 @@
   },
   "dependencies": {
     "@types/react-modal": "3.2.0",
-    "emotion": "9.2.5",
-    "emotion-server": "9.2.5",
+    "@fortawesome/fontawesome-svg-core": "1.2.2",
+    "@fortawesome/free-solid-svg-icons": "5.2.0",
+    "@fortawesome/react-fontawesome": "0.1.0",
+    "emotion": "9.2.6",
+    "emotion-server": "9.2.6",
     "gatsby": "next",
     "gatsby-image": "next",
     "gatsby-plugin-emotion": "next",
@@ -35,21 +39,24 @@
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-plugin-typescript": "next",
+    "gatsby-plugin-typography": "2.2.0-beta.3",
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
     "polished": "1.9.3",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
-    "react-emotion": "9.2.5",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-emotion": "9.2.6",
     "react-helmet": "5.2.0",
     "react-modal": "3.5.1",
+    "react-typography": "0.16.13",
     "rehype-react": "3.0.3",
-    "typescript": "2.9.2"
+    "typescript": "3.0.1",
+    "typography": "0.16.17"
   },
   "devDependencies": {
-    "husky": "^1.0.0-rc.13",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.14.0"
+    "husky": "1.0.0-rc.13",
+    "lint-staged": "7.2.0",
+    "prettier": "1.14.0"
   }
 }

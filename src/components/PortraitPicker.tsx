@@ -9,8 +9,8 @@ interface PortraitPickerProps {
 }
 
 export default function PortraitPicker(props: PortraitPickerProps) {
-  const image = props.images.edges[randomInt(0, props.images.edges.length)]
-
+  const image = props.images.edges[randomInt(0, props.images.edges.length)].node
+  console.log(image.fixed.aspectRatio)
   return (
     <Img
       style={{ display: 'block' }}
@@ -19,7 +19,7 @@ export default function PortraitPicker(props: PortraitPickerProps) {
         border-radius: 50%;
         border: 12px solid rgba(0, 0, 0, 0.025);
       `}
-      fixed={image.node.fixed}
+      fixed={image.fixed}
       alt="A photo of Nathan Smith."
     />
   )

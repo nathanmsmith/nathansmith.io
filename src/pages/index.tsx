@@ -21,7 +21,7 @@ export const query = graphql`
     images: allImageSharp {
       edges {
         node {
-          fixed(width: 280, height: 280) {
+          fixed(width: 320, height: 320, quality: 75, cropFocus: ATTENTION) {
             ...GatsbyImageSharpFixed_tracedSVG
             aspectRatio
           }

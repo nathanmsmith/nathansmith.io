@@ -10,7 +10,6 @@ interface PortraitPickerProps {
 
 export default function PortraitPicker(props: PortraitPickerProps) {
   const image = props.images.edges[randomInt(0, props.images.edges.length)].node
-  console.log(image.fixed.aspectRatio)
   return (
     <Img
       style={{ display: 'block' }}

@@ -22,7 +22,7 @@ export const query = graphql`
       edges {
         node {
           fixed(width: 320, height: 320, quality: 75, cropFocus: ATTENTION) {
-            ...GatsbyImageSharpFixed_tracedSVG
+            ...GatsbyImageSharpFixed_withWebp_noBase64
             aspectRatio
           }
         }

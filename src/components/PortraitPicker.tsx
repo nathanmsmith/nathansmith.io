@@ -8,7 +8,7 @@ interface PortraitPickerProps {
 }
 
 export default function PortraitPicker(props: PortraitPickerProps) {
-  const image = props.images.edges[randomInt(0, prop7.images.edges.length)].node
+  const image = props.images.edges[randomInt(0, props.images.edges.length)].node
   return (
     <Img
       style={{ display: 'block' }}

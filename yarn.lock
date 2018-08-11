@@ -857,7 +857,7 @@
   version "7.0.67"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.67.tgz#3aeacf429e24e08e14d7621039d37b7f53542ecf"
 
-"@types/react-modal@^3.2.0":
+"@types/react-modal@3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.2.0.tgz#745c0e93fae9b611a3255d6dc8516d75b80b8abe"
   dependencies:
@@ -9052,7 +9052,7 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2, react-lifecycles
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-modal@^3.5.1:
+react-modal@3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.5.1.tgz#33d38527def90ea324848f7d63e53acc4468a451"
   dependencies:

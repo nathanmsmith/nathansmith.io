@@ -4,8 +4,16 @@ import { css } from 'emotion'
 import ProjectGridItem from './ProjectGridItem'
 import ProjectGridModal, { Project } from './ProjectGridModal'
 
-class ProjectGrid extends React.Component<any, any> {
-  state = {
+interface ProjectGridProps {
+  projects: any
+}
+
+interface ProjectGridState {
+  selectedProject: Project | null
+}
+
+class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
+  state: ProjectGridState = {
     selectedProject: null,
   }
 
@@ -29,7 +37,7 @@ class ProjectGrid extends React.Component<any, any> {
             grid-row-gap: 15px;
           `}
         >
-          {this.props.projects.map((project, index) => (
+          {this.props.projects.map((project: any, index: number) => (
             <ProjectGridItem
               key={index}
               onClick={() =>

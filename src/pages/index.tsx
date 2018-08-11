@@ -22,9 +22,13 @@ export const query = graphql`
     images: allImageSharp {
       edges {
         node {
-          fixed(width: 320, height: 320, quality: 85, cropFocus: ATTENTION) {
-            ...GatsbyImageSharpFixed_withWebp_noBase64
-            aspectRatio
+          fluid(
+            maxWidth: 320
+            maxHeight: 320
+            quality: 85
+            cropFocus: ATTENTION
+          ) {
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
@@ -56,7 +60,7 @@ export default function Index({ data }: any) {
         twitter={data.site.siteMetadata.twitter}
       />
       <Container>
-        <PortraitPicker images={data.images} />
+        <PortraitPicker images={data.images.edges} />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
       <ProjectGrid projects={data.projects.edges} />

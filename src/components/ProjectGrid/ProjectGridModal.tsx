@@ -1,15 +1,19 @@
 import * as React from 'react'
-import Modal from 'react-modal'
-import { css } from 'emotion'
+import * as Modal from 'react-modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 Modal.setAppElement('#___gatsby')
 
 export interface Project {
   title: string
+  dates: string
+  technologies: string[]
+  link: string | null
+  githubLink: string | null
   // company: string
-  // link: string
-  // github: string
-  // description: string
+  description: string
 }
 
 interface ProjectGridModalProps {
@@ -27,32 +31,22 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
       contentLabel="Minimal Modal Example"
       onRequestClose={props.onClose}
     >
+      <h1>{props.project.title}</h1>
+      <div>{props.project.dates}</div>
+      <div>{props.project.technologies}</div>
       <div>
-        <span
-          className={css`
-            font-family: 'Overpass', 'Helvetica Neue', 'Helvetica', 'Lato',
-              sans-serif;
-          `}
-        >
-          {props.project.title}
-        </span>
-        <span>UCLA Radio</span>
+        {!!props.project.link && (
+          <a href={props.project.link}>
+            <FontAwesomeIcon icon={faLink} />
+          </a>
+        )}
+        {!!props.project.githubLink && (
+          <a href={`https://github.com/${props.project.githubLink}`}>
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+        )}
       </div>
-      <div>February 2017 – Present</div>
-      <div>Javascript, React, Node, GraphQL</div>
-      <div>Icons</div>
-      <p>
-        I started working on UCLA Radio’s website in my second quarter both in
-        radio and at UCLA. Features I’ve implemented include social links on
-        every show page as well as a modal popup notifying listeners about our
-        pledge drive during the month of May. More recently, as co-manager of
-        UCLA Radio’s web department, I’ve been working on bringing good software
-        engineering practices to our site by way of establishing a linter
-        configuration, improving our build process, automating our builds with
-        continuous integration and deployment, writing documentation and
-        contributing guidelines, and supporting development on Windows
-        platforms.
-      </p>
+      <p dangerouslySetInnerHTML={{ __html: props.project.description }} />
     </Modal>
   ) : null
 }

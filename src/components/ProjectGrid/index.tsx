@@ -43,6 +43,12 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
               onClick={() =>
                 this.openModal({
                   title: project.node.frontmatter.title as string,
+                  link: project.node.frontmatter.link as string,
+                  githubLink: project.node.frontmatter.githubLink as string,
+                  description: project.node.html as string,
+                  dates: project.node.frontmatter.dates as string,
+                  technologies: project.node.frontmatter
+                    .technologies as string[],
                 })
               }
             />

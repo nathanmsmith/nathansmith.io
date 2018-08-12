@@ -49,6 +49,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
                   dates: project.node.frontmatter.dates as string,
                   technologies: project.node.frontmatter
                     .technologies as string[],
+                  image: project.node.frontmatter.image.childImageSharp.fluid,
                 })
               }
             />

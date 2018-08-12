@@ -19,7 +19,7 @@ export const query = graphql`
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
-    images: allFile(filter: { absolutePath: { regex: "/me/" } }) {
+    images: allFile(filter: { absolutePath: { regex: "/me//" } }) {
       edges {
         node {
           childImageSharp {
@@ -47,6 +47,13 @@ export const query = graphql`
             githubLink
             role
             technologies
+            image {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           html
         }

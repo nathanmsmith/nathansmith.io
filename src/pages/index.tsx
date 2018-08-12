@@ -42,6 +42,7 @@ export const query = graphql`
         node {
           frontmatter {
             title
+            organization
             dates
             link
             githubLink

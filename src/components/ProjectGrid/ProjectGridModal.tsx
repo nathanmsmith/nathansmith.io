@@ -10,11 +10,11 @@ Modal.setAppElement('#___gatsby')
 
 export interface Project {
   title: string
+  organization: string
   dates: string
   technologies: string[]
   link: string | null
   githubLink: string | null
-  // company: string
   description: string
   image: any
 }
@@ -53,14 +53,24 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
           display: grid;
           align-items: center;
           grid-template-columns: 1fr 1fr;
+          grid-gap: 1rem;
           @media (max-width: 860px) {
             grid-template-columns: 1fr;
           }
         `}
       >
         <div>
-          <h1>{props.project.title}</h1>
-          <div>{props.project.dates}</div>
+          <h1
+            className={css`
+              margin: 0;
+            `}
+          >
+            {props.project.title}
+          </h1>
+          <div>
+            <span>{props.project.organization}</span>,{' '}
+            <span>{props.project.dates}</span>
+          </div>
           <div>{props.project.technologies}</div>
           <div>
             {!!props.project.link && (

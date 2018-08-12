@@ -8,3 +8,5 @@ technologies: [react, typescript, sass]
 role: Project Manager and Developer
 image: '../../../images/projects/grad-issue-2018.png'
 ---
+
+Hello

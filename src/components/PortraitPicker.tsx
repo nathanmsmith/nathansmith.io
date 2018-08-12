@@ -8,7 +8,7 @@ interface PortraitPickerProps {
   data: any
 }
 
-function PortraitPicker(props: PortraitPickerProps) {
+export function PortraitPicker(props: PortraitPickerProps) {
   const images = props.data.allImageSharp.edges
   const image = images[randomInt(0, images.length)].node
   return (

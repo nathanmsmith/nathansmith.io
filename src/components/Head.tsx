@@ -9,7 +9,7 @@ interface HeadProps {
   twitter: string
 }
 
-function Head(props: HeadProps) {
+export function Head(props: HeadProps) {
   return (
     <Helmet>
       <title>{props.title}</title>

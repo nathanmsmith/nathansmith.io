@@ -1,14 +1,19 @@
-import styled from 'react-emotion';
-import { darken } from 'polished';
+import * as React from 'react'
+import { css } from 'react-emotion'
+import { darken } from 'polished'
+import Img from 'gatsby-image'
 
-const ProjectGridItem = styled('div')`
-  background-color: red;
-  width: 100%;
-  height: 100px;
-  &:hover {
-    cursor: pointer;
-    background-color: ${darken(0.2, 'red')};
-  }
-`;
-
-export default ProjectGridItem;
+export default function ProjectGridItem(props: any) {
+  return (
+    <div
+      className={css`
+        &:hover {
+          cursor: pointer;
+        }
+      `}
+      onClick={props.onClick}
+    >
+      <Img fluid={props.image} />
+    </div>
+  )
+}

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 interface HeadProps {
@@ -8,7 +9,7 @@ interface HeadProps {
   twitter: string
 }
 
-export default function Head(props: HeadProps) {
+export function Head(props: HeadProps) {
   return (
     <Helmet>
       <title>{props.title}</title>
@@ -39,3 +40,28 @@ export default function Head(props: HeadProps) {
     </Helmet>
   )
 }
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+            url
+            twitter
+          }
+        }
+      }
+    `}
+    render={data => (
+      <Head
+        title={data.site.siteMetadata.title}
+        description={data.site.siteMetadata.description}
+        url={data.site.siteMetadata.url}
+        twitter={data.site.siteMetadata.twitter}
+      />
+    )}
+  />
+)

@@ -2,37 +2,42 @@ import * as React from 'react'
 import { css } from 'emotion'
 import { transparentize } from 'polished'
 
-export default function ColoredLink({ href, children }) {
+interface ColoredLinkProps {
+  href: string
+  children: React.Component
+}
+
+export default function ColoredLink(props: ColoredLinkProps) {
   let color: string
   switch (true) {
-    case href.includes('#fn-'):
-      return <a href={href}>{children}</a>
-    case href.includes('mailto:'):
+    case props.href.includes('#fn-'):
+      return <a href={props.href}>{props.children}</a>
+    case props.href.includes('mailto:'):
       color = '#000'
       break
-    case href.includes('ucla.edu'):
+    case props.href.includes('ucla.edu'):
       color = '#3284BF'
       break
-    case href.includes('keybase.io'):
+    case props.href.includes('keybase.io'):
       color = '#FD7039'
       break
-    case href.includes('autodesk.com'):
+    case props.href.includes('autodesk.com'):
       color = '#87BC40'
       break
-    case href.includes('dailybruin.com'):
+    case props.href.includes('dailybruin.com'):
       color = '#0080C6'
       break
-    case href.includes('acm.cs.ucla.edu'):
-    case href.includes('uclaacm.com'):
+    case props.href.includes('acm.cs.ucla.edu'):
+    case props.href.includes('uclaacm.com'):
       color = '#3B59ED'
       break
-    case href.includes('uclaradio.com'):
+    case props.href.includes('uclaradio.com'):
       color = '#E76C9C'
       break
-    case href.includes('github.com'):
+    case props.href.includes('github.com'):
       color = '#24292E'
       break
-    case href.includes('linkedin.com'):
+    case props.href.includes('linkedin.com'):
       color = '#0077B5'
       break
     default:
@@ -55,8 +60,8 @@ export default function ColoredLink({ href, children }) {
   `
 
   return (
-    <a href={href} className={styles}>
-      {children}
+    <a href={props.href} className={styles}>
+      {props.children}
     </a>
   )
 }

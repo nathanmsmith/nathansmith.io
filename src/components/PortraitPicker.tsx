@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { css } from 'emotion'
+import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import randomInt from '../utils/randomInt'
 
 interface PortraitPickerProps {
-  images: any
+  data: any
 }
 
-export default function PortraitPicker(props: PortraitPickerProps) {
-  const image =
-    props.images[randomInt(0, props.images.length)].node.childImageSharp
+export function PortraitPicker(props: PortraitPickerProps) {
+  const images = props.data.allImageSharp.edges
+  const image = images[randomInt(0, images.length)].node
   return (
     <a href="/">
       <Img
@@ -33,3 +34,27 @@ export default function PortraitPicker(props: PortraitPickerProps) {
     </a>
   )
 }
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        allImageSharp {
+          edges {
+            node {
+              fluid(
+                maxWidth: 320
+                maxHeight: 320
+                quality: 85
+                cropFocus: ATTENTION
+              ) {
+                ...GatsbyImageSharpFluid_withWebp_noBase64
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <PortraitPicker data={data} />}
+  />
+)

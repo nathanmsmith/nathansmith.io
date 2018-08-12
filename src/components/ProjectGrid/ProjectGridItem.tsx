@@ -13,7 +13,7 @@ export default function ProjectGridItem(props: any) {
       `}
       onClick={props.onClick}
     >
-      <Img fluid={props.image} />
+      <Img fixed={props.image} />
     </div>
   )
 }

@@ -30,19 +30,22 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
       <>
         <section
           className={css`
-            max-width: 800px;
+            max-width: 840px;
             margin: 0 auto 4rem;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr;
+            grid-template-columns: repeat(auto-fill, 260px);
+            grid-template-rows: 260px;
             grid-column-gap: 10px;
             grid-row-gap: 10px;
+            align-items: center;
+            justify-content: center;
           `}
         >
           {this.props.projects.map((project: any, index: number) => (
             <ProjectGridItem
               key={index}
-              image={project.node.frontmatter.image.childImageSharp.fluid}
+              image={project.node.frontmatter.image.childImageSharp.fixed}
               onClick={() =>
                 this.openModal({
                   title: project.node.frontmatter.title as string,

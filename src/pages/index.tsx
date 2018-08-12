@@ -29,6 +29,9 @@ export const query = graphql`
                 fluid {
                   ...GatsbyImageSharpFluid_withWebp
                 }
+                fixed(width: 260, height: 260, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFixed_withWebp
+                }
               }
             }
           }

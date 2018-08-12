@@ -39,7 +39,7 @@ export default () => (
   <StaticQuery
     query={graphql`
       query {
-        allFile(filter: { absolutePath: { regex: "/me/" } }) {
+        allFile(filter: { absolutePath: { regex: "/nathan/" } }) {
           edges {
             node {
               childImageSharp {

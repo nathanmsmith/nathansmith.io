@@ -18,20 +18,6 @@ export const query = graphql`
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
-    images: allImageSharp {
-      edges {
-        node {
-          fluid(
-            maxWidth: 320
-            maxHeight: 320
-            quality: 85
-            cropFocus: ATTENTION
-          ) {
-            ...GatsbyImageSharpFluid_withWebp_noBase64
-          }
-        }
-      }
-    }
   }
 `
 
@@ -45,7 +31,7 @@ export default function Index({ data }: any) {
         twitter={data.site.siteMetadata.twitter}
       />
       <Container>
-        <PortraitPicker images={data.images.edges} />
+        <PortraitPicker />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
     </>

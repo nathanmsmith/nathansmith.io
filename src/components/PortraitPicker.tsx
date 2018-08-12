@@ -8,7 +8,8 @@ interface PortraitPickerProps {
 }
 
 export default function PortraitPicker(props: PortraitPickerProps) {
-  const image = props.images[randomInt(0, props.images.length)].node
+  const image =
+    props.images[randomInt(0, props.images.length)].node.childImageSharp
   return (
     <a href="/">
       <Img

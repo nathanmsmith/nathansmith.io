@@ -7,14 +7,6 @@ import renderAst from '../utils/renderAst'
 
 export const query = graphql`
   query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        url
-        twitter
-      }
-    }
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
@@ -24,12 +16,7 @@ export const query = graphql`
 export default function Index({ data }: any) {
   return (
     <>
-      <Head
-        title={data.site.siteMetadata.title}
-        description={data.site.siteMetadata.description}
-        url={data.site.siteMetadata.url}
-        twitter={data.site.siteMetadata.twitter}
-      />
+      <Head />
       <Container>
         <PortraitPicker />
         {renderAst(data.markdownRemark.htmlAst)}

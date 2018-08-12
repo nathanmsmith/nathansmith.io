@@ -10,10 +10,10 @@ Modal.setAppElement('#___gatsby')
 
 export interface Project {
   title: string
-  organization: string
+  organization?: string
   dates: string
   technologies: string[]
-  link: string | null
+  link?: string | null
   githubLink: string | null
   description: string
   image: any

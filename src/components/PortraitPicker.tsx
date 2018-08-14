@@ -9,8 +9,8 @@ interface PortraitPickerProps {
 }
 
 export function PortraitPicker(props: PortraitPickerProps) {
-  const images = props.data.allImageSharp.edges
-  const image = images[randomInt(0, images.length)].node
+  const images = props.data.allFile.edges
+  const image = images[randomInt(0, images.length)].node.childImageSharp
   return (
     <a href="/">
       <Img
@@ -39,16 +39,18 @@ export default () => (
   <StaticQuery
     query={graphql`
       query {
-        allImageSharp {
+        allFile(filter: { relativeDirectory: { regex: "/nathan/" } }) {
           edges {
             node {
-              fluid(
-                maxWidth: 320
-                maxHeight: 320
-                quality: 85
-                cropFocus: ATTENTION
-              ) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
+              childImageSharp {
+                fluid(
+                  maxWidth: 320
+                  maxHeight: 320
+                  quality: 85
+                  cropFocus: ATTENTION
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
               }
             }
           }

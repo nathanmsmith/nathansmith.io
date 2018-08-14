@@ -20,9 +20,6 @@ export interface Project {
 }
 
 interface ProjectGridModalProps {
-  // onArrowLeft: () => void
-  // onArrowRight: () => void
-  // isOpen: boolean
   onClose: () => void
   project: Project | null
 }

@@ -17,6 +17,7 @@ export const query = graphql`
       edges {
         node {
           frontmatter {
+            hidden
             title
             organization
             dates

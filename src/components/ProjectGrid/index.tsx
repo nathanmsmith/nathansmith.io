@@ -26,6 +26,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
   }
 
   render() {
+    console.log(this.props.projects)
     return (
       <>
         <section
@@ -42,25 +43,31 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
             justify-content: center;
           `}
         >
-          {this.props.projects.map((project: any, index: number) => (
-            <ProjectGridItem
-              key={index}
-              image={project.node.frontmatter.image.childImageSharp.fixed}
-              onClick={() =>
-                this.openModal({
-                  title: project.node.frontmatter.title as string,
-                  organization: project.node.frontmatter.organization as string,
-                  link: project.node.frontmatter.link as string,
-                  githubLink: project.node.frontmatter.githubLink as string,
-                  description: project.node.html as string,
-                  dates: project.node.frontmatter.dates as string,
-                  technologies: project.node.frontmatter
-                    .technologies as string[],
-                  image: project.node.frontmatter.image.childImageSharp.fluid,
-                })
-              }
-            />
-          ))}
+          {this.props.projects.map((project: any, index: number) => {
+            if (project.node.frontmatter.hidden !== true) {
+              return (
+                <ProjectGridItem
+                  key={index}
+                  image={project.node.frontmatter.image.childImageSharp.fixed}
+                  onClick={() =>
+                    this.openModal({
+                      title: project.node.frontmatter.title as string,
+                      organization: project.node.frontmatter
+                        .organization as string,
+                      link: project.node.frontmatter.link as string,
+                      githubLink: project.node.frontmatter.githubLink as string,
+                      description: project.node.html as string,
+                      dates: project.node.frontmatter.dates as string,
+                      technologies: project.node.frontmatter
+                        .technologies as string[],
+                      image:
+                        project.node.frontmatter.image.childImageSharp.fluid,
+                    })
+                  }
+                />
+              )
+            }
+          })}
         </section>
         <ProjectGridModal
           project={this.state.selectedProject}

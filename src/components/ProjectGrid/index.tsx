@@ -36,7 +36,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
             padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, 260px);
-            grid-template-rows: 260px;
+            grid-template-rows: repeat(auto-fill, 260px);
             grid-column-gap: 10px;
             grid-row-gap: 10px;
             align-items: center;

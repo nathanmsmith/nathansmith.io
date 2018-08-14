@@ -13,7 +13,12 @@ export default function ProjectGridItem(props: any) {
       `}
       onClick={props.onClick}
     >
-      <Img fixed={props.image} />
+      <Img
+        fixed={props.image}
+        outerWrapperClassName={css`
+          height: 260px;
+        `}
+      />
     </div>
   )
 }

@@ -6,6 +6,6 @@ link: https://alumni.dailybruin.com
 githubLink: dailybruin/alumni
 technologies: ['javascript']
 role: Developer, Designer
-image: '../../../images/projects/alumni.png'
+# image: '../../../images/projects/alumni.png'
 hidden: true
 ---

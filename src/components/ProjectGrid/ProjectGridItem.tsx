@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { css } from 'react-emotion'
-import { darken } from 'polished'
 import Img from 'gatsby-image'
 
 export default function ProjectGridItem(props: any) {
   return (
-    <div
+    <a
       className={css`
+        text-decoration: none;
         &:hover {
           cursor: pointer;
+          filter: brightness(85%);
         }
       `}
-      onClick={props.onClick}
+      href={props.href}
     >
       <Img
         fixed={props.image}
@@ -19,6 +20,6 @@ export default function ProjectGridItem(props: any) {
           height: 260px;
         `}
       />
-    </div>
+    </a>
   )
 }

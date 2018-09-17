@@ -45,7 +45,7 @@
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
-    "polished": "1.9.3",
+    "polished": "2.0.3",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-emotion": "9.2.9",

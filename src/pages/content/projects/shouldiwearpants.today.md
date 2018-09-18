@@ -8,4 +8,4 @@ role: Sole Developer
 image: '../../../images/projects/shouldiwearpants.today.png'
 ---
 
-lorem10
+shouldiwearpants.today was the first website that I

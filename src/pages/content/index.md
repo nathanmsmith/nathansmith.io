@@ -4,12 +4,12 @@ title: Nathan Smith in HTML
 
 Hi, I’m Nathan. 👋
 
-I’m a rising junior at [UCLA](http://www.ucla.edu) studying Computer Science. I
-currently work as a software engineering intern for
-[Keybase](https://keybase.io) in New York City, where I help develop Keybase's
-open-source desktop and mobile applications.
+I’m a junior at [UCLA](http://www.ucla.edu) studying Computer Science.
 
-Last summer, I interned for [Autodesk](https://www.autodesk.com), where I worked
+This past summer, I
+worked as a software engineering intern for
+[Keybase](https://keybase.io) in New York City, where I helped develop Keybase's
+open-source desktop and mobile applications. The summer before that, I interned for [Autodesk](https://www.autodesk.com), where I worked
 on developing and designing an internal website to connect engineers within the
 company.
 

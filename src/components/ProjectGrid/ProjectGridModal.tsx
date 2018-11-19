@@ -6,18 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-Modal.setAppElement('#___gatsby')
+import Project from '../../utils/Project'
 
-export interface Project {
-  title: string
-  organization?: string
-  dates: string
-  technologies: string[]
-  link?: string | null
-  githubLink: string | null
-  description: string
-  image: any
-}
+Modal.setAppElement('#___gatsby')
 
 interface ProjectGridModalProps {
   onClose: () => void
@@ -83,7 +74,7 @@ export default class ProjectGridModal extends React.Component<
               <span>{this.props.project.organization}</span>,{' '}
               <span>{this.props.project.dates}</span>
             </div>
-            <div>{this.props.project.technologies}</div>
+            <div>{this.props.project.technologies.join(', ')}</div>
             <div>
               {!!this.props.project.link && (
                 <a href={this.props.project.link}>
@@ -115,7 +106,7 @@ export default class ProjectGridModal extends React.Component<
           {!!this.props.project.image && (
             <a href={this.props.project.link}>
               <Img
-                fluid={this.props.project.image}
+                fluid={this.props.project.image.fluid}
                 className={css`
                   @media (max-width: 860px) {
                     display: none;

@@ -6,6 +6,8 @@ import PortraitPicker from '../components/PortraitPicker'
 import ProjectGrid from '../components/ProjectGrid'
 import renderAst from '../utils/renderAst'
 
+import convertQueryToProject from '../utils/convertQueryToProject'
+
 export const query = graphql`
   query IndexQuery {
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
@@ -51,7 +53,7 @@ export default function Index({ data }: any) {
         <PortraitPicker />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
-      <ProjectGrid projects={data.projects.edges} />
+      <ProjectGrid projects={convertQueryToProject(data.projects)} />
     </>
   )
 }

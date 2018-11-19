@@ -1,10 +1,17 @@
 import * as React from 'react'
 import { css } from 'react-emotion'
 import Img from 'gatsby-image'
+import Project from '../../utils/Project'
 
-export default function ProjectGridItem(props: any) {
+interface ProjectGridItemProps {
+  project: Project
+  onClick: () => void
+}
+
+export default function ProjectGridItem(props: ProjectGridItemProps) {
   return (
-    <a
+    <div
+      onClick={props.onClick}
       className={css`
         text-decoration: none;
         &:hover {
@@ -12,14 +19,14 @@ export default function ProjectGridItem(props: any) {
           filter: brightness(85%);
         }
       `}
-      href={props.href}
     >
-      <Img
-        fixed={props.image}
-        outerWrapperClassName={css`
-          height: 260px;
-        `}
-      />
-    </a>
+      <img src="https://via.placeholder.com/250" alt="" />
+      {/* <Img
+        fixed={props.project.image}
+        // outerWrapperClassName={css`
+        //   height: 260px;
+        // `}
+      /> */}
+    </div>
   )
 }

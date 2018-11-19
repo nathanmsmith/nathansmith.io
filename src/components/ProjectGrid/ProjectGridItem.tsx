@@ -20,13 +20,12 @@ export default function ProjectGridItem(props: ProjectGridItemProps) {
         }
       `}
     >
-      <img src="https://via.placeholder.com/250" alt="" />
-      {/* <Img
-        fixed={props.project.image}
+      <Img
+        fixed={props.project.image.fixed}
         // outerWrapperClassName={css`
         //   height: 260px;
         // `}
-      /> */}
+      />
     </div>
   )
 }

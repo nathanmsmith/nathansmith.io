@@ -8,3 +8,5 @@ technologies: ['javascript']
 role: Developer, Designer
 image: '../../../images/projects/alumni.png'
 ---
+
+The Daily Bruin Alumni Network is a relatively new organization.

@@ -8,4 +8,4 @@ role: Sole Developer
 image: '../../../images/projects/lonesierra.com.png'
 ---
 
-Hi
+A small, quick website for a friend who plays music.

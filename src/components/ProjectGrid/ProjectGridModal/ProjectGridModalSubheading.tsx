@@ -3,7 +3,7 @@ import { css } from 'react-emotion'
 import { transparentize } from 'polished'
 
 interface ProjectGridModalSubheadingProps {
-  organization: string
+  organization?: string
   dates: string
 }
 
@@ -13,7 +13,8 @@ const ProjectGridModalSubheading = (props: ProjectGridModalSubheadingProps) => (
       color: gray;
     `}
   >
-    {props.organization}, {props.dates}
+    {!!props.organization && props.organization + ', '}
+    {props.dates}
   </div>
 )
 

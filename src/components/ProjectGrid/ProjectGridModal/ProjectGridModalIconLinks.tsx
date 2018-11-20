@@ -40,7 +40,7 @@ const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
         </Link>
       )}
       {props.technologies.length > 0 && (
-        <span>technologies used: {props.technologies.join(', ')}</span>
+        <span>Technologies used: {props.technologies.join(', ')}</span>
       )}
     </div>
   )

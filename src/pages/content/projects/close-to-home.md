@@ -8,5 +8,3 @@ technologies: ['javascript']
 role: Project Manager, Designer, Developer
 image: '../../../images/projects/close-to-home.png'
 ---
-
-Hello

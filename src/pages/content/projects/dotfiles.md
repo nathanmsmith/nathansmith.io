@@ -1,7 +1,6 @@
 ---
 title: dotfile
-githubLink: dailybruin/alumni
+githubLink: nathunsmitty/.config
 technologies: ['javascript']
-# image: '../../../images/projects/alumni.png'
 hidden: true
 ---

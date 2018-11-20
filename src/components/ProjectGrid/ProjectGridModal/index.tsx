@@ -2,11 +2,10 @@ import * as React from 'react'
 import * as Modal from 'react-modal'
 import { css } from 'react-emotion'
 import Img from 'gatsby-image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import Project from '../../utils/Project'
+import Project from '../../../utils/Project'
+import ProjectGridModalHeader from './ProjectGridModalHeader'
+import ProjectGridModalIconLinks from './ProjectGridModalIconLinks'
 
 Modal.setAppElement('#___gatsby')
 
@@ -38,13 +37,20 @@ export default class ProjectGridModal extends React.Component<
         onRequestClose={this.onRequestClose}
         className={css`
           position: absolute;
+
+          @media (max-width: 768px) {
+            top: 2rem;
+            left: 1rem;
+            right: 1rem;
+            bottom: 2rem;
+          }
           top: 6rem;
           left: 5rem;
           right: 5rem;
           bottom: 6rem;
           border: 1px solid #ccc;
           background: #fff;
-          overflow: auto;
+          /* overflow: auto; */
           border-radius: 4px;
           outline: none;
           padding: 20px;
@@ -63,40 +69,19 @@ export default class ProjectGridModal extends React.Component<
           `}
         >
           <div>
-            <h1
-              className={css`
-                margin: 0;
-              `}
-            >
-              {this.props.project.title}
-            </h1>
+            <ProjectGridModalHeader
+              title={this.props.project.title}
+              link={this.props.project.link}
+            />
             <div>
               <span>{this.props.project.organization}</span>,{' '}
               <span>{this.props.project.dates}</span>
             </div>
-            <div>{this.props.project.technologies.join(', ')}</div>
-            <div>
-              {!!this.props.project.link && (
-                <a href={this.props.project.link}>
-                  <FontAwesomeIcon icon={faLink} />
-                </a>
-              )}
-              {!!this.props.project.githubLink && (
-                <a href={`https://github.com/${this.props.project.githubLink}`}>
-                  <FontAwesomeIcon icon={faGithub} />
-                </a>
-              )}
-            </div>
-            {!!this.props.project.image && (
-              <Img
-                fluid={this.props.project.image}
-                className={css`
-                  @media (min-width: 860px) {
-                    display: none;
-                  }
-                `}
-              />
-            )}
+            <ProjectGridModalIconLinks
+              liveLink={this.props.project.link}
+              githubLink={this.props.project.githubLink}
+              technologies={this.props.project.technologies}
+            />
             <p
               dangerouslySetInnerHTML={{
                 __html: this.props.project.description,
@@ -105,14 +90,7 @@ export default class ProjectGridModal extends React.Component<
           </div>
           {!!this.props.project.image && (
             <a href={this.props.project.link}>
-              <Img
-                fluid={this.props.project.image.fluid}
-                className={css`
-                  @media (max-width: 860px) {
-                    display: none;
-                  }
-                `}
-              />
+              <Img fluid={this.props.project.image.fluid} />
             </a>
           )}
         </div>

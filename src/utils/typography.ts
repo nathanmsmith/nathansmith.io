@@ -14,6 +14,13 @@ const typography = new Typography({
     'Futura',
     'sans-serif',
   ],
+  headerFontFamily: [
+    'Overpass',
+    'Helvetica Neue',
+    'Helvetica',
+    'Futura',
+    'sans-serif',
+  ],
 })
 
 export default typography

@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import Project from '../../../utils/Project'
 import ProjectGridModalHeader from './ProjectGridModalHeader'
 import ProjectGridModalIconLinks from './ProjectGridModalIconLinks'
+import ProjectGridModalSubheading from './ProjectGridModalSubheading'
 
 Modal.setAppElement('#___gatsby')
 
@@ -15,8 +16,7 @@ interface ProjectGridModalProps {
 }
 
 export default class ProjectGridModal extends React.Component<
-  ProjectGridModalProps,
-  {}
+  ProjectGridModalProps
 > {
   onAfterOpen = () => {
     document.body.style.overflow = 'hidden'
@@ -69,19 +69,25 @@ export default class ProjectGridModal extends React.Component<
           `}
         >
           <div>
-            <ProjectGridModalHeader
-              title={this.props.project.title}
-              link={this.props.project.link}
-            />
-            <div>
-              <span>{this.props.project.organization}</span>,{' '}
-              <span>{this.props.project.dates}</span>
+            <div
+              className={css`
+                margin-bottom: 1rem;
+              `}
+            >
+              <ProjectGridModalHeader
+                title={this.props.project.title}
+                link={this.props.project.link}
+              />
+              <ProjectGridModalSubheading
+                organization={this.props.project.organization}
+                dates={this.props.project.dates}
+              />
+              <ProjectGridModalIconLinks
+                liveLink={this.props.project.link}
+                githubLink={this.props.project.githubLink}
+                technologies={this.props.project.technologies}
+              />
             </div>
-            <ProjectGridModalIconLinks
-              liveLink={this.props.project.link}
-              githubLink={this.props.project.githubLink}
-              technologies={this.props.project.technologies}
-            />
             <p
               dangerouslySetInnerHTML={{
                 __html: this.props.project.description,

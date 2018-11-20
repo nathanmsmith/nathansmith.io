@@ -4,7 +4,7 @@ organization: Daily Bruin
 dates: June 2018 – August 2018
 link: https://alumni.dailybruin.com
 githubLink: dailybruin/alumni
-technologies: ['javascript']
+technologies: ['JavaScript', 'React', 'Gatsby']
 role: Developer, Designer
 image: '../../../images/projects/alumni.png'
 ---

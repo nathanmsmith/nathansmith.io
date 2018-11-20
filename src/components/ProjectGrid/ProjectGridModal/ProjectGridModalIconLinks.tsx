@@ -23,7 +23,12 @@ interface ProjectGridModalIconLinksProps {
 
 const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
   return (
-    <div>
+    <div
+      className={css`
+        display: flex;
+        align-items: center;
+      `}
+    >
       {!!props.liveLink && (
         <Link href={props.liveLink}>
           <FontAwesomeIcon icon={faLink} />

@@ -50,7 +50,6 @@ export default class ProjectGridModal extends React.Component<
           bottom: 6rem;
           border: 1px solid #ccc;
           background: #fff;
-          /* overflow: auto; */
           border-radius: 4px;
           outline: none;
           padding: 20px;
@@ -62,13 +61,19 @@ export default class ProjectGridModal extends React.Component<
             display: grid;
             align-items: center;
             grid-template-columns: 1fr 1fr;
+            grid-template-rows: 100%;
             grid-gap: 1rem;
             @media (max-width: 860px) {
               grid-template-columns: 1fr;
             }
           `}
         >
-          <div>
+          <div
+            className={css`
+              overflow: scroll;
+              height: 100%;
+            `}
+          >
             <div
               className={css`
                 margin-bottom: 1rem;

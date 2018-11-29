@@ -53,7 +53,7 @@
     "react-modal": "3.5.1",
     "react-typography": "0.16.13",
     "rehype-react": "3.0.3",
-    "typescript": "3.0.3",
+    "typescript": "3.2.1",
     "typography": "0.16.17"
   },
   "devDependencies": {

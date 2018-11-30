@@ -9,4 +9,4 @@ role: Developer
 image: '../../../images/projects/keybase.png'
 ---
 
-Hi
+I interned for Keybase after my sophmore summer

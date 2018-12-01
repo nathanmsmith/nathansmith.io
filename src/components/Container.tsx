@@ -1,6 +1,6 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-export default styled('div')`
+export default styled.div`
   max-width: 40rem;
   margin: 1rem auto;
   padding: 0.6rem;

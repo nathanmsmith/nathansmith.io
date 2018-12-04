@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 
 export default function ProjectGridItem(props: any) {
   return (
     <a
-      className={css`
+      css={css`
         text-decoration: none;
         &:hover {
           cursor: pointer;
@@ -14,12 +14,7 @@ export default function ProjectGridItem(props: any) {
       `}
       href={props.href}
     >
-      <Img
-        fixed={props.image}
-        outerWrapperClassName={css`
-          height: 260px;
-        `}
-      />
+      <Img fixed={props.image} />
     </a>
   )
 }

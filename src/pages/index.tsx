@@ -45,13 +45,13 @@ export const query = graphql`
 
 export default function Index({ data }: any) {
   return (
-    <>
+    <React.Fragment>
       <Head />
       <Container>
         <PortraitPicker />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
       <ProjectGrid projects={data.projects.edges} />
-    </>
+    </React.Fragment>
   )
 }

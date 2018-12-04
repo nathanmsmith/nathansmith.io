@@ -13,7 +13,7 @@ Usually, my downtime follows the following format:
 
    1. Clean out any inboxes. This means checking the the following places:
 
-      1. Email
+      1. [Email](canary://)
       1. Physical mail
       1. Unread messages
          - [iMessage](imessage://)

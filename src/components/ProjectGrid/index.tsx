@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 
 import ProjectGridItem from './ProjectGridItem'
 import ProjectGridModal, { Project } from './ProjectGridModal'
@@ -28,9 +28,9 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
   render() {
     console.log(this.props.projects)
     return (
-      <>
+      <React.Fragment>
         <section
-          className={css`
+          css={css`
             max-width: 840px;
             margin: 0 auto 4rem;
             padding: 0 1rem;
@@ -77,7 +77,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
           project={this.state.selectedProject}
           onClose={this.closeModal}
         />
-      </>
+      </React.Fragment>
     )
   }
 }

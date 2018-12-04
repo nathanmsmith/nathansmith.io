@@ -13,10 +13,10 @@ export const query = graphql`
 `
 
 const Downtime = ({ data }: any) => (
-  <>
+  <React.Fragment>
     <Head />
     <Container dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-  </>
+  </React.Fragment>
 )
 
 export default Downtime

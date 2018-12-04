@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import { transparentize } from 'polished'
 
 interface ColoredLinkProps {
@@ -60,7 +60,7 @@ export default function ColoredLink(props: ColoredLinkProps) {
   `
 
   return (
-    <a href={props.href} className={styles}>
+    <a href={props.href} css={styles}>
       {props.children}
     </a>
   )

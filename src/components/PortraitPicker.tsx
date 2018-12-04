@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import randomInt from '../utils/randomInt'
@@ -15,9 +15,9 @@ export function PortraitPicker(props: PortraitPickerProps) {
     <a href="/">
       <Img
         style={{ display: 'block' }}
-        className={css`
-          max-width: 320px;
-          max-height: 320px;
+        css={css`
+          max-width: 310px;
+          max-height: 310px;
           color: transparent;
           margin: 0 auto 2rem;
           border-radius: 50%;

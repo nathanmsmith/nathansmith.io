@@ -13,13 +13,13 @@ Usually, my downtime follows the following format:
 
    1. Clean out any inboxes. This means checking the the following places:
 
-      1. Email
+      1. [Email](canary://)
       1. Physical mail
       1. Unread messages
-         - iMessage
+         - [iMessage](imessage://)
          - Keybase
-         - Slack
-         - Facebook messenger
+         - [Slack](slack://)
+         - [Facebook messenger](https://www.messenger.com)
       1. Paper tray inbox
       1. [Things inbox](things:///show?id=inbox)
 
@@ -33,16 +33,19 @@ Usually, my downtime follows the following format:
 
    3. For each physical and visible action,
       - if it will take less than 2 minutes to do, do it.
-      - if it requires a next action from someone else, defer it. Ask that person, create a task in Things add the the "waiting for" tag.
-      - if it needs to be done at a certain time, add it to your calendar.
-      - if it should be done by you, create an action in Things. If it part of a larger project, create a new project in Things. If the item is assignable to an area, assign it.
+      - if it requires a next action from someone else, defer it. Ask that person, [create a task in Things with the "waiting for" tag](things:///add?tags=waiting%20for).
+      - if it needs to be done at a certain time, [add it to your calendar](x-fantastical://parse).
+      - if it should be done by you, [create an action](things:///add) in Things. If it part of a larger project, [create a new project](things:///add-project?) in Things. If the item is assignable to an area, assign it.
 
 1. Organize calendars.
+
    - Review the events for the rest of the current day and the next day.
      - Remove any events that you will not go to.
      - Reschedule events if needed.
      - Ensure that there are reminders for any events that are not regularly repeated. Select reasonable remind times.
      - Ensure that there is enough travel time between events.
-   - Review your Things activities on both the Today and Anytime list. Schedule blocks of time to do these activities on your calendar.
+   - Review your Things activities on both the [Today](things:///show?id=today) and [Anytime](things:///show?id=anytime) list. Schedule blocks of time to do these activities on your calendar.
 
-1) (Weekly) Every Sunday, perform a Weekly Review.
+1. [Meditate](https://my.headspace.com)
+
+1. (Weekly) Every Sunday, perform a Weekly Review.

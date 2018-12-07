@@ -41,5 +41,6 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
+    'gatsby-plugin-remove-trailing-slashes',
   ],
 }

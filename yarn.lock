@@ -810,7 +810,7 @@
     "@emotion/utils" "0.11.1"
     "@emotion/weak-memoize" "0.2.2"
 
-"@emotion/core@^10.0.2":
+"@emotion/core@10.0.2":
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.2.tgz#d09c5239b84e1c594660097242b661d5d6f67a5f"
   integrity sha512-QeXNlyfV6lDR98vE7mOaSYJpAa9bXlRDFHuBTFjBO89tVmwAD80T6vR1NZQ728AIUlomqX4oyrWFUZi1U+JnpA==
@@ -873,7 +873,7 @@
     "@emotion/utils" "0.11.1"
     object-assign "^4.1.1"
 
-"@emotion/styled@^10.0.2":
+"@emotion/styled@10.0.2":
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.2.tgz#e1e76c396692576c5a8ed6023dd087f40b4f844a"
   integrity sha512-n65RvN9h7QCxfDquOiDcUF0BNtBohkLxyCYwXn0rqWwui3u3bbUz073/SbM0tPPjJ9NT3JWFg6BGSEbx/0wcVA==
@@ -4466,14 +4466,14 @@ emojis-list@^2.0.0:
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
   integrity sha1-TapNnbAPmBmIDHn6RXrlsJof04k=
 
-emotion-server@^10.0.2:
+emotion-server@10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/emotion-server/-/emotion-server-10.0.2.tgz#ec341589af08aa6a5f85dea1a6b37375fd468719"
   integrity sha512-K7RJ3Pg5Db8zcB8FCcRwaO80whTpiHuHWIFkOxa92kEDle80+kWGpvYk1JMDf0+oIea9aBNUWKd2sXaClg6EgA==
   dependencies:
     create-emotion-server "10.0.0"
 
-emotion@^10.0.2:
+emotion@10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.2.tgz#17018c4090590c247905f93f9fcd7168888fa573"
   integrity sha512-wwYeA5sdYo7HsiyCaMdC2JJAmV1pb+nWMVYzk4QUQZQpuR80pOhW0YqKLoXMQB+zSiZizRmyRH2RjuO52Ij8lw==

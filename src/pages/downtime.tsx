@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 
-import Head from '../components/Head'
-import Container from '../components/Container'
+import Page from '../components/Page'
 
 export const query = graphql`
   query DowntimeQuery {
@@ -13,10 +12,7 @@ export const query = graphql`
 `
 
 const Downtime = ({ data }: any) => (
-  <React.Fragment>
-    <Head />
-    <Container dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-  </React.Fragment>
+  <Page pageTitle="Downtime" content={data.markdownRemark.html} />
 )
 
 export default Downtime

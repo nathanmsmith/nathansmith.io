@@ -3,16 +3,20 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 interface HeadProps {
-  title: string
+  siteTitle: string
+  pageTitle?: string
   description: string
   url: string
   twitter: string
 }
 
 export function Head(props: HeadProps) {
+  const title = props.pageTitle
+    ? props.pageTitle + ' | ' + props.siteTitle
+    : props.siteTitle
   return (
     <Helmet>
-      <title>{props.title}</title>
+      <title>{title}</title>
       <meta name="description" content={props.description} />
 
       {/* TODO: favicons! */}
@@ -22,17 +26,17 @@ export function Head(props: HeadProps) {
       {/* Facebook Tags */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={props.url} />
-      <meta property="og:title" content={props.title} />
+      <meta property="og:title" content={title} />
       {/* <meta property="og:image" content="https://example.com/image.jpg" /> */}
       <meta property="og:description" content={props.description} />
-      <meta property="og:site_name" content={props.title} />
+      <meta property="og:site_name" content={title} />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter Tags */}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={props.twitter} />
       <meta name="twitter:url" content={props.url} />
-      <meta name="twitter:title" content={props.title} />
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={props.description} />
       {/* <meta name="twitter:image" content="https://example.com/image.jpg" /> */}
 
@@ -41,13 +45,13 @@ export function Head(props: HeadProps) {
   )
 }
 
-export default () => (
+export default (props: { pageTitle?: string }) => (
   <StaticQuery
     query={graphql`
       query {
         site {
           siteMetadata {
-            title
+            siteTitle
             description
             url
             twitter
@@ -55,13 +59,6 @@ export default () => (
         }
       }
     `}
-    render={data => (
-      <Head
-        title={data.site.siteMetadata.title}
-        description={data.site.siteMetadata.description}
-        url={data.site.siteMetadata.url}
-        twitter={data.site.siteMetadata.twitter}
-      />
-    )}
+    render={data => <Head {...data.site.siteMetadata} {...props} />}
   />
 )

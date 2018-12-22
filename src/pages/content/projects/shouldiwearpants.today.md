@@ -1,6 +1,6 @@
 ---
 title: shouldiwearpants.today
-dates: idk
+dates: August 2016
 link: https://shouldiwearpants.today
 githubLink: nathunsmitty/shouldiwearpants.today
 technologies: [HTML, CSS, JavaScript, jQuery, Python, Flask]

@@ -21,6 +21,7 @@ Usually, my downtime follows the following format:
          - [Slack](slack://)
          - [Facebook messenger](https://www.messenger.com)
       1. Paper tray inbox
+      1. Downloads folder
       1. [Things inbox](things:///show?id=inbox)
 
    2. For each item found in an inbox, determine if it is actionable or not.

@@ -1,6 +1,6 @@
 ---
-title: dotfile
+title: dotfiles
 githubLink: nathunsmitty/.config
-technologies: ['javascript']
+technologies: ['fish']
 hidden: true
 ---

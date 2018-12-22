@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import { transparentize } from 'polished'
 
 interface ProjectGridModalSubheadingProps {
@@ -9,7 +9,7 @@ interface ProjectGridModalSubheadingProps {
 
 const ProjectGridModalSubheading = (props: ProjectGridModalSubheadingProps) => (
   <div
-    className={css`
+    css={css`
       color: gray;
     `}
   >

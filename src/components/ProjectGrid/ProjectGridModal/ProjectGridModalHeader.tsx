@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import { transparentize } from 'polished'
 
 interface ProjectGridModalHeaderProps {
@@ -10,13 +10,13 @@ interface ProjectGridModalHeaderProps {
 const ProjectGridModalHeader = (props: ProjectGridModalHeaderProps) => {
   return (
     <h1
-      className={css`
+      css={css`
         margin: 0;
       `}
     >
       {props.link ? (
         <a
-          className={css`
+          css={css`
             text-decoration: none;
             color: inherit;
             :hover {

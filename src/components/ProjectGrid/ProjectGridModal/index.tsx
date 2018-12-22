@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as Modal from 'react-modal'
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 
 import Project from '../../../utils/Project'
@@ -35,7 +35,7 @@ export default class ProjectGridModal extends React.Component<
         isOpen={true}
         onAfterOpen={this.onAfterOpen}
         onRequestClose={this.onRequestClose}
-        className={css`
+        css={css`
           position: absolute;
 
           @media (max-width: 768px) {
@@ -56,7 +56,7 @@ export default class ProjectGridModal extends React.Component<
         `}
       >
         <div
-          className={css`
+          css={css`
             height: 100%;
             display: grid;
             align-items: center;
@@ -69,13 +69,13 @@ export default class ProjectGridModal extends React.Component<
           `}
         >
           <div
-            className={css`
+            css={css`
               overflow: scroll;
               height: 100%;
             `}
           >
             <div
-              className={css`
+              css={css`
                 margin-bottom: 1rem;
               `}
             >
@@ -101,7 +101,14 @@ export default class ProjectGridModal extends React.Component<
           </div>
           {!!this.props.project.image && (
             <a href={this.props.project.link}>
-              <Img fluid={this.props.project.image.fluid} />
+              <Img
+                fluid={this.props.project.image.fluid}
+                css={css`
+                  @media (max-width: 860px) {
+                    display: none;
+                  }
+                `}
+              />
             </a>
           )}
         </div>

@@ -1,11 +1,12 @@
 import * as React from 'react'
-import styled, { css } from 'react-emotion'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 import { transparentize } from 'polished'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-const Link = styled('a')`
+const Link = styled.a`
   font-size: 1.2rem;
   margin-right: 10px;
   text-decoration: none;
@@ -24,7 +25,7 @@ interface ProjectGridModalIconLinksProps {
 const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
   return (
     <div
-      className={css`
+      css={css`
         display: flex;
         align-items: center;
       `}

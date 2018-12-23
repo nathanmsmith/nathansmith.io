@@ -4,19 +4,19 @@ title: Nathan Smith in HTML
 
 Hi, I’m Nathan. 👋
 
-I’m a junior at [UCLA](http://www.ucla.edu) studying Computer Science.
+I’m currently a software engineering intern on the Data Visualization team at [Datadog](https://www.datadoghq.com) in New York City.
 
-This past summer, I
+I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in Semptember 2019, and expect to graduate in June 2021.
+
+Last summer, I
 worked as a software engineering intern for
-[Keybase](https://keybase.io) in New York City, where I helped develop Keybase's
-open-source desktop and mobile applications. The summer before that, I interned for [Autodesk](https://www.autodesk.com), where I worked
+[Keybase](https://keybase.io), where I helped develop Keybase's
+open-source desktop and mobile applications. I'll be returning to Keybase for another internship in June 2019. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked
 on developing and designing an internal website to connect engineers within the
 company.
 
-Back in Los Angeles, I lead the online department of my
-[school newspaper](https://dailybruin.com) when I’m not studying. I also curate
-and create blog content for UCLA’s largest student-run
-[computer science organization](http://www.uclaacm.com). I formerly led web and mobile development for my
+In my spare time, I lead the online department of my
+[school newspaper](https://dailybruin.com). I formerly led web and mobile development for my
 [school radio station](https://uclaradio.com). I still contribute code and DJ
 shows on occaision.
 

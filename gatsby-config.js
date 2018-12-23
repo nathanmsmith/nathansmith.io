@@ -42,5 +42,15 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Nathan Smith in HTML',
+        short_name: 'Nathan Smith',
+        start_url: '/',
+        background_color: '#ffffff',
+        icon: 'src/images/n.png',
+      },
+    },
   ],
 }

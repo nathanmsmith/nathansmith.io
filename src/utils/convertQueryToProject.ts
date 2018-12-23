@@ -1,7 +1,6 @@
 import Project from './Project'
 
 export default function convertQueryToProjects(query: any): Project[] {
-  console.log(query)
   const projects = query.edges.map((edge: any) => {
     return {
       description: edge.node.htmlAst,
@@ -15,6 +14,5 @@ export default function convertQueryToProjects(query: any): Project[] {
       hidden: edge.node.frontmatter.hidden ? true : false,
     }
   })
-  console.log(projects)
   return projects
 }

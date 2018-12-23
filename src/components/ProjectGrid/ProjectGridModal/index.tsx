@@ -72,13 +72,14 @@ export default class ProjectGridModal extends React.Component<
             grid-gap: 1rem;
             @media (max-width: 860px) {
               display: inherit;
+              overflow-y: scroll;
             }
           `}
         >
           <div
             css={css`
               @media (min-width: 860px) {
-                overflow: scroll;
+                overflow-y: scroll;
                 height: 100%;
               }
             `}

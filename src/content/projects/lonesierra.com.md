@@ -3,9 +3,9 @@ title: Lone Sierra Website
 dates: February 2017
 link: http://lonesierra.com
 githubLink: nathunsmitty/lonesierra.com
-technologies: [html, css]
+technologies: [HTML, CSS]
 role: Sole Developer
-image: '../../../images/projects/lonesierra.com.png'
+image: '../../images/projects/lonesierra.com.png'
 ---
 
-Hi
+A small, quick website for a friend who plays music.

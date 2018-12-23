@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { css } from '@emotion/core'
 
+import Project from '../../utils/Project'
 import ProjectGridItem from './ProjectGridItem'
-import ProjectGridModal, { Project } from './ProjectGridModal'
+import ProjectGridModal from './ProjectGridModal'
 
 interface ProjectGridProps {
-  projects: any
+  projects: Project[]
 }
 
 interface ProjectGridState {
@@ -26,7 +27,18 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
   }
 
   render() {
-    console.log(this.props.projects)
+    const gridItems = this.props.projects.map((project: any, index: number) => {
+      if (!project.hidden) {
+        return (
+          <ProjectGridItem
+            key={index}
+            project={project}
+            onClick={() => this.openModal(project)}
+          />
+        )
+      }
+    })
+
     return (
       <React.Fragment>
         <section
@@ -43,35 +55,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
             justify-content: center;
           `}
         >
-          {this.props.projects.map((project: any, index: number) => {
-            if (project.node.frontmatter.hidden !== true) {
-              const link =
-                project.node.frontmatter.link ||
-                `https://github.com/${project.node.frontmatter.githubLink}`
-              return (
-                <ProjectGridItem
-                  key={index}
-                  image={project.node.frontmatter.image.childImageSharp.fixed}
-                  href={link}
-                />
-              )
-              //   onClick={() =>
-              //     this.openModal({
-              //       title: project.node.frontmatter.title as string,
-              //       organization: project.node.frontmatter
-              //         .organization as string,
-              //       link: project.node.frontmatter.link as string,
-              //       githubLink: project.node.frontmatter.githubLink as string,
-              //       description: project.node.html as string,
-              //       dates: project.node.frontmatter.dates as string,
-              //       technologies: project.node.frontmatter
-              //         .technologies as string[],
-              //       image:
-              //         project.node.frontmatter.image.childImageSharp.fluid,
-              //     })
-              //   }
-            }
-          })}
+          {gridItems}
         </section>
         <ProjectGridModal
           project={this.state.selectedProject}

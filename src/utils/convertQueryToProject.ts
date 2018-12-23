@@ -4,7 +4,7 @@ export default function convertQueryToProjects(query: any): Project[] {
   console.log(query)
   const projects = query.edges.map((edge: any) => {
     return {
-      description: edge.node.html,
+      description: edge.node.htmlAst,
       ...edge.node.frontmatter,
       image: edge.node.frontmatter.image
         ? {

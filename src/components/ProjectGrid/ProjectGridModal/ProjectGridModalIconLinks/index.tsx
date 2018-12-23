@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
+import TechnologyLink from './TechnologyLink'
+
 const Link = styled.a`
   font-size: 1.2rem;
   margin-right: 10px;
@@ -41,7 +43,15 @@ const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
         </Link>
       )}
       {props.technologies.length > 0 && (
-        <span>Technologies used: {props.technologies.join(', ')}</span>
+        <span>
+          Technologies used:{' '}
+          {props.technologies.map((tech, i) => (
+            <React.Fragment>
+              <TechnologyLink name={tech} />
+              {i !== props.technologies.length - 1 && ', '}
+            </React.Fragment>
+          ))}
+        </span>
       )}
     </div>
   )

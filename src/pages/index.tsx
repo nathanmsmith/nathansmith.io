@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
+import * as rehypeReact from 'rehype-react'
+
 import Head from '../components/Head'
 import Container from '../components/Container'
 import PortraitPicker from '../components/PortraitPicker'
 import ProjectGrid from '../components/ProjectGrid'
-import renderAst from '../utils/renderAst'
+import ColoredLink from '../components/ColoredLink'
 
 import convertQueryToProject from '../utils/convertQueryToProject'
 
@@ -38,12 +40,17 @@ export const query = graphql`
               }
             }
           }
-          html
+          htmlAst
         }
       }
     }
   }
 `
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { a: ColoredLink },
+}).Compiler
 
 export default function Index({ data }: any) {
   return (

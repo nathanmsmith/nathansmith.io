@@ -1,8 +1,10 @@
 import * as React from 'react'
+import * as rehypeReact from 'rehype-react'
 import * as Modal from 'react-modal'
 import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 
+import Link from '../../Link'
 import Project from '../../../utils/Project'
 import ProjectGridModalHeader from './ProjectGridModalHeader'
 import ProjectGridModalIconLinks from './ProjectGridModalIconLinks'
@@ -14,6 +16,11 @@ interface ProjectGridModalProps {
   onClose: () => void
   project: Project | null
 }
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { a: Link },
+}).Compiler
 
 export default class ProjectGridModal extends React.Component<
   ProjectGridModalProps
@@ -95,11 +102,12 @@ export default class ProjectGridModal extends React.Component<
                 technologies={this.props.project.technologies}
               />
             </div>
-            <p
+            {/* <p
               dangerouslySetInnerHTML={{
                 __html: this.props.project.description,
               }}
-            />
+            /> */}
+            <div>{renderAst(this.props.project.description)}</div>
           </div>
           {!!this.props.project.image && (
             <a href={this.props.project.link}>

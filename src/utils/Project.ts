@@ -6,7 +6,7 @@ export default interface Project {
   githubLink: string | null
   technologies: string[]
   role: string
-  description: string
+  description: any
   image: {
     fixed: any
     fluid: any

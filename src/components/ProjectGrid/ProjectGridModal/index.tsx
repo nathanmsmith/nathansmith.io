@@ -5,6 +5,7 @@ import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 
 import Link from '../../Link'
+import CloseButton from './CloseButton'
 import Project from '../../../utils/Project'
 import ProjectGridModalHeader from './ProjectGridModalHeader'
 import ProjectGridModalIconLinks from './ProjectGridModalIconLinks'
@@ -44,7 +45,6 @@ export default class ProjectGridModal extends React.Component<
         onRequestClose={this.onRequestClose}
         css={css`
           position: absolute;
-
           @media (max-width: 768px) {
             top: 2rem;
             left: 1rem;
@@ -62,6 +62,7 @@ export default class ProjectGridModal extends React.Component<
           padding: 42px 20px;
         `}
       >
+        <CloseButton onClick={this.onRequestClose} />
         <div
           css={css`
             height: 100%;
@@ -103,11 +104,6 @@ export default class ProjectGridModal extends React.Component<
                 technologies={this.props.project.technologies}
               />
             </div>
-            {/* <p
-              dangerouslySetInnerHTML={{
-                __html: this.props.project.description,
-              }}
-            /> */}
             <div>{renderAst(this.props.project.description)}</div>
           </div>
           {!!this.props.project.image && (

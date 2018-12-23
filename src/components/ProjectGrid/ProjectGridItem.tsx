@@ -10,22 +10,21 @@ interface ProjectGridItemProps {
 
 export default function ProjectGridItem(props: ProjectGridItemProps) {
   return (
-    <div
+    <button
       onClick={props.onClick}
       css={css`
+        border: 0;
+        padding: 0;
+        background-color: transparent;
         text-decoration: none;
+        color: white;
         &:hover {
           cursor: pointer;
           filter: brightness(85%);
         }
       `}
     >
-      <Img
-        fixed={props.project.image.fixed}
-        // outerWrapperClassName={css`
-        //   height: 260px;
-        // `}
-      />
-    </div>
+      <Img fixed={props.project.image.fixed} />
+    </button>
   )
 }

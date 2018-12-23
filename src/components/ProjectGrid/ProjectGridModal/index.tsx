@@ -52,7 +52,7 @@ export default class ProjectGridModal extends React.Component<
           background: #fff;
           border-radius: 4px;
           outline: none;
-          padding: 20px;
+          padding: 42px 20px;
         `}
       >
         <div
@@ -64,14 +64,16 @@ export default class ProjectGridModal extends React.Component<
             grid-template-rows: 100%;
             grid-gap: 1rem;
             @media (max-width: 860px) {
-              grid-template-columns: 1fr;
+              display: inherit;
             }
           `}
         >
           <div
             css={css`
-              overflow: scroll;
-              height: 100%;
+              @media (min-width: 860px) {
+                overflow: scroll;
+                height: 100%;
+              }
             `}
           >
             <div
@@ -101,14 +103,7 @@ export default class ProjectGridModal extends React.Component<
           </div>
           {!!this.props.project.image && (
             <a href={this.props.project.link}>
-              <Img
-                fluid={this.props.project.image.fluid}
-                css={css`
-                  @media (max-width: 860px) {
-                    display: none;
-                  }
-                `}
-              />
+              <Img fluid={this.props.project.image.fluid} />
             </a>
           )}
         </div>

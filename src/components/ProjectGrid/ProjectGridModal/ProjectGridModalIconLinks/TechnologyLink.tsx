@@ -92,17 +92,22 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
     case 'Docker':
       link = 'https://www.docker.com/'
       color = '#2496ed'
+      break
     case 'Python':
       link = 'https://www.python.org'
       color = '#ffd343'
+      break
     case 'Flask':
       link = 'http://flask.pocoo.org'
+      break
     case 'Chart.js':
       link = 'https://www.chartjs.org'
       color = '#FF6384'
+      break
     case 'Gatsby':
       link = 'https://www.gatsbyjs.org/'
       color = 'rgb(102, 51, 153)'
+      break
     default:
       break
   }

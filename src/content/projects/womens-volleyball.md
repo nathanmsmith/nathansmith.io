@@ -4,7 +4,7 @@ organization: Daily Bruin
 dates: November 2016
 link: http://graphics.dailybruin.com/womens-volleyball-2016/
 githubLink: dailybruin/interactive.2016.womens-volleyball
-technologies: [html, css, bootstrap, javascript, jquery]
+technologies: [HTML, CSS, Bootstrap, JavaScript, jQuery]
 role: Contributor
 image: '../../images/projects/womens-volleyball.png'
 ---

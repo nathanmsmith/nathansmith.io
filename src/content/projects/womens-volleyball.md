@@ -6,7 +6,7 @@ link: http://graphics.dailybruin.com/womens-volleyball-2016/
 githubLink: dailybruin/interactive.2016.womens-volleyball
 technologies: [html, css, bootstrap, javascript, jquery]
 role: Contributor
-image: '../../../images/projects/womens-volleyball.png'
+image: '../../images/projects/womens-volleyball.png'
 ---
 
 One of the main responsibilities of Daily Bruin Online is to create what we term "flatpages", custom web pages for longer, featured content. This story on the 2016 UCLA Women's Volleyball team was produced by myself and two other DB programmers, Colin and Lawrence, from start to finish in a span of about 10 days. This was one of the first websites I developed and designed; I was still fairly new to HTML, CSS, and JavaScript.

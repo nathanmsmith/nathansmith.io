@@ -6,7 +6,7 @@ link: https://features.dailybruin.com/2018/atomic-city/
 githubLink: dailybruin/interactive.2018.atomic-city
 technologies: ['Nunjucks', 'Sass', 'JavaScript']
 role: Sole Developer and Designer
-image: '../../../images/projects/atomic-city.png'
+image: '../../images/projects/atomic-city.png'
 ---
 
 A spring feature that the Daily Bruin did on the University of California's contract with the Los Alamos National Laboratory. I was responsible for designing, coding, and deploying the page on a tight deadline of just 4 days.

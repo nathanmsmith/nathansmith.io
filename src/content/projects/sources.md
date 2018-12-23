@@ -15,7 +15,7 @@ technologies:
     'Docker',
   ]
 role: Sole Developer and Designer
-image: '../../../images/projects/sources.png'
+image: '../../images/projects/sources.png'
 ---
 
 Sources is an internal database of the Daily Bruin’s contacts for stories that includes the names, affiliations, emails and phone numbers of various sources across Westwood that reporters can consult at any time. It has streamlined the reporting process and greatly assists the more than 500 student staffers on a daily basis. Since Sources deals with personal information, only Daily Bruin reporters are able to login and access it, but a live demo version with fake information accessible to anyone to show the breadth of the tool.

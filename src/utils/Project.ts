@@ -1,5 +1,3 @@
-import { any } from 'prop-types'
-
 export default interface Project {
   title: string
   organization?: string

@@ -1,5 +1,4 @@
 import Project from './Project'
-import { any } from 'prop-types'
 
 export default function convertQueryToProjects(query: any): Project[] {
   console.log(query)

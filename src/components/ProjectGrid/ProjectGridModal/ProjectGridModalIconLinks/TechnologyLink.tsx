@@ -73,11 +73,11 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://graphql.org'
       color = '#E10098'
       break
-    case 'Node.js':
+    case 'Node':
       link = 'https://nodejs.org/'
       color = '#43853d'
       break
-    case 'Express.js':
+    case 'Express':
       link = 'https://expressjs.com'
       color = '#353535'
       break
@@ -108,6 +108,9 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://www.gatsbyjs.org/'
       color = 'rgb(102, 51, 153)'
       break
+    case 'Foundation':
+      link = 'https://foundation.zurb.com'
+      color = 'rgb(12, 60, 85)'
     default:
       break
   }

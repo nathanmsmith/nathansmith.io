@@ -9,4 +9,4 @@ role: Project Manager and Developer
 image: '../../images/projects/grad-issue-2018.png'
 ---
 
-The second Graduation Isssue I worked on. For this page, we contructed an interactive timeline of events that had happened at UCLA over the past 4 years.
+The second Graduation Issue I worked on. For this page, we contructed an interactive timeline of events that had happened at UCLA over the past 4 years.

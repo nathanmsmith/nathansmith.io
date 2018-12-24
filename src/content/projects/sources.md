@@ -5,15 +5,7 @@ dates: December 2017 – Janurary 2018
 link: https://db-sources-staging.herokuapp.com
 githubLink: dailybruin/sources
 technologies:
-  [
-    'TypeScript',
-    'Express.js',
-    'Node.js',
-    'GraphQL',
-    'PostgreSQL',
-    'React',
-    'Docker',
-  ]
+  ['TypeScript', 'Node', 'Express', 'GraphQL', 'PostgreSQL', 'React', 'Docker']
 role: Sole Developer and Designer
 image: '../../images/projects/sources.png'
 ---

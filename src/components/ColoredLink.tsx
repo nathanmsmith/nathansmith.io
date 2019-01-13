@@ -18,6 +18,9 @@ export default function ColoredLink(props: ColoredLinkProps) {
     case props.href.includes('ucla.edu'):
       color = '#3284BF'
       break
+    case props.href.includes('datadoghq.com'):
+      color = '#774aa4'
+      break
     case props.href.includes('keybase.io'):
       color = '#FD7039'
       break

@@ -73,11 +73,11 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://graphql.org'
       color = '#E10098'
       break
-    case 'Node.js':
+    case 'Node':
       link = 'https://nodejs.org/'
       color = '#43853d'
       break
-    case 'Express.js':
+    case 'Express':
       link = 'https://expressjs.com'
       color = '#353535'
       break
@@ -92,17 +92,25 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
     case 'Docker':
       link = 'https://www.docker.com/'
       color = '#2496ed'
+      break
     case 'Python':
       link = 'https://www.python.org'
       color = '#ffd343'
+      break
     case 'Flask':
       link = 'http://flask.pocoo.org'
+      break
     case 'Chart.js':
       link = 'https://www.chartjs.org'
       color = '#FF6384'
+      break
     case 'Gatsby':
       link = 'https://www.gatsbyjs.org/'
       color = 'rgb(102, 51, 153)'
+      break
+    case 'Foundation':
+      link = 'https://foundation.zurb.com'
+      color = 'rgb(12, 60, 85)'
     default:
       break
   }

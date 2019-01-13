@@ -10,12 +10,12 @@ I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'
 
 Last summer, I
 worked as a software engineering intern for
-[Keybase](https://keybase.io), where I helped develop Keybase's
-open-source desktop and mobile applications. I'll be returning to Keybase for another internship in June 2019. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked
+[Keybase](https://keybase.io), where I contributed code to Keybase's
+open-source desktop and mobile applications. I'll be returning to Keybase for another internship in Summer 2019. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked
 on developing and designing an internal website to connect engineers within the
 company.
 
-In my spare time, I lead the online department of my
+In my spare time, I lead the Online department of my
 [school newspaper](https://dailybruin.com). I formerly led web and mobile development for my
 [school radio station](https://uclaradio.com). I still contribute code and DJ
 shows on occaision.

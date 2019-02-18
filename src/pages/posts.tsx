@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Page from '../components/Page'
 
@@ -10,8 +10,12 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           frontmatter {
             title
+          }
+          fields {
+            slug
           }
         }
       }
@@ -23,7 +27,9 @@ const Posts = ({ data }: any) => (
   <Page pageTitle="Posts">
     <ul>
       {data.posts.edges.map(({ node }: any) => (
-        <li key={node.id}>{node.frontmatter.title}</li>
+        <li key={node.id}>
+          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+        </li>
       ))}
     </ul>
   </Page>

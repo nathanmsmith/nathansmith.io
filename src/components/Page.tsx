@@ -6,7 +6,8 @@ import Header from './Header'
 
 interface PageProps {
   pageTitle: string
-  content: string
+  content?: string
+  children?: React.ReactChild
 }
 
 const Page = (props: PageProps) => (
@@ -14,7 +15,10 @@ const Page = (props: PageProps) => (
     <Head pageTitle={props.pageTitle} />
     <Container>
       <Header />
-      <div dangerouslySetInnerHTML={{ __html: props.content }} />
+      {!!props.content && (
+        <div dangerouslySetInnerHTML={{ __html: props.content }} />
+      )}
+      {props.children}
     </Container>
   </React.Fragment>
 )

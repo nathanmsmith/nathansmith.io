@@ -15,6 +15,7 @@ export const query = graphql`
           id
           frontmatter {
             title
+            date
           }
           fields {
             slug
@@ -25,21 +26,58 @@ export const query = graphql`
   }
 `
 
-const Posts = ({ data }: any) => (
-  <Page pageTitle="Posts">
-    <ul
-      css={css`
-        list-style: none;
-        margin: 0;
-      `}
-    >
-      {data.posts.edges.map(({ node }: any) => (
-        <li key={node.id}>
-          <Link href={node.fields.slug}>{node.frontmatter.title}</Link>
-        </li>
-      ))}
-    </ul>
-  </Page>
-)
+export default function Posts({ data }: any) {
+  const postsByYear = data.posts.edges.reduce((obj: any, { node }: any) => {
+    const date = new Date(node.frontmatter.date)
+    const year = date.getFullYear()
+    if (obj.hasOwnProperty(year)) {
+      obj[year].push(node)
+    } else {
+      obj[year] = [node]
+    }
+    return obj
+  }, {})
 
-export default Posts
+  return (
+    <Page pageTitle="Posts">
+      <ul
+        css={css`
+          list-style: none;
+          margin: 0;
+        `}
+      >
+        <>
+          {Object.keys(postsByYear).map((year, i) => (
+            <>
+              <h3 key={i}>{year}</h3>
+              {postsByYear[year].map((post: any) => {
+                console.log(post)
+                const date = new Date(post.frontmatter.date)
+                return (
+                  <li>
+                    <time
+                      dateTime={date.toISOString()}
+                      css={css`
+                        display: block;
+                        color: #ccc;
+                        font-size: 1rem;
+                      `}
+                    >
+                      {date.toLocaleDateString(undefined, {
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                    <Link href={post.fields.slug}>
+                      {post.frontmatter.title}
+                    </Link>
+                  </li>
+                )
+              })}
+            </>
+          ))}
+        </>
+      </ul>
+    </Page>
+  )
+}

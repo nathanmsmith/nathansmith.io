@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import { css } from '@emotion/core'
 
 import Page from '../components/Page'
+import Link from '../components/Link'
 
 export const query = graphql`
   query PostsQuery {
@@ -25,10 +27,15 @@ export const query = graphql`
 
 const Posts = ({ data }: any) => (
   <Page pageTitle="Posts">
-    <ul>
+    <ul
+      css={css`
+        list-style: none;
+        margin: 0;
+      `}
+    >
       {data.posts.edges.map(({ node }: any) => (
         <li key={node.id}>
-          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+          <Link href={node.fields.slug}>{node.frontmatter.title}</Link>
         </li>
       ))}
     </ul>

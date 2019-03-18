@@ -28,12 +28,14 @@ export const query = graphql`
 
 export default function Posts({ data }: any) {
   const postsByYear = data.posts.edges.reduce((obj: any, { node }: any) => {
-    const date = new Date(node.frontmatter.date)
-    const year = date.getFullYear()
-    if (obj.hasOwnProperty(year)) {
-      obj[year].push(node)
-    } else {
-      obj[year] = [node]
+    if (node.frontmatter.date && !node.frontmatter.draft) {
+      const date = new Date(node.frontmatter.date)
+      const year = date.getFullYear()
+      if (obj.hasOwnProperty(year)) {
+        obj[year].push(node)
+      } else {
+        obj[year] = [node]
+      }
     }
     return obj
   }, {})
@@ -51,28 +53,29 @@ export default function Posts({ data }: any) {
             <>
               <h3 key={i}>{year}</h3>
               {postsByYear[year].map((post: any) => {
-                console.log(post)
-                const date = new Date(post.frontmatter.date)
-                return (
-                  <li>
-                    <time
-                      dateTime={date.toISOString()}
-                      css={css`
-                        display: block;
-                        color: #ccc;
-                        font-size: 1rem;
-                      `}
-                    >
-                      {date.toLocaleDateString(undefined, {
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                    <Link href={post.fields.slug}>
-                      {post.frontmatter.title}
-                    </Link>
-                  </li>
-                )
+                const { date, draft } = post.frontmatter
+                if (date && !draft) {
+                  return (
+                    <li>
+                      <time
+                        dateTime={date.toISOString()}
+                        css={css`
+                          display: block;
+                          color: #ccc;
+                          font-size: 1rem;
+                        `}
+                      >
+                        {date.toLocaleDateString(undefined, {
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                      <Link href={post.fields.slug}>
+                        {post.frontmatter.title}
+                      </Link>
+                    </li>
+                  )
+                }
               })}
             </>
           ))}

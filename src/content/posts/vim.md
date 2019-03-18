@@ -1,6 +1,6 @@
 ---
 title: Vim
-date: 2019-03-10
+draft: true
 ---
 
 I've come to accept the fact the the perfect text editor for me does not exist. So after years of zealous VS Code usage, I switched to vim.

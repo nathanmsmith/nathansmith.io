@@ -6,7 +6,7 @@ Hi, I’m Nathan. 👋
 
 I’m currently a software engineering intern on the Data Visualization team at [Datadog](https://www.datadoghq.com) in New York City.
 
-I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in Semptember 2019, and expect to graduate in June 2021.
+I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in Semptember 2019, and expect to graduate in 2021.
 
 Last summer, I
 worked as a software engineering intern for
@@ -15,10 +15,9 @@ open-source desktop and mobile applications. I'll be returning to Keybase for an
 on developing and designing an internal website to connect engineers within the
 company.
 
-In my spare time, I lead the Online department of my
-[school newspaper](https://dailybruin.com). I formerly led web and mobile development for my
-[school radio station](https://uclaradio.com). I still contribute code and DJ
-shows on occaision.
+I formerly led the Online department of my
+[school newspaper](https://dailybruin.com), as well as web and mobile development for my
+[school radio station](https://uclaradio.com). I still contribute code to both organizations on occaision.
 
 The best way to contact me is via [email](mailto:nathan.smith@ucla.edu). For additional security, you can find my public key on [Keybase](https://keybase.io/nathunsmitty).
 

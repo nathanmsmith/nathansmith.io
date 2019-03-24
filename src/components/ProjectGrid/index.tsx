@@ -27,7 +27,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
   }
 
   render() {
-    const gridItems = this.props.projects.map((project: any, index: number) => {
+    const gridItems = this.props.projects.map((project, index) => {
       if (!project.hidden) {
         return (
           <ProjectGridItem

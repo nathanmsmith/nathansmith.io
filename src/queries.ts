@@ -2629,9 +2629,9 @@ export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = {
   'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
 >
 
-export type Unnamed_1_QueryVariables = {}
+export type HeadQueryVariables = {}
 
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
+export type HeadQuery = { __typename?: 'Query' } & {
   site: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata: Maybe<
@@ -2644,9 +2644,9 @@ export type Unnamed_1_Query = { __typename?: 'Query' } & {
   >
 }
 
-export type Unnamed_2_QueryVariables = {}
+export type PortraitPickerQueryVariables = {}
 
-export type Unnamed_2_Query = { __typename?: 'Query' } & {
+export type PortraitPickerQuery = { __typename?: 'Query' } & {
   allFile: Maybe<
     { __typename?: 'FileConnection' } & {
       edges: Array<
@@ -2668,17 +2668,17 @@ export type Unnamed_2_Query = { __typename?: 'Query' } & {
   >
 }
 
-export type DowntimeQueryQueryVariables = {}
+export type DowntimeQueryVariables = {}
 
-export type DowntimeQueryQuery = { __typename?: 'Query' } & {
+export type DowntimeQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
     { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'>
   >
 }
 
-export type IndexQueryQueryVariables = {}
+export type IndexQueryVariables = {}
 
-export type IndexQueryQuery = { __typename?: 'Query' } & {
+export type IndexQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
     { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'>
   >

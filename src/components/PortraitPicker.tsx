@@ -2,10 +2,12 @@ import * as React from 'react'
 import { css } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+
+import { PortraitPickerQuery } from '../queries'
 import randomInt from '../utils/randomInt'
 
 interface PortraitPickerProps {
-  data: any
+  data: PortraitPickerQuery
 }
 
 function PortraitPicker(props: PortraitPickerProps) {
@@ -39,7 +41,7 @@ function PortraitPicker(props: PortraitPickerProps) {
 export default () => (
   <StaticQuery
     query={graphql`
-      query {
+      query PortraitPicker {
         allFile(filter: { relativeDirectory: { regex: "/nathan/" } }) {
           edges {
             node {

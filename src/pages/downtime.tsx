@@ -3,15 +3,17 @@ import { graphql } from 'gatsby'
 
 import Page from '../components/Page'
 
+import { DowntimeQuery } from '../queries'
+
 export const query = graphql`
-  query DowntimeQuery {
+  query Downtime {
     markdownRemark(fileAbsolutePath: { regex: "/downtime/" }) {
       html
     }
   }
 `
 
-const Downtime = ({ data }: any) => (
+const Downtime = ({ data }: { data: DowntimeQuery }) => (
   <Page pageTitle="Downtime" content={data.markdownRemark.html} />
 )
 

@@ -1,10 +1,53 @@
 import Project from './Project'
+import { IndexQuery } from '../queries'
 
-export default function convertQueryToProjects(query: any): Project[] {
-  const projects = query.edges.map((edge: any) => {
+export default function convertIndexQueryProjectsToProjects(
+  query: IndexQuery['projects']
+): Project[] {
+  if (!query) {
+    throw new Error('Query is not defined.')
+  }
+
+  const projects = query.edges.map(edge => {
+    const description = edge.node.htmlAst
+    const {
+      title,
+      dates,
+      technologies,
+      role,
+      githubLink,
+      organization,
+      link,
+    } = edge.node.frontmatter
+
+    if (!description) {
+      throw new Error('Missing required property `description` on project.')
+    }
+    if (!title) {
+      throw new Error('Missing required property `title` on project.')
+    }
+    if (!dates) {
+      throw new Error('Missing required property `dates` on project.')
+    }
+    if (!technologies) {
+      throw new Error('Missing required property `technologies` on project.')
+    }
+    if (!role) {
+      throw new Error('Missing required property `role` on project.')
+    }
+    if (!githubLink) {
+      throw new Error('Missing required property `githubLink` on project.')
+    }
+
     return {
-      description: edge.node.htmlAst,
-      ...edge.node.frontmatter,
+      description,
+      title,
+      dates,
+      technologies,
+      role,
+      githubLink,
+      organization,
+      link,
       image: edge.node.frontmatter.image
         ? {
             fixed: edge.node.frontmatter.image.childImageSharp.fixed,

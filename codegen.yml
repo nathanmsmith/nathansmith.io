@@ -1,0 +1,10 @@
+overwrite: true
+schema: "http://localhost:1234/___graphql"
+documents:
+  - "./node_modules/gatsby-transformer-sharp/src/fragments.js"
+  - "./src/**/*.{ts,tsx}"
+generates:
+  src/queries.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"

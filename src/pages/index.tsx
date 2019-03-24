@@ -54,6 +54,10 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 export default function Index({ data }: { data: IndexQuery }) {
+  if (!data.markdownRemark || !data.markdownRemark.htmlAst) {
+    throw new Error('Page not defined.')
+  }
+
   return (
     <React.Fragment>
       <Head />

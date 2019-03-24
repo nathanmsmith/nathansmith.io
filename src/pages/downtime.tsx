@@ -13,8 +13,12 @@ export const query = graphql`
   }
 `
 
-const Downtime = ({ data }: { data: DowntimeQuery }) => (
-  <Page pageTitle="Downtime" content={data.markdownRemark.html} />
-)
+const Downtime = ({ data }: { data: DowntimeQuery }) => {
+  if (!data.markdownRemark || !data.markdownRemark.html) {
+    throw new Error('Page not defined.')
+  }
+
+  return <Page pageTitle="Downtime" content={data.markdownRemark.html} />
+}
 
 export default Downtime

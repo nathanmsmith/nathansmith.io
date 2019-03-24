@@ -4,6 +4,10 @@ import { IndexQuery } from '../queries'
 export default function convertIndexQueryProjectsToProjects(
   query: IndexQuery['projects']
 ): Project[] {
+  if (!query) {
+    throw new Error('Query is not defined.')
+  }
+
   const projects = query.edges.map(edge => {
     const description = edge.node.htmlAst
     const {

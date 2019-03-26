@@ -1014,7 +1014,7 @@
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
-"@graphql-codegen/cli@^1.0.3":
+"@graphql-codegen/cli@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.0.3.tgz#bb65a159ceb0b0c475896f127a6ab3080c8b9ee8"
   integrity sha512-bHSmh/zz+eAzlY5L+reyIVMmV7GM7eisn86SJf8UAVQIeO9wgd2WHqpmCBqsG+jbJrjTFSO9tUssq7V00D+oHA==

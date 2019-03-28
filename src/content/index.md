@@ -6,7 +6,7 @@ Hi, I’m Nathan. 👋
 
 I’m currently a software engineering intern on the Data Visualization team at [Datadog](https://www.datadoghq.com) in New York City.
 
-I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in Semptember 2019, and expect to graduate in 2021.
+I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in September 2019, and expect to graduate in 2021.
 
 Last summer, I worked as a software engineering intern for [Keybase](https://keybase.io), where I contributed code to Keybase's
 open-source desktop and mobile applications. I'll be returning to Keybase for another internship in Summer 2019. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked

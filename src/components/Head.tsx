@@ -48,7 +48,7 @@ export function Head(props: HeadProps) {
 export default (props: { pageTitle?: string }) => (
   <StaticQuery
     query={graphql`
-      query {
+      query Head {
         site {
           siteMetadata {
             siteTitle

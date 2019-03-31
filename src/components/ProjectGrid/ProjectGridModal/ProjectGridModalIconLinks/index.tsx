@@ -43,10 +43,14 @@ const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
         </Link>
       )}
       {props.technologies.length > 0 && (
-        <span>
+        <span
+          css={css`
+            line-height: 1.2rem;
+          `}
+        >
           Technologies used:{' '}
           {props.technologies.map((tech, i) => (
-            <React.Fragment>
+            <React.Fragment key={i}>
               <TechnologyLink name={tech} />
               {i !== props.technologies.length - 1 && ', '}
             </React.Fragment>

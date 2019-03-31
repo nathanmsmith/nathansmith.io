@@ -2,19 +2,22 @@ import * as React from 'react'
 import { css } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+
+import { PortraitPickerQuery } from '../queries'
 import randomInt from '../utils/randomInt'
 
 interface PortraitPickerProps {
-  data: any
+  data: PortraitPickerQuery
 }
 
-export function PortraitPicker(props: PortraitPickerProps) {
+function PortraitPicker(props: PortraitPickerProps) {
   const images = props.data.allFile.edges
   const image = images[randomInt(0, images.length)].node.childImageSharp
   return (
     <a href="/">
       <Img
         style={{ display: 'block' }}
+        imgStyle={{ borderRadius: '50%' }}
         css={css`
           max-width: 310px;
           max-height: 310px;
@@ -28,7 +31,7 @@ export function PortraitPicker(props: PortraitPickerProps) {
           }
         `}
         fluid={image.fluid}
-        alt="A photo of Nathan Smith."
+        alt="Nathan Smith"
         title="Click again?"
       />
     </a>
@@ -38,7 +41,7 @@ export function PortraitPicker(props: PortraitPickerProps) {
 export default () => (
   <StaticQuery
     query={graphql`
-      query {
+      query PortraitPicker {
         allFile(filter: { relativeDirectory: { regex: "/nathan/" } }) {
           edges {
             node {

@@ -8,10 +8,11 @@ import PortraitPicker from '../components/PortraitPicker'
 import ProjectGrid from '../components/ProjectGrid'
 import ColoredLink from '../components/ColoredLink'
 
-import convertQueryToProject from '../utils/convertQueryToProject'
+import { IndexQuery } from '../queries'
+import convertIndexQueryProjectsToProjects from '../utils/convertQueryToProject'
 
 export const query = graphql`
-  query IndexQuery {
+  query Index {
     markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
       htmlAst
     }
@@ -52,7 +53,11 @@ const renderAst = new rehypeReact({
   components: { a: ColoredLink },
 }).Compiler
 
-export default function Index({ data }: any) {
+export default function Index({ data }: { data: IndexQuery }) {
+  if (!data.markdownRemark || !data.markdownRemark.htmlAst) {
+    throw new Error('Page not defined.')
+  }
+
   return (
     <React.Fragment>
       <Head />
@@ -60,7 +65,9 @@ export default function Index({ data }: any) {
         <PortraitPicker />
         {renderAst(data.markdownRemark.htmlAst)}
       </Container>
-      <ProjectGrid projects={convertQueryToProject(data.projects)} />
+      <ProjectGrid
+        projects={convertIndexQueryProjectsToProjects(data.projects)}
+      />
     </React.Fragment>
   )
 }

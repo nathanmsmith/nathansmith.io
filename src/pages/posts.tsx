@@ -15,7 +15,6 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date
           }
           fields {
             slug

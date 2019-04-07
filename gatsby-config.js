@@ -52,5 +52,6 @@ module.exports = {
         icon: 'src/images/n.png',
       },
     },
+    'gatsby-plugin-netlify-cache',
   ],
 }

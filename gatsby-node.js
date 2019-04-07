@@ -52,7 +52,6 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
     result.data.wikiPages.edges.forEach(({ node }) => {
-      console.log(node, node.relativePath, node.childMarkdownRemark.fields.slug)
       createPage({
         path: `wiki${node.childMarkdownRemark.fields.slug}`,
         component: path.resolve('./src/components/WikiPage.tsx'),

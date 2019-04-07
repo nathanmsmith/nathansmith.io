@@ -1692,8 +1692,6 @@ export enum PotraceTurnPolicy {
 export type Query = {
   file?: Maybe<File>
   allFile?: Maybe<FileConnection>
-  sitePage?: Maybe<SitePage>
-  allSitePage?: Maybe<SitePageConnection>
   sitePlugin?: Maybe<SitePlugin>
   allSitePlugin?: Maybe<SitePluginConnection>
   site?: Maybe<Site>
@@ -1706,6 +1704,8 @@ export type Query = {
   allImageSharp?: Maybe<ImageSharpConnection>
   githubFile?: Maybe<GithubFile>
   allGithubFile?: Maybe<GithubFileConnection>
+  sitePage?: Maybe<SitePage>
+  allSitePage?: Maybe<SitePageConnection>
 }
 
 export type QueryFileArgs = {
@@ -1752,30 +1752,6 @@ export type QueryFileArgs = {
 export type QueryAllFileArgs = {
   filter?: Maybe<FileFilterInput>
   sort?: Maybe<FileSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  path?: Maybe<StringQueryOperatorInput>
-  jsonName?: Maybe<StringQueryOperatorInput>
-  internalComponentName?: Maybe<StringQueryOperatorInput>
-  component?: Maybe<StringQueryOperatorInput>
-  componentChunkName?: Maybe<StringQueryOperatorInput>
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
-  context?: Maybe<SitePageContextFilterInput>
-  pluginCreator?: Maybe<SitePluginFilterInput>
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>
-  componentPath?: Maybe<StringQueryOperatorInput>
-}
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>
-  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -1938,6 +1914,30 @@ export type QueryGithubFileArgs = {
 export type QueryAllGithubFileArgs = {
   filter?: Maybe<GithubFileFilterInput>
   sort?: Maybe<GithubFileSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QuerySitePageArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  path?: Maybe<StringQueryOperatorInput>
+  jsonName?: Maybe<StringQueryOperatorInput>
+  internalComponentName?: Maybe<StringQueryOperatorInput>
+  component?: Maybe<StringQueryOperatorInput>
+  componentChunkName?: Maybe<StringQueryOperatorInput>
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
+  pluginCreator?: Maybe<SitePluginFilterInput>
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>
+  componentPath?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>
+  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -2152,10 +2152,12 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   slug?: Maybe<Scalars['String']>
+  relativePath?: Maybe<Scalars['String']>
 }
 
 export type SitePageContextFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>
+  relativePath?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePageEdge = {
@@ -2258,6 +2260,7 @@ export enum SitePageFieldsEnum {
   ComponentChunkName = 'componentChunkName',
   IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   Context___Slug = 'context___slug',
+  Context___RelativePath = 'context___relativePath',
   PluginCreator___Id = 'pluginCreator___id',
   PluginCreator___Parent___Id = 'pluginCreator___parent___id',
   PluginCreator___Parent___Parent___Id = 'pluginCreator___parent___parent___id',
@@ -2299,6 +2302,12 @@ export enum SitePageFieldsEnum {
   PluginCreator___Resolve = 'pluginCreator___resolve',
   PluginCreator___Name = 'pluginCreator___name',
   PluginCreator___Version = 'pluginCreator___version',
+  PluginCreator___PluginOptions___Plugins = 'pluginCreator___pluginOptions___plugins',
+  PluginCreator___PluginOptions___Plugins___Resolve = 'pluginCreator___pluginOptions___plugins___resolve',
+  PluginCreator___PluginOptions___Plugins___Id = 'pluginCreator___pluginOptions___plugins___id',
+  PluginCreator___PluginOptions___Plugins___Name = 'pluginCreator___pluginOptions___plugins___name',
+  PluginCreator___PluginOptions___Plugins___Version = 'pluginCreator___pluginOptions___plugins___version',
+  PluginCreator___PluginOptions___Plugins___PluginFilepath = 'pluginCreator___pluginOptions___plugins___pluginFilepath',
   PluginCreator___PluginOptions___TrackingId = 'pluginCreator___pluginOptions___trackingId',
   PluginCreator___PluginOptions___Anonymize = 'pluginCreator___pluginOptions___anonymize',
   PluginCreator___PluginOptions___PathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
@@ -2313,6 +2322,8 @@ export enum SitePageFieldsEnum {
   PluginCreator___PluginOptions___Secrets___UseETags = 'pluginCreator___pluginOptions___secrets___useETags',
   PluginCreator___PluginOptions___Secrets___UsePostInsteadOfPatch = 'pluginCreator___pluginOptions___secrets___usePostInsteadOfPatch',
   PluginCreator___PluginOptions___Secrets___UserAgent = 'pluginCreator___pluginOptions___secrets___userAgent',
+  PluginCreator___PluginOptions___ShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
+  PluginCreator___PluginOptions___Strict = 'pluginCreator___pluginOptions___strict',
   PluginCreator___PluginOptions___Short_Name = 'pluginCreator___pluginOptions___short_name',
   PluginCreator___PluginOptions___Start_Url = 'pluginCreator___pluginOptions___start_url',
   PluginCreator___PluginOptions___Background_Color = 'pluginCreator___pluginOptions___background_color',
@@ -2504,6 +2515,14 @@ export enum SitePluginFieldsEnum {
   Resolve = 'resolve',
   Name = 'name',
   Version = 'version',
+  PluginOptions___Plugins = 'pluginOptions___plugins',
+  PluginOptions___Plugins___Resolve = 'pluginOptions___plugins___resolve',
+  PluginOptions___Plugins___Id = 'pluginOptions___plugins___id',
+  PluginOptions___Plugins___Name = 'pluginOptions___plugins___name',
+  PluginOptions___Plugins___Version = 'pluginOptions___plugins___version',
+  PluginOptions___Plugins___PluginOptions___ShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
+  PluginOptions___Plugins___PluginOptions___Strict = 'pluginOptions___plugins___pluginOptions___strict',
+  PluginOptions___Plugins___PluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptions___TrackingId = 'pluginOptions___trackingId',
   PluginOptions___Anonymize = 'pluginOptions___anonymize',
   PluginOptions___PathToConfigModule = 'pluginOptions___pathToConfigModule',
@@ -2518,6 +2537,8 @@ export enum SitePluginFieldsEnum {
   PluginOptions___Secrets___UseETags = 'pluginOptions___secrets___useETags',
   PluginOptions___Secrets___UsePostInsteadOfPatch = 'pluginOptions___secrets___usePostInsteadOfPatch',
   PluginOptions___Secrets___UserAgent = 'pluginOptions___secrets___userAgent',
+  PluginOptions___ShowLineNumbers = 'pluginOptions___showLineNumbers',
+  PluginOptions___Strict = 'pluginOptions___strict',
   PluginOptions___Short_Name = 'pluginOptions___short_name',
   PluginOptions___Start_Url = 'pluginOptions___start_url',
   PluginOptions___Background_Color = 'pluginOptions___background_color',
@@ -2639,6 +2660,7 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 }
 
 export type SitePluginPluginOptions = {
+  plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
   trackingId?: Maybe<Scalars['String']>
   anonymize?: Maybe<Scalars['Boolean']>
   pathToConfigModule?: Maybe<Scalars['String']>
@@ -2648,6 +2670,8 @@ export type SitePluginPluginOptions = {
   tree?: Maybe<Scalars['Boolean']>
   user?: Maybe<Scalars['String']>
   secrets?: Maybe<SitePluginPluginOptionsSecrets>
+  showLineNumbers?: Maybe<Scalars['Boolean']>
+  strict?: Maybe<Scalars['String']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
@@ -2656,6 +2680,7 @@ export type SitePluginPluginOptions = {
 }
 
 export type SitePluginPluginOptionsFilterInput = {
+  plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
@@ -2665,11 +2690,45 @@ export type SitePluginPluginOptionsFilterInput = {
   tree?: Maybe<BooleanQueryOperatorInput>
   user?: Maybe<StringQueryOperatorInput>
   secrets?: Maybe<SitePluginPluginOptionsSecretsFilterInput>
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
+  strict?: Maybe<StringQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
   icon?: Maybe<StringQueryOperatorInput>
   pathCheck?: Maybe<BooleanQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPlugins = {
+  resolve?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  version?: Maybe<Scalars['String']>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptions>
+  pluginFilepath?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  version?: Maybe<StringQueryOperatorInput>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>
+  pluginFilepath?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsPluginsFilterInput>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptions = {
+  showLineNumbers?: Maybe<Scalars['Boolean']>
+  strict?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
+  strict?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsSecrets = {
@@ -2698,8 +2757,29 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETags = {
   GET_https___api_github_com_repos_nathunsmitty_wiki_git_trees_HEAD_recursive_1?: Maybe<
     SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Trees_Head_Recursive_1
   >
-  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_11274111570c91cd8d2e925fed2d223a62263a1c?: Maybe<
-    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1c
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_e69de29bb2d1d6434b8b29ae775ad8c2e48c5391?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_153014c8f200d568a158154f5bf9e72f4d96c856?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_ebe6356351aa3c2405e2835caefe8abf38cacaa6?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_3114d32788c151b73d4013738e5995b1bd537f0d?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0d
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0c?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0c
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_e96b818277bfe76288127329ce6625ddf61538e8?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0
   >
 }
 
@@ -2707,20 +2787,41 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETagsFilterInput = {
   GET_https___api_github_com_repos_nathunsmitty_wiki_git_trees_HEAD_recursive_1?: Maybe<
     SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Trees_Head_Recursive_1FilterInput
   >
-  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_11274111570c91cd8d2e925fed2d223a62263a1c?: Maybe<
-    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cFilterInput
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_e69de29bb2d1d6434b8b29ae775ad8c2e48c5391?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391FilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_153014c8f200d568a158154f5bf9e72f4d96c856?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856FilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_ebe6356351aa3c2405e2835caefe8abf38cacaa6?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6FilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_3114d32788c151b73d4013738e5995b1bd537f0d?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dFilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0c?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cFilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254FilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_e96b818277bfe76288127329ce6625ddf61538e8?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8FilterInput
+  >
+  GET_https___api_github_com_repos_nathunsmitty_wiki_git_blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0FilterInput
   >
 }
 
-export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1c = {
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856 = {
   eTag?: Maybe<Scalars['String']>
   data?: Maybe<
-    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cData
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856Data
   >
   status?: Maybe<Scalars['Int']>
 }
 
-export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cData = {
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856Data = {
   sha?: Maybe<Scalars['String']>
   node_id?: Maybe<Scalars['String']>
   size?: Maybe<Scalars['Int']>
@@ -2729,7 +2830,7 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Git
   encoding?: Maybe<Scalars['String']>
 }
 
-export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cDataFilterInput = {
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856DataFilterInput = {
   sha?: Maybe<StringQueryOperatorInput>
   node_id?: Maybe<StringQueryOperatorInput>
   size?: Maybe<IntQueryOperatorInput>
@@ -2738,10 +2839,248 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Git
   encoding?: Maybe<StringQueryOperatorInput>
 }
 
-export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cFilterInput = {
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856FilterInput = {
   eTag?: Maybe<StringQueryOperatorInput>
   data?: Maybe<
-    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_11274111570c91cd8d2e925fed2d223a62263a1cDataFilterInput
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_153014c8f200d568a158154f5bf9e72f4d96c856DataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0c = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cData
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cData = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cDataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cFilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_1a13dfc66dac3435f373d740a5a443ec725d4f0cDataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0d = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dData
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dData = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dDataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dFilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_3114d32788c151b73d4013738e5995b1bd537f0dDataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254 = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254Data
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254Data = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254DataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254FilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_72f1661d9e49143f2189e0de5de6fcb635c8c254DataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0 = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0Data
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0Data = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0DataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0FilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_9edd21416f7607a786981dbe10b0c65ebb918ed0DataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391 = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391Data
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391Data = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391DataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391FilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E69de29bb2d1d6434b8b29ae775ad8c2e48c5391DataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8 = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8Data
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8Data = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8DataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8FilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_E96b818277bfe76288127329ce6625ddf61538e8DataFilterInput
+  >
+  status?: Maybe<IntQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6 = {
+  eTag?: Maybe<Scalars['String']>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6Data
+  >
+  status?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6Data = {
+  sha?: Maybe<Scalars['String']>
+  node_id?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
+  url?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  encoding?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6DataFilterInput = {
+  sha?: Maybe<StringQueryOperatorInput>
+  node_id?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  content?: Maybe<StringQueryOperatorInput>
+  encoding?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6FilterInput = {
+  eTag?: Maybe<StringQueryOperatorInput>
+  data?: Maybe<
+    SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Blobs_Ebe6356351aa3c2405e2835caefe8abf38cacaa6DataFilterInput
   >
   status?: Maybe<IntQueryOperatorInput>
 }
@@ -2781,8 +3120,8 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Git
   mode?: Maybe<Scalars['String']>
   type?: Maybe<Scalars['String']>
   sha?: Maybe<Scalars['String']>
-  size?: Maybe<Scalars['Int']>
   url?: Maybe<Scalars['String']>
+  size?: Maybe<Scalars['Int']>
 }
 
 export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Trees_Head_Recursive_1DataTreeFilterInput = {
@@ -2790,8 +3129,8 @@ export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Git
   mode?: Maybe<StringQueryOperatorInput>
   type?: Maybe<StringQueryOperatorInput>
   sha?: Maybe<StringQueryOperatorInput>
-  size?: Maybe<IntQueryOperatorInput>
   url?: Maybe<StringQueryOperatorInput>
+  size?: Maybe<IntQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsSecretsPlugins_CachedETagsGet_Https___Api_Github_Com_Repos_Nathunsmitty_Wiki_Git_Trees_Head_Recursive_1DataTreeFilterListInput = {
@@ -3091,11 +3430,39 @@ export type Unnamed_1_Query = { __typename?: 'Query' } & {
   >
 }
 
+export type WikiPageQueryVariables = {
+  relativePath: Scalars['String']
+}
+
+export type WikiPageQuery = { __typename?: 'Query' } & {
+  githubFile: Maybe<
+    { __typename?: 'GithubFile' } & {
+      childMarkdownRemark: Maybe<
+        { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'> & {
+            frontmatter: Maybe<
+              { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+                MarkdownRemarkFrontmatter,
+                'title'
+              >
+            >
+          }
+      >
+    }
+  >
+}
+
 export type DowntimeQueryVariables = {}
 
 export type DowntimeQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
-    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'>
+    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'> & {
+        frontmatter: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'title'
+          >
+        >
+      }
   >
 }
 
@@ -3176,24 +3543,6 @@ export type PostsQueryQuery = { __typename?: 'Query' } & {
                 >
               >
             }
-        }
-      >
-    }
-  >
-}
-
-export type WikiQueryVariables = {}
-
-export type WikiQuery = { __typename?: 'Query' } & {
-  allGithubFile: Maybe<
-    { __typename?: 'GithubFileConnection' } & {
-      edges: Array<
-        { __typename?: 'GithubFileEdge' } & {
-          node: { __typename?: 'GithubFile' } & {
-            childMarkdownRemark: Maybe<
-              { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'>
-            >
-          }
         }
       >
     }

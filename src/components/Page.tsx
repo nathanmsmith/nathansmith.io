@@ -15,6 +15,7 @@ const Page = (props: PageProps) => (
     <Head pageTitle={props.pageTitle} />
     <Container>
       <Header />
+      <h1>{props.pageTitle}</h1>
       {!!props.content && (
         <div dangerouslySetInnerHTML={{ __html: props.content }} />
       )}

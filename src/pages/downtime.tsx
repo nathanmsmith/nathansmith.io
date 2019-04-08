@@ -8,7 +8,7 @@ import { DowntimeQuery } from '../queries'
 export const query = graphql`
   query Downtime {
     markdownRemark(fileAbsolutePath: { regex: "/downtime/" }) {
-      html
+      htmlAst
       frontmatter {
         title
       }
@@ -17,14 +17,14 @@ export const query = graphql`
 `
 
 const Downtime = ({ data }: { data: DowntimeQuery }) => {
-  if (!data.markdownRemark || !data.markdownRemark.html) {
+  if (!data.markdownRemark || !data.markdownRemark.htmlAst) {
     throw new Error('Page not defined.')
   }
 
   return (
     <Page
       pageTitle={data.markdownRemark.frontmatter.title}
-      content={data.markdownRemark.html}
+      content={data.markdownRemark.htmlAst}
     />
   )
 }

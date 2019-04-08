@@ -7,7 +7,7 @@ export const query = graphql`
   query WikiPage($relativePath: String!) {
     githubFile(relativePath: { eq: $relativePath }) {
       childMarkdownRemark {
-        html
+        htmlAst
         frontmatter {
           title
         }
@@ -18,7 +18,7 @@ export const query = graphql`
 
 const Post = ({ data }: any) => {
   const post = data.githubFile.childMarkdownRemark
-  return <Page pageTitle={post.frontmatter.title} content={post.html} />
+  return <Page pageTitle={post.frontmatter.title} content={post.htmlAst} />
 }
 
 export default Post

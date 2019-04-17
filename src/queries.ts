@@ -1182,6 +1182,7 @@ export type MarkdownRemark = Node & {
   excerpt?: Maybe<Scalars['String']>
   rawMarkdownBody?: Maybe<Scalars['String']>
   fileAbsolutePath?: Maybe<Scalars['String']>
+  fields?: Maybe<MarkdownRemarkFields>
   html?: Maybe<Scalars['String']>
   htmlAst?: Maybe<Scalars['JSON']>
   excerptAst?: Maybe<Scalars['JSON']>
@@ -1235,6 +1236,10 @@ export type MarkdownRemarkEdge = {
   next?: Maybe<MarkdownRemark>
   node: MarkdownRemark
   previous?: Maybe<MarkdownRemark>
+}
+
+export type MarkdownRemarkFields = {
+  slug?: Maybe<Scalars['String']>
 }
 
 export enum MarkdownRemarkFieldsEnum {
@@ -1325,6 +1330,7 @@ export enum MarkdownRemarkFieldsEnum {
   Internal___Owner = 'internal___owner',
   Internal___Type = 'internal___type',
   Frontmatter___Title = 'frontmatter___title',
+  Frontmatter___Draft = 'frontmatter___draft',
   Frontmatter___Organization = 'frontmatter___organization',
   Frontmatter___Dates = 'frontmatter___dates',
   Frontmatter___Link = 'frontmatter___link',
@@ -1383,6 +1389,7 @@ export enum MarkdownRemarkFieldsEnum {
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
   FileAbsolutePath = 'fileAbsolutePath',
+  Fields___Slug = 'fields___slug',
   Html = 'html',
   HtmlAst = 'htmlAst',
   ExcerptAst = 'excerptAst',
@@ -1396,6 +1403,10 @@ export enum MarkdownRemarkFieldsEnum {
   WordCount___Words = 'wordCount___words',
 }
 
+export type MarkdownRemarkFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
+}
+
 export type MarkdownRemarkFilterInput = {
   id?: Maybe<StringQueryOperatorInput>
   parent?: Maybe<NodeFilterInput>
@@ -1405,6 +1416,7 @@ export type MarkdownRemarkFilterInput = {
   excerpt?: Maybe<StringQueryOperatorInput>
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>
+  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
   html?: Maybe<StringQueryOperatorInput>
   htmlAst?: Maybe<JsonQueryOperatorInput>
   excerptAst?: Maybe<JsonQueryOperatorInput>
@@ -1416,6 +1428,7 @@ export type MarkdownRemarkFilterInput = {
 
 export type MarkdownRemarkFrontmatter = {
   title?: Maybe<Scalars['String']>
+  draft?: Maybe<Scalars['Boolean']>
   organization?: Maybe<Scalars['String']>
   dates?: Maybe<Scalars['String']>
   link?: Maybe<Scalars['String']>
@@ -1428,6 +1441,7 @@ export type MarkdownRemarkFrontmatter = {
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
+  draft?: Maybe<BooleanQueryOperatorInput>
   organization?: Maybe<StringQueryOperatorInput>
   dates?: Maybe<StringQueryOperatorInput>
   link?: Maybe<StringQueryOperatorInput>
@@ -1572,6 +1586,7 @@ export type QuerySitePageArgs = {
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
   pluginCreator?: Maybe<SitePluginFilterInput>
   pluginCreatorId?: Maybe<StringQueryOperatorInput>
   componentPath?: Maybe<StringQueryOperatorInput>
@@ -1683,6 +1698,7 @@ export type QueryMarkdownRemarkArgs = {
   excerpt?: Maybe<StringQueryOperatorInput>
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>
+  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
   html?: Maybe<StringQueryOperatorInput>
   htmlAst?: Maybe<JsonQueryOperatorInput>
   excerptAst?: Maybe<JsonQueryOperatorInput>
@@ -1860,7 +1876,6 @@ export enum SiteFieldsEnum {
   Internal___Type = 'internal___type',
   SiteMetadata___SiteTitle = 'siteMetadata___siteTitle',
   SiteMetadata___Description = 'siteMetadata___description',
-  SiteMetadata___Url = 'siteMetadata___url',
   SiteMetadata___Twitter = 'siteMetadata___twitter',
   Port = 'port',
   Host = 'host',
@@ -1902,6 +1917,7 @@ export type SitePage = Node & {
   component?: Maybe<Scalars['String']>
   componentChunkName?: Maybe<Scalars['String']>
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>
+  context?: Maybe<SitePageContext>
   pluginCreator?: Maybe<SitePlugin>
   pluginCreatorId?: Maybe<Scalars['String']>
   componentPath?: Maybe<Scalars['String']>
@@ -1924,6 +1940,14 @@ export type SitePageConnectionGroupArgs = {
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
   field: SitePageFieldsEnum
+}
+
+export type SitePageContext = {
+  slug?: Maybe<Scalars['String']>
+}
+
+export type SitePageContextFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePageEdge = {
@@ -2025,6 +2049,7 @@ export enum SitePageFieldsEnum {
   Component = 'component',
   ComponentChunkName = 'componentChunkName',
   IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  Context___Slug = 'context___slug',
   PluginCreator___Id = 'pluginCreator___id',
   PluginCreator___Parent___Id = 'pluginCreator___parent___id',
   PluginCreator___Parent___Parent___Id = 'pluginCreator___parent___parent___id',
@@ -2071,6 +2096,8 @@ export enum SitePageFieldsEnum {
   PluginCreator___PluginOptions___PathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
   PluginCreator___PluginOptions___Name = 'pluginCreator___pluginOptions___name',
   PluginCreator___PluginOptions___Path = 'pluginCreator___pluginOptions___path',
+  PluginCreator___PluginOptions___SiteUrl = 'pluginCreator___pluginOptions___siteUrl',
+  PluginCreator___PluginOptions___NoTrailingSlash = 'pluginCreator___pluginOptions___noTrailingSlash',
   PluginCreator___PluginOptions___Short_Name = 'pluginCreator___pluginOptions___short_name',
   PluginCreator___PluginOptions___Start_Url = 'pluginCreator___pluginOptions___start_url',
   PluginCreator___PluginOptions___Background_Color = 'pluginCreator___pluginOptions___background_color',
@@ -2111,6 +2138,7 @@ export type SitePageFilterInput = {
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
   pluginCreator?: Maybe<SitePluginFilterInput>
   pluginCreatorId?: Maybe<StringQueryOperatorInput>
   componentPath?: Maybe<StringQueryOperatorInput>
@@ -2266,6 +2294,8 @@ export enum SitePluginFieldsEnum {
   PluginOptions___PathToConfigModule = 'pluginOptions___pathToConfigModule',
   PluginOptions___Name = 'pluginOptions___name',
   PluginOptions___Path = 'pluginOptions___path',
+  PluginOptions___SiteUrl = 'pluginOptions___siteUrl',
+  PluginOptions___NoTrailingSlash = 'pluginOptions___noTrailingSlash',
   PluginOptions___Short_Name = 'pluginOptions___short_name',
   PluginOptions___Start_Url = 'pluginOptions___start_url',
   PluginOptions___Background_Color = 'pluginOptions___background_color',
@@ -2392,6 +2422,8 @@ export type SitePluginPluginOptions = {
   pathToConfigModule?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   path?: Maybe<Scalars['String']>
+  siteUrl?: Maybe<Scalars['String']>
+  noTrailingSlash?: Maybe<Scalars['Boolean']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
@@ -2405,6 +2437,8 @@ export type SitePluginPluginOptionsFilterInput = {
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
   path?: Maybe<StringQueryOperatorInput>
+  siteUrl?: Maybe<StringQueryOperatorInput>
+  noTrailingSlash?: Maybe<BooleanQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
@@ -2420,14 +2454,12 @@ export type SitePluginSortInput = {
 export type SiteSiteMetadata = {
   siteTitle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  url?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
 }
 
 export type SiteSiteMetadataFilterInput = {
   siteTitle?: Maybe<StringQueryOperatorInput>
   description?: Maybe<StringQueryOperatorInput>
-  url?: Maybe<StringQueryOperatorInput>
   twitter?: Maybe<StringQueryOperatorInput>
 }
 
@@ -2637,7 +2669,7 @@ export type HeadQuery = { __typename?: 'Query' } & {
       siteMetadata: Maybe<
         { __typename?: 'SiteSiteMetadata' } & Pick<
           SiteSiteMetadata,
-          'siteTitle' | 'description' | 'url' | 'twitter'
+          'siteTitle' | 'description' | 'twitter'
         >
       >
     }
@@ -2665,6 +2697,23 @@ export type PortraitPickerQuery = { __typename?: 'Query' } & {
         }
       >
     }
+  >
+}
+
+export type Unnamed_1_QueryVariables = {
+  slug: Scalars['String']
+}
+
+export type Unnamed_1_Query = { __typename?: 'Query' } & {
+  markdownRemark: Maybe<
+    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'> & {
+        frontmatter: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'title'
+          >
+        >
+      }
   >
 }
 
@@ -2721,6 +2770,36 @@ export type IndexQuery = { __typename?: 'Query' } & {
                       }
                     >
                   }
+              >
+            }
+        }
+      >
+    }
+  >
+}
+
+export type PostsQueryQueryVariables = {}
+
+export type PostsQueryQuery = { __typename?: 'Query' } & {
+  posts: Maybe<
+    { __typename?: 'MarkdownRemarkConnection' } & {
+      edges: Array<
+        { __typename?: 'MarkdownRemarkEdge' } & {
+          node: { __typename?: 'MarkdownRemark' } & Pick<
+            MarkdownRemark,
+            'id'
+          > & {
+              frontmatter: Maybe<
+                { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+                  MarkdownRemarkFrontmatter,
+                  'title'
+                >
+              >
+              fields: Maybe<
+                { __typename?: 'MarkdownRemarkFields' } & Pick<
+                  MarkdownRemarkFields,
+                  'slug'
+                >
               >
             }
         }

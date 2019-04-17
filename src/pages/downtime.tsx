@@ -8,17 +8,25 @@ import { DowntimeQuery } from '../queries'
 export const query = graphql`
   query Downtime {
     markdownRemark(fileAbsolutePath: { regex: "/downtime/" }) {
-      html
+      htmlAst
+      frontmatter {
+        title
+      }
     }
   }
 `
 
 const Downtime = ({ data }: { data: DowntimeQuery }) => {
-  if (!data.markdownRemark || !data.markdownRemark.html) {
+  if (!data.markdownRemark || !data.markdownRemark.htmlAst) {
     throw new Error('Page not defined.')
   }
 
-  return <Page pageTitle="Downtime" content={data.markdownRemark.html} />
+  return (
+    <Page
+      pageTitle={data.markdownRemark.frontmatter.title}
+      content={data.markdownRemark.htmlAst}
+    />
+  )
 }
 
 export default Downtime

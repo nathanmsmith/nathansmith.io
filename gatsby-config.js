@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     siteTitle: 'Nathan Smith in HTML',
@@ -35,9 +37,38 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-remark',
-    'gatsby-transformer-sharp',
+    {
+      resolve: `@mosch/gatsby-source-github`,
+      options: {
+        repository: 'wiki',
+        tree: true,
+        user: 'nathunsmitty',
+        secrets: {
+          token: process.env.GITHUB_TOKEN,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              showLineNumbers: true,
+            },
+          },
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              strict: `ignore`,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-typescript',
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',

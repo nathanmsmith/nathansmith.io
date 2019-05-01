@@ -28,18 +28,6 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      wikiPages: allGithubFile {
-        edges {
-          node {
-            relativePath
-            childMarkdownRemark {
-              fields {
-                slug
-              }
-            }
-          }
-        }
-      }
     }
   `).then(result => {
     result.data.posts.edges.forEach(({ node }) => {
@@ -51,14 +39,14 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    result.data.wikiPages.edges.forEach(({ node }) => {
-      createPage({
-        path: `wiki${node.childMarkdownRemark.fields.slug}`,
-        component: path.resolve('./src/components/WikiPage.tsx'),
-        context: {
-          relativePath: node.relativePath,
-        },
-      })
-    })
+    // result.data.wikiPages.edges.forEach(({ node }) => {
+    //   createPage({
+    //     path: `wiki${node.childMarkdownRemark.fields.slug}`,
+    //     component: path.resolve('./src/components/WikiPage.tsx'),
+    //     context: {
+    //       relativePath: node.relativePath,
+    //     },
+    //   })
+    // })
   })
 }

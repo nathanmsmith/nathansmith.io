@@ -111,6 +111,11 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
     case 'Foundation':
       link = 'https://foundation.zurb.com'
       color = 'rgb(12, 60, 85)'
+      break
+    case 'Emotion':
+      link = 'https://emotion.sh'
+      color = '#D36AC2'
+      break
     default:
       break
   }

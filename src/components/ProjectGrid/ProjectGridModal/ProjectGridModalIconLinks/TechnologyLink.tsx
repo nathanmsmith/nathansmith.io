@@ -116,6 +116,10 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://emotion.sh'
       color = '#D36AC2'
       break
+    case 'Jest':
+      link = 'https://jestjs.io'
+      color = '#ededed'
+      break
     default:
       break
   }

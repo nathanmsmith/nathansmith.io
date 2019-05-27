@@ -118,7 +118,7 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       break
     case 'Jest':
       link = 'https://jestjs.io'
-      color = '#ededed'
+      color = '#C21325'
       break
     default:
       break

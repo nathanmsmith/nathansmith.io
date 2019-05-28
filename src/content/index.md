@@ -4,12 +4,11 @@ title: Nathan Smith in HTML
 
 Hi, I’m Nathan. 👋
 
-I’m currently a software engineering intern on the Data Visualization team at [Datadog](https://www.datadoghq.com) in New York City.
+I’m a rising junior at [UCLA](http://www.ucla.edu), where I study computer science.
 
-I'm halfway through a Computer Science degree at [UCLA](http://www.ucla.edu). I'll be returning to school in September 2019, and expect to graduate in 2021.
+I recently finished a winter internship with the data visualization team at [Datadog](https://www.datadoghq.com) in New York City. I'll be returning to New York in a few weeks for a summer internship at [Keybase](https://keybase.io).
 
-Last summer, I worked as a software engineering intern for [Keybase](https://keybase.io), where I contributed code to Keybase's
-open-source desktop and mobile applications. I'll be returning to Keybase for another internship in Summer 2019. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked
+Last summer, I worked as a software engineering intern for Keybase, where I contributed code to their open-source desktop and mobile applications. I also previously interned for [Autodesk](https://www.autodesk.com), where I worked
 on developing and designing an internal website to connect engineers within the
 company.
 

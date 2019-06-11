@@ -120,6 +120,18 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://jestjs.io'
       color = '#C21325'
       break
+    case 'D3':
+      link = 'https://d3js.org'
+      color = '#f9a03c'
+      break
+    case 'Less':
+      link = 'http://lesscss.org'
+      color = '#1d365d'
+      break
+    case 'Lodash':
+      link = 'https://lodash.com'
+      color = '#3492ff'
+      break
     default:
       break
   }

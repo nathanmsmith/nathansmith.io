@@ -64,6 +64,12 @@ module.exports = {
               strict: `ignore`,
             },
           },
+          {
+            resolve: 'gatsby-remark-smartypants',
+            options: {
+              dashes: 'oldschool',
+            },
+          },
         ],
       },
     },

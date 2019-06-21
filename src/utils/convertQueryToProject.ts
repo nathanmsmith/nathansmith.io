@@ -35,9 +35,6 @@ export default function convertIndexQueryProjectsToProjects(
     if (!role) {
       throw new Error('Missing required property `role` on project.')
     }
-    if (!githubLink) {
-      throw new Error('Missing required property `githubLink` on project.')
-    }
 
     return {
       description,

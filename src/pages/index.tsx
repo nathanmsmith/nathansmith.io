@@ -32,10 +32,10 @@ export const query = graphql`
             image {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid_withWebp
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
                 fixed(width: 260, height: 260, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFixed_withWebp
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }
             }

@@ -1,6 +1,6 @@
 import {
-  GatsbyImageSharpFluid_WithWebpFragment,
-  GatsbyImageSharpFixed_WithWebpFragment,
+  GatsbyImageSharpFluid_WithWebp_TracedSvgFragment,
+  GatsbyImageSharpFixed_WithWebp_TracedSvgFragment,
   MarkdownRemark,
 } from '../queries'
 
@@ -14,8 +14,8 @@ export default interface Project {
   role: string
   description: MarkdownRemark['htmlAst']
   image: {
-    fixed: GatsbyImageSharpFixed_WithWebpFragment
-    fluid: GatsbyImageSharpFluid_WithWebpFragment
+    fixed: GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
+    fluid: GatsbyImageSharpFluid_WithWebp_TracedSvgFragment
   }
   hidden: boolean
 }

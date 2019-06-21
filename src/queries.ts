@@ -1565,8 +1565,6 @@ export type Query = {
   __typename?: 'Query'
   file?: Maybe<File>
   allFile?: Maybe<FileConnection>
-  sitePage?: Maybe<SitePage>
-  allSitePage?: Maybe<SitePageConnection>
   sitePlugin?: Maybe<SitePlugin>
   allSitePlugin?: Maybe<SitePluginConnection>
   site?: Maybe<Site>
@@ -1577,6 +1575,8 @@ export type Query = {
   allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
   imageSharp?: Maybe<ImageSharp>
   allImageSharp?: Maybe<ImageSharpConnection>
+  sitePage?: Maybe<SitePage>
+  allSitePage?: Maybe<SitePageConnection>
 }
 
 export type QueryFileArgs = {
@@ -1623,29 +1623,6 @@ export type QueryFileArgs = {
 export type QueryAllFileArgs = {
   filter?: Maybe<FileFilterInput>
   sort?: Maybe<FileSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  path?: Maybe<StringQueryOperatorInput>
-  internalComponentName?: Maybe<StringQueryOperatorInput>
-  component?: Maybe<StringQueryOperatorInput>
-  componentChunkName?: Maybe<StringQueryOperatorInput>
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
-  context?: Maybe<SitePageContextFilterInput>
-  pluginCreator?: Maybe<SitePluginFilterInput>
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>
-  componentPath?: Maybe<StringQueryOperatorInput>
-}
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>
-  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -1782,6 +1759,29 @@ export type QueryImageSharpArgs = {
 export type QueryAllImageSharpArgs = {
   filter?: Maybe<ImageSharpFilterInput>
   sort?: Maybe<ImageSharpSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QuerySitePageArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  path?: Maybe<StringQueryOperatorInput>
+  internalComponentName?: Maybe<StringQueryOperatorInput>
+  component?: Maybe<StringQueryOperatorInput>
+  componentChunkName?: Maybe<StringQueryOperatorInput>
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
+  pluginCreator?: Maybe<SitePluginFilterInput>
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>
+  componentPath?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>
+  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -2878,12 +2878,12 @@ export type IndexQuery = { __typename?: 'Query' } & {
                             fluid: Maybe<
                               {
                                 __typename?: 'ImageSharpFluid'
-                              } & GatsbyImageSharpFluid_WithWebpFragment
+                              } & GatsbyImageSharpFluid_WithWebp_TracedSvgFragment
                             >
                             fixed: Maybe<
                               {
                                 __typename?: 'ImageSharpFixed'
-                              } & GatsbyImageSharpFixed_WithWebpFragment
+                              } & GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
                             >
                           }
                         >

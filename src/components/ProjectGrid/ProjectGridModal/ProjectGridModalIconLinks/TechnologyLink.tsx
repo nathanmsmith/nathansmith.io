@@ -132,6 +132,10 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
       link = 'https://lodash.com'
       color = '#3492ff'
       break
+    case 'Handlebars':
+      link = 'https://handlebarsjs.com'
+      color = '#f38709'
+      break
     default:
       break
   }

@@ -4,9 +4,9 @@ title: Nathan Smith in HTML
 
 Hi, I'm Nathan. 👋
 
-I'm a rising junior at [UCLA](http://www.ucla.edu) studying Computer Science and a returning software engineering intern for [Keybase](https://keybase.io) in New York City, where I help develop cryptocurrency features for Keybase's open-source desktop and mobile applications.
+I'm a rising junior at [UCLA](http://www.ucla.edu) studying Computer Science and a returning software engineering intern for [Keybase](https://keybase.io) in New York City. Currently, I help develop cryptocurrency features for Keybase's open-source desktop and mobile applications.
 
-I finished a winter internship earlier this year at [Datadog](https://www.datadoghq.com), where I implemented features and improvements to Datadog's suite of data visualizations. I've also previously completed frontend internships at [Keybase](https://keybase.io) and [Autodesk](https://www.autodesk.com).
+I finished a winter internship earlier this year at [Datadog](https://www.datadoghq.com), where I implemented features and improvements to Datadog's suite of data visualizations. I've also previously completed frontend internships at Keybase and [Autodesk](https://www.autodesk.com).
 
 At UCLA, I managed a team of 30 student developers and coded websites for my
 [school newspaper](https://dailybruin.com). Prior to that, I led web and mobile development for my [school radio station](https://uclaradio.com).

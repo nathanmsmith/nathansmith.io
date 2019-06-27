@@ -21,6 +21,6 @@ During my time at Datadog, I ended up working with a lot of different people and
 - Planned and led a frontend engineering discussion of 8 engineers on working with side effects in Redux.
 - Triaged issues and squashed bugs ad-hoc and on a weekly team support rotation.
 - Removed unescaped HTML code paths to reduce Datadog's vulnerability to XSS attacks.
-- Added tooltips, buttons, a collapsable sidebar, types, documentation, and tests to fullscreen graph views.
+- Added tooltips, buttons, a collapsable sidebar, types, documentation, and tests to [fullscreen graph views](https://www.datadoghq.com/blog/full-screen-graphs/).
 
 All in all, it was a fun five months 😄

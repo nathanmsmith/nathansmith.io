@@ -17,7 +17,9 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return graphql(`
     {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/posts/" } }) {
+      posts: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/posts/" } }
+      ) {
         edges {
           node {
             fields {
@@ -28,7 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    result.data.posts.edges.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
         component: path.resolve('./src/components/Post.tsx'),
@@ -37,5 +39,14 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+    // result.data.wikiPages.edges.forEach(({ node }) => {
+    //   createPage({
+    //     path: `wiki${node.childMarkdownRemark.fields.slug}`,
+    //     component: path.resolve('./src/components/WikiPage.tsx'),
+    //     context: {
+    //       relativePath: node.relativePath,
+    //     },
+    //   })
+    // })
   })
 }

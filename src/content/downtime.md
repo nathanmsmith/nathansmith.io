@@ -1,4 +1,6 @@
-# Downtime
+---
+title: Downtime
+---
 
 Since November 30, 2018, I've been practicing a habit I call downtime. The idea of downtime is just that: specifically scheduled time in my day for me to take a break, clean, ensure that my life is in order, and whatever else I think needs to be done that I wouldn't otherwise have time to do in my scheduled time.
 

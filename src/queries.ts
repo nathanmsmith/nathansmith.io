@@ -1,4 +1,4 @@
-type Maybe<T> = T | null
+export type Maybe<T> = T | null
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -33,6 +33,7 @@ export type DateQueryOperatorInput = {
 }
 
 export type Directory = Node & {
+  __typename?: 'Directory'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -129,6 +130,7 @@ export type DirectoryBirthtimeArgs = {
 }
 
 export type DirectoryConnection = {
+  __typename?: 'DirectoryConnection'
   totalCount: Scalars['Int']
   edges: Array<DirectoryEdge>
   nodes: Array<Directory>
@@ -148,6 +150,7 @@ export type DirectoryConnectionGroupArgs = {
 }
 
 export type DirectoryEdge = {
+  __typename?: 'DirectoryEdge'
   next?: Maybe<Directory>
   node: Directory
   previous?: Maybe<Directory>
@@ -155,91 +158,91 @@ export type DirectoryEdge = {
 
 export enum DirectoryFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
   SourceInstanceName = 'sourceInstanceName',
   AbsolutePath = 'absolutePath',
   RelativePath = 'relativePath',
@@ -316,6 +319,7 @@ export type DirectoryFilterInput = {
 }
 
 export type DirectoryGroupConnection = {
+  __typename?: 'DirectoryGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<DirectoryEdge>
   nodes: Array<Directory>
@@ -338,9 +342,11 @@ export type DuotoneGradient = {
 export enum ExcerptFormats {
   Plain = 'PLAIN',
   Html = 'HTML',
+  Markdown = 'MARKDOWN',
 }
 
 export type File = Node & {
+  __typename?: 'File'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -441,6 +447,7 @@ export type FileBirthtimeArgs = {
 }
 
 export type FileConnection = {
+  __typename?: 'FileConnection'
   totalCount: Scalars['Int']
   edges: Array<FileEdge>
   nodes: Array<File>
@@ -460,6 +467,7 @@ export type FileConnectionGroupArgs = {
 }
 
 export type FileEdge = {
+  __typename?: 'FileEdge'
   next?: Maybe<File>
   node: File
   previous?: Maybe<File>
@@ -467,91 +475,91 @@ export type FileEdge = {
 
 export enum FileFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
   SourceInstanceName = 'sourceInstanceName',
   AbsolutePath = 'absolutePath',
   RelativePath = 'relativePath',
@@ -630,6 +638,7 @@ export type FileFilterInput = {
 }
 
 export type FileGroupConnection = {
+  __typename?: 'FileGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<FileEdge>
   nodes: Array<File>
@@ -677,14 +686,21 @@ export enum ImageCropFocus {
   Attention = 'ATTENTION',
 }
 
+export enum ImageFit {
+  Cover = 'COVER',
+  Contain = 'CONTAIN',
+  Fill = 'FILL',
+}
+
 export enum ImageFormat {
-  No_Change = 'NO_CHANGE',
+  NoChange = 'NO_CHANGE',
   Jpg = 'JPG',
   Png = 'PNG',
   Webp = 'WEBP',
 }
 
 export type ImageSharp = Node & {
+  __typename?: 'ImageSharp'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -710,7 +726,10 @@ export type ImageSharpFixedArgs = {
   toFormat: ImageFormat
   toFormatBase64: ImageFormat
   cropFocus: ImageCropFocus
+  fit: ImageFit
+  background: Scalars['String']
   rotate: Scalars['Int']
+  trim: Scalars['Float']
 }
 
 export type ImageSharpResolutionsArgs = {
@@ -726,7 +745,10 @@ export type ImageSharpResolutionsArgs = {
   toFormat: ImageFormat
   toFormatBase64: ImageFormat
   cropFocus: ImageCropFocus
+  fit: ImageFit
+  background: Scalars['String']
   rotate: Scalars['Int']
+  trim: Scalars['Float']
 }
 
 export type ImageSharpFluidArgs = {
@@ -742,7 +764,10 @@ export type ImageSharpFluidArgs = {
   toFormat: ImageFormat
   toFormatBase64: ImageFormat
   cropFocus: ImageCropFocus
+  fit: ImageFit
+  background: Scalars['String']
   rotate: Scalars['Int']
+  trim: Scalars['Float']
   sizes: Scalars['String']
   srcSetBreakpoints: Array<Maybe<Scalars['Int']>>
 }
@@ -760,7 +785,10 @@ export type ImageSharpSizesArgs = {
   toFormat: ImageFormat
   toFormatBase64: ImageFormat
   cropFocus: ImageCropFocus
+  fit: ImageFit
+  background: Scalars['String']
   rotate: Scalars['Int']
+  trim: Scalars['Float']
   sizes: Scalars['String']
   srcSetBreakpoints: Array<Maybe<Scalars['Int']>>
 }
@@ -778,10 +806,14 @@ export type ImageSharpResizeArgs = {
   traceSVG?: Maybe<Potrace>
   toFormat: ImageFormat
   cropFocus: ImageCropFocus
+  fit: ImageFit
+  background: Scalars['String']
   rotate: Scalars['Int']
+  trim: Scalars['Float']
 }
 
 export type ImageSharpConnection = {
+  __typename?: 'ImageSharpConnection'
   totalCount: Scalars['Int']
   edges: Array<ImageSharpEdge>
   nodes: Array<ImageSharp>
@@ -801,6 +833,7 @@ export type ImageSharpConnectionGroupArgs = {
 }
 
 export type ImageSharpEdge = {
+  __typename?: 'ImageSharpEdge'
   next?: Maybe<ImageSharp>
   node: ImageSharp
   previous?: Maybe<ImageSharp>
@@ -808,144 +841,144 @@ export type ImageSharpEdge = {
 
 export enum ImageSharpFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
-  Fixed___Base64 = 'fixed___base64',
-  Fixed___TracedSvg = 'fixed___tracedSVG',
-  Fixed___AspectRatio = 'fixed___aspectRatio',
-  Fixed___Width = 'fixed___width',
-  Fixed___Height = 'fixed___height',
-  Fixed___Src = 'fixed___src',
-  Fixed___SrcSet = 'fixed___srcSet',
-  Fixed___SrcWebp = 'fixed___srcWebp',
-  Fixed___SrcSetWebp = 'fixed___srcSetWebp',
-  Fixed___OriginalName = 'fixed___originalName',
-  Resolutions___Base64 = 'resolutions___base64',
-  Resolutions___TracedSvg = 'resolutions___tracedSVG',
-  Resolutions___AspectRatio = 'resolutions___aspectRatio',
-  Resolutions___Width = 'resolutions___width',
-  Resolutions___Height = 'resolutions___height',
-  Resolutions___Src = 'resolutions___src',
-  Resolutions___SrcSet = 'resolutions___srcSet',
-  Resolutions___SrcWebp = 'resolutions___srcWebp',
-  Resolutions___SrcSetWebp = 'resolutions___srcSetWebp',
-  Resolutions___OriginalName = 'resolutions___originalName',
-  Fluid___Base64 = 'fluid___base64',
-  Fluid___TracedSvg = 'fluid___tracedSVG',
-  Fluid___AspectRatio = 'fluid___aspectRatio',
-  Fluid___Src = 'fluid___src',
-  Fluid___SrcSet = 'fluid___srcSet',
-  Fluid___SrcWebp = 'fluid___srcWebp',
-  Fluid___SrcSetWebp = 'fluid___srcSetWebp',
-  Fluid___Sizes = 'fluid___sizes',
-  Fluid___OriginalImg = 'fluid___originalImg',
-  Fluid___OriginalName = 'fluid___originalName',
-  Fluid___PresentationWidth = 'fluid___presentationWidth',
-  Fluid___PresentationHeight = 'fluid___presentationHeight',
-  Sizes___Base64 = 'sizes___base64',
-  Sizes___TracedSvg = 'sizes___tracedSVG',
-  Sizes___AspectRatio = 'sizes___aspectRatio',
-  Sizes___Src = 'sizes___src',
-  Sizes___SrcSet = 'sizes___srcSet',
-  Sizes___SrcWebp = 'sizes___srcWebp',
-  Sizes___SrcSetWebp = 'sizes___srcSetWebp',
-  Sizes___Sizes = 'sizes___sizes',
-  Sizes___OriginalImg = 'sizes___originalImg',
-  Sizes___OriginalName = 'sizes___originalName',
-  Sizes___PresentationWidth = 'sizes___presentationWidth',
-  Sizes___PresentationHeight = 'sizes___presentationHeight',
-  Original___Width = 'original___width',
-  Original___Height = 'original___height',
-  Original___Src = 'original___src',
-  Resize___Src = 'resize___src',
-  Resize___TracedSvg = 'resize___tracedSVG',
-  Resize___Width = 'resize___width',
-  Resize___Height = 'resize___height',
-  Resize___AspectRatio = 'resize___aspectRatio',
-  Resize___OriginalName = 'resize___originalName',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  FixedBase64 = 'fixed___base64',
+  FixedTracedSvg = 'fixed___tracedSVG',
+  FixedAspectRatio = 'fixed___aspectRatio',
+  FixedWidth = 'fixed___width',
+  FixedHeight = 'fixed___height',
+  FixedSrc = 'fixed___src',
+  FixedSrcSet = 'fixed___srcSet',
+  FixedSrcWebp = 'fixed___srcWebp',
+  FixedSrcSetWebp = 'fixed___srcSetWebp',
+  FixedOriginalName = 'fixed___originalName',
+  ResolutionsBase64 = 'resolutions___base64',
+  ResolutionsTracedSvg = 'resolutions___tracedSVG',
+  ResolutionsAspectRatio = 'resolutions___aspectRatio',
+  ResolutionsWidth = 'resolutions___width',
+  ResolutionsHeight = 'resolutions___height',
+  ResolutionsSrc = 'resolutions___src',
+  ResolutionsSrcSet = 'resolutions___srcSet',
+  ResolutionsSrcWebp = 'resolutions___srcWebp',
+  ResolutionsSrcSetWebp = 'resolutions___srcSetWebp',
+  ResolutionsOriginalName = 'resolutions___originalName',
+  FluidBase64 = 'fluid___base64',
+  FluidTracedSvg = 'fluid___tracedSVG',
+  FluidAspectRatio = 'fluid___aspectRatio',
+  FluidSrc = 'fluid___src',
+  FluidSrcSet = 'fluid___srcSet',
+  FluidSrcWebp = 'fluid___srcWebp',
+  FluidSrcSetWebp = 'fluid___srcSetWebp',
+  FluidSizes = 'fluid___sizes',
+  FluidOriginalImg = 'fluid___originalImg',
+  FluidOriginalName = 'fluid___originalName',
+  FluidPresentationWidth = 'fluid___presentationWidth',
+  FluidPresentationHeight = 'fluid___presentationHeight',
+  SizesBase64 = 'sizes___base64',
+  SizesTracedSvg = 'sizes___tracedSVG',
+  SizesAspectRatio = 'sizes___aspectRatio',
+  SizesSrc = 'sizes___src',
+  SizesSrcSet = 'sizes___srcSet',
+  SizesSrcWebp = 'sizes___srcWebp',
+  SizesSrcSetWebp = 'sizes___srcSetWebp',
+  SizesSizes = 'sizes___sizes',
+  SizesOriginalImg = 'sizes___originalImg',
+  SizesOriginalName = 'sizes___originalName',
+  SizesPresentationWidth = 'sizes___presentationWidth',
+  SizesPresentationHeight = 'sizes___presentationHeight',
+  OriginalWidth = 'original___width',
+  OriginalHeight = 'original___height',
+  OriginalSrc = 'original___src',
+  ResizeSrc = 'resize___src',
+  ResizeTracedSvg = 'resize___tracedSVG',
+  ResizeWidth = 'resize___width',
+  ResizeHeight = 'resize___height',
+  ResizeAspectRatio = 'resize___aspectRatio',
+  ResizeOriginalName = 'resize___originalName',
 }
 
 export type ImageSharpFilterInput = {
@@ -962,6 +995,7 @@ export type ImageSharpFilterInput = {
 }
 
 export type ImageSharpFixed = {
+  __typename?: 'ImageSharpFixed'
   base64?: Maybe<Scalars['String']>
   tracedSVG?: Maybe<Scalars['String']>
   aspectRatio?: Maybe<Scalars['Float']>
@@ -988,6 +1022,7 @@ export type ImageSharpFixedFilterInput = {
 }
 
 export type ImageSharpFluid = {
+  __typename?: 'ImageSharpFluid'
   base64?: Maybe<Scalars['String']>
   tracedSVG?: Maybe<Scalars['String']>
   aspectRatio?: Maybe<Scalars['Float']>
@@ -1018,6 +1053,7 @@ export type ImageSharpFluidFilterInput = {
 }
 
 export type ImageSharpGroupConnection = {
+  __typename?: 'ImageSharpGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<ImageSharpEdge>
   nodes: Array<ImageSharp>
@@ -1027,6 +1063,7 @@ export type ImageSharpGroupConnection = {
 }
 
 export type ImageSharpOriginal = {
+  __typename?: 'ImageSharpOriginal'
   width?: Maybe<Scalars['Float']>
   height?: Maybe<Scalars['Float']>
   src?: Maybe<Scalars['String']>
@@ -1039,6 +1076,7 @@ export type ImageSharpOriginalFilterInput = {
 }
 
 export type ImageSharpResize = {
+  __typename?: 'ImageSharpResize'
   src?: Maybe<Scalars['String']>
   tracedSVG?: Maybe<Scalars['String']>
   width?: Maybe<Scalars['Int']>
@@ -1057,6 +1095,7 @@ export type ImageSharpResizeFilterInput = {
 }
 
 export type ImageSharpResolutions = {
+  __typename?: 'ImageSharpResolutions'
   base64?: Maybe<Scalars['String']>
   tracedSVG?: Maybe<Scalars['String']>
   aspectRatio?: Maybe<Scalars['Float']>
@@ -1083,6 +1122,7 @@ export type ImageSharpResolutionsFilterInput = {
 }
 
 export type ImageSharpSizes = {
+  __typename?: 'ImageSharpSizes'
   base64?: Maybe<Scalars['String']>
   tracedSVG?: Maybe<Scalars['String']>
   aspectRatio?: Maybe<Scalars['Float']>
@@ -1118,6 +1158,7 @@ export type ImageSharpSortInput = {
 }
 
 export type Internal = {
+  __typename?: 'Internal'
   content?: Maybe<Scalars['String']>
   contentDigest: Scalars['String']
   description?: Maybe<Scalars['String']>
@@ -1160,6 +1201,7 @@ export type JsonQueryOperatorInput = {
 }
 
 export type MarkdownHeading = {
+  __typename?: 'MarkdownHeading'
   value?: Maybe<Scalars['String']>
   depth?: Maybe<Scalars['Int']>
 }
@@ -1174,6 +1216,7 @@ export type MarkdownHeadingFilterListInput = {
 }
 
 export type MarkdownRemark = Node & {
+  __typename?: 'MarkdownRemark'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -1214,6 +1257,7 @@ export type MarkdownRemarkTableOfContentsArgs = {
 }
 
 export type MarkdownRemarkConnection = {
+  __typename?: 'MarkdownRemarkConnection'
   totalCount: Scalars['Int']
   edges: Array<MarkdownRemarkEdge>
   nodes: Array<MarkdownRemark>
@@ -1233,174 +1277,175 @@ export type MarkdownRemarkConnectionGroupArgs = {
 }
 
 export type MarkdownRemarkEdge = {
+  __typename?: 'MarkdownRemarkEdge'
   next?: Maybe<MarkdownRemark>
   node: MarkdownRemark
   previous?: Maybe<MarkdownRemark>
 }
 
 export type MarkdownRemarkFields = {
+  __typename?: 'MarkdownRemarkFields'
   slug?: Maybe<Scalars['String']>
 }
 
 export enum MarkdownRemarkFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
-  Frontmatter___Title = 'frontmatter___title',
-  Frontmatter___Draft = 'frontmatter___draft',
-  Frontmatter___Organization = 'frontmatter___organization',
-  Frontmatter___Dates = 'frontmatter___dates',
-  Frontmatter___Link = 'frontmatter___link',
-  Frontmatter___GithubLink = 'frontmatter___githubLink',
-  Frontmatter___Technologies = 'frontmatter___technologies',
-  Frontmatter___Role = 'frontmatter___role',
-  Frontmatter___Image___Id = 'frontmatter___image___id',
-  Frontmatter___Image___Parent___Id = 'frontmatter___image___parent___id',
-  Frontmatter___Image___Parent___Children = 'frontmatter___image___parent___children',
-  Frontmatter___Image___Children = 'frontmatter___image___children',
-  Frontmatter___Image___Children___Id = 'frontmatter___image___children___id',
-  Frontmatter___Image___Children___Children = 'frontmatter___image___children___children',
-  Frontmatter___Image___Internal___Content = 'frontmatter___image___internal___content',
-  Frontmatter___Image___Internal___ContentDigest = 'frontmatter___image___internal___contentDigest',
-  Frontmatter___Image___Internal___Description = 'frontmatter___image___internal___description',
-  Frontmatter___Image___Internal___FieldOwners = 'frontmatter___image___internal___fieldOwners',
-  Frontmatter___Image___Internal___IgnoreType = 'frontmatter___image___internal___ignoreType',
-  Frontmatter___Image___Internal___MediaType = 'frontmatter___image___internal___mediaType',
-  Frontmatter___Image___Internal___Owner = 'frontmatter___image___internal___owner',
-  Frontmatter___Image___Internal___Type = 'frontmatter___image___internal___type',
-  Frontmatter___Image___SourceInstanceName = 'frontmatter___image___sourceInstanceName',
-  Frontmatter___Image___AbsolutePath = 'frontmatter___image___absolutePath',
-  Frontmatter___Image___RelativePath = 'frontmatter___image___relativePath',
-  Frontmatter___Image___Extension = 'frontmatter___image___extension',
-  Frontmatter___Image___Size = 'frontmatter___image___size',
-  Frontmatter___Image___PrettySize = 'frontmatter___image___prettySize',
-  Frontmatter___Image___ModifiedTime = 'frontmatter___image___modifiedTime',
-  Frontmatter___Image___AccessTime = 'frontmatter___image___accessTime',
-  Frontmatter___Image___ChangeTime = 'frontmatter___image___changeTime',
-  Frontmatter___Image___BirthTime = 'frontmatter___image___birthTime',
-  Frontmatter___Image___Root = 'frontmatter___image___root',
-  Frontmatter___Image___Dir = 'frontmatter___image___dir',
-  Frontmatter___Image___Base = 'frontmatter___image___base',
-  Frontmatter___Image___Ext = 'frontmatter___image___ext',
-  Frontmatter___Image___Name = 'frontmatter___image___name',
-  Frontmatter___Image___RelativeDirectory = 'frontmatter___image___relativeDirectory',
-  Frontmatter___Image___Dev = 'frontmatter___image___dev',
-  Frontmatter___Image___Mode = 'frontmatter___image___mode',
-  Frontmatter___Image___Nlink = 'frontmatter___image___nlink',
-  Frontmatter___Image___Uid = 'frontmatter___image___uid',
-  Frontmatter___Image___Gid = 'frontmatter___image___gid',
-  Frontmatter___Image___Rdev = 'frontmatter___image___rdev',
-  Frontmatter___Image___Blksize = 'frontmatter___image___blksize',
-  Frontmatter___Image___Ino = 'frontmatter___image___ino',
-  Frontmatter___Image___Blocks = 'frontmatter___image___blocks',
-  Frontmatter___Image___AtimeMs = 'frontmatter___image___atimeMs',
-  Frontmatter___Image___MtimeMs = 'frontmatter___image___mtimeMs',
-  Frontmatter___Image___CtimeMs = 'frontmatter___image___ctimeMs',
-  Frontmatter___Image___BirthtimeMs = 'frontmatter___image___birthtimeMs',
-  Frontmatter___Image___Atime = 'frontmatter___image___atime',
-  Frontmatter___Image___Mtime = 'frontmatter___image___mtime',
-  Frontmatter___Image___Ctime = 'frontmatter___image___ctime',
-  Frontmatter___Image___Birthtime = 'frontmatter___image___birthtime',
-  Frontmatter___Image___PublicUrl = 'frontmatter___image___publicURL',
-  Frontmatter___Hidden = 'frontmatter___hidden',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  FrontmatterTitle = 'frontmatter___title',
+  FrontmatterOrganization = 'frontmatter___organization',
+  FrontmatterDates = 'frontmatter___dates',
+  FrontmatterLink = 'frontmatter___link',
+  FrontmatterGithubLink = 'frontmatter___githubLink',
+  FrontmatterTechnologies = 'frontmatter___technologies',
+  FrontmatterRole = 'frontmatter___role',
+  FrontmatterImageId = 'frontmatter___image___id',
+  FrontmatterImageParentId = 'frontmatter___image___parent___id',
+  FrontmatterImageParentChildren = 'frontmatter___image___parent___children',
+  FrontmatterImageChildren = 'frontmatter___image___children',
+  FrontmatterImageChildrenId = 'frontmatter___image___children___id',
+  FrontmatterImageChildrenChildren = 'frontmatter___image___children___children',
+  FrontmatterImageInternalContent = 'frontmatter___image___internal___content',
+  FrontmatterImageInternalContentDigest = 'frontmatter___image___internal___contentDigest',
+  FrontmatterImageInternalDescription = 'frontmatter___image___internal___description',
+  FrontmatterImageInternalFieldOwners = 'frontmatter___image___internal___fieldOwners',
+  FrontmatterImageInternalIgnoreType = 'frontmatter___image___internal___ignoreType',
+  FrontmatterImageInternalMediaType = 'frontmatter___image___internal___mediaType',
+  FrontmatterImageInternalOwner = 'frontmatter___image___internal___owner',
+  FrontmatterImageInternalType = 'frontmatter___image___internal___type',
+  FrontmatterImageSourceInstanceName = 'frontmatter___image___sourceInstanceName',
+  FrontmatterImageAbsolutePath = 'frontmatter___image___absolutePath',
+  FrontmatterImageRelativePath = 'frontmatter___image___relativePath',
+  FrontmatterImageExtension = 'frontmatter___image___extension',
+  FrontmatterImageSize = 'frontmatter___image___size',
+  FrontmatterImagePrettySize = 'frontmatter___image___prettySize',
+  FrontmatterImageModifiedTime = 'frontmatter___image___modifiedTime',
+  FrontmatterImageAccessTime = 'frontmatter___image___accessTime',
+  FrontmatterImageChangeTime = 'frontmatter___image___changeTime',
+  FrontmatterImageBirthTime = 'frontmatter___image___birthTime',
+  FrontmatterImageRoot = 'frontmatter___image___root',
+  FrontmatterImageDir = 'frontmatter___image___dir',
+  FrontmatterImageBase = 'frontmatter___image___base',
+  FrontmatterImageExt = 'frontmatter___image___ext',
+  FrontmatterImageName = 'frontmatter___image___name',
+  FrontmatterImageRelativeDirectory = 'frontmatter___image___relativeDirectory',
+  FrontmatterImageDev = 'frontmatter___image___dev',
+  FrontmatterImageMode = 'frontmatter___image___mode',
+  FrontmatterImageNlink = 'frontmatter___image___nlink',
+  FrontmatterImageUid = 'frontmatter___image___uid',
+  FrontmatterImageGid = 'frontmatter___image___gid',
+  FrontmatterImageRdev = 'frontmatter___image___rdev',
+  FrontmatterImageBlksize = 'frontmatter___image___blksize',
+  FrontmatterImageIno = 'frontmatter___image___ino',
+  FrontmatterImageBlocks = 'frontmatter___image___blocks',
+  FrontmatterImageAtimeMs = 'frontmatter___image___atimeMs',
+  FrontmatterImageMtimeMs = 'frontmatter___image___mtimeMs',
+  FrontmatterImageCtimeMs = 'frontmatter___image___ctimeMs',
+  FrontmatterImageBirthtimeMs = 'frontmatter___image___birthtimeMs',
+  FrontmatterImageAtime = 'frontmatter___image___atime',
+  FrontmatterImageMtime = 'frontmatter___image___mtime',
+  FrontmatterImageCtime = 'frontmatter___image___ctime',
+  FrontmatterImageBirthtime = 'frontmatter___image___birthtime',
+  FrontmatterImagePublicUrl = 'frontmatter___image___publicURL',
+  FrontmatterDraft = 'frontmatter___draft',
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
   FileAbsolutePath = 'fileAbsolutePath',
-  Fields___Slug = 'fields___slug',
+  FieldsSlug = 'fields___slug',
   Html = 'html',
   HtmlAst = 'htmlAst',
   ExcerptAst = 'excerptAst',
   Headings = 'headings',
-  Headings___Value = 'headings___value',
-  Headings___Depth = 'headings___depth',
+  HeadingsValue = 'headings___value',
+  HeadingsDepth = 'headings___depth',
   TimeToRead = 'timeToRead',
   TableOfContents = 'tableOfContents',
-  WordCount___Paragraphs = 'wordCount___paragraphs',
-  WordCount___Sentences = 'wordCount___sentences',
-  WordCount___Words = 'wordCount___words',
+  WordCountParagraphs = 'wordCount___paragraphs',
+  WordCountSentences = 'wordCount___sentences',
+  WordCountWords = 'wordCount___words',
 }
 
 export type MarkdownRemarkFieldsFilterInput = {
@@ -1427,8 +1472,8 @@ export type MarkdownRemarkFilterInput = {
 }
 
 export type MarkdownRemarkFrontmatter = {
+  __typename?: 'MarkdownRemarkFrontmatter'
   title?: Maybe<Scalars['String']>
-  draft?: Maybe<Scalars['Boolean']>
   organization?: Maybe<Scalars['String']>
   dates?: Maybe<Scalars['String']>
   link?: Maybe<Scalars['String']>
@@ -1436,12 +1481,11 @@ export type MarkdownRemarkFrontmatter = {
   technologies?: Maybe<Array<Maybe<Scalars['String']>>>
   role?: Maybe<Scalars['String']>
   image?: Maybe<File>
-  hidden?: Maybe<Scalars['Boolean']>
+  draft?: Maybe<Scalars['Boolean']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
-  draft?: Maybe<BooleanQueryOperatorInput>
   organization?: Maybe<StringQueryOperatorInput>
   dates?: Maybe<StringQueryOperatorInput>
   link?: Maybe<StringQueryOperatorInput>
@@ -1449,10 +1493,11 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   technologies?: Maybe<StringQueryOperatorInput>
   role?: Maybe<StringQueryOperatorInput>
   image?: Maybe<FileFilterInput>
-  hidden?: Maybe<BooleanQueryOperatorInput>
+  draft?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
+  __typename?: 'MarkdownRemarkGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<MarkdownRemarkEdge>
   nodes: Array<MarkdownRemark>
@@ -1468,6 +1513,7 @@ export type MarkdownRemarkSortInput = {
 
 /** Node Interface */
 export type Node = {
+  __typename?: 'Node'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -1486,7 +1532,13 @@ export type NodeFilterListInput = {
 }
 
 export type PageInfo = {
+  __typename?: 'PageInfo'
+  currentPage: Scalars['Int']
+  hasPreviousPage: Scalars['Boolean']
   hasNextPage: Scalars['Boolean']
+  itemCount: Scalars['Int']
+  pageCount: Scalars['Int']
+  perPage?: Maybe<Scalars['Int']>
 }
 
 export type Potrace = {
@@ -1502,15 +1554,16 @@ export type Potrace = {
 }
 
 export enum PotraceTurnPolicy {
-  Turnpolicy_Black = 'TURNPOLICY_BLACK',
-  Turnpolicy_White = 'TURNPOLICY_WHITE',
-  Turnpolicy_Left = 'TURNPOLICY_LEFT',
-  Turnpolicy_Right = 'TURNPOLICY_RIGHT',
-  Turnpolicy_Minority = 'TURNPOLICY_MINORITY',
-  Turnpolicy_Majority = 'TURNPOLICY_MAJORITY',
+  TurnpolicyBlack = 'TURNPOLICY_BLACK',
+  TurnpolicyWhite = 'TURNPOLICY_WHITE',
+  TurnpolicyLeft = 'TURNPOLICY_LEFT',
+  TurnpolicyRight = 'TURNPOLICY_RIGHT',
+  TurnpolicyMinority = 'TURNPOLICY_MINORITY',
+  TurnpolicyMajority = 'TURNPOLICY_MAJORITY',
 }
 
 export type Query = {
+  __typename?: 'Query'
   file?: Maybe<File>
   allFile?: Maybe<FileConnection>
   sitePage?: Maybe<SitePage>
@@ -1581,7 +1634,6 @@ export type QuerySitePageArgs = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   path?: Maybe<StringQueryOperatorInput>
-  jsonName?: Maybe<StringQueryOperatorInput>
   internalComponentName?: Maybe<StringQueryOperatorInput>
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
@@ -1628,7 +1680,7 @@ export type QuerySiteArgs = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<DateQueryOperatorInput>
+  port?: Maybe<IntQueryOperatorInput>
   host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
@@ -1736,23 +1788,17 @@ export type QueryAllImageSharpArgs = {
 }
 
 export type Site = Node & {
+  __typename?: 'Site'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
   internal: Internal
   siteMetadata?: Maybe<SiteSiteMetadata>
-  port?: Maybe<Scalars['Date']>
+  port?: Maybe<Scalars['Int']>
   host?: Maybe<Scalars['String']>
   pathPrefix?: Maybe<Scalars['String']>
   polyfill?: Maybe<Scalars['Boolean']>
   buildTime?: Maybe<Scalars['Date']>
-}
-
-export type SitePortArgs = {
-  formatString?: Maybe<Scalars['String']>
-  fromNow?: Maybe<Scalars['Boolean']>
-  difference?: Maybe<Scalars['String']>
-  locale?: Maybe<Scalars['String']>
 }
 
 export type SiteBuildTimeArgs = {
@@ -1763,6 +1809,7 @@ export type SiteBuildTimeArgs = {
 }
 
 export type SiteConnection = {
+  __typename?: 'SiteConnection'
   totalCount: Scalars['Int']
   edges: Array<SiteEdge>
   nodes: Array<Site>
@@ -1782,6 +1829,7 @@ export type SiteConnectionGroupArgs = {
 }
 
 export type SiteEdge = {
+  __typename?: 'SiteEdge'
   next?: Maybe<Site>
   node: Site
   previous?: Maybe<Site>
@@ -1789,94 +1837,94 @@ export type SiteEdge = {
 
 export enum SiteFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
-  SiteMetadata___SiteTitle = 'siteMetadata___siteTitle',
-  SiteMetadata___Description = 'siteMetadata___description',
-  SiteMetadata___Twitter = 'siteMetadata___twitter',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  SiteMetadataSiteTitle = 'siteMetadata___siteTitle',
+  SiteMetadataDescription = 'siteMetadata___description',
+  SiteMetadataTwitter = 'siteMetadata___twitter',
   Port = 'port',
   Host = 'host',
   PathPrefix = 'pathPrefix',
@@ -1890,7 +1938,7 @@ export type SiteFilterInput = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<DateQueryOperatorInput>
+  port?: Maybe<IntQueryOperatorInput>
   host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
@@ -1898,6 +1946,7 @@ export type SiteFilterInput = {
 }
 
 export type SiteGroupConnection = {
+  __typename?: 'SiteGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<SiteEdge>
   nodes: Array<Site>
@@ -1907,12 +1956,12 @@ export type SiteGroupConnection = {
 }
 
 export type SitePage = Node & {
+  __typename?: 'SitePage'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
   internal: Internal
   path?: Maybe<Scalars['String']>
-  jsonName?: Maybe<Scalars['String']>
   internalComponentName?: Maybe<Scalars['String']>
   component?: Maybe<Scalars['String']>
   componentChunkName?: Maybe<Scalars['String']>
@@ -1924,6 +1973,7 @@ export type SitePage = Node & {
 }
 
 export type SitePageConnection = {
+  __typename?: 'SitePageConnection'
   totalCount: Scalars['Int']
   edges: Array<SitePageEdge>
   nodes: Array<SitePage>
@@ -1943,6 +1993,7 @@ export type SitePageConnectionGroupArgs = {
 }
 
 export type SitePageContext = {
+  __typename?: 'SitePageContext'
   slug?: Maybe<Scalars['String']>
 }
 
@@ -1951,6 +2002,7 @@ export type SitePageContextFilterInput = {
 }
 
 export type SitePageEdge = {
+  __typename?: 'SitePageEdge'
   next?: Maybe<SitePage>
   node: SitePage
   previous?: Maybe<SitePage>
@@ -1958,171 +2010,179 @@ export type SitePageEdge = {
 
 export enum SitePageFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
   Path = 'path',
-  JsonName = 'jsonName',
   InternalComponentName = 'internalComponentName',
   Component = 'component',
   ComponentChunkName = 'componentChunkName',
   IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  Context___Slug = 'context___slug',
-  PluginCreator___Id = 'pluginCreator___id',
-  PluginCreator___Parent___Id = 'pluginCreator___parent___id',
-  PluginCreator___Parent___Parent___Id = 'pluginCreator___parent___parent___id',
-  PluginCreator___Parent___Parent___Children = 'pluginCreator___parent___parent___children',
-  PluginCreator___Parent___Children = 'pluginCreator___parent___children',
-  PluginCreator___Parent___Children___Id = 'pluginCreator___parent___children___id',
-  PluginCreator___Parent___Children___Children = 'pluginCreator___parent___children___children',
-  PluginCreator___Parent___Internal___Content = 'pluginCreator___parent___internal___content',
-  PluginCreator___Parent___Internal___ContentDigest = 'pluginCreator___parent___internal___contentDigest',
-  PluginCreator___Parent___Internal___Description = 'pluginCreator___parent___internal___description',
-  PluginCreator___Parent___Internal___FieldOwners = 'pluginCreator___parent___internal___fieldOwners',
-  PluginCreator___Parent___Internal___IgnoreType = 'pluginCreator___parent___internal___ignoreType',
-  PluginCreator___Parent___Internal___MediaType = 'pluginCreator___parent___internal___mediaType',
-  PluginCreator___Parent___Internal___Owner = 'pluginCreator___parent___internal___owner',
-  PluginCreator___Parent___Internal___Type = 'pluginCreator___parent___internal___type',
-  PluginCreator___Children = 'pluginCreator___children',
-  PluginCreator___Children___Id = 'pluginCreator___children___id',
-  PluginCreator___Children___Parent___Id = 'pluginCreator___children___parent___id',
-  PluginCreator___Children___Parent___Children = 'pluginCreator___children___parent___children',
-  PluginCreator___Children___Children = 'pluginCreator___children___children',
-  PluginCreator___Children___Children___Id = 'pluginCreator___children___children___id',
-  PluginCreator___Children___Children___Children = 'pluginCreator___children___children___children',
-  PluginCreator___Children___Internal___Content = 'pluginCreator___children___internal___content',
-  PluginCreator___Children___Internal___ContentDigest = 'pluginCreator___children___internal___contentDigest',
-  PluginCreator___Children___Internal___Description = 'pluginCreator___children___internal___description',
-  PluginCreator___Children___Internal___FieldOwners = 'pluginCreator___children___internal___fieldOwners',
-  PluginCreator___Children___Internal___IgnoreType = 'pluginCreator___children___internal___ignoreType',
-  PluginCreator___Children___Internal___MediaType = 'pluginCreator___children___internal___mediaType',
-  PluginCreator___Children___Internal___Owner = 'pluginCreator___children___internal___owner',
-  PluginCreator___Children___Internal___Type = 'pluginCreator___children___internal___type',
-  PluginCreator___Internal___Content = 'pluginCreator___internal___content',
-  PluginCreator___Internal___ContentDigest = 'pluginCreator___internal___contentDigest',
-  PluginCreator___Internal___Description = 'pluginCreator___internal___description',
-  PluginCreator___Internal___FieldOwners = 'pluginCreator___internal___fieldOwners',
-  PluginCreator___Internal___IgnoreType = 'pluginCreator___internal___ignoreType',
-  PluginCreator___Internal___MediaType = 'pluginCreator___internal___mediaType',
-  PluginCreator___Internal___Owner = 'pluginCreator___internal___owner',
-  PluginCreator___Internal___Type = 'pluginCreator___internal___type',
-  PluginCreator___Resolve = 'pluginCreator___resolve',
-  PluginCreator___Name = 'pluginCreator___name',
-  PluginCreator___Version = 'pluginCreator___version',
-  PluginCreator___PluginOptions___TrackingId = 'pluginCreator___pluginOptions___trackingId',
-  PluginCreator___PluginOptions___Anonymize = 'pluginCreator___pluginOptions___anonymize',
-  PluginCreator___PluginOptions___PathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
-  PluginCreator___PluginOptions___Name = 'pluginCreator___pluginOptions___name',
-  PluginCreator___PluginOptions___Path = 'pluginCreator___pluginOptions___path',
-  PluginCreator___PluginOptions___SiteUrl = 'pluginCreator___pluginOptions___siteUrl',
-  PluginCreator___PluginOptions___NoTrailingSlash = 'pluginCreator___pluginOptions___noTrailingSlash',
-  PluginCreator___PluginOptions___Short_Name = 'pluginCreator___pluginOptions___short_name',
-  PluginCreator___PluginOptions___Start_Url = 'pluginCreator___pluginOptions___start_url',
-  PluginCreator___PluginOptions___Background_Color = 'pluginCreator___pluginOptions___background_color',
-  PluginCreator___PluginOptions___Icon = 'pluginCreator___pluginOptions___icon',
-  PluginCreator___PluginOptions___PathCheck = 'pluginCreator___pluginOptions___pathCheck',
-  PluginCreator___NodeApIs = 'pluginCreator___nodeAPIs',
-  PluginCreator___BrowserApIs = 'pluginCreator___browserAPIs',
-  PluginCreator___SsrApIs = 'pluginCreator___ssrAPIs',
-  PluginCreator___PluginFilepath = 'pluginCreator___pluginFilepath',
-  PluginCreator___PackageJson___Name = 'pluginCreator___packageJson___name',
-  PluginCreator___PackageJson___Description = 'pluginCreator___packageJson___description',
-  PluginCreator___PackageJson___Version = 'pluginCreator___packageJson___version',
-  PluginCreator___PackageJson___Main = 'pluginCreator___packageJson___main',
-  PluginCreator___PackageJson___Author = 'pluginCreator___packageJson___author',
-  PluginCreator___PackageJson___License = 'pluginCreator___packageJson___license',
-  PluginCreator___PackageJson___Dependencies = 'pluginCreator___packageJson___dependencies',
-  PluginCreator___PackageJson___Dependencies___Name = 'pluginCreator___packageJson___dependencies___name',
-  PluginCreator___PackageJson___Dependencies___Version = 'pluginCreator___packageJson___dependencies___version',
-  PluginCreator___PackageJson___DevDependencies = 'pluginCreator___packageJson___devDependencies',
-  PluginCreator___PackageJson___DevDependencies___Name = 'pluginCreator___packageJson___devDependencies___name',
-  PluginCreator___PackageJson___DevDependencies___Version = 'pluginCreator___packageJson___devDependencies___version',
-  PluginCreator___PackageJson___PeerDependencies = 'pluginCreator___packageJson___peerDependencies',
-  PluginCreator___PackageJson___PeerDependencies___Name = 'pluginCreator___packageJson___peerDependencies___name',
-  PluginCreator___PackageJson___PeerDependencies___Version = 'pluginCreator___packageJson___peerDependencies___version',
-  PluginCreator___PackageJson___Keywords = 'pluginCreator___packageJson___keywords',
+  ContextSlug = 'context___slug',
+  PluginCreatorId = 'pluginCreator___id',
+  PluginCreatorParentId = 'pluginCreator___parent___id',
+  PluginCreatorParentParentId = 'pluginCreator___parent___parent___id',
+  PluginCreatorParentParentChildren = 'pluginCreator___parent___parent___children',
+  PluginCreatorParentChildren = 'pluginCreator___parent___children',
+  PluginCreatorParentChildrenId = 'pluginCreator___parent___children___id',
+  PluginCreatorParentChildrenChildren = 'pluginCreator___parent___children___children',
+  PluginCreatorParentInternalContent = 'pluginCreator___parent___internal___content',
+  PluginCreatorParentInternalContentDigest = 'pluginCreator___parent___internal___contentDigest',
+  PluginCreatorParentInternalDescription = 'pluginCreator___parent___internal___description',
+  PluginCreatorParentInternalFieldOwners = 'pluginCreator___parent___internal___fieldOwners',
+  PluginCreatorParentInternalIgnoreType = 'pluginCreator___parent___internal___ignoreType',
+  PluginCreatorParentInternalMediaType = 'pluginCreator___parent___internal___mediaType',
+  PluginCreatorParentInternalOwner = 'pluginCreator___parent___internal___owner',
+  PluginCreatorParentInternalType = 'pluginCreator___parent___internal___type',
+  PluginCreatorChildren = 'pluginCreator___children',
+  PluginCreatorChildrenId = 'pluginCreator___children___id',
+  PluginCreatorChildrenParentId = 'pluginCreator___children___parent___id',
+  PluginCreatorChildrenParentChildren = 'pluginCreator___children___parent___children',
+  PluginCreatorChildrenChildren = 'pluginCreator___children___children',
+  PluginCreatorChildrenChildrenId = 'pluginCreator___children___children___id',
+  PluginCreatorChildrenChildrenChildren = 'pluginCreator___children___children___children',
+  PluginCreatorChildrenInternalContent = 'pluginCreator___children___internal___content',
+  PluginCreatorChildrenInternalContentDigest = 'pluginCreator___children___internal___contentDigest',
+  PluginCreatorChildrenInternalDescription = 'pluginCreator___children___internal___description',
+  PluginCreatorChildrenInternalFieldOwners = 'pluginCreator___children___internal___fieldOwners',
+  PluginCreatorChildrenInternalIgnoreType = 'pluginCreator___children___internal___ignoreType',
+  PluginCreatorChildrenInternalMediaType = 'pluginCreator___children___internal___mediaType',
+  PluginCreatorChildrenInternalOwner = 'pluginCreator___children___internal___owner',
+  PluginCreatorChildrenInternalType = 'pluginCreator___children___internal___type',
+  PluginCreatorInternalContent = 'pluginCreator___internal___content',
+  PluginCreatorInternalContentDigest = 'pluginCreator___internal___contentDigest',
+  PluginCreatorInternalDescription = 'pluginCreator___internal___description',
+  PluginCreatorInternalFieldOwners = 'pluginCreator___internal___fieldOwners',
+  PluginCreatorInternalIgnoreType = 'pluginCreator___internal___ignoreType',
+  PluginCreatorInternalMediaType = 'pluginCreator___internal___mediaType',
+  PluginCreatorInternalOwner = 'pluginCreator___internal___owner',
+  PluginCreatorInternalType = 'pluginCreator___internal___type',
+  PluginCreatorResolve = 'pluginCreator___resolve',
+  PluginCreatorName = 'pluginCreator___name',
+  PluginCreatorVersion = 'pluginCreator___version',
+  PluginCreatorPluginOptionsPlugins = 'pluginCreator___pluginOptions___plugins',
+  PluginCreatorPluginOptionsPluginsResolve = 'pluginCreator___pluginOptions___plugins___resolve',
+  PluginCreatorPluginOptionsPluginsId = 'pluginCreator___pluginOptions___plugins___id',
+  PluginCreatorPluginOptionsPluginsName = 'pluginCreator___pluginOptions___plugins___name',
+  PluginCreatorPluginOptionsPluginsVersion = 'pluginCreator___pluginOptions___plugins___version',
+  PluginCreatorPluginOptionsPluginsPluginFilepath = 'pluginCreator___pluginOptions___plugins___pluginFilepath',
+  PluginCreatorPluginOptionsTrackingId = 'pluginCreator___pluginOptions___trackingId',
+  PluginCreatorPluginOptionsAnonymize = 'pluginCreator___pluginOptions___anonymize',
+  PluginCreatorPluginOptionsPathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
+  PluginCreatorPluginOptionsName = 'pluginCreator___pluginOptions___name',
+  PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
+  PluginCreatorPluginOptionsShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
+  PluginCreatorPluginOptionsStrict = 'pluginCreator___pluginOptions___strict',
+  PluginCreatorPluginOptionsDashes = 'pluginCreator___pluginOptions___dashes',
+  PluginCreatorPluginOptionsSiteUrl = 'pluginCreator___pluginOptions___siteUrl',
+  PluginCreatorPluginOptionsNoTrailingSlash = 'pluginCreator___pluginOptions___noTrailingSlash',
+  PluginCreatorPluginOptionsShortName = 'pluginCreator___pluginOptions___short_name',
+  PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
+  PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
+  PluginCreatorPluginOptionsIcon = 'pluginCreator___pluginOptions___icon',
+  PluginCreatorPluginOptionsPathCheck = 'pluginCreator___pluginOptions___pathCheck',
+  PluginCreatorNodeApIs = 'pluginCreator___nodeAPIs',
+  PluginCreatorBrowserApIs = 'pluginCreator___browserAPIs',
+  PluginCreatorSsrApIs = 'pluginCreator___ssrAPIs',
+  PluginCreatorPluginFilepath = 'pluginCreator___pluginFilepath',
+  PluginCreatorPackageJsonName = 'pluginCreator___packageJson___name',
+  PluginCreatorPackageJsonDescription = 'pluginCreator___packageJson___description',
+  PluginCreatorPackageJsonVersion = 'pluginCreator___packageJson___version',
+  PluginCreatorPackageJsonMain = 'pluginCreator___packageJson___main',
+  PluginCreatorPackageJsonAuthor = 'pluginCreator___packageJson___author',
+  PluginCreatorPackageJsonLicense = 'pluginCreator___packageJson___license',
+  PluginCreatorPackageJsonDependencies = 'pluginCreator___packageJson___dependencies',
+  PluginCreatorPackageJsonDependenciesName = 'pluginCreator___packageJson___dependencies___name',
+  PluginCreatorPackageJsonDependenciesVersion = 'pluginCreator___packageJson___dependencies___version',
+  PluginCreatorPackageJsonDevDependencies = 'pluginCreator___packageJson___devDependencies',
+  PluginCreatorPackageJsonDevDependenciesName = 'pluginCreator___packageJson___devDependencies___name',
+  PluginCreatorPackageJsonDevDependenciesVersion = 'pluginCreator___packageJson___devDependencies___version',
+  PluginCreatorPackageJsonPeerDependencies = 'pluginCreator___packageJson___peerDependencies',
+  PluginCreatorPackageJsonPeerDependenciesName = 'pluginCreator___packageJson___peerDependencies___name',
+  PluginCreatorPackageJsonPeerDependenciesVersion = 'pluginCreator___packageJson___peerDependencies___version',
+  PluginCreatorPackageJsonKeywords = 'pluginCreator___packageJson___keywords',
   PluginCreatorId = 'pluginCreatorId',
   ComponentPath = 'componentPath',
 }
@@ -2133,7 +2193,6 @@ export type SitePageFilterInput = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   path?: Maybe<StringQueryOperatorInput>
-  jsonName?: Maybe<StringQueryOperatorInput>
   internalComponentName?: Maybe<StringQueryOperatorInput>
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
@@ -2145,6 +2204,7 @@ export type SitePageFilterInput = {
 }
 
 export type SitePageGroupConnection = {
+  __typename?: 'SitePageGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<SitePageEdge>
   nodes: Array<SitePage>
@@ -2159,6 +2219,7 @@ export type SitePageSortInput = {
 }
 
 export type SitePlugin = Node & {
+  __typename?: 'SitePlugin'
   id: Scalars['ID']
   parent?: Maybe<Node>
   children: Array<Node>
@@ -2175,6 +2236,7 @@ export type SitePlugin = Node & {
 }
 
 export type SitePluginConnection = {
+  __typename?: 'SitePluginConnection'
   totalCount: Scalars['Int']
   edges: Array<SitePluginEdge>
   nodes: Array<SitePlugin>
@@ -2194,6 +2256,7 @@ export type SitePluginConnectionGroupArgs = {
 }
 
 export type SitePluginEdge = {
+  __typename?: 'SitePluginEdge'
   next?: Maybe<SitePlugin>
   node: SitePlugin
   previous?: Maybe<SitePlugin>
@@ -2201,126 +2264,138 @@ export type SitePluginEdge = {
 
 export enum SitePluginFieldsEnum {
   Id = 'id',
-  Parent___Id = 'parent___id',
-  Parent___Parent___Id = 'parent___parent___id',
-  Parent___Parent___Parent___Id = 'parent___parent___parent___id',
-  Parent___Parent___Parent___Children = 'parent___parent___parent___children',
-  Parent___Parent___Children = 'parent___parent___children',
-  Parent___Parent___Children___Id = 'parent___parent___children___id',
-  Parent___Parent___Children___Children = 'parent___parent___children___children',
-  Parent___Parent___Internal___Content = 'parent___parent___internal___content',
-  Parent___Parent___Internal___ContentDigest = 'parent___parent___internal___contentDigest',
-  Parent___Parent___Internal___Description = 'parent___parent___internal___description',
-  Parent___Parent___Internal___FieldOwners = 'parent___parent___internal___fieldOwners',
-  Parent___Parent___Internal___IgnoreType = 'parent___parent___internal___ignoreType',
-  Parent___Parent___Internal___MediaType = 'parent___parent___internal___mediaType',
-  Parent___Parent___Internal___Owner = 'parent___parent___internal___owner',
-  Parent___Parent___Internal___Type = 'parent___parent___internal___type',
-  Parent___Children = 'parent___children',
-  Parent___Children___Id = 'parent___children___id',
-  Parent___Children___Parent___Id = 'parent___children___parent___id',
-  Parent___Children___Parent___Children = 'parent___children___parent___children',
-  Parent___Children___Children = 'parent___children___children',
-  Parent___Children___Children___Id = 'parent___children___children___id',
-  Parent___Children___Children___Children = 'parent___children___children___children',
-  Parent___Children___Internal___Content = 'parent___children___internal___content',
-  Parent___Children___Internal___ContentDigest = 'parent___children___internal___contentDigest',
-  Parent___Children___Internal___Description = 'parent___children___internal___description',
-  Parent___Children___Internal___FieldOwners = 'parent___children___internal___fieldOwners',
-  Parent___Children___Internal___IgnoreType = 'parent___children___internal___ignoreType',
-  Parent___Children___Internal___MediaType = 'parent___children___internal___mediaType',
-  Parent___Children___Internal___Owner = 'parent___children___internal___owner',
-  Parent___Children___Internal___Type = 'parent___children___internal___type',
-  Parent___Internal___Content = 'parent___internal___content',
-  Parent___Internal___ContentDigest = 'parent___internal___contentDigest',
-  Parent___Internal___Description = 'parent___internal___description',
-  Parent___Internal___FieldOwners = 'parent___internal___fieldOwners',
-  Parent___Internal___IgnoreType = 'parent___internal___ignoreType',
-  Parent___Internal___MediaType = 'parent___internal___mediaType',
-  Parent___Internal___Owner = 'parent___internal___owner',
-  Parent___Internal___Type = 'parent___internal___type',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
   Children = 'children',
-  Children___Id = 'children___id',
-  Children___Parent___Id = 'children___parent___id',
-  Children___Parent___Parent___Id = 'children___parent___parent___id',
-  Children___Parent___Parent___Children = 'children___parent___parent___children',
-  Children___Parent___Children = 'children___parent___children',
-  Children___Parent___Children___Id = 'children___parent___children___id',
-  Children___Parent___Children___Children = 'children___parent___children___children',
-  Children___Parent___Internal___Content = 'children___parent___internal___content',
-  Children___Parent___Internal___ContentDigest = 'children___parent___internal___contentDigest',
-  Children___Parent___Internal___Description = 'children___parent___internal___description',
-  Children___Parent___Internal___FieldOwners = 'children___parent___internal___fieldOwners',
-  Children___Parent___Internal___IgnoreType = 'children___parent___internal___ignoreType',
-  Children___Parent___Internal___MediaType = 'children___parent___internal___mediaType',
-  Children___Parent___Internal___Owner = 'children___parent___internal___owner',
-  Children___Parent___Internal___Type = 'children___parent___internal___type',
-  Children___Children = 'children___children',
-  Children___Children___Id = 'children___children___id',
-  Children___Children___Parent___Id = 'children___children___parent___id',
-  Children___Children___Parent___Children = 'children___children___parent___children',
-  Children___Children___Children = 'children___children___children',
-  Children___Children___Children___Id = 'children___children___children___id',
-  Children___Children___Children___Children = 'children___children___children___children',
-  Children___Children___Internal___Content = 'children___children___internal___content',
-  Children___Children___Internal___ContentDigest = 'children___children___internal___contentDigest',
-  Children___Children___Internal___Description = 'children___children___internal___description',
-  Children___Children___Internal___FieldOwners = 'children___children___internal___fieldOwners',
-  Children___Children___Internal___IgnoreType = 'children___children___internal___ignoreType',
-  Children___Children___Internal___MediaType = 'children___children___internal___mediaType',
-  Children___Children___Internal___Owner = 'children___children___internal___owner',
-  Children___Children___Internal___Type = 'children___children___internal___type',
-  Children___Internal___Content = 'children___internal___content',
-  Children___Internal___ContentDigest = 'children___internal___contentDigest',
-  Children___Internal___Description = 'children___internal___description',
-  Children___Internal___FieldOwners = 'children___internal___fieldOwners',
-  Children___Internal___IgnoreType = 'children___internal___ignoreType',
-  Children___Internal___MediaType = 'children___internal___mediaType',
-  Children___Internal___Owner = 'children___internal___owner',
-  Children___Internal___Type = 'children___internal___type',
-  Internal___Content = 'internal___content',
-  Internal___ContentDigest = 'internal___contentDigest',
-  Internal___Description = 'internal___description',
-  Internal___FieldOwners = 'internal___fieldOwners',
-  Internal___IgnoreType = 'internal___ignoreType',
-  Internal___MediaType = 'internal___mediaType',
-  Internal___Owner = 'internal___owner',
-  Internal___Type = 'internal___type',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
   Resolve = 'resolve',
   Name = 'name',
   Version = 'version',
-  PluginOptions___TrackingId = 'pluginOptions___trackingId',
-  PluginOptions___Anonymize = 'pluginOptions___anonymize',
-  PluginOptions___PathToConfigModule = 'pluginOptions___pathToConfigModule',
-  PluginOptions___Name = 'pluginOptions___name',
-  PluginOptions___Path = 'pluginOptions___path',
-  PluginOptions___SiteUrl = 'pluginOptions___siteUrl',
-  PluginOptions___NoTrailingSlash = 'pluginOptions___noTrailingSlash',
-  PluginOptions___Short_Name = 'pluginOptions___short_name',
-  PluginOptions___Start_Url = 'pluginOptions___start_url',
-  PluginOptions___Background_Color = 'pluginOptions___background_color',
-  PluginOptions___Icon = 'pluginOptions___icon',
-  PluginOptions___PathCheck = 'pluginOptions___pathCheck',
+  PluginOptionsPlugins = 'pluginOptions___plugins',
+  PluginOptionsPluginsResolve = 'pluginOptions___plugins___resolve',
+  PluginOptionsPluginsId = 'pluginOptions___plugins___id',
+  PluginOptionsPluginsName = 'pluginOptions___plugins___name',
+  PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
+  PluginOptionsPluginsPluginOptionsShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
+  PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
+  PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
+  PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
+  PluginOptionsTrackingId = 'pluginOptions___trackingId',
+  PluginOptionsAnonymize = 'pluginOptions___anonymize',
+  PluginOptionsPathToConfigModule = 'pluginOptions___pathToConfigModule',
+  PluginOptionsName = 'pluginOptions___name',
+  PluginOptionsPath = 'pluginOptions___path',
+  PluginOptionsShowLineNumbers = 'pluginOptions___showLineNumbers',
+  PluginOptionsStrict = 'pluginOptions___strict',
+  PluginOptionsDashes = 'pluginOptions___dashes',
+  PluginOptionsSiteUrl = 'pluginOptions___siteUrl',
+  PluginOptionsNoTrailingSlash = 'pluginOptions___noTrailingSlash',
+  PluginOptionsShortName = 'pluginOptions___short_name',
+  PluginOptionsStartUrl = 'pluginOptions___start_url',
+  PluginOptionsBackgroundColor = 'pluginOptions___background_color',
+  PluginOptionsIcon = 'pluginOptions___icon',
+  PluginOptionsPathCheck = 'pluginOptions___pathCheck',
   NodeApIs = 'nodeAPIs',
   BrowserApIs = 'browserAPIs',
   SsrApIs = 'ssrAPIs',
   PluginFilepath = 'pluginFilepath',
-  PackageJson___Name = 'packageJson___name',
-  PackageJson___Description = 'packageJson___description',
-  PackageJson___Version = 'packageJson___version',
-  PackageJson___Main = 'packageJson___main',
-  PackageJson___Author = 'packageJson___author',
-  PackageJson___License = 'packageJson___license',
-  PackageJson___Dependencies = 'packageJson___dependencies',
-  PackageJson___Dependencies___Name = 'packageJson___dependencies___name',
-  PackageJson___Dependencies___Version = 'packageJson___dependencies___version',
-  PackageJson___DevDependencies = 'packageJson___devDependencies',
-  PackageJson___DevDependencies___Name = 'packageJson___devDependencies___name',
-  PackageJson___DevDependencies___Version = 'packageJson___devDependencies___version',
-  PackageJson___PeerDependencies = 'packageJson___peerDependencies',
-  PackageJson___PeerDependencies___Name = 'packageJson___peerDependencies___name',
-  PackageJson___PeerDependencies___Version = 'packageJson___peerDependencies___version',
-  PackageJson___Keywords = 'packageJson___keywords',
+  PackageJsonName = 'packageJson___name',
+  PackageJsonDescription = 'packageJson___description',
+  PackageJsonVersion = 'packageJson___version',
+  PackageJsonMain = 'packageJson___main',
+  PackageJsonAuthor = 'packageJson___author',
+  PackageJsonLicense = 'packageJson___license',
+  PackageJsonDependencies = 'packageJson___dependencies',
+  PackageJsonDependenciesName = 'packageJson___dependencies___name',
+  PackageJsonDependenciesVersion = 'packageJson___dependencies___version',
+  PackageJsonDevDependencies = 'packageJson___devDependencies',
+  PackageJsonDevDependenciesName = 'packageJson___devDependencies___name',
+  PackageJsonDevDependenciesVersion = 'packageJson___devDependencies___version',
+  PackageJsonPeerDependencies = 'packageJson___peerDependencies',
+  PackageJsonPeerDependenciesName = 'packageJson___peerDependencies___name',
+  PackageJsonPeerDependenciesVersion = 'packageJson___peerDependencies___version',
+  PackageJsonKeywords = 'packageJson___keywords',
 }
 
 export type SitePluginFilterInput = {
@@ -2340,6 +2415,7 @@ export type SitePluginFilterInput = {
 }
 
 export type SitePluginGroupConnection = {
+  __typename?: 'SitePluginGroupConnection'
   totalCount: Scalars['Int']
   edges: Array<SitePluginEdge>
   nodes: Array<SitePlugin>
@@ -2349,6 +2425,7 @@ export type SitePluginGroupConnection = {
 }
 
 export type SitePluginPackageJson = {
+  __typename?: 'SitePluginPackageJson'
   name?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   version?: Maybe<Scalars['String']>
@@ -2362,6 +2439,7 @@ export type SitePluginPackageJson = {
 }
 
 export type SitePluginPackageJsonDependencies = {
+  __typename?: 'SitePluginPackageJsonDependencies'
   name?: Maybe<Scalars['String']>
   version?: Maybe<Scalars['String']>
 }
@@ -2376,6 +2454,7 @@ export type SitePluginPackageJsonDependenciesFilterListInput = {
 }
 
 export type SitePluginPackageJsonDevDependencies = {
+  __typename?: 'SitePluginPackageJsonDevDependencies'
   name?: Maybe<Scalars['String']>
   version?: Maybe<Scalars['String']>
 }
@@ -2403,6 +2482,7 @@ export type SitePluginPackageJsonFilterInput = {
 }
 
 export type SitePluginPackageJsonPeerDependencies = {
+  __typename?: 'SitePluginPackageJsonPeerDependencies'
   name?: Maybe<Scalars['String']>
   version?: Maybe<Scalars['String']>
 }
@@ -2417,11 +2497,16 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 }
 
 export type SitePluginPluginOptions = {
+  __typename?: 'SitePluginPluginOptions'
+  plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
   trackingId?: Maybe<Scalars['String']>
   anonymize?: Maybe<Scalars['Boolean']>
   pathToConfigModule?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   path?: Maybe<Scalars['String']>
+  showLineNumbers?: Maybe<Scalars['Boolean']>
+  strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
   siteUrl?: Maybe<Scalars['String']>
   noTrailingSlash?: Maybe<Scalars['Boolean']>
   short_name?: Maybe<Scalars['String']>
@@ -2432,11 +2517,15 @@ export type SitePluginPluginOptions = {
 }
 
 export type SitePluginPluginOptionsFilterInput = {
+  plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
   path?: Maybe<StringQueryOperatorInput>
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
+  strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
   siteUrl?: Maybe<StringQueryOperatorInput>
   noTrailingSlash?: Maybe<BooleanQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
@@ -2446,12 +2535,49 @@ export type SitePluginPluginOptionsFilterInput = {
   pathCheck?: Maybe<BooleanQueryOperatorInput>
 }
 
+export type SitePluginPluginOptionsPlugins = {
+  __typename?: 'SitePluginPluginOptionsPlugins'
+  resolve?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  version?: Maybe<Scalars['String']>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptions>
+  pluginFilepath?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  version?: Maybe<StringQueryOperatorInput>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>
+  pluginFilepath?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsPluginsFilterInput>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptions = {
+  __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
+  showLineNumbers?: Maybe<Scalars['Boolean']>
+  strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
+  strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
+}
+
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>
   order?: Maybe<Array<Maybe<SortOrderEnum>>>
 }
 
 export type SiteSiteMetadata = {
+  __typename?: 'SiteSiteMetadata'
   siteTitle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
@@ -2483,6 +2609,7 @@ export type StringQueryOperatorInput = {
 }
 
 export type WordCount = {
+  __typename?: 'wordCount'
   paragraphs?: Maybe<Scalars['Int']>
   sentences?: Maybe<Scalars['Int']>
   words?: Maybe<Scalars['Int']>
@@ -2706,7 +2833,7 @@ export type Unnamed_1_QueryVariables = {
 
 export type Unnamed_1_Query = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
-    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'> & {
+    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'> & {
         frontmatter: Maybe<
           { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
             MarkdownRemarkFrontmatter,
@@ -2721,7 +2848,14 @@ export type DowntimeQueryVariables = {}
 
 export type DowntimeQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
-    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'html'>
+    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'> & {
+        frontmatter: Maybe<
+          { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
+            MarkdownRemarkFrontmatter,
+            'title'
+          >
+        >
+      }
   >
 }
 
@@ -2742,7 +2876,6 @@ export type IndexQuery = { __typename?: 'Query' } & {
               frontmatter: Maybe<
                 { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
                   MarkdownRemarkFrontmatter,
-                  | 'hidden'
                   | 'title'
                   | 'organization'
                   | 'dates'
@@ -2758,12 +2891,12 @@ export type IndexQuery = { __typename?: 'Query' } & {
                             fluid: Maybe<
                               {
                                 __typename?: 'ImageSharpFluid'
-                              } & GatsbyImageSharpFluid_WithWebpFragment
+                              } & GatsbyImageSharpFluid_WithWebp_TracedSvgFragment
                             >
                             fixed: Maybe<
                               {
                                 __typename?: 'ImageSharpFixed'
-                              } & GatsbyImageSharpFixed_WithWebpFragment
+                              } & GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
                             >
                           }
                         >

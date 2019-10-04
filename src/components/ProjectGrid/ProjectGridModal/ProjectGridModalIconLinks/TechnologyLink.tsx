@@ -111,6 +111,31 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
     case 'Foundation':
       link = 'https://foundation.zurb.com'
       color = 'rgb(12, 60, 85)'
+      break
+    case 'Emotion':
+      link = 'https://emotion.sh'
+      color = '#D36AC2'
+      break
+    case 'Jest':
+      link = 'https://jestjs.io'
+      color = '#C21325'
+      break
+    case 'D3':
+      link = 'https://d3js.org'
+      color = '#f9a03c'
+      break
+    case 'Less':
+      link = 'http://lesscss.org'
+      color = '#1d365d'
+      break
+    case 'Lodash':
+      link = 'https://lodash.com'
+      color = '#3492ff'
+      break
+    case 'Handlebars':
+      link = 'https://handlebarsjs.com'
+      color = '#f38709'
+      break
     default:
       break
   }

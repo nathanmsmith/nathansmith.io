@@ -43,6 +43,13 @@ export default function ColoredLink(props: ColoredLinkProps) {
     case props.href.includes('linkedin.com'):
       color = '#0077B5'
       break
+    case props.href.includes('stripe.com'):
+      // https://stripe.com/newsroom/brand-assets
+      color = '#32325D'
+      break
+    case props.href.includes('facebook.com'):
+      color = '#5890ff'
+      break
     default:
       color = '#000'
       break

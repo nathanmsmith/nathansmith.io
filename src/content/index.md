@@ -6,7 +6,7 @@ Hi, I'm Nathan. 👋
 
 I'm a junior at [UCLA](http://www.ucla.edu) studying Computer Science.
 
-This past summer, I was a returning software engineering intern at [Keybase](https://keybase.io) in New York City, where I developed cryptocurrency-related features for Keybase's open-source desktop and mobile applications, as well as implemented functionality for Keybase's bot APIs.
+This past summer, I was a returning software engineering intern at [Keybase](https://keybase.io) in New York City, where I designed and implemented functionality for Keybase's open-source applications and developer APIs.
 
 I finished a winter internship earlier this year at [Datadog](https://www.datadoghq.com), where I implemented features and improvements to Datadog's suite of data visualizations. I've also previously completed frontend internships at Keybase and [Autodesk](https://www.autodesk.com).
 

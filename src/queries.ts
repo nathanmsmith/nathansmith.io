@@ -21,6 +21,193 @@ export type BooleanQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars['Boolean']>>>
 }
 
+export type Cs180Csv = Node & {
+  __typename?: 'Cs180Csv'
+  id: Scalars['ID']
+  parent?: Maybe<Node>
+  children: Array<Node>
+  internal: Internal
+  section_id?: Maybe<Scalars['String']>
+  course_id?: Maybe<Scalars['Date']>
+  enrollment_status?: Maybe<Scalars['String']>
+  enrollment_count?: Maybe<Scalars['String']>
+  enrollment_capacity?: Maybe<Scalars['String']>
+  waitlist_status?: Maybe<Scalars['String']>
+  waitlist_count?: Maybe<Scalars['String']>
+  waitlist_capacity?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['Date']>
+}
+
+export type Cs180CsvCourse_IdArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
+
+export type Cs180CsvCreated_AtArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
+
+export type Cs180CsvConnection = {
+  __typename?: 'Cs180CsvConnection'
+  totalCount: Scalars['Int']
+  edges: Array<Cs180CsvEdge>
+  nodes: Array<Cs180Csv>
+  pageInfo: PageInfo
+  distinct: Array<Scalars['String']>
+  group: Array<Cs180CsvGroupConnection>
+}
+
+export type Cs180CsvConnectionDistinctArgs = {
+  field: Cs180CsvFieldsEnum
+}
+
+export type Cs180CsvConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+  field: Cs180CsvFieldsEnum
+}
+
+export type Cs180CsvEdge = {
+  __typename?: 'Cs180CsvEdge'
+  next?: Maybe<Cs180Csv>
+  node: Cs180Csv
+  previous?: Maybe<Cs180Csv>
+}
+
+export enum Cs180CsvFieldsEnum {
+  Id = 'id',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
+  Children = 'children',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  SectionId = 'section_id',
+  CourseId = 'course_id',
+  EnrollmentStatus = 'enrollment_status',
+  EnrollmentCount = 'enrollment_count',
+  EnrollmentCapacity = 'enrollment_capacity',
+  WaitlistStatus = 'waitlist_status',
+  WaitlistCount = 'waitlist_count',
+  WaitlistCapacity = 'waitlist_capacity',
+  CreatedAt = 'created_at',
+}
+
+export type Cs180CsvFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  section_id?: Maybe<StringQueryOperatorInput>
+  course_id?: Maybe<DateQueryOperatorInput>
+  enrollment_status?: Maybe<StringQueryOperatorInput>
+  enrollment_count?: Maybe<StringQueryOperatorInput>
+  enrollment_capacity?: Maybe<StringQueryOperatorInput>
+  waitlist_status?: Maybe<StringQueryOperatorInput>
+  waitlist_count?: Maybe<StringQueryOperatorInput>
+  waitlist_capacity?: Maybe<StringQueryOperatorInput>
+  created_at?: Maybe<DateQueryOperatorInput>
+}
+
+export type Cs180CsvGroupConnection = {
+  __typename?: 'Cs180CsvGroupConnection'
+  totalCount: Scalars['Int']
+  edges: Array<Cs180CsvEdge>
+  nodes: Array<Cs180Csv>
+  pageInfo: PageInfo
+  field: Scalars['String']
+  fieldValue?: Maybe<Scalars['String']>
+}
+
+export type Cs180CsvSortInput = {
+  fields?: Maybe<Array<Maybe<Cs180CsvFieldsEnum>>>
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
 export type DateQueryOperatorInput = {
   eq?: Maybe<Scalars['Date']>
   ne?: Maybe<Scalars['Date']>
@@ -342,6 +529,7 @@ export type DuotoneGradient = {
 export enum ExcerptFormats {
   Plain = 'PLAIN',
   Html = 'HTML',
+  Markdown = 'MARKDOWN',
 }
 
 export type File = Node & {
@@ -387,6 +575,7 @@ export type File = Node & {
   publicURL?: Maybe<Scalars['String']>
   childMarkdownRemark?: Maybe<MarkdownRemark>
   childImageSharp?: Maybe<ImageSharp>
+  childrenCs180Csv?: Maybe<Array<Maybe<Cs180Csv>>>
 }
 
 export type FileModifiedTimeArgs = {
@@ -1375,6 +1564,7 @@ export enum MarkdownRemarkFieldsEnum {
   InternalOwner = 'internal___owner',
   InternalType = 'internal___type',
   FrontmatterTitle = 'frontmatter___title',
+  FrontmatterDraft = 'frontmatter___draft',
   FrontmatterOrganization = 'frontmatter___organization',
   FrontmatterDates = 'frontmatter___dates',
   FrontmatterLink = 'frontmatter___link',
@@ -1429,7 +1619,6 @@ export enum MarkdownRemarkFieldsEnum {
   FrontmatterImageCtime = 'frontmatter___image___ctime',
   FrontmatterImageBirthtime = 'frontmatter___image___birthtime',
   FrontmatterImagePublicUrl = 'frontmatter___image___publicURL',
-  FrontmatterDraft = 'frontmatter___draft',
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
   FileAbsolutePath = 'fileAbsolutePath',
@@ -1473,6 +1662,7 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   __typename?: 'MarkdownRemarkFrontmatter'
   title?: Maybe<Scalars['String']>
+  draft?: Maybe<Scalars['Boolean']>
   organization?: Maybe<Scalars['String']>
   dates?: Maybe<Scalars['String']>
   link?: Maybe<Scalars['String']>
@@ -1480,11 +1670,11 @@ export type MarkdownRemarkFrontmatter = {
   technologies?: Maybe<Array<Maybe<Scalars['String']>>>
   role?: Maybe<Scalars['String']>
   image?: Maybe<File>
-  draft?: Maybe<Scalars['Boolean']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
+  draft?: Maybe<BooleanQueryOperatorInput>
   organization?: Maybe<StringQueryOperatorInput>
   dates?: Maybe<StringQueryOperatorInput>
   link?: Maybe<StringQueryOperatorInput>
@@ -1492,7 +1682,6 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   technologies?: Maybe<StringQueryOperatorInput>
   role?: Maybe<StringQueryOperatorInput>
   image?: Maybe<FileFilterInput>
-  draft?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -1577,6 +1766,8 @@ export type Query = {
   allImageSharp?: Maybe<ImageSharpConnection>
   sitePage?: Maybe<SitePage>
   allSitePage?: Maybe<SitePageConnection>
+  cs180Csv?: Maybe<Cs180Csv>
+  allCs180Csv?: Maybe<Cs180CsvConnection>
 }
 
 export type QueryFileArgs = {
@@ -1782,6 +1973,29 @@ export type QuerySitePageArgs = {
 export type QueryAllSitePageArgs = {
   filter?: Maybe<SitePageFilterInput>
   sort?: Maybe<SitePageSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QueryCs180CsvArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  section_id?: Maybe<StringQueryOperatorInput>
+  course_id?: Maybe<DateQueryOperatorInput>
+  enrollment_status?: Maybe<StringQueryOperatorInput>
+  enrollment_count?: Maybe<StringQueryOperatorInput>
+  enrollment_capacity?: Maybe<StringQueryOperatorInput>
+  waitlist_status?: Maybe<StringQueryOperatorInput>
+  waitlist_count?: Maybe<StringQueryOperatorInput>
+  waitlist_capacity?: Maybe<StringQueryOperatorInput>
+  created_at?: Maybe<DateQueryOperatorInput>
+}
+
+export type QueryAllCs180CsvArgs = {
+  filter?: Maybe<Cs180CsvFilterInput>
+  sort?: Maybe<Cs180CsvSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -2155,6 +2369,7 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
   PluginCreatorPluginOptionsShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
   PluginCreatorPluginOptionsStrict = 'pluginCreator___pluginOptions___strict',
+  PluginCreatorPluginOptionsDashes = 'pluginCreator___pluginOptions___dashes',
   PluginCreatorPluginOptionsShortName = 'pluginCreator___pluginOptions___short_name',
   PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
   PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
@@ -2356,6 +2571,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
   PluginOptionsPluginsPluginOptionsShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
   PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
+  PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptionsTrackingId = 'pluginOptions___trackingId',
   PluginOptionsAnonymize = 'pluginOptions___anonymize',
@@ -2364,6 +2580,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPath = 'pluginOptions___path',
   PluginOptionsShowLineNumbers = 'pluginOptions___showLineNumbers',
   PluginOptionsStrict = 'pluginOptions___strict',
+  PluginOptionsDashes = 'pluginOptions___dashes',
   PluginOptionsShortName = 'pluginOptions___short_name',
   PluginOptionsStartUrl = 'pluginOptions___start_url',
   PluginOptionsBackgroundColor = 'pluginOptions___background_color',
@@ -2499,6 +2716,7 @@ export type SitePluginPluginOptions = {
   path?: Maybe<Scalars['String']>
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
@@ -2515,6 +2733,7 @@ export type SitePluginPluginOptionsFilterInput = {
   path?: Maybe<StringQueryOperatorInput>
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
@@ -2549,11 +2768,13 @@ export type SitePluginPluginOptionsPluginsPluginOptions = {
   __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {
@@ -2828,6 +3049,30 @@ export type Unnamed_1_Query = { __typename?: 'Query' } & {
           >
         >
       }
+  >
+}
+
+export type Unnamed_2_QueryVariables = {}
+
+export type Unnamed_2_Query = { __typename?: 'Query' } & {
+  allCs180Csv: Maybe<
+    { __typename?: 'Cs180CsvConnection' } & {
+      edges: Array<
+        { __typename?: 'Cs180CsvEdge' } & {
+          node: { __typename?: 'Cs180Csv' } & Pick<
+            Cs180Csv,
+            | 'created_at'
+            | 'enrollment_capacity'
+            | 'enrollment_count'
+            | 'enrollment_status'
+            | 'section_id'
+            | 'waitlist_capacity'
+            | 'waitlist_count'
+            | 'waitlist_status'
+          >
+        }
+      >
+    }
   >
 }
 

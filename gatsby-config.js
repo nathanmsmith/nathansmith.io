@@ -37,17 +37,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `@mosch/gatsby-source-github`,
-    //   options: {
-    //     repository: 'wiki',
-    //     tree: true,
-    //     user: 'nathunsmitty',
-    //     secrets: {
-    //       token: process.env.GITHUB_TOKEN,
-    //     },
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/posts`,
+      },
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -75,6 +71,7 @@ module.exports = {
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-transformer-csv',
     'gatsby-plugin-typescript',
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',

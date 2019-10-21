@@ -59,6 +59,7 @@
     "gatsby-remark-prismjs": "3.2.11",
     "gatsby-remark-smartypants": "2.0.9",
     "gatsby-source-filesystem": "2.0.39",
+    "gatsby-transformer-csv": "2.1.14",
     "gatsby-transformer-remark": "2.4.0",
     "gatsby-transformer-sharp": "2.1.21",
     "katex": "0.10.2",

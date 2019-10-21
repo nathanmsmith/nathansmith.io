@@ -9,12 +9,10 @@ export const query = graphql`
     allCs180Csv {
       edges {
         node {
-          course_id
           created_at
           enrollment_capacity
           enrollment_count
           enrollment_status
-          instructor
           section_id
           waitlist_capacity
           waitlist_count

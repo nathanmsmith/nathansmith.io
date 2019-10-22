@@ -8,8 +8,13 @@ const red = '#eb6a5b'
 const blue = '#52b6ca'
 
 const LineChart = ({ data }: any) => {
+  const series = d3.stack().keys(['enrollment_count', 'waitlist_count'])(data)
+  console.log('series:', series)
   const timeDomain = d3.extent(data, d => new Date(d.created_at))
-  const enrollmentMax = d3.max(data, d => Number(d.enrollment_count))
+  const enrollmentMax = d3.max(
+    data,
+    d => Number(d.enrollment_capacity) + Number(d.waitlist_capacity)
+  )
 
   const xScale = d3
     .scaleTime()
@@ -31,25 +36,16 @@ const LineChart = ({ data }: any) => {
     d3.select(yRef.current).call(yAxis)
   }, [xRef.current, yRef.current])
 
-  // const lineGenerator = d3.area()
-  // lineGenerator.x(d => xScale(new Date(d.created_at)))
-  // lineGenerator.y0(yScale(enrollmentDomain[0]))
-  // lineGenerator.y1(d => yScale(d.enrollment_count))
   const enrollmentCount = d3
     .area()
-    .x(d => xScale(new Date(d.created_at)))
-    .y0(yScale(0))
-    .y1(d => yScale(d.enrollment_count))
-  const waitlistCount = d3
-    .area()
-    .x(d => xScale(new Date(d.created_at)))
-    .y0(yScale(0))
-    .y1(d => yScale(d.waitlist_count))
+    .x(d => xScale(new Date(d.data.created_at)))
+    .y0(d => yScale(d[0]))
+    .y1(d => yScale(d[1]))
 
   return (
     <svg width={width} height={height}>
-      <path d={enrollmentCount(data)} fill={red} />
-      <path d={waitlistCount(data)} fill={blue} />
+      <path d={enrollmentCount(series[0])} fill={red} />
+      <path d={enrollmentCount(series[1])} fill={blue} />
       <g>
         <g ref={xRef} transform={`translate(0, ${height - margin.bottom})`} />
         <g ref={yRef} transform={`translate(${margin.left}, 0)`} />

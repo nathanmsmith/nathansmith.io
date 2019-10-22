@@ -4,8 +4,10 @@ import { graphql } from 'gatsby'
 import Page from '../components/Page'
 import AreaChart from '../components/AreaChart'
 
+import { D3DemoQuery } from '../queries'
+
 export const query = graphql`
-  query {
+  query D3Demo {
     allCs180Csv {
       edges {
         node {
@@ -23,7 +25,7 @@ export const query = graphql`
   }
 `
 
-const D3Demo = ({ data }: any) => {
+const D3Demo = ({ data }: { data: D3DemoQuery }) => {
   return (
     <Page pageTitle="D3 Demo">
       <AreaChart data={data.allCs180Csv.edges.map((edge: any) => edge.node)} />

@@ -3052,9 +3052,9 @@ export type Unnamed_1_Query = { __typename?: 'Query' } & {
   >
 }
 
-export type Unnamed_2_QueryVariables = {}
+export type D3DemoQueryVariables = {}
 
-export type Unnamed_2_Query = { __typename?: 'Query' } & {
+export type D3DemoQuery = { __typename?: 'Query' } & {
   allCs180Csv: Maybe<
     { __typename?: 'Cs180CsvConnection' } & {
       edges: Array<

@@ -1,15 +1,16 @@
 import * as React from 'react'
 import * as d3 from 'd3'
+import useComponentSize from '@rehooks/component-size'
 
-const width = 650
-const height = 400
+const height = 160
 const margin = { top: 20, right: 5, bottom: 20, left: 35 }
 const red = '#eb6a5b'
 const blue = '#52b6ca'
 
 const LineChart = ({ data }: any) => {
+  let containerRef = React.useRef(null)
+  const { width } = useComponentSize(containerRef)
   const series = d3.stack().keys(['enrollment_count', 'waitlist_count'])(data)
-  console.log('series:', series)
   const timeDomain = d3.extent(data, d => new Date(d.created_at))
   const enrollmentMax = d3.max(
     data,
@@ -43,14 +44,16 @@ const LineChart = ({ data }: any) => {
     .y1(d => yScale(d[1]))
 
   return (
-    <svg width={width} height={height}>
-      <path d={enrollmentCount(series[0])} fill={red} />
-      <path d={enrollmentCount(series[1])} fill={blue} />
-      <g>
-        <g ref={xRef} transform={`translate(0, ${height - margin.bottom})`} />
-        <g ref={yRef} transform={`translate(${margin.left}, 0)`} />
-      </g>
-    </svg>
+    <div ref={containerRef}>
+      <svg width="100%" height={height}>
+        <path d={enrollmentCount(series[0])} fill={red} />
+        <path d={enrollmentCount(series[1])} fill={blue} />
+        <g>
+          <g ref={xRef} transform={`translate(0, ${height - margin.bottom})`} />
+          <g ref={yRef} transform={`translate(${margin.left}, 0)`} />
+        </g>
+      </svg>
+    </div>
   )
 }
 

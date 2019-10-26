@@ -50,7 +50,7 @@ export default function ColoredLink(props: ColoredLinkProps) {
     case props.href.includes('facebook.com'):
       color = '#5890ff'
       break
-    case props.href.includes(''):
+    case props.href.includes('uclacommunicationsboard.org'):
       color = '#005072'
       break
     default:

@@ -8,9 +8,7 @@ I'm a junior at [UCLA](http://www.ucla.edu) studying Computer Science. My intere
 
 Next summer, I'll be a software engineering intern at [Stripe](https://stripe.com). After that, in the fall, I'll be a production engineering intern at [Facebook](https://www.facebook.com). My expected graduation date from UCLA is June 2021.
 
-This past summer, I was a returning software engineering intern at [Keybase](https://keybase.io) in New York City, where I designed and implemented functionality for Keybase's open-source applications and developer APIs.
-
-I finished a winter internship earlier this year at [Datadog](https://www.datadoghq.com), where I implemented features and improvements to Datadog's suite of data visualizations. I've also previously completed frontend internships at Keybase and [Autodesk](https://www.autodesk.com).
+This past summer, I was a returning software engineering intern at [Keybase](https://keybase.io) in New York City, where I designed and implemented features for Keybase's open-source applications and developer APIs. I've also previously done frontend internships with [Datadog](https://www.datadoghq.com) and [Autodesk](https://www.autodesk.com).
 
 I formerly managed a team of 30 student developers and coded websites for my
 [school newspaper](https://dailybruin.com). Prior to that, I led web and mobile development for my [school radio station](https://uclaradio.com). I currently sit on the [publishing board](http://uclacommunicationsboard.org) for all student media at UCLA.

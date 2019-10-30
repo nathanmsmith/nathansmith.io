@@ -4,7 +4,7 @@ title: Nathan Smith in HTML
 
 Hi, I'm Nathan. 👋
 
-I'm a junior at [UCLA](http://www.ucla.edu) studying Computer Science. My interests include telling stories through data, software engineering methodologies, experimenting with programming languages, and improving developer workflows through tooling.
+I'm a junior at [UCLA](http://www.ucla.edu) studying Computer Science. My interests include telling stories through data, experimenting with programming languages, and improving developer workflows through tooling.
 
 Next summer, I'll be a software engineering intern at [Stripe](https://stripe.com). After that, in the fall, I'll be a production engineering intern at [Facebook](https://www.facebook.com). My expected graduation date from UCLA is June 2021.
 

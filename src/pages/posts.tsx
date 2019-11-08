@@ -15,6 +15,8 @@ export const query = graphql`
           id
           frontmatter {
             title
+            draft
+            date
           }
           fields {
             slug
@@ -27,6 +29,7 @@ export const query = graphql`
 
 export default function Posts({ data }: any) {
   const postsByYear = data.posts.edges.reduce((obj: any, { node }: any) => {
+    console.log('node:', node)
     if (node.frontmatter.date && !node.frontmatter.draft) {
       const date = new Date(node.frontmatter.date)
       const year = date.getFullYear()
@@ -51,17 +54,20 @@ export default function Posts({ data }: any) {
           {Object.keys(postsByYear).map((year, i) => (
             <>
               <h3 key={i}>{year}</h3>
-              {postsByYear[year].map((post: any) => {
-                const { date, draft } = post.frontmatter
-                if (date && !draft) {
+              {postsByYear[year].map((post: any, i: number) => {
+                const { date: dateString, draft } = post.frontmatter
+                console.log('dateString:', dateString)
+                console.log('draft:', draft)
+                if (dateString && !draft) {
+                  const date = new Date(dateString)
                   return (
-                    <li>
+                    <li key={i}>
                       <time
                         dateTime={date.toISOString()}
                         css={css`
                           display: block;
                           color: #ccc;
-                          font-size: 1rem;
+                          font-size: 0.8rem;
                         `}
                       >
                         {date.toLocaleDateString(undefined, {

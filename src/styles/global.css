@@ -4,6 +4,7 @@
   margin: 0.5em 0;
   padding: 1em;
   overflow: auto;
+  font-size: 12px;
 }
 
 .gatsby-highlight pre[class*='language-'].line-numbers {

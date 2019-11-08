@@ -3,7 +3,7 @@ title: Designing a Scraper for the UCLA Registrar
 date: 11-05-19
 ---
 
-After taking the past nine months off from school, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great schedule planned. I'd take compilers, Intro to Digital Humanities, the probability class taught entirely through Texas Hold' Em examples, and Scalable Internet Services.
+After taking the past nine months off from school, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great schedule planned. I'd take compilers, Intro to Digital Humanities, the [probability class taught entirely through Texas Hold' Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and [Scalable Internet Services](https://www.scalableinternetservices.com/).
 
 I grabbed Digital Humanities and compilers on my first pass, and planned on enrolling in Stats and SIS on my second pass. But by the time my second pass was active, Scalable Internet Services had filled up.
 
@@ -13,9 +13,13 @@ So I did what probably absolutely no one except me would do: I decided I'd scrap
 
 The UCLA Registrar's Office has a [publicly available list of all classes offered for the most recent quarters](https://sa.ucla.edu/ro/public/soc), which they say is updated hourly. The most common way to search for classes is by what the registrar calls a "Subject Area", a logical grouping of classes. In most cases, like Computer Science, the subject area of Computer Science maps directly to courses offered by the [Computer Science department](https://www.cs.ucla.edu) of UCLA. However, some departments, like the [Department of Asian Languages and Cultures](https://www.alc.ucla.edu), offer many subject areas. A full [department/subject area mapping](https://www.registrar.ucla.edu/Faculty-Staff/Courses-and-Programs/Department-and-Subject-Area-Codes) is provided by the registrar.
 
-## First Attempt: Beautiful Soup
+## Diving Right In: Beautiful Soup
 
 I'd never used Beautiful Soup before, but it seemed like a pretty popular scraping tool on the internet, so I figured I'd give it a go.
+
+My first target was the [Computer Science course listing page](https://sa.ucla.edu/ro/Public/SOC/Results?t=19F&sBy=subject&sName=Computer+Science+%28COM+SCI%29&subj=COM+SCI&crsCatlg=Enter+a+Catalog+Number+or+Class+Title+%28Optional%29&catlg=&cls_no=&btnIsInIndex=btn_inIndex). When rendered, it looks something like this:
+
+![The computer science course listings page](./com-sci-course-listings.png)
 
 After referring to the [very helpful slides](https://github.com/uclaacm/learn.py-s19/tree/master/session-8-web-scraping) that UCLA ACM made last spring about BeautifulSoup, I had a very basic scraper.
 
@@ -29,8 +33,6 @@ soup = BeautifulSoup(response.content, 'html.parser')
 
 print(soup.prettify())
 ```
-
-The [URL I used](https://sa.ucla.edu/ro/Public/SOC/Results?t=19F&sBy=subject&sName=Computer+Science+%28COM+SCI%29&subj=COM+SCI&crsCatlg=Enter+a+Catalog+Number+or+Class+Title+%28Optional%29&catlg=&cls_no=&btnIsInIndex=btn_inIndex) specifically links to computer science classes, but each subject area has a similar URL.
 
 I was hoping this would give us the HTML markup of every class and its info. Instead, I got something like:
 

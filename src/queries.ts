@@ -342,6 +342,7 @@ export type DuotoneGradient = {
 export enum ExcerptFormats {
   Plain = 'PLAIN',
   Html = 'HTML',
+  Markdown = 'MARKDOWN',
 }
 
 export type File = Node & {
@@ -1430,6 +1431,7 @@ export enum MarkdownRemarkFieldsEnum {
   FrontmatterImageBirthtime = 'frontmatter___image___birthtime',
   FrontmatterImagePublicUrl = 'frontmatter___image___publicURL',
   FrontmatterDraft = 'frontmatter___draft',
+  FrontmatterDate = 'frontmatter___date',
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
   FileAbsolutePath = 'fileAbsolutePath',
@@ -1481,6 +1483,7 @@ export type MarkdownRemarkFrontmatter = {
   role?: Maybe<Scalars['String']>
   image?: Maybe<File>
   draft?: Maybe<Scalars['Boolean']>
+  date?: Maybe<Scalars['String']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
@@ -1493,6 +1496,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   role?: Maybe<StringQueryOperatorInput>
   image?: Maybe<FileFilterInput>
   draft?: Maybe<BooleanQueryOperatorInput>
+  date?: Maybe<StringQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -2155,6 +2159,7 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
   PluginCreatorPluginOptionsShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
   PluginCreatorPluginOptionsStrict = 'pluginCreator___pluginOptions___strict',
+  PluginCreatorPluginOptionsDashes = 'pluginCreator___pluginOptions___dashes',
   PluginCreatorPluginOptionsShortName = 'pluginCreator___pluginOptions___short_name',
   PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
   PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
@@ -2356,6 +2361,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
   PluginOptionsPluginsPluginOptionsShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
   PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
+  PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptionsTrackingId = 'pluginOptions___trackingId',
   PluginOptionsAnonymize = 'pluginOptions___anonymize',
@@ -2364,6 +2370,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPath = 'pluginOptions___path',
   PluginOptionsShowLineNumbers = 'pluginOptions___showLineNumbers',
   PluginOptionsStrict = 'pluginOptions___strict',
+  PluginOptionsDashes = 'pluginOptions___dashes',
   PluginOptionsShortName = 'pluginOptions___short_name',
   PluginOptionsStartUrl = 'pluginOptions___start_url',
   PluginOptionsBackgroundColor = 'pluginOptions___background_color',
@@ -2499,6 +2506,7 @@ export type SitePluginPluginOptions = {
   path?: Maybe<Scalars['String']>
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
@@ -2515,6 +2523,7 @@ export type SitePluginPluginOptionsFilterInput = {
   path?: Maybe<StringQueryOperatorInput>
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
@@ -2549,11 +2558,13 @@ export type SitePluginPluginOptionsPluginsPluginOptions = {
   __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {
@@ -2814,17 +2825,17 @@ export type PortraitPickerQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type Unnamed_1_QueryVariables = {
+export type PostQueryVariables = {
   slug: Scalars['String']
 }
 
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
+export type PostQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
     { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'> & {
         frontmatter: Maybe<
           { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
             MarkdownRemarkFrontmatter,
-            'title'
+            'title' | 'date'
           >
         >
       }
@@ -2912,7 +2923,7 @@ export type PostsQueryQuery = { __typename?: 'Query' } & {
               frontmatter: Maybe<
                 { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
                   MarkdownRemarkFrontmatter,
-                  'title'
+                  'title' | 'draft' | 'date'
                 >
               >
               fields: Maybe<

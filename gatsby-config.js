@@ -5,7 +5,6 @@ module.exports = {
     siteTitle: 'Nathan Smith in HTML',
     description:
       'The personal website of Nathan Smith, UCLA computer science student, web developer, and board game enthusiast.',
-    url: 'https://nathansmith.io',
     twitter: '@nathunsmitty',
   },
   plugins: [
@@ -79,6 +78,13 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-plugin-react-helmet-canonical-urls',
+      options: {
+        siteUrl: 'https://nathansmith.io',
+        noTrailingSlash: true,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

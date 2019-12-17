@@ -342,6 +342,7 @@ export type DuotoneGradient = {
 export enum ExcerptFormats {
   Plain = 'PLAIN',
   Html = 'HTML',
+  Markdown = 'MARKDOWN',
 }
 
 export type File = Node & {
@@ -1565,6 +1566,8 @@ export type Query = {
   __typename?: 'Query'
   file?: Maybe<File>
   allFile?: Maybe<FileConnection>
+  sitePage?: Maybe<SitePage>
+  allSitePage?: Maybe<SitePageConnection>
   sitePlugin?: Maybe<SitePlugin>
   allSitePlugin?: Maybe<SitePluginConnection>
   site?: Maybe<Site>
@@ -1575,8 +1578,6 @@ export type Query = {
   allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
   imageSharp?: Maybe<ImageSharp>
   allImageSharp?: Maybe<ImageSharpConnection>
-  sitePage?: Maybe<SitePage>
-  allSitePage?: Maybe<SitePageConnection>
 }
 
 export type QueryFileArgs = {
@@ -1623,6 +1624,29 @@ export type QueryFileArgs = {
 export type QueryAllFileArgs = {
   filter?: Maybe<FileFilterInput>
   sort?: Maybe<FileSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QuerySitePageArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  path?: Maybe<StringQueryOperatorInput>
+  internalComponentName?: Maybe<StringQueryOperatorInput>
+  component?: Maybe<StringQueryOperatorInput>
+  componentChunkName?: Maybe<StringQueryOperatorInput>
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
+  pluginCreator?: Maybe<SitePluginFilterInput>
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>
+  componentPath?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>
+  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -1759,29 +1783,6 @@ export type QueryImageSharpArgs = {
 export type QueryAllImageSharpArgs = {
   filter?: Maybe<ImageSharpFilterInput>
   sort?: Maybe<ImageSharpSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  path?: Maybe<StringQueryOperatorInput>
-  internalComponentName?: Maybe<StringQueryOperatorInput>
-  component?: Maybe<StringQueryOperatorInput>
-  componentChunkName?: Maybe<StringQueryOperatorInput>
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
-  context?: Maybe<SitePageContextFilterInput>
-  pluginCreator?: Maybe<SitePluginFilterInput>
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>
-  componentPath?: Maybe<StringQueryOperatorInput>
-}
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>
-  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -1923,7 +1924,6 @@ export enum SiteFieldsEnum {
   InternalType = 'internal___type',
   SiteMetadataSiteTitle = 'siteMetadata___siteTitle',
   SiteMetadataDescription = 'siteMetadata___description',
-  SiteMetadataUrl = 'siteMetadata___url',
   SiteMetadataTwitter = 'siteMetadata___twitter',
   Port = 'port',
   Host = 'host',
@@ -2155,6 +2155,9 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
   PluginCreatorPluginOptionsShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
   PluginCreatorPluginOptionsStrict = 'pluginCreator___pluginOptions___strict',
+  PluginCreatorPluginOptionsDashes = 'pluginCreator___pluginOptions___dashes',
+  PluginCreatorPluginOptionsSiteUrl = 'pluginCreator___pluginOptions___siteUrl',
+  PluginCreatorPluginOptionsNoTrailingSlash = 'pluginCreator___pluginOptions___noTrailingSlash',
   PluginCreatorPluginOptionsShortName = 'pluginCreator___pluginOptions___short_name',
   PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
   PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
@@ -2356,6 +2359,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
   PluginOptionsPluginsPluginOptionsShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
   PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
+  PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptionsTrackingId = 'pluginOptions___trackingId',
   PluginOptionsAnonymize = 'pluginOptions___anonymize',
@@ -2364,6 +2368,9 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPath = 'pluginOptions___path',
   PluginOptionsShowLineNumbers = 'pluginOptions___showLineNumbers',
   PluginOptionsStrict = 'pluginOptions___strict',
+  PluginOptionsDashes = 'pluginOptions___dashes',
+  PluginOptionsSiteUrl = 'pluginOptions___siteUrl',
+  PluginOptionsNoTrailingSlash = 'pluginOptions___noTrailingSlash',
   PluginOptionsShortName = 'pluginOptions___short_name',
   PluginOptionsStartUrl = 'pluginOptions___start_url',
   PluginOptionsBackgroundColor = 'pluginOptions___background_color',
@@ -2499,6 +2506,9 @@ export type SitePluginPluginOptions = {
   path?: Maybe<Scalars['String']>
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
+  siteUrl?: Maybe<Scalars['String']>
+  noTrailingSlash?: Maybe<Scalars['Boolean']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
@@ -2515,6 +2525,9 @@ export type SitePluginPluginOptionsFilterInput = {
   path?: Maybe<StringQueryOperatorInput>
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
+  siteUrl?: Maybe<StringQueryOperatorInput>
+  noTrailingSlash?: Maybe<BooleanQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
@@ -2549,11 +2562,13 @@ export type SitePluginPluginOptionsPluginsPluginOptions = {
   __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
+  dashes?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
+  dashes?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {
@@ -2565,14 +2580,12 @@ export type SiteSiteMetadata = {
   __typename?: 'SiteSiteMetadata'
   siteTitle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  url?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
 }
 
 export type SiteSiteMetadataFilterInput = {
   siteTitle?: Maybe<StringQueryOperatorInput>
   description?: Maybe<StringQueryOperatorInput>
-  url?: Maybe<StringQueryOperatorInput>
   twitter?: Maybe<StringQueryOperatorInput>
 }
 
@@ -2783,7 +2796,7 @@ export type HeadQuery = { __typename?: 'Query' } & {
       siteMetadata: Maybe<
         { __typename?: 'SiteSiteMetadata' } & Pick<
           SiteSiteMetadata,
-          'siteTitle' | 'description' | 'url' | 'twitter'
+          'siteTitle' | 'description' | 'twitter'
         >
       >
     }

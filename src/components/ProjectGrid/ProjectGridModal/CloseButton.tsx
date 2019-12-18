@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
-import { useTheme } from 'emotion-theming'
+import { css, Theme, useTheme } from '../../../styles'
 import { transparentize } from 'polished'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +9,7 @@ interface CloseButtonProps {
 }
 
 export default function CloseButton(props: CloseButtonProps) {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   return (
     <button
       onClick={props.onClick}
@@ -22,21 +21,14 @@ export default function CloseButton(props: CloseButtonProps) {
         padding: 0;
         background-color: transparent;
         text-decoration: none;
-        color: ${theme.colors.background}
+        color: ${theme.colors.primary};
         &:hover {
           cursor: pointer;
+          color: ${transparentize(0.4, theme.colors.primary)};
         }
       `}
     >
-      <FontAwesomeIcon
-        css={css`
-          color: ${theme.colors.primary}
-          :hover {
-            color: ${transparentize(0.4, theme.colors.primary)};
-          }
-        `}
-        icon={faTimesCircle}
-      />
+      <FontAwesomeIcon icon={faTimesCircle} />
     </button>
   )
 }

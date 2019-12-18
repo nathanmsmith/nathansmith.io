@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as rehypeReact from 'rehype-react'
 
+import Body from './Body'
 import Head from './Head'
 import Container from './Container'
 import Header from './Header'
@@ -18,7 +19,7 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 const Page = (props: PageProps) => (
-  <React.Fragment>
+  <Body>
     <Head pageTitle={props.pageTitle} />
     <Container>
       <Header />
@@ -26,7 +27,7 @@ const Page = (props: PageProps) => (
       {!!props.content && <div>{renderAst(props.content)}</div>}
       {props.children}
     </Container>
-  </React.Fragment>
+  </Body>
 )
 
 export default Page

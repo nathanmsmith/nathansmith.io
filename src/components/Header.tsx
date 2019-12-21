@@ -1,25 +1,26 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
+import { css, useTheme, Theme } from '../styles'
 import { Link } from 'gatsby'
 
-const Header = () => (
-  <header
-    css={css`
-      margin-bottom: 1.6rem;
-    `}
-  >
-    <Link
+export default function Header() {
+  const theme = useTheme<Theme>()
+  return (
+    <header
       css={css`
-        font-weight: bold;
-        text-decoration: none;
-        color: #000;
-        font-size: 2rem;
+        margin-bottom: 1.6rem;
       `}
-      to="/"
     >
-      nathansmith.io
-    </Link>
-  </header>
-)
-
-export default Header
+      <Link
+        css={css`
+          font-weight: bold;
+          text-decoration: none;
+          color: ${theme.colors.primary};
+          font-size: 2rem;
+        `}
+        to="/"
+      >
+        nathansmith.io
+      </Link>
+    </header>
+  )
+}

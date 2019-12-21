@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
-import { transparentize } from 'polished'
+import { css, Theme, useTheme } from '../../../styles'
 
 interface ProjectGridModalHeaderProps {
   title: string
@@ -8,6 +7,7 @@ interface ProjectGridModalHeaderProps {
 }
 
 const ProjectGridModalHeader = (props: ProjectGridModalHeaderProps) => {
+  const theme = useTheme<Theme>()
   return (
     <h1
       css={css`
@@ -16,13 +16,13 @@ const ProjectGridModalHeader = (props: ProjectGridModalHeaderProps) => {
     >
       {props.link ? (
         <a
-          css={css`
-            text-decoration: none;
-            color: inherit;
-            :hover {
-              color: ${transparentize(0.4, '#000')};
-            }
-          `}
+          css={{
+            textDecoration: 'none',
+            color: theme.colors.primary,
+            ':hover': {
+              color: theme.colors.primaryHover,
+            },
+          }}
           href={props.link}
         >
           {props.title}

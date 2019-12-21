@@ -12,9 +12,9 @@ const Link = styled.a`
   font-size: 1.2rem;
   margin-right: 10px;
   text-decoration: none;
-  color: #000;
+  color: ${props => props.theme.colors.primary};
   :hover {
-    color: ${transparentize(0.4, '#000')};
+    color: ${props => transparentize(0.4, props.theme.colors.primary)};
   }
 `
 
@@ -24,7 +24,7 @@ interface ProjectGridModalIconLinksProps {
   technologies?: string[]
 }
 
-const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
+function ProjectGridModalIconLinks(props: ProjectGridModalIconLinksProps) {
   return (
     <div
       css={css`

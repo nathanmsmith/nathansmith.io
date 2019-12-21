@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
+import { css, Theme, useTheme } from '../styles'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
@@ -11,6 +11,7 @@ interface PortraitPickerProps {
 }
 
 function PortraitPicker(props: PortraitPickerProps) {
+  const theme = useTheme<Theme>()
   const images = props.data.allFile.edges
   const image = images[randomInt(0, images.length)].node.childImageSharp
   return (
@@ -24,7 +25,7 @@ function PortraitPicker(props: PortraitPickerProps) {
           color: transparent;
           margin: 0 auto 2rem;
           border-radius: 50%;
-          border: 12px solid rgba(0, 0, 0, 0.025);
+          border: 12px solid ${theme.colors.border};
 
           @media (max-width: 340px) {
             margin-bottom: 1.4rem;

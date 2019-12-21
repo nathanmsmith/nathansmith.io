@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
+import { css, Theme, useTheme } from '../styles'
 import { transparentize } from 'polished'
 
 interface ColoredLinkProps {
@@ -8,12 +8,13 @@ interface ColoredLinkProps {
 }
 
 export default function ColoredLink(props: ColoredLinkProps) {
+  const theme = useTheme<Theme>()
   let color: string
   switch (true) {
     case props.href.includes('#fn-'):
       return <a href={props.href}>{props.children}</a>
     case props.href.includes('mailto:'):
-      color = '#000'
+      color = theme.colors.primary
       break
     case props.href.includes('ucla.edu'):
       color = '#3284BF'
@@ -38,14 +39,14 @@ export default function ColoredLink(props: ColoredLinkProps) {
       color = '#E76C9C'
       break
     case props.href.includes('github.com'):
-      color = '#24292E'
+      color = theme.type === 'light' ? '#24292E' : '#fff'
       break
     case props.href.includes('linkedin.com'):
       color = '#0077B5'
       break
     case props.href.includes('stripe.com'):
       // https://stripe.com/newsroom/brand-assets
-      color = '#32325D'
+      color = theme.type === 'light' ? '#32325D' : '#fff'
       break
     case props.href.includes('facebook.com'):
       color = '#5890ff'
@@ -54,7 +55,7 @@ export default function ColoredLink(props: ColoredLinkProps) {
       color = '#005072'
       break
     default:
-      color = '#000'
+      color = theme.colors.primary
       break
   }
 
@@ -62,7 +63,7 @@ export default function ColoredLink(props: ColoredLinkProps) {
     color: ${color};
     font-weight: bold;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid ${theme.colors.linkUnderline};
     transition: color linear 0.1s, border-color linear 50ms,
       padding-bottom linear 0.1s;
     &:hover {

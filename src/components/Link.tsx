@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link as GLink } from 'gatsby'
-import { css } from '@emotion/core'
+import { css, Theme, useTheme } from '../styles'
 import { transparentize } from 'polished'
 
 interface LinkProps {
@@ -9,16 +9,17 @@ interface LinkProps {
 }
 
 export default function Link(props: LinkProps) {
+  const theme = useTheme<Theme>()
   const styles = css`
-    color: #000;
+    color: ${theme.colors.primary};
     font-weight: bold;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid ${theme.colors.linkUnderline};
     transition-duration: 50ms, 0.1s, 0.1s;
     transition-timing-function: linear;
     transition-property: border-color, color, padding-bottom;
     &:hover {
-      color: ${transparentize(0.4, '#000')};
+      color: ${transparentize(0.4, theme.colors.primary)};
       border-bottom: transparent;
       padding-bottom: 1px;
     }

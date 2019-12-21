@@ -2,6 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import * as rehypeReact from 'rehype-react'
 
+import Body from '../components/Body'
 import Head from '../components/Head'
 import Container from '../components/Container'
 import PortraitPicker from '../components/PortraitPicker'
@@ -58,7 +59,7 @@ export default function Index({ data }: { data: IndexQuery }) {
   }
 
   return (
-    <React.Fragment>
+    <Body>
       <Head />
       <Container>
         <PortraitPicker />
@@ -67,6 +68,6 @@ export default function Index({ data }: { data: IndexQuery }) {
       <ProjectGrid
         projects={convertIndexQueryProjectsToProjects(data.projects)}
       />
-    </React.Fragment>
+    </Body>
   )
 }

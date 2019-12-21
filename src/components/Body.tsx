@@ -1,14 +1,19 @@
 import * as React from 'react'
+import { useState, useEffect } from 'react'
 import { Global, css } from '@emotion/core'
 import styled, { darkTheme, lightTheme } from '../styles'
 import { ThemeProvider } from 'emotion-theming'
 
 export default function Body(props: { children: React.ReactNode }) {
-  const useDarkTheme =
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
+  const [theme, setTheme] = useState(lightTheme)
 
-  const theme = useDarkTheme ? darkTheme : lightTheme
+  useEffect(() => {
+    const useDarkTheme =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    const theme = useDarkTheme ? darkTheme : lightTheme
+    setTheme(theme)
+  }, [setTheme])
 
   return (
     <ThemeProvider theme={theme}>

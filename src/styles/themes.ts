@@ -1,6 +1,6 @@
 import { lighten, transparentize } from 'polished'
 
-interface Theme {
+export interface Theme {
   type: string
   colors: {
     primary: string
@@ -33,4 +33,4 @@ const lightTheme: Theme = {
   },
 }
 
-export { Theme, darkTheme, lightTheme }
+export { darkTheme, lightTheme }

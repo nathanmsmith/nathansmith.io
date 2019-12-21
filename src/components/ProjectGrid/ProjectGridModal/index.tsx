@@ -51,15 +51,15 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
           right: 1rem;
           bottom: 2rem;
         }
-        top: 6rem;
-        left: 5rem;
-        right: 5rem;
-        bottom: 6rem;
-        border: 1px solid #ccc;
+          top: 108px;
+          left: 80px;
+          right: 80px;
+          bottom: 108px;
+          border: 1px solid #ccc;
         background-color: ${theme.colors.background};
-        border-radius: 4px;
-        outline: none;
-        padding: 42px 20px;
+          border-radius: 4px;
+          outline: none;
+          padding: 42px 20px;
       `}
     >
       <CloseButton onClick={onRequestClose} />
@@ -105,13 +105,15 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
             />
           </div>
           <div>{renderAst(props.project.description)}</div>
+          {!!this.props.project.image && (
+            <a href={this.props.project.link}>
+              <Img
+                fluid={this.props.project.image.fluid}
+                style={{ maxHeight: 400 }}
+              />
+            </a>
+          )}
         </div>
-        {!!props.project.image && (
-          <a href={props.project.link}>
-            <Img fluid={props.project.image.fluid} />
-          </a>
-        )}
-      </div>
     </Modal>
   ) : null
 }

@@ -61,10 +61,10 @@ export default function Index({ data }: { data: IndexQuery }) {
   return (
     <Body>
       <Head />
-      <Container>
+      <div className="max-w-2xl mx-auto my-0 p-6 text-xl">
         <PortraitPicker />
-        {renderAst(data.markdownRemark.htmlAst)}
-      </Container>
+        <div className="markdown">{renderAst(data.markdownRemark.htmlAst)}</div>
+      </div>
       <ProjectGrid
         projects={convertIndexQueryProjectsToProjects(data.projects)}
       />

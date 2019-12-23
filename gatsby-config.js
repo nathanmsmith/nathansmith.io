@@ -8,6 +8,7 @@ module.exports = {
     twitter: '@nathunsmitty',
   },
   plugins: [
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

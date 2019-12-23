@@ -32,7 +32,7 @@ export default function Link(props: LinkProps) {
       {props.children}
     </GLink>
   ) : (
-    <a href={props.href} css={styles}>
+    <a href={props.href} className="" css={styles}>
       {props.children}
     </a>
   )

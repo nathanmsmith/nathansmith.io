@@ -19,17 +19,10 @@ function PortraitPicker(props: PortraitPickerProps) {
       <Img
         style={{ display: 'block' }}
         imgStyle={{ borderRadius: '50%' }}
+        className="mx-auto max-w-xs max-h-xs rounded-full border-solid border-12"
         css={css`
-          max-width: 310px;
-          max-height: 310px;
           color: transparent;
-          margin: 0 auto 2rem;
-          border-radius: 50%;
-          border: 12px solid ${theme.colors.border};
-
-          @media (max-width: 340px) {
-            margin-bottom: 1.4rem;
-          }
+          border-color: ${theme.colors.border};
         `}
         fluid={image.fluid}
         alt="Nathan Smith"

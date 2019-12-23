@@ -42,8 +42,8 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
     return (
       <React.Fragment>
         <section
+          className="max-w-4xl"
           css={css`
-            max-width: 840px;
             margin: 0 auto 4rem;
             padding: 0 1rem;
             display: grid;

@@ -5,20 +5,8 @@ import { Link } from 'gatsby'
 export default function Header() {
   const theme = useTheme<Theme>()
   return (
-    <header
-      css={css`
-        margin-bottom: 1.6rem;
-      `}
-    >
-      <Link
-        css={css`
-          font-weight: bold;
-          text-decoration: none;
-          color: ${theme.colors.primary};
-          font-size: 2rem;
-        `}
-        to="/"
-      >
+    <header className="mb-6">
+      <Link className="font-bold text-4xl	" to="/">
         nathansmith.io
       </Link>
     </header>

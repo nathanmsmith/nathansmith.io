@@ -21,12 +21,14 @@ const renderAst = new rehypeReact({
 const Page = (props: PageProps) => (
   <Body>
     <Head pageTitle={props.pageTitle} />
-    <Container>
+    <div className="max-w-2xl my-auto mx-0 p-6 text-xl">
       <Header />
       <h1>{props.pageTitle}</h1>
-      {!!props.content && <div>{renderAst(props.content)}</div>}
+      {!!props.content && (
+        <div className="markdown">{renderAst(props.content)}</div>
+      )}
       {props.children}
-    </Container>
+    </div>
   </Body>
 )
 

@@ -13,13 +13,7 @@ export default function ProjectGridItem(props: ProjectGridItemProps) {
     <button
       onClick={props.onClick}
       css={css`
-        border: 0;
-        padding: 0;
-        background-color: transparent;
-        text-decoration: none;
-        color: white;
         &:hover {
-          cursor: pointer;
           filter: brightness(85%);
         }
       `}

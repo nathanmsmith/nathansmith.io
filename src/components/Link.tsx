@@ -28,11 +28,11 @@ export default function Link(props: LinkProps) {
   const isRelative = props.href.startsWith('/')
 
   return isRelative ? (
-    <GLink to={props.href} css={styles}>
+    <GLink to={props.href} className="font-bold" css={styles}>
       {props.children}
     </GLink>
   ) : (
-    <a href={props.href} className="" css={styles}>
+    <a href={props.href} className="font-bold" css={styles}>
       {props.children}
     </a>
   )

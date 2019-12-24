@@ -40,11 +40,11 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
 
   return !!props.project ? (
     <Modal
+      className="absolute bg-background rounded"
       isOpen={true}
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
       css={css`
-        position: absolute;
         @media (max-width: 768px) {
           top: 2rem;
           left: 1rem;
@@ -56,8 +56,6 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
         right: 80px;
         bottom: 108px;
         border: 1px solid #ccc;
-        background-color: ${theme.colors.background};
-        border-radius: 4px;
         outline: none;
         padding: 42px 20px;
       `}
@@ -85,11 +83,7 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
             }
           `}
         >
-          <div
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
+          <div className="mb-4">
             <ProjectGridModalHeader
               title={props.project.title}
               link={props.project.link}

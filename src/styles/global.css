@@ -1,13 +1,58 @@
 :root {
-  --color-primary: #fff;
-  /* --color-primary-hover: rgba(255; */
-  /* --color-background */
+  --color-primary: #000;
+  --color-primary-hover: rgba(0, 0, 0, 0.6);
+  --color-background: #fff;
+  --color-border: rgba(0, 0, 0, 0.025);
+  --color-link-underline: rgba(0, 0, 0, 0.1);
 }
 
-/* background: '#0e0e0e', */
-/* border: 'rgba(255, 255, 255, 0.025)', */
-/* linkUnderline: 'rgba(255, 255, 255, 0.1)', */
-/* }, */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #fff;
+    --color-primary-hover: rgba(255, 255, 255, 0.6);
+    --color-background: #0e0e0e;
+    --color-border: rgba(255, 255, 255, 0.025);
+    --color-link-underline: rgba(255, 255, 255, 0.1);
+  }
+}
+
+p {
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 260px);
+  grid-template-rows: repeat(auto-fill, 260px);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: absolute;
+  top: 108px;
+  left: 80px;
+  right: 80px;
+  bottom: 108px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  padding: 42px 20px;
+}
+
+.modal-container {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-gap: 1rem;
+  @media (max-width: 860px) {
+    display: inherit;
+    overflow-y: scroll;
+  }
+}
 
 @tailwind base;
 

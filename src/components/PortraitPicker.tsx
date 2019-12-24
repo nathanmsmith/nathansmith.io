@@ -21,7 +21,6 @@ function PortraitPicker(props: PortraitPickerProps) {
         imgStyle={{ borderRadius: '50%' }}
         className="mx-auto max-w-xs max-h-xs rounded-full border-solid border-12"
         css={css`
-          color: transparent;
           border-color: ${theme.colors.border};
         `}
         fluid={image.fluid}

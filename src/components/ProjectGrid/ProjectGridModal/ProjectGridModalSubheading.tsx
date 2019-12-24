@@ -7,15 +7,13 @@ interface ProjectGridModalSubheadingProps {
   dates: string
 }
 
-const ProjectGridModalSubheading = (props: ProjectGridModalSubheadingProps) => (
-  <div
-    css={css`
-      color: gray;
-    `}
-  >
-    {!!props.organization && props.organization + ', '}
-    {props.dates}
-  </div>
-)
+function ProjectGridModalSubheading(props: ProjectGridModalSubheadingProps) {
+  return (
+    <div className="text-gray-500">
+      {!!props.organization && props.organization + ', '}
+      {props.dates}
+    </div>
+  )
+}
 
 export default ProjectGridModalSubheading

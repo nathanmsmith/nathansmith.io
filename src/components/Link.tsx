@@ -12,8 +12,6 @@ export default function Link(props: LinkProps) {
   const theme = useTheme<Theme>()
   const styles = css`
     color: ${theme.colors.primary};
-    font-weight: bold;
-    text-decoration: none;
     border-bottom: 1px solid ${theme.colors.linkUnderline};
     transition-duration: 50ms, 0.1s, 0.1s;
     transition-timing-function: linear;

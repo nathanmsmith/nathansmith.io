@@ -29,6 +29,10 @@ p {
   justify-content: center;
 }
 
+.grid-item:hover {
+  filter: brightness(85%);
+}
+
 .modal {
   position: absolute;
   top: 108px;

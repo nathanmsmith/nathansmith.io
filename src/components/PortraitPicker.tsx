@@ -19,10 +19,7 @@ function PortraitPicker(props: PortraitPickerProps) {
       <Img
         style={{ display: 'block' }}
         imgStyle={{ borderRadius: '50%' }}
-        className="mx-auto max-w-xs max-h-xs rounded-full border-solid border-12"
-        css={css`
-          border-color: ${theme.colors.border};
-        `}
+        className="mx-auto max-w-xs max-h-xs rounded-full border-solid border-12 border-border"
         fluid={image.fluid}
         alt="Nathan Smith"
         title="Click again?"

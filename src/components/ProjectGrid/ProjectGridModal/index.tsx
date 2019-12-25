@@ -40,49 +40,14 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
 
   return !!props.project ? (
     <Modal
-      className="absolute bg-background rounded"
+      className="absolute bg-background rounded modal"
       isOpen={true}
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
-      css={css`
-        @media (max-width: 768px) {
-          top: 2rem;
-          left: 1rem;
-          right: 1rem;
-          bottom: 2rem;
-        }
-        top: 108px;
-        left: 80px;
-        right: 80px;
-        bottom: 108px;
-        border: 1px solid #ccc;
-        outline: none;
-        padding: 42px 20px;
-      `}
     >
       <CloseButton onClick={onRequestClose} />
-      <div
-        css={css`
-          height: 100%;
-          display: grid;
-          align-items: center;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 100%;
-          grid-gap: 1rem;
-          @media (max-width: 860px) {
-            display: inherit;
-            overflow-y: scroll;
-          }
-        `}
-      >
-        <div
-          css={css`
-            @media (min-width: 860px) {
-              overflow-y: scroll;
-              height: 100%;
-            }
-          `}
-        >
+      <div className="modal-container">
+        <div className="text-container">
           <div className="mb-4">
             <ProjectGridModalHeader
               title={props.project.title}
@@ -99,15 +64,12 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
             />
           </div>
           <div>{renderAst(props.project.description)}</div>
-          {!!props.project.image && (
-            <a href={props.project.link}>
-              <Img
-                fluid={props.project.image.fluid}
-                style={{ maxHeight: 400 }}
-              />
-            </a>
-          )}
         </div>
+        {!!props.project.image && (
+          <a href={props.project.link}>
+            <Img fluid={props.project.image.fluid} style={{ maxHeight: 400 }} />
+          </a>
+        )}
       </div>
     </Modal>
   ) : null

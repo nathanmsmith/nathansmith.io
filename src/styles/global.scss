@@ -147,3 +147,39 @@
   padding-left: 2.8em;
   overflow: initial;
 }
+
+.modal {
+  @media (max-width: 768px) {
+    top: 2rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 2rem;
+  }
+  top: 108px;
+  left: 80px;
+  right: 80px;
+  bottom: 108px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 42px 20px;
+}
+
+.modal-container {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-gap: 1rem;
+  @media (max-width: 860px) {
+    display: inherit;
+    overflow-y: scroll;
+  }
+}
+
+.text-container {
+  @media (min-width: 860px) {
+    overflow-y: scroll;
+    height: 100%;
+  }
+}

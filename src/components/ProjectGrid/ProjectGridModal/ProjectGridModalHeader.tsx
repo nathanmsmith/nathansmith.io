@@ -7,7 +7,7 @@ interface ProjectGridModalHeaderProps {
 
 function ProjectGridModalHeader(props: ProjectGridModalHeaderProps) {
   return (
-    <h1>
+    <h1 className="text-2xl font-semibold">
       {props.link ? (
         <a className="text-primary hover:text-primaryh" href={props.link}>
           {props.title}

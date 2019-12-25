@@ -15,7 +15,11 @@ module.exports = {
         dark: { raw: '(prefers-color-scheme: dark)' },
       },
       inset: {
+        '1r': '1rem',
+        '2r': '2rem',
         '20': '20px',
+        '80': '80px',
+        '108': '108px',
       },
     },
   },

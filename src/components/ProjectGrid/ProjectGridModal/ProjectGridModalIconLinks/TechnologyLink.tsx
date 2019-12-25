@@ -141,16 +141,7 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
   }
 
   return (
-    <a
-      href={link}
-      className="font-bold"
-      css={css`
-        color: ${color};
-        &:hover {
-          color: ${transparentize(0.4, color)};
-        }
-      `}
-    >
+    <a href={link} className="link colored" style={{ color }}>
       {props.name}
     </a>
   )

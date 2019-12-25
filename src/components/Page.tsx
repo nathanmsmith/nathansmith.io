@@ -3,7 +3,6 @@ import * as rehypeReact from 'rehype-react'
 
 import Body from './Body'
 import Head from './Head'
-import Container from './Container'
 import Header from './Header'
 import Link from '../components/Link'
 
@@ -19,7 +18,7 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 const Page = (props: PageProps) => (
-  <Body>
+  <>
     <Head pageTitle={props.pageTitle} />
     <div className="max-w-2xl my-auto mx-0 p-6 text-xl">
       <Header />
@@ -29,7 +28,7 @@ const Page = (props: PageProps) => (
       )}
       {props.children}
     </div>
-  </Body>
+  </>
 )
 
 export default Page

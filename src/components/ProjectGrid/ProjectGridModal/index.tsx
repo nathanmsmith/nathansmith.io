@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as rehypeReact from 'rehype-react'
 import * as Modal from 'react-modal'
-import { css } from '@emotion/core'
-import { useTheme } from 'emotion-theming'
 import Img from 'gatsby-image'
 
 import Link from '../../Link'
@@ -35,8 +33,6 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
     document.documentElement.style.overflow = 'initial'
     props.onClose()
   }
-
-  const theme = useTheme()
 
   return !!props.project ? (
     <Modal

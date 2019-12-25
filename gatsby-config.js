@@ -17,7 +17,6 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -85,7 +84,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-typescript',
-    'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-remove-trailing-slashes',
     {

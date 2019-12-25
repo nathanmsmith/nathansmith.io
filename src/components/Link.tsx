@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link as GLink } from 'gatsby'
-import { css, Theme, useTheme } from '../styles'
 import { transparentize } from 'polished'
 
 interface LinkProps {

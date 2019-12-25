@@ -23,13 +23,18 @@
   :root {
     --color-primary: #fff;
     --color-primary-hover: rgba(255, 255, 255, 0.6);
-    --color-background: #0e0e0e;
+    --color-background: #1a1a1a;
     --color-border: rgba(255, 255, 255, 0.025);
     --color-link-underline: rgba(255, 255, 255, 0.1);
 
     --color-github: #fff;
     --color-stripe: #fff;
   }
+}
+
+body {
+  color: var(--color-primary);
+  background-color: var(--color-background);
 }
 
 .link {

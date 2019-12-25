@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
 
 import Project from '../../utils/Project'
 import ProjectGridItem from './ProjectGridItem'

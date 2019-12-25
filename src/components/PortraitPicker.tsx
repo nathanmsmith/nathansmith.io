@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css, Theme, useTheme } from '../styles'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
@@ -11,7 +10,6 @@ interface PortraitPickerProps {
 }
 
 function PortraitPicker(props: PortraitPickerProps) {
-  const theme = useTheme<Theme>()
   const images = props.data.allFile.edges
   const image = images[randomInt(0, images.length)].node.childImageSharp
   return (

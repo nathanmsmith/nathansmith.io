@@ -36,7 +36,7 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
 
   return !!props.project ? (
     <Modal
-      className="absolute bg-background rounded modal"
+      className="absolute bg-background rounded inset-80 modal"
       isOpen={true}
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
@@ -59,7 +59,7 @@ export default function ProjectGridModal(props: ProjectGridModalProps) {
               technologies={props.project.technologies}
             />
           </div>
-          <div>{renderAst(props.project.description)}</div>
+          <div className="mb-4">{renderAst(props.project.description)}</div>
         </div>
         {!!props.project.image && (
           <a href={props.project.link}>

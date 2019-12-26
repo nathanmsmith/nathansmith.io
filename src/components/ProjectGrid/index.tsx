@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
 
 import Project from '../../utils/Project'
 import ProjectGridItem from './ProjectGridItem'
@@ -41,20 +40,7 @@ class ProjectGrid extends React.Component<ProjectGridProps, ProjectGridState> {
 
     return (
       <React.Fragment>
-        <section
-          css={css`
-            max-width: 840px;
-            margin: 0 auto 4rem;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, 260px);
-            grid-template-rows: repeat(auto-fill, 260px);
-            grid-column-gap: 10px;
-            grid-row-gap: 10px;
-            align-items: center;
-            justify-content: center;
-          `}
-        >
+        <section className="max-w-4xl grid mx-auto mb-16 px-4">
           {gridItems}
         </section>
         <ProjectGridModal

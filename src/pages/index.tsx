@@ -4,7 +4,6 @@ import * as rehypeReact from 'rehype-react'
 
 import Body from '../components/Body'
 import Head from '../components/Head'
-import Container from '../components/Container'
 import PortraitPicker from '../components/PortraitPicker'
 import ProjectGrid from '../components/ProjectGrid'
 import ColoredLink from '../components/ColoredLink'
@@ -59,15 +58,15 @@ export default function Index({ data }: { data: IndexQuery }) {
   }
 
   return (
-    <Body>
+    <>
       <Head />
-      <Container>
+      <div className="max-w-2xl mx-auto my-0 p-6 text-xl">
         <PortraitPicker />
-        {renderAst(data.markdownRemark.htmlAst)}
-      </Container>
+        <div className="markdown">{renderAst(data.markdownRemark.htmlAst)}</div>
+      </div>
       <ProjectGrid
         projects={convertIndexQueryProjectsToProjects(data.projects)}
       />
-    </Body>
+    </>
   )
 }

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
 import { transparentize } from 'polished'
 
 enum Technologies {
@@ -141,17 +140,7 @@ const TechnologyLink = (props: TechnologyLinkProps) => {
   }
 
   return (
-    <a
-      href={link}
-      css={css`
-        color: ${color};
-        text-decoration: none;
-        font-weight: bold;
-        &:hover {
-          color: ${transparentize(0.4, color)};
-        }
-      `}
-    >
+    <a href={link} className="link colored" style={{ color }}>
       {props.name}
     </a>
   )

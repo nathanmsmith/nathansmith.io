@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css, Theme, useTheme } from '../styles'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
@@ -11,7 +10,6 @@ interface PortraitPickerProps {
 }
 
 function PortraitPicker(props: PortraitPickerProps) {
-  const theme = useTheme<Theme>()
   const images = props.data.allFile.edges
   const image = images[randomInt(0, images.length)].node.childImageSharp
   return (
@@ -19,18 +17,7 @@ function PortraitPicker(props: PortraitPickerProps) {
       <Img
         style={{ display: 'block' }}
         imgStyle={{ borderRadius: '50%' }}
-        css={css`
-          max-width: 310px;
-          max-height: 310px;
-          color: transparent;
-          margin: 0 auto 2rem;
-          border-radius: 50%;
-          border: 12px solid ${theme.colors.border};
-
-          @media (max-width: 340px) {
-            margin-bottom: 1.4rem;
-          }
-        `}
+        className="mx-auto max-w-xs max-h-xs rounded-full border-solid border-12 border-border"
         fluid={image.fluid}
         alt="Nathan Smith"
         title="Click again?"

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 import Project from '../../utils/Project'
 
@@ -10,20 +9,7 @@ interface ProjectGridItemProps {
 
 export default function ProjectGridItem(props: ProjectGridItemProps) {
   return (
-    <button
-      onClick={props.onClick}
-      css={css`
-        border: 0;
-        padding: 0;
-        background-color: transparent;
-        text-decoration: none;
-        color: white;
-        &:hover {
-          cursor: pointer;
-          filter: brightness(85%);
-        }
-      `}
-    >
+    <button className="grid-item" onClick={props.onClick}>
       <Img fixed={props.project.image.fixed} />
     </button>
   )

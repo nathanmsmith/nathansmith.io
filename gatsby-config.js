@@ -9,6 +9,15 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require('tailwindcss'),
+          require('./tailwind.config.js'), // Optional: Load custom Tailwind CSS configuration
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-92890809-1',
@@ -75,7 +84,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-typescript',
-    'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-remove-trailing-slashes',
     {

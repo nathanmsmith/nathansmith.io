@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link as GLink } from 'gatsby'
-import { transparentize } from 'polished'
 
 interface LinkProps {
   href: string

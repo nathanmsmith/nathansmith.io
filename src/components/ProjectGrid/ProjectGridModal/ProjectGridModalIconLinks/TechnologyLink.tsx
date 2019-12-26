@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { transparentize } from 'polished'
 
 enum Technologies {
   JavaScript = 'JavaScript',

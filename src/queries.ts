@@ -6,12 +6,7 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /**
-   * A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
-   * representation of dates and times using the Gregorian calendar.
-   */
   Date: any
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any
 }
 
@@ -368,7 +363,6 @@ export type File = Node & {
   birthtimeMs?: Maybe<Scalars['Float']>
   blksize?: Maybe<Scalars['Int']>
   blocks?: Maybe<Scalars['Int']>
-  /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>
   childImageSharp?: Maybe<ImageSharp>
   id: Scalars['ID']
@@ -1690,7 +1684,14 @@ export type MarkdownRemarkFrontmatter = {
   technologies?: Maybe<Array<Maybe<Scalars['String']>>>
   role?: Maybe<Scalars['String']>
   image?: Maybe<File>
-  date?: Maybe<Scalars['String']>
+  date?: Maybe<Scalars['Date']>
+}
+
+export type MarkdownRemarkFrontmatterDateArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
@@ -1703,7 +1704,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   technologies?: Maybe<StringQueryOperatorInput>
   role?: Maybe<StringQueryOperatorInput>
   image?: Maybe<FileFilterInput>
-  date?: Maybe<StringQueryOperatorInput>
+  date?: Maybe<DateQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -1734,7 +1735,6 @@ export type MarkdownWordCountFilterInput = {
   words?: Maybe<IntQueryOperatorInput>
 }
 
-/** Node Interface */
 export type Node = {
   id: Scalars['ID']
   parent?: Maybe<Node>
@@ -1794,12 +1794,12 @@ export type Query = {
   allMarkdownRemark: MarkdownRemarkConnection
   imageSharp?: Maybe<ImageSharp>
   allImageSharp: ImageSharpConnection
-  sitePage?: Maybe<SitePage>
-  allSitePage: SitePageConnection
   site?: Maybe<Site>
   allSite: SiteConnection
   sitePlugin?: Maybe<SitePlugin>
   allSitePlugin: SitePluginConnection
+  sitePage?: Maybe<SitePage>
+  allSitePage: SitePageConnection
 }
 
 export type QueryFileArgs = {
@@ -1945,29 +1945,6 @@ export type QueryAllImageSharpArgs = {
   limit?: Maybe<Scalars['Int']>
 }
 
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  path?: Maybe<StringQueryOperatorInput>
-  internalComponentName?: Maybe<StringQueryOperatorInput>
-  component?: Maybe<StringQueryOperatorInput>
-  componentChunkName?: Maybe<StringQueryOperatorInput>
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
-  context?: Maybe<SitePageContextFilterInput>
-  pluginCreator?: Maybe<SitePluginFilterInput>
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>
-  componentPath?: Maybe<StringQueryOperatorInput>
-}
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>
-  sort?: Maybe<SitePageSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
 export type QuerySiteArgs = {
   id?: Maybe<StringQueryOperatorInput>
   parent?: Maybe<NodeFilterInput>
@@ -2007,6 +1984,29 @@ export type QuerySitePluginArgs = {
 export type QueryAllSitePluginArgs = {
   filter?: Maybe<SitePluginFilterInput>
   sort?: Maybe<SitePluginSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QuerySitePageArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  path?: Maybe<StringQueryOperatorInput>
+  internalComponentName?: Maybe<StringQueryOperatorInput>
+  component?: Maybe<StringQueryOperatorInput>
+  componentChunkName?: Maybe<StringQueryOperatorInput>
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
+  pluginCreator?: Maybe<SitePluginFilterInput>
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>
+  componentPath?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>
+  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -3037,11 +3037,11 @@ export type PortraitPickerQuery = { __typename?: 'Query' } & {
   }
 }
 
-export type Unnamed_1_QueryVariables = {
+export type PostQueryVariables = {
   slug: Scalars['String']
 }
 
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
+export type PostQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
     { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'> & {
         frontmatter: Maybe<
@@ -3114,8 +3114,12 @@ export type PostsQuery = { __typename?: 'Query' } & {
             frontmatter: Maybe<
               { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
                 MarkdownRemarkFrontmatter,
-                'title' | 'date' | 'draft'
-              >
+                'title' | 'draft'
+              > & {
+                  year: MarkdownRemarkFrontmatter['date']
+                  ISODate: MarkdownRemarkFrontmatter['date']
+                  date: MarkdownRemarkFrontmatter['date']
+                }
             >
             fields: Maybe<
               { __typename?: 'MarkdownRemarkFields' } & Pick<

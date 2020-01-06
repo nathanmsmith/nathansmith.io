@@ -37,17 +37,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `@mosch/gatsby-source-github`,
-    //   options: {
-    //     repository: 'wiki',
-    //     tree: true,
-    //     user: 'nathunsmitty',
-    //     secrets: {
-    //       token: process.env.GITHUB_TOKEN,
-    //     },
-    //   },
-    // },
     {
       resolve: 'gatsby-transformer-remark',
       options: {

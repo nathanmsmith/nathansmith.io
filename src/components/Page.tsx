@@ -22,7 +22,7 @@ const Page = (props: PageProps) => (
     <Head pageTitle={props.pageTitle} />
     <div className="max-w-2xl my-auto mx-0 p-6 text-xl">
       <Header />
-      <h1>{props.pageTitle}</h1>
+      <h1 className="text-4xl mb-4">{props.pageTitle}</h1>
       {!!props.content && (
         <div className="markdown">{renderAst(props.content)}</div>
       )}

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Page from '../components/Page'
-import Link from '../components/Link'
+// import Link from '../components/Link'
 
 import { PostsQuery } from '../queries'
 
@@ -16,7 +16,9 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date
+            year: date(formatString: "YYYY")
+            ISODate: date
+            date: date(formatString: "MMMM D")
             draft
           }
           fields {
@@ -32,9 +34,8 @@ export default function Posts({ data }: { data: PostsQuery }) {
   console.log('data:', data)
   const postsByYear = data.posts.edges.reduce(
     (obj: { [key: string]: any }, { node }) => {
-      if (node.frontmatter.date && !node.frontmatter.draft) {
-        const date = new Date(node.frontmatter.date)
-        const year = date.getFullYear()
+      if (node.frontmatter.year && !node.frontmatter.draft) {
+        const { year } = node.frontmatter
         if (obj.hasOwnProperty(year)) {
           obj[year].push(node)
         } else {
@@ -45,7 +46,6 @@ export default function Posts({ data }: { data: PostsQuery }) {
     },
     {}
   )
-  console.log('postsByYear:', postsByYear)
 
   return (
     <Page pageTitle="Posts">
@@ -53,27 +53,22 @@ export default function Posts({ data }: { data: PostsQuery }) {
         <>
           {Object.keys(postsByYear).map((year, i) => (
             <>
-              <h3 key={i}>{year}</h3>
-              {postsByYear[year].map((post: any) => {
-                const { date, draft } = post.frontmatter
-                if (date && !draft) {
-                  return (
-                    <li>
-                      <time
-                        className="block text-gray-700"
-                        dateTime={date.toISOString()}
-                      >
-                        {date.toLocaleDateString(undefined, {
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </time>
-                      <Link href={post.fields.slug}>
-                        {post.frontmatter.title}
-                      </Link>
-                    </li>
-                  )
-                }
+              <h3 className="mb-3" key={i}>
+                {year}
+              </h3>
+              {postsByYear[year].map(post => {
+                const { ISODate, date } = post.frontmatter
+                return (
+                  <li className="mb-4">
+                    <time
+                      className="block text-gray-700 text-xs -mb-1"
+                      dateTime={ISODate}
+                    >
+                      {date}
+                    </time>
+                    <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+                  </li>
+                )
               })}
             </>
           ))}

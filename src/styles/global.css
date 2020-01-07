@@ -133,7 +133,7 @@ body {
 
 .markdown {
   & p {
-    @apply mt-6;
+    @apply mb-6;
   }
 }
 

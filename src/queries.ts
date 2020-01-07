@@ -662,7 +662,6 @@ export enum FileFieldsEnum {
   InternalType = 'internal___type',
   ChildMarkdownRemarkId = 'childMarkdownRemark___id',
   ChildMarkdownRemarkFrontmatterTitle = 'childMarkdownRemark___frontmatter___title',
-  ChildMarkdownRemarkFrontmatterDraft = 'childMarkdownRemark___frontmatter___draft',
   ChildMarkdownRemarkFrontmatterOrganization = 'childMarkdownRemark___frontmatter___organization',
   ChildMarkdownRemarkFrontmatterDates = 'childMarkdownRemark___frontmatter___dates',
   ChildMarkdownRemarkFrontmatterLink = 'childMarkdownRemark___frontmatter___link',
@@ -1479,7 +1478,6 @@ export type MarkdownRemarkFields = {
 export enum MarkdownRemarkFieldsEnum {
   Id = 'id',
   FrontmatterTitle = 'frontmatter___title',
-  FrontmatterDraft = 'frontmatter___draft',
   FrontmatterOrganization = 'frontmatter___organization',
   FrontmatterDates = 'frontmatter___dates',
   FrontmatterLink = 'frontmatter___link',
@@ -1676,7 +1674,6 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   __typename?: 'MarkdownRemarkFrontmatter'
   title?: Maybe<Scalars['String']>
-  draft?: Maybe<Scalars['Boolean']>
   organization?: Maybe<Scalars['String']>
   dates?: Maybe<Scalars['String']>
   link?: Maybe<Scalars['String']>
@@ -1696,7 +1693,6 @@ export type MarkdownRemarkFrontmatterDateArgs = {
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
-  draft?: Maybe<BooleanQueryOperatorInput>
   organization?: Maybe<StringQueryOperatorInput>
   dates?: Maybe<StringQueryOperatorInput>
   link?: Maybe<StringQueryOperatorInput>
@@ -2147,6 +2143,7 @@ export enum SiteFieldsEnum {
   InternalOwner = 'internal___owner',
   InternalType = 'internal___type',
   SiteMetadataSiteTitle = 'siteMetadata___siteTitle',
+  SiteMetadataSiteUrl = 'siteMetadata___siteUrl',
   SiteMetadataDescription = 'siteMetadata___description',
   SiteMetadataTwitter = 'siteMetadata___twitter',
   Port = 'port',
@@ -2372,6 +2369,12 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPluginsName = 'pluginCreator___pluginOptions___plugins___name',
   PluginCreatorPluginOptionsPluginsVersion = 'pluginCreator___pluginOptions___plugins___version',
   PluginCreatorPluginOptionsPluginsPluginFilepath = 'pluginCreator___pluginOptions___plugins___pluginFilepath',
+  PluginCreatorPluginOptionsQuery = 'pluginCreator___pluginOptions___query',
+  PluginCreatorPluginOptionsFeeds = 'pluginCreator___pluginOptions___feeds',
+  PluginCreatorPluginOptionsFeedsQuery = 'pluginCreator___pluginOptions___feeds___query',
+  PluginCreatorPluginOptionsFeedsOutput = 'pluginCreator___pluginOptions___feeds___output',
+  PluginCreatorPluginOptionsFeedsTitle = 'pluginCreator___pluginOptions___feeds___title',
+  PluginCreatorPluginOptionsFeedsMatch = 'pluginCreator___pluginOptions___feeds___match',
   PluginCreatorPluginOptionsTrackingId = 'pluginCreator___pluginOptions___trackingId',
   PluginCreatorPluginOptionsAnonymize = 'pluginCreator___pluginOptions___anonymize',
   PluginCreatorPluginOptionsPathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
@@ -2585,6 +2588,12 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
   PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
+  PluginOptionsQuery = 'pluginOptions___query',
+  PluginOptionsFeeds = 'pluginOptions___feeds',
+  PluginOptionsFeedsQuery = 'pluginOptions___feeds___query',
+  PluginOptionsFeedsOutput = 'pluginOptions___feeds___output',
+  PluginOptionsFeedsTitle = 'pluginOptions___feeds___title',
+  PluginOptionsFeedsMatch = 'pluginOptions___feeds___match',
   PluginOptionsTrackingId = 'pluginOptions___trackingId',
   PluginOptionsAnonymize = 'pluginOptions___anonymize',
   PluginOptionsPathToConfigModule = 'pluginOptions___pathToConfigModule',
@@ -2723,6 +2732,8 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 export type SitePluginPluginOptions = {
   __typename?: 'SitePluginPluginOptions'
   plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
+  query?: Maybe<Scalars['String']>
+  feeds?: Maybe<Array<Maybe<SitePluginPluginOptionsFeeds>>>
   trackingId?: Maybe<Scalars['String']>
   anonymize?: Maybe<Scalars['Boolean']>
   pathToConfigModule?: Maybe<Scalars['String']>
@@ -2740,8 +2751,29 @@ export type SitePluginPluginOptions = {
   pathCheck?: Maybe<Scalars['Boolean']>
 }
 
+export type SitePluginPluginOptionsFeeds = {
+  __typename?: 'SitePluginPluginOptionsFeeds'
+  query?: Maybe<Scalars['String']>
+  output?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  match?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsFeedsFilterInput = {
+  query?: Maybe<StringQueryOperatorInput>
+  output?: Maybe<StringQueryOperatorInput>
+  title?: Maybe<StringQueryOperatorInput>
+  match?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsFeedsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsFeedsFilterInput>
+}
+
 export type SitePluginPluginOptionsFilterInput = {
   plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
+  query?: Maybe<StringQueryOperatorInput>
+  feeds?: Maybe<SitePluginPluginOptionsFeedsFilterListInput>
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
@@ -2803,12 +2835,14 @@ export type SitePluginSortInput = {
 export type SiteSiteMetadata = {
   __typename?: 'SiteSiteMetadata'
   siteTitle?: Maybe<Scalars['String']>
+  siteUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
 }
 
 export type SiteSiteMetadataFilterInput = {
   siteTitle?: Maybe<StringQueryOperatorInput>
+  siteUrl?: Maybe<StringQueryOperatorInput>
   description?: Maybe<StringQueryOperatorInput>
   twitter?: Maybe<StringQueryOperatorInput>
 }
@@ -3043,11 +3077,14 @@ export type PostQueryVariables = {
 
 export type PostQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
-    { __typename?: 'MarkdownRemark' } & Pick<MarkdownRemark, 'htmlAst'> & {
+    { __typename?: 'MarkdownRemark' } & Pick<
+      MarkdownRemark,
+      'htmlAst' | 'timeToRead'
+    > & {
         frontmatter: Maybe<
           { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
             MarkdownRemarkFrontmatter,
-            'title'
+            'title' | 'date'
           >
         >
       }
@@ -3114,7 +3151,7 @@ export type PostsQuery = { __typename?: 'Query' } & {
             frontmatter: Maybe<
               { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<
                 MarkdownRemarkFrontmatter,
-                'title' | 'draft'
+                'title'
               > & {
                   year: MarkdownRemarkFrontmatter['date']
                   ISODate: MarkdownRemarkFrontmatter['date']

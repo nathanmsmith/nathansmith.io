@@ -6,7 +6,6 @@ interface HeadProps {
   siteTitle: string
   pageTitle?: string
   description: string
-  url: string
   twitter: string
 }
 
@@ -19,13 +18,8 @@ export function Head(props: HeadProps) {
       <title>{title}</title>
       <meta name="description" content={props.description} />
 
-      {/* TODO: favicons! */}
-
-      <link rel="canonical" href={props.url} />
-
       {/* Facebook Tags */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={props.url} />
       <meta property="og:title" content={title} />
       {/* <meta property="og:image" content="https://example.com/image.jpg" /> */}
       <meta property="og:description" content={props.description} />
@@ -35,7 +29,6 @@ export function Head(props: HeadProps) {
       {/* Twitter Tags */}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={props.twitter} />
-      <meta name="twitter:url" content={props.url} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={props.description} />
       {/* <meta name="twitter:image" content="https://example.com/image.jpg" /> */}
@@ -53,7 +46,6 @@ export default (props: { pageTitle?: string }) => (
           siteMetadata {
             siteTitle
             description
-            url
             twitter
           }
         }

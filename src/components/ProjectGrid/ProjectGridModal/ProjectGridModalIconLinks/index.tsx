@@ -1,22 +1,9 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
-import styled from '@emotion/styled'
-import { transparentize } from 'polished'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import TechnologyLink from './TechnologyLink'
-
-const Link = styled.a`
-  font-size: 1.2rem;
-  margin-right: 10px;
-  text-decoration: none;
-  color: #000;
-  :hover {
-    color: ${transparentize(0.4, '#000')};
-  }
-`
 
 interface ProjectGridModalIconLinksProps {
   liveLink?: string
@@ -24,30 +11,27 @@ interface ProjectGridModalIconLinksProps {
   technologies?: string[]
 }
 
-const ProjectGridModalIconLinks = (props: ProjectGridModalIconLinksProps) => {
+function ProjectGridModalIconLinks(props: ProjectGridModalIconLinksProps) {
   return (
-    <div
-      css={css`
-        display: flex;
-        align-items: center;
-      `}
-    >
+    <div className="flex items-center">
       {!!props.liveLink && (
-        <Link href={props.liveLink}>
+        <a
+          className="text-xl mr-3 text-primary hover:text-primaryh"
+          href={props.liveLink}
+        >
           <FontAwesomeIcon icon={faLink} />
-        </Link>
+        </a>
       )}
       {!!props.githubLink && (
-        <Link href={`https://github.com/${props.githubLink}`}>
+        <a
+          className="text-xl mr-3 text-primary hover:text-primaryh"
+          href={`https://github.com/${props.githubLink}`}
+        >
           <FontAwesomeIcon icon={faGithub} />
-        </Link>
+        </a>
       )}
       {props.technologies.length > 0 && (
-        <span
-          css={css`
-            line-height: 1.2rem;
-          `}
-        >
+        <span className="leading-tight">
           Technologies used:{' '}
           {props.technologies.map((tech, i) => (
             <React.Fragment key={i}>

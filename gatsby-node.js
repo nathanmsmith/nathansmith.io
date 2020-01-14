@@ -39,14 +39,5 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    // result.data.wikiPages.edges.forEach(({ node }) => {
-    //   createPage({
-    //     path: `wiki${node.childMarkdownRemark.fields.slug}`,
-    //     component: path.resolve('./src/components/WikiPage.tsx'),
-    //     context: {
-    //       relativePath: node.relativePath,
-    //     },
-    //   })
-    // })
   })
 }

@@ -1,30 +1,15 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
-import { transparentize } from 'polished'
 
 interface ProjectGridModalHeaderProps {
   title: string
   link?: string
 }
 
-const ProjectGridModalHeader = (props: ProjectGridModalHeaderProps) => {
+function ProjectGridModalHeader(props: ProjectGridModalHeaderProps) {
   return (
-    <h1
-      css={css`
-        margin: 0;
-      `}
-    >
+    <h1 className="text-2xl font-semibold">
       {props.link ? (
-        <a
-          css={css`
-            text-decoration: none;
-            color: inherit;
-            :hover {
-              color: ${transparentize(0.4, '#000')};
-            }
-          `}
-          href={props.link}
-        >
+        <a className="text-primary hover:text-primaryh" href={props.link}>
           {props.title}
         </a>
       ) : (

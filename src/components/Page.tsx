@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as rehypeReact from 'rehype-react'
 
+import Body from './Body'
 import Head from './Head'
-import Container from './Container'
 import Header from './Header'
 import Link from '../components/Link'
 
@@ -18,15 +18,17 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 const Page = (props: PageProps) => (
-  <React.Fragment>
+  <>
     <Head pageTitle={props.pageTitle} />
-    <Container>
+    <div className="max-w-2xl my-auto mx-0 p-6 text-xl">
       <Header />
       <h1>{props.pageTitle}</h1>
-      {!!props.content && <div>{renderAst(props.content)}</div>}
+      {!!props.content && (
+        <div className="markdown">{renderAst(props.content)}</div>
+      )}
       {props.children}
-    </Container>
-  </React.Fragment>
+    </div>
+  </>
 )
 
 export default Page

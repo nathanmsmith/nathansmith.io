@@ -42,10 +42,10 @@ const Post = ({ data }: { data: PostQuery }) => {
           <time>{post.frontmatter.date}</time> &middot;{' '}
           <span>{post.timeToRead} minute read</span>
         </div>
-        <div
-          className="contents"
-          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
-        />
+        <details className="table-of-contents">
+          <summary>Table of Contents</summary>
+          <div dangerouslySetInnerHTML={{ __html: post.tableOfContents }} />
+        </details>
         <div className="markdown">{renderAst(content)}</div>
       </div>
     </>

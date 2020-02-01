@@ -206,3 +206,23 @@ code.language-text {
     height: auto;
   }
 }
+
+.dropcap {
+  color: red;
+  float: left;
+  font-size: 5rem;
+  line-height: 3.5rem;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+/* hide visually from eyes, but not aurally from screen readers */
+.invisible {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  white-space: nowrap;
+  width: 1px;
+}

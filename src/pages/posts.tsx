@@ -9,6 +9,7 @@ import { PostsQuery } from '../queries'
 export const query = graphql`
   query Posts {
     posts: allMarkdownRemark(
+      sort: { order: DESC, fields: frontmatter___date }
       filter: { fileAbsolutePath: { regex: "/posts/" } }
     ) {
       edges {

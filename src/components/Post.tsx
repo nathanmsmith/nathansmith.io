@@ -4,7 +4,7 @@ import * as rehypeReact from 'rehype-react'
 
 import Head from './Head'
 import Header from './Header'
-import Link from '../components/Link'
+// import Link from '../components/Link'
 
 import { PostQuery } from '../queries'
 
@@ -13,6 +13,7 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       htmlAst
       timeToRead
+      tableOfContents
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
@@ -23,7 +24,7 @@ export const query = graphql`
 
 const renderAst = new rehypeReact({
   createElement: React.createElement,
-  components: { a: Link },
+  // components: { a: Link },
 }).Compiler
 
 const Post = ({ data }: { data: PostQuery }) => {
@@ -41,6 +42,10 @@ const Post = ({ data }: { data: PostQuery }) => {
           <time>{post.frontmatter.date}</time> &middot;{' '}
           <span>{post.timeToRead} minute read</span>
         </div>
+        <div
+          className="contents"
+          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+        />
         <div className="markdown">{renderAst(content)}</div>
       </div>
     </>

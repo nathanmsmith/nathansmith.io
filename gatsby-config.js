@@ -102,6 +102,13 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              className: 'header-link',
+              isIconAfterHeader: true,
+            },
+          },
+          {
             resolve: 'gatsby-remark-prismjs',
             options: {
               showLineNumbers: true,

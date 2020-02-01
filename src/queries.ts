@@ -662,6 +662,7 @@ export enum FileFieldsEnum {
   InternalType = 'internal___type',
   ChildMarkdownRemarkId = 'childMarkdownRemark___id',
   ChildMarkdownRemarkFrontmatterTitle = 'childMarkdownRemark___frontmatter___title',
+  ChildMarkdownRemarkFrontmatterDate = 'childMarkdownRemark___frontmatter___date',
   ChildMarkdownRemarkFrontmatterOrganization = 'childMarkdownRemark___frontmatter___organization',
   ChildMarkdownRemarkFrontmatterDates = 'childMarkdownRemark___frontmatter___dates',
   ChildMarkdownRemarkFrontmatterLink = 'childMarkdownRemark___frontmatter___link',
@@ -704,7 +705,6 @@ export enum FileFieldsEnum {
   ChildMarkdownRemarkFrontmatterImagePublicUrl = 'childMarkdownRemark___frontmatter___image___publicURL',
   ChildMarkdownRemarkFrontmatterImageId = 'childMarkdownRemark___frontmatter___image___id',
   ChildMarkdownRemarkFrontmatterImageChildren = 'childMarkdownRemark___frontmatter___image___children',
-  ChildMarkdownRemarkFrontmatterDate = 'childMarkdownRemark___frontmatter___date',
   ChildMarkdownRemarkExcerpt = 'childMarkdownRemark___excerpt',
   ChildMarkdownRemarkRawMarkdownBody = 'childMarkdownRemark___rawMarkdownBody',
   ChildMarkdownRemarkFileAbsolutePath = 'childMarkdownRemark___fileAbsolutePath',
@@ -1478,6 +1478,7 @@ export type MarkdownRemarkFields = {
 export enum MarkdownRemarkFieldsEnum {
   Id = 'id',
   FrontmatterTitle = 'frontmatter___title',
+  FrontmatterDate = 'frontmatter___date',
   FrontmatterOrganization = 'frontmatter___organization',
   FrontmatterDates = 'frontmatter___dates',
   FrontmatterLink = 'frontmatter___link',
@@ -1545,7 +1546,6 @@ export enum MarkdownRemarkFieldsEnum {
   FrontmatterImageChildMarkdownRemarkTimeToRead = 'frontmatter___image___childMarkdownRemark___timeToRead',
   FrontmatterImageChildMarkdownRemarkTableOfContents = 'frontmatter___image___childMarkdownRemark___tableOfContents',
   FrontmatterImageChildMarkdownRemarkChildren = 'frontmatter___image___childMarkdownRemark___children',
-  FrontmatterDate = 'frontmatter___date',
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
   FileAbsolutePath = 'fileAbsolutePath',
@@ -1674,6 +1674,7 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   __typename?: 'MarkdownRemarkFrontmatter'
   title?: Maybe<Scalars['String']>
+  date?: Maybe<Scalars['Date']>
   organization?: Maybe<Scalars['String']>
   dates?: Maybe<Scalars['String']>
   link?: Maybe<Scalars['String']>
@@ -1681,7 +1682,6 @@ export type MarkdownRemarkFrontmatter = {
   technologies?: Maybe<Array<Maybe<Scalars['String']>>>
   role?: Maybe<Scalars['String']>
   image?: Maybe<File>
-  date?: Maybe<Scalars['Date']>
 }
 
 export type MarkdownRemarkFrontmatterDateArgs = {
@@ -1693,6 +1693,7 @@ export type MarkdownRemarkFrontmatterDateArgs = {
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
+  date?: Maybe<DateQueryOperatorInput>
   organization?: Maybe<StringQueryOperatorInput>
   dates?: Maybe<StringQueryOperatorInput>
   link?: Maybe<StringQueryOperatorInput>
@@ -1700,7 +1701,6 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   technologies?: Maybe<StringQueryOperatorInput>
   role?: Maybe<StringQueryOperatorInput>
   image?: Maybe<FileFilterInput>
-  date?: Maybe<DateQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -1790,12 +1790,12 @@ export type Query = {
   allMarkdownRemark: MarkdownRemarkConnection
   imageSharp?: Maybe<ImageSharp>
   allImageSharp: ImageSharpConnection
+  sitePage?: Maybe<SitePage>
+  allSitePage: SitePageConnection
   site?: Maybe<Site>
   allSite: SiteConnection
   sitePlugin?: Maybe<SitePlugin>
   allSitePlugin: SitePluginConnection
-  sitePage?: Maybe<SitePage>
-  allSitePage: SitePageConnection
 }
 
 export type QueryFileArgs = {
@@ -1941,6 +1941,29 @@ export type QueryAllImageSharpArgs = {
   limit?: Maybe<Scalars['Int']>
 }
 
+export type QuerySitePageArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  path?: Maybe<StringQueryOperatorInput>
+  internalComponentName?: Maybe<StringQueryOperatorInput>
+  component?: Maybe<StringQueryOperatorInput>
+  componentChunkName?: Maybe<StringQueryOperatorInput>
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
+  pluginCreator?: Maybe<SitePluginFilterInput>
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>
+  componentPath?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>
+  sort?: Maybe<SitePageSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
 export type QuerySiteArgs = {
   id?: Maybe<StringQueryOperatorInput>
   parent?: Maybe<NodeFilterInput>
@@ -1980,29 +2003,6 @@ export type QuerySitePluginArgs = {
 export type QueryAllSitePluginArgs = {
   filter?: Maybe<SitePluginFilterInput>
   sort?: Maybe<SitePluginSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  path?: Maybe<StringQueryOperatorInput>
-  internalComponentName?: Maybe<StringQueryOperatorInput>
-  component?: Maybe<StringQueryOperatorInput>
-  componentChunkName?: Maybe<StringQueryOperatorInput>
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
-  context?: Maybe<SitePageContextFilterInput>
-  pluginCreator?: Maybe<SitePluginFilterInput>
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>
-  componentPath?: Maybe<StringQueryOperatorInput>
-}
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>
-  sort?: Maybe<SitePageSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -2368,6 +2368,8 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPluginsId = 'pluginCreator___pluginOptions___plugins___id',
   PluginCreatorPluginOptionsPluginsName = 'pluginCreator___pluginOptions___plugins___name',
   PluginCreatorPluginOptionsPluginsVersion = 'pluginCreator___pluginOptions___plugins___version',
+  PluginCreatorPluginOptionsPluginsBrowserApIs = 'pluginCreator___pluginOptions___plugins___browserAPIs',
+  PluginCreatorPluginOptionsPluginsSsrApIs = 'pluginCreator___pluginOptions___plugins___ssrAPIs',
   PluginCreatorPluginOptionsPluginsPluginFilepath = 'pluginCreator___pluginOptions___plugins___pluginFilepath',
   PluginCreatorPluginOptionsQuery = 'pluginCreator___pluginOptions___query',
   PluginCreatorPluginOptionsFeeds = 'pluginCreator___pluginOptions___feeds',
@@ -2380,6 +2382,8 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPathToConfigModule = 'pluginCreator___pluginOptions___pathToConfigModule',
   PluginCreatorPluginOptionsName = 'pluginCreator___pluginOptions___name',
   PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
+  PluginCreatorPluginOptionsClassName = 'pluginCreator___pluginOptions___className',
+  PluginCreatorPluginOptionsIsIconAfterHeader = 'pluginCreator___pluginOptions___isIconAfterHeader',
   PluginCreatorPluginOptionsShowLineNumbers = 'pluginCreator___pluginOptions___showLineNumbers',
   PluginCreatorPluginOptionsStrict = 'pluginCreator___pluginOptions___strict',
   PluginCreatorPluginOptionsDashes = 'pluginCreator___pluginOptions___dashes',
@@ -2584,9 +2588,13 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsId = 'pluginOptions___plugins___id',
   PluginOptionsPluginsName = 'pluginOptions___plugins___name',
   PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
+  PluginOptionsPluginsPluginOptionsClassName = 'pluginOptions___plugins___pluginOptions___className',
+  PluginOptionsPluginsPluginOptionsIsIconAfterHeader = 'pluginOptions___plugins___pluginOptions___isIconAfterHeader',
   PluginOptionsPluginsPluginOptionsShowLineNumbers = 'pluginOptions___plugins___pluginOptions___showLineNumbers',
   PluginOptionsPluginsPluginOptionsStrict = 'pluginOptions___plugins___pluginOptions___strict',
   PluginOptionsPluginsPluginOptionsDashes = 'pluginOptions___plugins___pluginOptions___dashes',
+  PluginOptionsPluginsBrowserApIs = 'pluginOptions___plugins___browserAPIs',
+  PluginOptionsPluginsSsrApIs = 'pluginOptions___plugins___ssrAPIs',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptionsQuery = 'pluginOptions___query',
   PluginOptionsFeeds = 'pluginOptions___feeds',
@@ -2599,6 +2607,8 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPathToConfigModule = 'pluginOptions___pathToConfigModule',
   PluginOptionsName = 'pluginOptions___name',
   PluginOptionsPath = 'pluginOptions___path',
+  PluginOptionsClassName = 'pluginOptions___className',
+  PluginOptionsIsIconAfterHeader = 'pluginOptions___isIconAfterHeader',
   PluginOptionsShowLineNumbers = 'pluginOptions___showLineNumbers',
   PluginOptionsStrict = 'pluginOptions___strict',
   PluginOptionsDashes = 'pluginOptions___dashes',
@@ -2739,6 +2749,8 @@ export type SitePluginPluginOptions = {
   pathToConfigModule?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   path?: Maybe<Scalars['String']>
+  className?: Maybe<Scalars['String']>
+  isIconAfterHeader?: Maybe<Scalars['Boolean']>
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
   dashes?: Maybe<Scalars['String']>
@@ -2779,6 +2791,8 @@ export type SitePluginPluginOptionsFilterInput = {
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
   path?: Maybe<StringQueryOperatorInput>
+  className?: Maybe<StringQueryOperatorInput>
+  isIconAfterHeader?: Maybe<BooleanQueryOperatorInput>
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
   dashes?: Maybe<StringQueryOperatorInput>
@@ -2798,6 +2812,8 @@ export type SitePluginPluginOptionsPlugins = {
   name?: Maybe<Scalars['String']>
   version?: Maybe<Scalars['String']>
   pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptions>
+  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>
+  ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>
   pluginFilepath?: Maybe<Scalars['String']>
 }
 
@@ -2807,6 +2823,8 @@ export type SitePluginPluginOptionsPluginsFilterInput = {
   name?: Maybe<StringQueryOperatorInput>
   version?: Maybe<StringQueryOperatorInput>
   pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>
+  browserAPIs?: Maybe<StringQueryOperatorInput>
+  ssrAPIs?: Maybe<StringQueryOperatorInput>
   pluginFilepath?: Maybe<StringQueryOperatorInput>
 }
 
@@ -2816,12 +2834,16 @@ export type SitePluginPluginOptionsPluginsFilterListInput = {
 
 export type SitePluginPluginOptionsPluginsPluginOptions = {
   __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
+  className?: Maybe<Scalars['String']>
+  isIconAfterHeader?: Maybe<Scalars['Boolean']>
   showLineNumbers?: Maybe<Scalars['Boolean']>
   strict?: Maybe<Scalars['String']>
   dashes?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  className?: Maybe<StringQueryOperatorInput>
+  isIconAfterHeader?: Maybe<BooleanQueryOperatorInput>
   showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   strict?: Maybe<StringQueryOperatorInput>
   dashes?: Maybe<StringQueryOperatorInput>
@@ -3079,7 +3101,7 @@ export type PostQuery = { __typename?: 'Query' } & {
   markdownRemark: Maybe<
     { __typename?: 'MarkdownRemark' } & Pick<
       MarkdownRemark,
-      'htmlAst' | 'timeToRead'
+      'htmlAst' | 'timeToRead' | 'tableOfContents'
     > & {
         frontmatter: Maybe<
           { __typename?: 'MarkdownRemarkFrontmatter' } & Pick<

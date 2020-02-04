@@ -152,6 +152,18 @@ body {
   ul {
     @apply list-disc;
   }
+
+  figure {
+    @apply mx-auto;
+    @apply my-4;
+
+    figcaption {
+      @apply mt-1;
+      @apply text-center;
+      @apply text-gray-700;
+      @apply text-sm;
+    }
+  }
 }
 
 .table-of-contents {

@@ -1,5 +1,6 @@
 ---
 title: Scraping 20 Years of UCLA Enrollment Data
+date: '2020-02-05'
 ---
 
 After taking the first 9 months of 2019 off from school to do internships, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great fall schedule planned. I’d take Compiler Construction, Introduction to Digital Humanities, [the probability class taught entirely through Texas Hold’ Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and a computer science class taught by [Appfolio](https://www.appfolio.com/) engineers, [Scalable Internet Services](https://www.scalableinternetservices.com/).
@@ -18,11 +19,11 @@ In order to start web scraping, there needs to be a website to scrape. In our ca
 
 Selecting a subject area in the “Schedule of Classes” takes you to a results page, which lists all courses offered for a given subject area and selected term. Clicking on a given course expands a dropdown that lists all the sections offered for that course in the given quarter.
 
-![Computer Science course listings available for Winter 2020.](Screen%20Shot%202020-01-16%20at%202.11.45%20PM.png)
+![Computer Science course listings available for Winter 2020.](./cs-courses.png)
 
 Each section has information about the enrollment/waitlist status, enrollment/waitlist counts, day and time, a location, units, and the instructor of that respective section.
 
-![The section information for Computer Science 32, the second course in UCLA’s introductory computer science series.](Screen%20Shot%202020-01-14%20at%2010.54.21%20AM.png)
+![The section information for Computer Science 32, the second course in UCLA’s introductory computer science series.](./cs32-sections.png)
 
 Perfect! This table had all the enrollment info I was interested in and more. We’d just need to fetch every subject area’s course listings and scrape every table on each page. It was time to start writing the scraper.
 
@@ -168,7 +169,7 @@ Of these 8 parameters, only `sName` and `subj` vary by subject area. Upon furthe
 
 On the main “Schedule of Classes” page, there's a dropdown of all subject areas. They're formatted the same as the `sName` parameter, so I figured if a list existed, it'd be there.
 
-![The subject area dropdown on the schedule of classes.](Screen%20Shot%202020-02-01%20at%203.36.02%20PM.png)
+![The subject area dropdown on the schedule of classes.](./subj-area-dropdown.png)
 
 Sure enough, in the HTML, there was:
 
@@ -644,7 +645,7 @@ _: 1579218266770
 
 The `filterFlags` object looked to be similar among all requests and a way for searchers to filter classes by time, units, instructor, etc. It’s modifiable by the filter search portion of the course listing page.
 
-![The UI for setting filter flags.](Image%201-15-20,%201-21%20PM.png)
+![The UI for setting filter flags.](./filter-flags.png)
 
 The `_` parameter didn’t seem to do anything; I could omit it and the request would be the same. `search_by: subject` didn’t seem to change in my experimenting but was required, so I left it as is. `pageNumber` was pretty self-explanatory, and would need to change depending the page requested.
 
@@ -1527,7 +1528,7 @@ func InitializeLogging() {
 
 Over the first few months of scraping the registrar, I ran into some edge cases that my original regular expressions couldn’t handle. For example: a class that is closed by a department but has enrolled students.
 
-![Comm 171, which is closed even with an enrollment of over 100 students. A lot of upper div Comm classes are closed like this, perhaps department policy is to close these sections after second or third week?](Image%2011-26-19,%2010-42%20AM.png)
+![Comm 171, which is closed even with an enrollment of over 100 students. A lot of upper div Comm classes are closed like this, perhaps department policy is to close these sections after second or third week?](./comm-171.png)
 
 After many tweaks, I’ve settled on the following for enrollment statuses:
 
@@ -1565,7 +1566,7 @@ Most regexes make use of capturing groups in order to extract relevant strings/i
 ### Handling Multiple Locations/Times/Professors
 
 I initially assumed that a section could only have one location, time, or professor. Not true! For example, take Theater 134E: Dance for Musical Theater III.
-![4 instructors, 3 days, 3 times, and 2 locations!](Screen%20Shot%202020-01-21%20at%209.49.14%20AM.png)
+![4 instructors, 3 days, 3 times, and 2 locations!](./theater-134e.png)
 
 Yikes! How would the scraper handle that?
 
@@ -1641,7 +1642,7 @@ It turns out, not all of the subject areas were the same – some subject areas 
 
 I was pretty stumped on this, so I sent an email over to the registrar asking if they had a list of subject areas. I got a very nice response from them and they sent me an Excel spreadsheet of all the subject areas UCLA has ever offered.
 
-![Back in business!](Screen%20Shot%202020-02-03%20at%208.56.46%20AM.png)
+![Back in business!](./excel.png)
 
 After converting the spreadsheet into a csv and writing a quick script to parse the csv and insert it into the database[^7], I was ready to scrape courses.
 
@@ -1674,7 +1675,7 @@ For `model`, the challenge was that every value was unique among the requests I 
 
 For `ClassNumber`, there was a more subtle issue. There are some courses in UCLA that have variable topics. In the computer science department, these courses are usually numbered 188; the number varies by department. In the management department, I found something interesting:
 
-![Two sections of "Applying Science of Happiness to Life Desgin".](Screen%20Shot%202020-02-03%20at%201.23.32%20PM.png)
+![Two sections of "Applying Science of Happiness to Life Desgin".](./mgmt-298d.png)
 
 There were multiple sections of the same course, listed as if they were different courses! The two sections of "Applying Science of Happiness to Life Desgin" had ever so slightly different models:
 
@@ -1756,7 +1757,7 @@ Even though I’m currently scraping a lot of data from the registrar, there’s
 
 For instance, there’s an endpoint, `/ClassDetailTooltip`, that’s triggered every time a detail tooltip is opened on a course. This tooltip provides info about prerequisites, enrollment restrictions, grading type, the class webpage, and final exam time.
 
-![](Screen%20Shot%202020-01-21%20at%2010.01.00%20AM.png)
+![The class tooltip UI.](./section-tooltip.png)
 
 I also would love to have more professor information than just the provided `LastName, FirstInitial.` that the registrar provides. I briefly looked into converting this format into the format of `FirstInitial* LastName` – a format that one could then put into the [UCLA Directory](http://www.directory.ucla.edu/) to search and retrieve a full name – but the following privacy notice on the directory gave me pause:
 

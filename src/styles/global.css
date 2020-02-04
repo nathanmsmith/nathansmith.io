@@ -133,11 +133,24 @@ body {
 
 .markdown {
   p {
-    @apply mb-6;
+    @apply my-3;
   }
 
   p > a {
     @apply link;
+  }
+
+  ol,
+  ul {
+    @apply list-inside;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
   }
 }
 
@@ -156,9 +169,6 @@ body {
   ul {
     @apply my-0;
   }
-  ol {
-    @apply list-decimal;
-  }
 }
 
 h2 {
@@ -175,6 +185,12 @@ h3 {
 
 h4 {
   @apply text-xl;
+  @apply my-4;
+  @apply font-extrabold;
+}
+
+h5 {
+  @apply text-lg;
   @apply my-4;
   @apply font-extrabold;
 }

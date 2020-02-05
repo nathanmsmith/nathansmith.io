@@ -7,6 +7,8 @@
 
   --color-datadog: #774aa4;
   --color-ucla: #3284bf;
+  --color-cs: #000;
+  --color-dh: #000;
   --color-keybase: #fd7039;
   --color-autodesk: #87bc40;
   --color-dailybruin: #0080c6;
@@ -54,6 +56,12 @@ body {
   &.colored {
     &[href*='www.ucla.edu'] {
       color: var(--color-ucla);
+    }
+    &[href*='cs.ucla.edu'] {
+      color: var(--color-cs);
+    }
+    &[href*='dh.ucla.edu'] {
+      color: var(--color-dh);
     }
     &[href*='datadoghq.com'] {
       color: var(--color-datadog);

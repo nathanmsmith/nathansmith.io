@@ -333,7 +333,7 @@ I started to look at different approaches.
 
 ### Attempt 3: Go
 
-If I couldn’t scrape the schedule of classes with a headless browser, I’d have to go back to fetching a parsing HTML, á la my original Beautiful Soup approach. Through my foray into Puppeteer, I had learned about the following endpoints that provided content I was interested in:
+If I couldn’t scrape the schedule of classes with a headless browser, I’d have to go back to fetching a parsing HTML, à la my original Beautiful Soup approach. Through my foray into Puppeteer, I had learned about the following endpoints that provided content I was interested in:
 
 1. `https://sa.ucla.edu/ro/Public/SOC/Results/GetCourseSummary`, the endpoint that returns information about sections for a particular course.
 2. `https://sa.ucla.edu/ro/Public/SOC/Results/CourseTitlesView`, the endpoint that returns subsequent pages for a given subject area.

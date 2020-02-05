@@ -247,3 +247,7 @@ code.language-text {
     height: auto;
   }
 }
+
+:not(pre) > code[class*='language-'] {
+  word-wrap: break-word;
+}

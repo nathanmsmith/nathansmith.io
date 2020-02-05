@@ -136,7 +136,7 @@ body {
     @apply my-3;
   }
 
-  p > a {
+  a {
     @apply link;
   }
 
@@ -163,6 +163,11 @@ body {
       @apply text-gray-700;
       @apply text-sm;
     }
+  }
+
+  blockquote {
+    @apply border-solid border-l-8 border-gray-400;
+    @apply pl-6;
   }
 }
 
@@ -214,9 +219,12 @@ h5 {
 }
 
 .footnotes {
-  @apply bg-gray-800;
-  @apply rounded-sm;
+  @apply border-solid border-t border-gray-400;
   @apply p-4;
+
+  li p {
+    display: inline;
+  }
 }
 
 .gatsby-highlight {

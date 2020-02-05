@@ -1445,7 +1445,7 @@ A lot of this is boilerplate that I generated from the AWS Go [example template.
 
 From that, I was ready to test locally (and then deploy!) To locally test your code, SAM provides a command, `sam local invoke`. For Go, you also need to compile your changes before you can `invoke` them. I found myself using `go build` and `sam local invoke` a lot, so I started a simple makefile.
 
-```MAke
+```makefile
 build:
 	GOOS=linux GOARCH=amd64 go build -o scrape-sections ./main.go
 
@@ -1457,7 +1457,7 @@ Now I could just type `make local` and run the scraper locally!
 
 The makefile also ended up being useful for deployment, where you have to first package the build, then deploy it.
 
-```MAke
+```makefile
 S3_BUCKET=my-s3-bucket-url
 
 package: build
@@ -1613,16 +1613,16 @@ END;
 The corresponding code change was simple after the migration.
 
 ```go
-	err := db.QueryRow(insertSection,
-		section.SectionID,
-		section.Term,
-		section.CourseID,
-		pq.Array(section.Days),
-		pq.Array(section.Times),
-		pq.Array(section.Locations),
-		section.Units,
-		pq.Array(section.Instructors),
-	)
+err := db.QueryRow(insertSection,
+	section.SectionID,
+	section.Term,
+	section.CourseID,
+	pq.Array(section.Days),
+	pq.Array(section.Times),
+	pq.Array(section.Locations),
+	section.Units,
+	pq.Array(section.Instructors),
+)
 ```
 
 ## Scraping Multiple Terms
@@ -1714,16 +1714,15 @@ I wondered what would happen if I set `ClassNumber` to `%` instead of a number. 
 So I made a new table in the database, `course_section_indicies`, specifically for this. It keeps track of which courses are offered under which section number for a term. Note that only courses with variable titles, like MGMT 298D, end up in this table.
 
 ```sql
-  CREATE TABLE course_section_indices (
-    id SERIAL PRIMARY KEY,
-    course_id INTEGER REFERENCES courses(id) NOT NULL,
-    term TEXT NOT NULL,
-    indices TEXT[] NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    UNIQUE (course_id, term)
-  );
-
+CREATE TABLE course_section_indices (
+  id SERIAL PRIMARY KEY,
+  course_id INTEGER REFERENCES courses(id) NOT NULL,
+  term TEXT NOT NULL,
+  indices TEXT[] NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (course_id, term)
+);
 ```
 
 ### Section changes

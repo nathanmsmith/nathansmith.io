@@ -1,6 +1,7 @@
 ---
 title: Scraping 20 Years of UCLA Enrollment Data
 date: '2020-02-05'
+draft: true
 ---
 
 After taking the first 9 months of 2019 off from school to do internships, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great fall schedule planned. I’d take Compiler Construction, Introduction to Digital Humanities, [the probability class taught entirely through Texas Hold’ Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and a computer science class taught by [Appfolio](https://www.appfolio.com/) engineers, [Scalable Internet Services](https://www.scalableinternetservices.com/).

@@ -10,7 +10,10 @@ export const query = graphql`
   query Posts {
     posts: allMarkdownRemark(
       sort: { order: DESC, fields: frontmatter___date }
-      filter: { fileAbsolutePath: { regex: "/posts/" } }
+      filter: {
+        fileAbsolutePath: { regex: "/posts/" }
+        frontmatter: { draft: { ne: true } }
+      }
     ) {
       edges {
         node {
@@ -31,7 +34,6 @@ export const query = graphql`
 `
 
 export default function Posts({ data }: { data: PostsQuery }) {
-  console.log('data:', data)
   const postsByYear = data.posts.edges.reduce(
     (obj: { [key: string]: any }, { node }) => {
       const { year } = node.frontmatter

@@ -17,6 +17,7 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
+        draft
       }
     }
   }
@@ -29,12 +30,24 @@ const renderAst = new rehypeReact({
 
 const Post = ({ data }: { data: PostQuery }) => {
   const post = data.markdownRemark
+  const isDraft = data.markdownRemark.frontmatter.draft
   const content = post.htmlAst
   const title = post.frontmatter.title
 
+  console.log(post)
   return (
     <>
       <Head pageTitle={title} />
+      {isDraft && (
+        <div className="w-full bg-red-600 text-white text-xl text-center py-4">
+          This a draft post, not publically available. Please don't share until
+          published. Have suggestions? Send them to me at{' '}
+          <a className="text-white link" href="mailto:nathan@nathansmith.io">
+            nathan@nathansmith.io
+          </a>
+          !
+        </div>
+      )}
       <div className="max-w-2xl mx-auto my-0 p-6 text-xl">
         <Header />
         <h1 className="text-4xl mb-1">{title}</h1>

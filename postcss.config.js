@@ -5,9 +5,13 @@ module.exports = () => ({
     require('tailwindcss'),
     require('postcss-nested'),
     require('autoprefixer'),
-    purgecss({
-      content: ['./src/**/*.tsx'],
-      whitelistPatterns: [/^gatsby-/, /^ReactModal/],
-    }),
+    // ...(process.env.NODE_ENV === 'production'
+    //   ? [
+    //       purgecss({
+    //         content: ['./src/**/*.tsx'],
+    //         whitelistPatterns: [/^gatsby-/, /^ReactModal/],
+    //       }),
+    //     ]
+    //   : []),
   ],
 })

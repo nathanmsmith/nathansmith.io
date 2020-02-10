@@ -34,14 +34,20 @@
   }
 }
 
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 body {
   color: var(--color-primary);
   background-color: var(--color-background);
 }
 
 .link {
-  color: var(--color-primary);
-  font-weight: bold;
+  /* color: var(--color-primary); */
+  @apply font-bold;
   border-bottom: 1px solid var(--color-link-underline);
   transition-duration: 50ms, 0.1s, 0.1s;
   transition-timing-function: linear;
@@ -133,15 +139,116 @@ body {
   }
 }
 
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
+.nonanimated-link {
+  transition: none;
+  border: none;
+  &:hover {
+    padding-bottom: 0;
+  }
+}
 
 .markdown {
-  & p {
-    @apply mt-6;
+  p {
+    @apply my-3;
+  }
+
+  a {
+    @apply link;
+  }
+
+  .header-link {
+    @apply nonanimated-link;
+  }
+
+  ol,
+  ul {
+    @apply list-inside;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  figure {
+    @apply mx-auto;
+    @apply my-4;
+
+    a {
+      @apply nonanimated-link;
+    }
+
+    figcaption {
+      @apply mt-1;
+      @apply text-center;
+      @apply text-gray-700;
+      @apply text-sm;
+    }
+  }
+
+  blockquote {
+    @apply border-solid border-l-8 border-gray-400;
+    @apply pl-6;
+  }
+}
+
+.table-of-contents {
+  @apply text-sm;
+  @apply mb-4;
+  @apply text-gray-700;
+
+  a {
+    @apply link;
+  }
+  li,
+  p {
+    @apply m-0;
+  }
+  ul {
+    @apply my-0;
+  }
+}
+
+h2 {
+  @apply text-3xl;
+  @apply my-6;
+  @apply font-extrabold;
+}
+
+h3 {
+  @apply text-2xl;
+  @apply my-4;
+  @apply font-extrabold;
+}
+
+h4 {
+  @apply text-xl;
+  @apply my-4;
+  @apply font-extrabold;
+}
+
+h5 {
+  @apply text-lg;
+  @apply my-4;
+  @apply font-extrabold;
+}
+
+.header-link path {
+  @media (prefers-color-scheme: dark) {
+    fill: white;
+  }
+}
+
+.footnotes {
+  @apply text-lg text-gray-800;
+  @apply border-solid border-t border-gray-400;
+  @apply p-4;
+
+  li p {
+    display: inline;
   }
 }
 
@@ -151,12 +258,17 @@ body {
   margin: 0.5em 0;
   padding: 1em;
   overflow: auto;
+  font-size: 1rem;
 }
 
 .gatsby-highlight pre[class*='language-'].line-numbers {
   padding: 0;
   padding-left: 2.8em;
   overflow: initial;
+}
+
+code.language-text {
+  font-size: 0.8em;
 }
 
 .text-container {
@@ -167,4 +279,8 @@ body {
   @media (max-height: 560px) {
     height: auto;
   }
+}
+
+:not(pre) > code[class*='language-'] {
+  word-wrap: break-word;
 }

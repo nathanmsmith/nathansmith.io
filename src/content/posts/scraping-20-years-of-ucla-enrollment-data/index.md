@@ -334,7 +334,7 @@ I started to look at different approaches.
 
 ### Attempt 3: Go
 
-If I couldn’t scrape the schedule of classes with a headless browser, I’d have to go back to fetching a parsing HTML, à la my original Beautiful Soup approach. Through my foray into Puppeteer, I had learned about the following endpoints that provided content I was interested in:
+If I couldn’t scrape the schedule of classes with a headless browser, I’d have to go back to fetching and parsing HTML, à la my original Beautiful Soup approach. Through my foray into Puppeteer, I had learned about the following endpoints that provided content I was interested in:
 
 1. `https://sa.ucla.edu/ro/Public/SOC/Results/GetCourseSummary`, the endpoint that returns information about sections for a particular course.
 2. `https://sa.ucla.edu/ro/Public/SOC/Results/CourseTitlesView`, the endpoint that returns subsequent pages for a given subject area.
@@ -355,7 +355,7 @@ for subject_area in subject_areas:
 			print section (TODO: save section in csv or database)
 ```
 
-With almost 200 subject areas and multiple courses offered for each subject area, it became apparent pretty quickly that my emergent algorithm was not going to be very fast. The bottleneck was the network requests – requesting and receiving the pages took about 1-2 seconds for a page on my local connection. Assuming that each subject area offered a single full page of courses – 25 – and each course had only a single section, then I roughly estimated the scraper would take 181 \* 25 \* 1 \* 1.5 = 6787.5 seconds, or 1.88 hours. Yikes! That wouldn’t work if I wanted to scrape the registrar hourly.
+With almost 200 subject areas and multiple courses offered for each subject area, it became apparent pretty quickly that my emergent algorithm was not going to be very fast. The bottleneck was the network requests – requesting and receiving the pages took about 1-2 seconds for a page on my local connection. Assuming that each subject area offered a single full page of courses – 25 – and each course had only a single section, then I roughly estimated the scraper would take $181 \times 25 \times 1 \times 1.5 = 6787.5 \text{seconds}$, or 1.88 hours. Yikes! That wouldn’t work if I wanted to scrape the registrar hourly.
 
 It was obvious that I’d need to make requests asynchronously. At first, I thought this wouldn’t be a problem in Python – Python has supported async operations for a while. But then I started running into issues.
 
@@ -434,7 +434,7 @@ func ScrapeCourses() {
 	}
 	sem := make(chan struct{}, maxConnections)
 
-		for _, subjectArea := range subjectAreas {
+	for _, subjectArea := range subjectAreas {
 		wg.Add(1)
 		go func(subjectArea registrar.SubjectArea) {
 			sem <- struct{}{}
@@ -504,7 +504,7 @@ When scraping the subject areas, I was able to get by with a regex due to the si
 I ended up making heavy use of goquery’s [Find()](https://godoc.org/github.com/PuerkitoBio/goquery#Selection.Find) function, as well as the old tried and true regular expressions in order to extract relevant parts of the HTML.
 
 ```go
-func ParseCourses(subjectAreaID string, doc *goquery.Document) []registrar.Course {
+func ParseCourses(subjectAreaID string, doc *goquery.Document) []Course {
 	results := doc.Find("#resultsTitle")
 	titles := results.Find(".class-title")
 	links := results.Find("h3 > a")
@@ -1094,18 +1094,18 @@ func SaveCourses(db *sql.DB, courses []Courses) {
 	RETURNING id
 	`
 
-				for _, course := range courses {
-				var id int
-				err := db.QueryRow(insertCourse, course.SubjectAreaID, course.Title, course.Number).Scan(&id)
-				if err != nil {
-					log.Error(err)
-				}
+	for _, course := range courses {
+	var id int
+	err := db.QueryRow(insertCourse, course.SubjectAreaID, course.Title, course.Number).Scan(&id)
+	if err != nil {
+		log.Error(err)
+	}
 
-				_, err = db.Exec(insertTerm, id, term)
-				if err != nil {
-					log.Error(err)
-				}
-			}
+	_, err = db.Exec(insertTerm, id, term)
+	if err != nil {
+		log.Error(err)
+	}
+}
 }
 ```
 
@@ -1639,7 +1639,7 @@ Around this time, my friend [Richard](http://ryang72.com/) also pointed out an i
 I set out to think about how multiple terms would affect my current data, and how the schema could grow to handle more courses/sections. I figured the easiest place to start would be with subject areas, which should be constant throughout terms.
 
 Remember that very first footnote where I hint at that not being the case?
-It turns out, not all of the subject areas were the same – some subject areas offered in fall, like African Studies, were not offered in winter. Furthermore, I had no idea how to get subject areas for previous terms, which proved to be a problem as subject area names can change over time:a good example of this is the Electrical Engineering department [changing their name](https://dailybruin.com/2017/08/13/ucla-to-offer-new-undergrad-degree-in-computer-engineering-in-the-fall/) to Electrical and Computer Engineering.
+It turns out, not all of the subject areas were the same – some subject areas offered in fall, like African Studies, were not offered in winter. Furthermore, I had no idea how to get subject areas for previous terms, which proved to be a problem as subject area names can change over time: a good example of this is the Electrical Engineering department [changing their name](https://dailybruin.com/2017/08/13/ucla-to-offer-new-undergrad-degree-in-computer-engineering-in-the-fall/) to Electrical and Computer Engineering.
 
 I was pretty stumped on this, so I sent an email over to the registrar asking if they had a list of subject areas. I got a very nice response from them and they sent me an Excel spreadsheet of all the subject areas UCLA has ever offered.
 
@@ -1712,7 +1712,7 @@ There were multiple sections of the same course, listed as if they were differen
 
 I wondered what would happen if I set `ClassNumber` to `%` instead of a number. Initially, I got a 404 error, but with some updating of `Path` and `Token` to so that they didn’t refer to a specific section number, I got a response. It was the markup for all sections of MGMT 298D! Unfortunately, however, there was no title or distinguishing features for each row, just the section’s number. When scraping courses, I’d need to associate each course title listed with a section number, then, when scraping sections, recall these numbers to parse out which section belongs to which course.
 
-So I made a new table in the database, `course_section_indicies`, specifically for this. It keeps track of which courses are offered under which section number for a term. Note that only courses with variable titles, like MGMT 298D, end up in this table.
+So I made a new table in the database, `course_section_indices`, specifically for this. It keeps track of which courses are offered under which section number for a term. Note that only courses with variable titles, like MGMT 298D, end up in this table.
 
 ```sql
 CREATE TABLE course_section_indices (
@@ -1759,7 +1759,7 @@ For instance, there’s an endpoint, `/ClassDetailTooltip`, that’s triggered e
 
 ![The class tooltip UI.](./section-tooltip.png)
 
-I also would love to have more professor information than just the provided `LastName, FirstInitial.` that the registrar provides. I briefly looked into converting this format into the format of `FirstInitial* LastName` – a format that one could then put into the [UCLA Directory](http://www.directory.ucla.edu/) to search and retrieve a full name – but the following privacy notice on the directory gave me pause:
+I also would love to have more professor information than just the provided `LastName, FirstInitial` that the registrar provides. I briefly looked into converting this format into the format of `FirstInitial* LastName` – a format that one could then put into the [UCLA Directory](http://www.directory.ucla.edu/) to search and retrieve a full name – but the following privacy notice on the directory gave me pause:
 
 > To protect the privacy of the individuals listed herein, in accordance with the State of California Information Practices Act, this directory may not be used, rented, distributed or sold for commercial purposes. … Compilation or redistribution of information from this directory is strictly forbidden.
 

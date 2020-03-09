@@ -16,6 +16,7 @@ export const query = graphql`
       tableOfContents
       frontmatter {
         title
+        subtitle
         date(formatString: "MMMM D, YYYY")
         draft
       }
@@ -32,7 +33,7 @@ const Post = ({ data }: { data: PostQuery }) => {
   const post = data.markdownRemark
   const isDraft = data.markdownRemark.frontmatter.draft
   const content = post.htmlAst
-  const { title } = post.frontmatter
+  const { title, subtitle } = post.frontmatter
   return (
     <>
       <Head pageTitle={title} />
@@ -49,12 +50,15 @@ const Post = ({ data }: { data: PostQuery }) => {
       <div className="max-w-2xl mx-auto my-0 p-6 text-xl">
         <Header />
         <h1 className="text-4xl mb-1">{title}</h1>
+        {!!subtitle && (
+          <div className="text-base text-gray-600 italic mb-2">{subtitle}</div>
+        )}
         <div className="text-sm text-gray-600 mb-3">
           <time>{post.frontmatter.date}</time> &middot;{' '}
           <span>{post.timeToRead} minute read</span>
         </div>
         <details className="table-of-contents">
-          <summary>Table of Contents</summary>
+          <summary className="text-lg">Table of Contents</summary>
           <div dangerouslySetInnerHTML={{ __html: post.tableOfContents }} />
         </details>
         <div className="markdown">{renderAst(content)}</div>

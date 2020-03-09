@@ -1,5 +1,6 @@
 ---
-title: Scraping Hourly Enrollment Numbers From the UCLA Registrar, Part 1 - Picking a Language
+title: Scraping Hourly Enrollment Data From the UCLA Registrar, Part One
+subtitle: Lessons learned from rewriting the same web scraper in Python, JavaScript, and Go.
 date: '2020-03-08'
 draft: true
 ---

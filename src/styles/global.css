@@ -252,25 +252,6 @@ h5 {
   }
 }
 
-.gatsby-highlight {
-  background-color: rgb(45, 45, 45);
-  border-radius: 0.3em;
-  margin: 0.5em 0;
-  padding: 1em;
-  overflow: auto;
-  font-size: 1rem;
-}
-
-.gatsby-highlight pre[class*='language-'].line-numbers {
-  padding: 0;
-  padding-left: 2.8em;
-  overflow: initial;
-}
-
-code.language-text {
-  font-size: 0.8em;
-}
-
 .text-container {
   @media (min-width: 860px) {
     overflow-y: scroll;
@@ -281,6 +262,20 @@ code.language-text {
   }
 }
 
-:not(pre) > code[class*='language-'] {
-  word-wrap: break-word;
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-base;
+}
+
+pre[class*='language-'] {
+  @apply rounded;
+}
+
+.dropcap {
+  @apply float-left;
+  font-size: 75px;
+  line-height: 56px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
 }

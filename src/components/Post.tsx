@@ -32,9 +32,7 @@ const Post = ({ data }: { data: PostQuery }) => {
   const post = data.markdownRemark
   const isDraft = data.markdownRemark.frontmatter.draft
   const content = post.htmlAst
-  const title = post.frontmatter.title
-
-  console.log(post)
+  const { title } = post.frontmatter
   return (
     <>
       <Head pageTitle={title} />

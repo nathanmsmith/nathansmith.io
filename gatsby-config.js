@@ -110,9 +110,7 @@ module.exports = {
           },
           {
             resolve: 'gatsby-remark-prismjs',
-            options: {
-              showLineNumbers: true,
-            },
+            options: {},
           },
           {
             resolve: `gatsby-remark-images`,

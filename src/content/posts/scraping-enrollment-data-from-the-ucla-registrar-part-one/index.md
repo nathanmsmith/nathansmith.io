@@ -1,27 +1,28 @@
 ---
-title: Scraping Hourly Enrollment Data From the UCLA Registrar, Part One
+title: Scraping Enrollment Data From the UCLA Registrar, Part One
 subtitle: Lessons learned from rewriting the same web scraper in Python, JavaScript, and Go.
-date: '2020-03-08'
-draft: true
+date: '2020-03-09'
 ---
 
-<span class="dropcap">A</span>fter taking the first 9 months of 2019 off from school to do internships, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great fall schedule planned. I’d take Compiler Construction, Introduction to Digital Humanities, [the probability class taught entirely through Texas Hold’ Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and a computer science class taught by [Appfolio](https://www.appfolio.com/) engineers, [Scalable Internet Services](https://www.scalableinternetservices.com/).
+<span class="dropcap">A</span>fter taking the first nine months of 2019 off from school to intern at several companies, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great fall schedule planned. I’d take Compiler Construction, Introduction to Digital Humanities, [the probability class taught entirely through Texas Hold’ Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and a computer science class taught by [Appfolio](https://www.appfolio.com/) engineers, [Scalable Internet Services](https://www.scalableinternetservices.com/).
 
 I grabbed Digital Humanities and Compilers on my first pass, and planned on enrolling in Stats and Scalable Internet Services on my second pass. But by the time my second pass was active, Scalable Internet Services had filled up.
 
-This is hardly a unique problem; UCLA students have been complaining about a [lack of course offerings](https://dailybruin.com/2019/02/26/enrollment-system-creates-crisis-for-students-unable-to-take-necessary-classes/) and the [black market of enrollment](https://dailybruin.com/2020/01/20/facebook-buy-and-sell-groups-cannot-cover-for-class-overenrollment-issues/) for a while. Surprisingly, that’s also a lack of data[^1][^2] surrounding how quickly classes fill up – and whether one should use their some of their precious first pass units on it or wait until their second pass. The best solutions I know of is to ask friends or post on a major’s Facebook page, which while generally useful, tend to be highly subjective.
+This is hardly a unique problem; UCLA students have been complaining about a [lack of course offerings](https://dailybruin.com/2019/02/26/enrollment-system-creates-crisis-for-students-unable-to-take-necessary-classes/) and the [black market of enrollment](https://dailybruin.com/2020/01/20/facebook-buy-and-sell-groups-cannot-cover-for-class-overenrollment-issues/) for a while. Surprisingly, that’s also a lack of data[^1][^2] surrounding how quickly classes fill up – and whether one should use some of their precious first pass units on it or wait until their second pass. The best solutions I know of are to ask friends or post on a major’s Facebook page, which while generally useful, tend to be unreliable.
 
-So I did what probably absolutely no one else except me would do: I decided I'd scrape the UCLA Registrar's online schedule of classes to find out which classes fill up the quickest and ensure that I’d never miss a class again. I’ve been working on this scraper in my spare time for the past seven months, and I’m ecstatic that it’s finally in a state that I feel is ready to share on the internet.
+![The UCLA CS Facebook page has a lot of posts like this asking how best to optimize one's schedule.](./facebook.png)
 
-This post is part one of my journey into creating this scraper, in which I reverse engineer the various endpoints on the Registrar's website and choose a language for the web scraper to extract data from these endpoints. In part two, I'll discuss designing the database schema to store all of the data I collect, how I deployed it as a set of lambda functions on AWS that run every hour, and how I monitor any scraping issues using Datadog.
+So I did what I'm sure no one else would do: I decided to scrape the UCLA Registrar's online schedule to find out which classes fill up the quickest and ensure that I’d never miss a class again. I’ve been working on this scraper in my spare time for the past seven months, and I’m ecstatic that it’s finally in a state that I feel is ready to share on the internet.
+
+This post is part one of my journey into creating this scraper, in which I reverse engineer the various endpoints on the Registrar's website and choose a language for the web scraper to extract data from these endpoints. In part two, I'll discuss designing the database schema to store all of the data I collect, how I deployed it as a set of lambda functions on AWS that run every hour, and how I monitor any scraping issues using Datadog[^3].
 
 If you’re interested in the actual data from this project, don’t worry that’ll be coming in the next couple of weeks! I’m currently doing a Digital Humanities independent study project with [Professor Ashley Sanders Garcia](https://dh.ucla.edu/person/ashley-sanders-garcia/) that will culminate in a digital exploration of that data I’ve scraped.
 
-While this post isn’t necessarily intended to be a tutorial on writing your own UCLA registrar scraper – think of it more as a lab report or exercise in [learning in public](https://www.swyx.io/writing/learn-in-public/) – it’s my hope that you’ll find my journey into web scraping both compelling and informative.
+While this post isn’t necessarily intended to be a tutorial on writing your own UCLA course scraper – think of it more as a lab report or exercise in [learning in public](https://www.swyx.io/writing/learn-in-public/) – it’s my hope that you’ll find my journey into web scraping both compelling and informative.
 
 ## The data source
 
-In order to start web scraping, there needs to be a website to scrape. In our case, it’s the UCLA Registrar's [publicly available list of all classes offered for the most recent quarters](https://sa.ucla.edu/ro/public/soc), which is updated hourly.[^3] The most common way to search for classes is by a "Subject Area", a logical grouping of classes. In most cases, like Computer Science, the subject area of Computer Science maps directly to courses offered by the [Computer Science department](https://www.cs.ucla.edu) of UCLA. However, some departments, like the [Department of Asian Languages and Cultures](https://www.alc.ucla.edu), offer many subject areas – one for each language[^4], in the case of ALC. A full [department/subject area mapping](https://www.registrar.ucla.edu/Faculty-Staff/Courses-and-Programs/Department-and-Subject-Area-Codes) is provided by the Registrar.
+In order to start web scraping, there needs to be a website to scrape. In our case, it’s the UCLA Registrar's [publicly available list of all classes offered for the most recent quarters](https://sa.ucla.edu/ro/public/soc), which is updated hourly.[^4] The most common way to search for classes is by a "Subject Area", a logical grouping of classes. In most cases, like "Computer Science", the subject area maps directly to courses offered by UCLA's [Computer Science department](https://www.cs.ucla.edu). However, some departments, like the [Department of Asian Languages and Cultures](https://www.alc.ucla.edu), offer many subject areas – one for each language[^5], in the case of ALC. A full [department/subject area mapping](https://www.registrar.ucla.edu/Faculty-Staff/Courses-and-Programs/Department-and-Subject-Area-Codes) is provided by the Registrar.
 
 Selecting a subject area in the “Schedule of Classes” takes you to a results page, which lists all courses offered for a given subject area and selected term. Clicking on a given course expands a dropdown that lists all the sections offered for that course in the given quarter.
 
@@ -31,11 +32,11 @@ Each section has information about the enrollment/waitlist status, enrollment/wa
 
 ![The section information for Computer Science 32, the second course in UCLA’s introductory computer science series.](./cs32-sections.png)
 
-Perfect! This table had all the enrollment info I was interested in and more. We’d just need to fetch every subject area’s course listings and scrape every table on each page. It was time to start writing the scraper.
+Perfect! This table had all the enrollment info I was interested in and more. I’d just need to fetch every subject area’s course listings and scrape every table on each page. It was time to start writing the scraper.
 
 ## Attempt 1: Python and Beautiful Soup
 
-I’d had never written a web scraper before this project, but I had heard [Python](https://www.python.org/) and [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) were the go-to tools for web scraping projects, so I decided to start there. After referring to the [very helpful slides](https://github.com/uclaacm/learn.py-s19/tree/master/session-8-web-scraping) that [UCLA ACM](http://www.uclaacm.com/) made last spring about BeautifulSoup, I had a very basic scraper.
+I had never written a web scraper before this project, but I had heard [Python](https://www.python.org/) and [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) were the go-to tools for web scraping projects, so I decided to start there. After referring to the [very helpful slides](https://github.com/uclaacm/learn.py-s19/tree/master/session-8-web-scraping) that [UCLA ACM](http://www.uclaacm.com/) made last spring about Beautiful Soup, I had a very basic scraper.
 
 ```python
 from bs4 import BeautifulSoup
@@ -50,7 +51,7 @@ soup = BeautifulSoup(response.content, "html.parser")
 print(soup.prettify())
 ```
 
-The [URL I used](https://sa.ucla.edu/ro/Public/SOC/Results?t=19F&sBy=subject&sName=Computer+Science+%28COM+SCI%29&subj=COM+SCI&crsCatlg=Enter+a+Catalog+Number+or+Class+Title+%28Optional%29&catlg=&cls_no=&btnIsInIndex=btn_inIndex) specifically links to computer science classes, since I was primarily interested but each subject area has a similar URL. Note that the actual fetching of the page is done by [Requests](http://python-requests.org/), a popular Python HTTP library.
+The [URL I used](https://sa.ucla.edu/ro/Public/SOC/Results?t=19F&sBy=subject&sName=Computer+Science+%28COM+SCI%29&subj=COM+SCI&crsCatlg=Enter+a+Catalog+Number+or+Class+Title+%28Optional%29&catlg=&cls_no=&btnIsInIndex=btn_inIndex) specifically links to computer science classes, but each subject area has a similar URL. Note that the actual fetching of the page is done by [Requests](http://python-requests.org/), a popular Python HTTP library.
 
 I was hoping this would give us the HTML markup of every class and its info. Instead, I got something like:
 
@@ -90,9 +91,9 @@ Huh. It seemed like the page was more dynamic than I thought. This is the result
 
 ## Attempt 2: JavaScript and Puppeteer
 
-All this dynamic content made me start to second-guess the BeautifulSoup approach, so I decided to try something different.
+All this dynamic content made me start to second-guess the Beautiful Soup approach, so I decided to try something different.
 
-The last person I knew who did some scraping of the registrar was [Rishub](http://rishub.com), who used to the data for the now defunct [BruinScan](https://www.facebook.com/bruinscan/), as well as a [Stack article](https://stack.dailybruin.com/2018/11/08/how-long-are-lectures/)[^5]. He was a [Selenium](https://docs.seleniumhq.org/) wizard, and used it to scrape the registrar. So I figured I’d try Selenium.
+The last person I knew who did some scraping of the registrar was [Rishub](http://rishub.com), who used to the data for the now defunct [BruinScan](https://www.facebook.com/bruinscan/), as well as a [Stack article](https://stack.dailybruin.com/2018/11/08/how-long-are-lectures/)[^6]. He was a [Selenium](https://docs.seleniumhq.org/) wizard, and used it to scrape the registrar. So I figured I’d try Selenium.
 
 Shortly into my Selenium research, I realized that [Puppeteer](https://pptr.dev/) solved the same browser automation problem Selenium did. I actually had a small amount of Puppeteer experience from my internship at [Datadog](https://www.datadoghq.com/), where all our frontend acceptance tests used Puppeteer.
 
@@ -183,9 +184,9 @@ Sure enough, in the HTML, there was:
 </script>
 ```
 
-If we extract that monster string out and convert the `&quot;` to `"`, then now we have a JSON representation of all subject areas. I actually just pasted that into a JavaScript object to iterate through, because I figured that subject areas didn’t really change[^6] and it’d save the scraper from having to make a network request.
+Extracting that monster string out of the HTML and converting the `&quot;`s to `"`s gave me a JSON representation of all subject areas. I actually just pasted that into a JavaScript object to iterate through, because I figured that subject areas didn’t really change[^7] and it’d save the scraper from having to make a network request.
 
-Now we had our array of `label`s and `value`s which correspond to what the Registrar calls a subject area’s “name” and “code”, respectively. Perfect. Now we had were able to construct URLs for each of the subject areas.
+Now that I had our array of `label`s and `value`s which correspond to what the Registrar calls a subject area’s “name” and “code”, respectively. Perfect. I quickly coded up a function able to construct URLs for each of the subject areas.
 
 ```javascript
 function getUrlsForSubjects(subjects) {
@@ -202,7 +203,7 @@ function getUrlsForSubjects(subjects) {
 
 The next issue to face was that of pagination: most subject areas offer more that 25 courses per quarter, meaning that the course results would be broken up into multiple pages. Weirdly enough, subsequent pages for a given subject area didn’t have distinct URLs – instead, the schedule of classes site made a network request and then just dynamically updated the content of the current page.
 
-No matter, though. I’d just have Puppeteer click the next button, scrape the new content, and repeat until it ran out of pages. Making this task a little easier was the hidden `pageCount` element on the page, which contains the number of pages that there were.
+No matter, though. I’d just have Puppeteer click the "next" button, scrape the new content, and repeat until it ran out of pages. Making this task a little easier was the hidden `pageCount` element on the page, which contains the number of pages that there were.
 
 ```javascript
 async function scrapeDepartment(page, link) {
@@ -226,7 +227,7 @@ Courses are cool, but the data that’s really interesting is data for a section
 
 As I mentioned earlier, each course was wrapped in a containing div with the id of that course. Within this div, there’s a wrapper for the table of sections displayed, which is neatly wrapped in a `primarySection` class. Within that, each section row was within a div with a `{course id}-children` id. And in each row, each data column had a helpfully named class of the format `xColumn` detailing which piece of data it contained.
 
-We could then just parse away!
+It was then just a matter of parsing away!
 
 ```javascript
 const data = await page.evaluate(() => {
@@ -304,7 +305,7 @@ if (waitlistText.startsWith('Waitlist Full')) {
 
 I then added `enrollmentCount`, `enrollmentCapacity`, `waitlistCount`, and `waitlistCapacity` to the final object to be returned.
 
-Now it was time to run it! So I did. We started off without a hitch: Aerospace Studies, African-American Studies, African Studies, on and on. It seemed like this scraping was going to take a while so I took a shower and came back to find that the script had failed somewhere around Geography after 30 minutes of scraping. I tried again, this time failing in the Is. I tried again, running Puppeteer with [launch({headless: false})](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-puppeteerlaunchoptions) to see what Chrome was doing. It turned out the sometimes button would be clicked too quickly and not trigger a page change or load the section info. After some more tries, I decided that the DOM was just too unpredictable to accurately and quickly scrape. I began to see why everyone at Datadog hated running the acceptance tests – they were just too darn flakey.
+Now it was time to run my scraper! It started off without a hitch: Aerospace Studies, African-American Studies, African Studies, on and on. It seemed like this scraping was going to take a while so I took a shower and came back to find that the script had failed somewhere around Geography after 30 minutes of scraping. I tried again, this time failing in the Is. I tried again, running Puppeteer with [launch({headless: false})](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-puppeteerlaunchoptions) to see what Chrome was doing. It turned out that the "next" button would sometimes be clicked too quickly and not trigger a page change or load the section info. After some more tries, I decided that the DOM was just too unpredictable to accurately and quickly scrape. I began to see why everyone at Datadog hated running the acceptance tests – they were just too darn flakey.
 
 I started to look at different approaches.
 
@@ -335,17 +336,17 @@ With almost 200 subject areas and multiple courses offered for each subject area
 
 It was obvious that I’d need to make requests asynchronously. At first, I thought this wouldn’t be a problem in Python – Python has supported async operations for a while. But then I started running into issues.
 
-The popular and previously mentioned HTTP library, [Requests](https://python-requests.org/), doesn’t support async/await[^4], so I had to convert my earlier code to use [AIOHTTP](https://docs.aiohttp.org/) which is a bit trickier to use. My early attempts to do this didn’t result in much of a speed increase which was probably due to both a inexperience of asynchronous Python writing on my part and lacking AIOHTTP/async documentation.
+The popular and previously mentioned HTTP library, [Requests](https://python-requests.org/), doesn’t support async/await[^8], so I had to convert my earlier code to use [AIOHTTP](https://docs.aiohttp.org/) which is a bit trickier to use. My early attempts to do this didn’t result in much of a speed increase which was probably due to both my inexperience writing asynchronous Python code and the sparse AIOHTTP/async documentation.[^9]
 
 I had recently started writing [Go](https://golang.org), a language I knew had great concurrency support, for my internship at [Keybase](https://keybase.io/) so I figured in the spirit of polyglotism, I’d try mocking out a version of the scraper in Go. [Goroutines](https://gobyexample.com/goroutines) were a refreshing break from the mess of AIOHTTP and it was nice to know that my program could scrape courses in parallel, unburdened by a [global interpreter lock](https://en.wikipedia.org/wiki/Global_interpreter_lock).
 
-What I gave up in Go, however, was the nice HTML parsing that BeautifulSoup provided. The best replacement I found was a library called [goquery](https://github.com/PuerkitoBio/goquery), which bills itself as “A little like that [j-thing](https://jquery.com/), only in Go.”
+What I gave up in Go, however, was the nice HTML parsing that Beautiful Soup provided. The best replacement I found was a library called [goquery](https://github.com/PuerkitoBio/goquery), which bills itself as “A little like that [j-thing](https://jquery.com/), only in Go.”
 
 ### Scraping subject areas
 
 In JavaScript, the subject areas were represented as a literal array of objects with `label` and `value` properties. In Go, the corresponding data structure for an object would be a [struct](https://gobyexample.com/structs).
 
-Doing the same literal declaration as we did in JavaScript would be a little more unergonomic, so I decided to go ahead and write a function to just fetch the data from the “Schedule of Classes” page, find the relevant line via a regular expression, and unmarshal the the JSON representation into a Go array of structs. From there, we’d return it for now (and eventually save it to a database).
+Doing the same literal declaration as I did in JavaScript would be a little more unergonomic, so I decided to go ahead and write a function to just fetch the data from the “Schedule of Classes” page, find the relevant line via a regular expression, and unmarshal the JSON representation into a Go array of structs. From there, I’d return it for now (and eventually save it to a database).
 
 ```go
 type SubjectArea struct {
@@ -389,7 +390,7 @@ func ScrapeSubjectAreas() []SubjectArea {
 
 ### Scraping courses
 
-Courses, unfortunately, would be a little trickier to scrape that subject areas. I’d first need to fetch and parse the first page, then use the `/CourseTitlesView` to extract the subsequent pages. And, we’d need to make it parallel. I started with parallelism code.
+Courses, unfortunately, would be a little trickier to scrape than subject areas. I’d first need to fetch and parse the first page, then use the `/CourseTitlesView` to extract the subsequent pages. And, I wanted to make it parallel. I started with parallelism code.
 
 ```go
 var subjectAreas = ScrapeSubjectAreas()
@@ -430,13 +431,13 @@ func ScrapeCourses() {
 
 The parallelism was accomplished via goroutines. In order to ensure the all subject areas are fetched before the program exits, I used a [WaitGroup](https://golang.org/pkg/sync/#WaitGroup). I also ran into issues with the number of maximum concurrent connections that could be made at a time as a result of a limited amount of file descriptors on my computer; I fixed this with a [simple semaphore](http://www.golangpatterns.info/concurrency/semaphores), which in Go is implemented as a [channel](https://tour.golang.org/concurrency/2).
 
-If you've been paying close attention the the code, you may have noticed some references in the `SubjectArea` and `Course` structs to ids. Those will be relevant once we get to adding a database! For now, just know that it'll be important to know which course belongs to which subject area and the ids help us track that.
+If you've been paying close attention the the code, you may have noticed some references in the `SubjectArea` and `Course` structs to ids. Those will be relevant once I get to adding a database! For now, just know that it'll be important to know which course belongs to which subject area and the ids help us track that.
 
 #### Fetching the first page
 
 Now it was time to write the code to scrape the first page of a course. The general format of this web scraping was going to be fetch, parse, and return (and then save). Fetching seemed like the logical place to start.
 
-`FetchFirstPage` does exactly what the name implies: it makes a request for a subject area search result page, and returns a pointer to a goquery [Document](https://godoc.org/github.com/PuerkitoBio/goquery#Document), which will be used later to parse the page. The function is longer than the simple GET in `FetchSubjectAreas`, due to the fact that we add parameters to the URL. Other than that, though, it’s a fairly standard Go HTTP request.
+`FetchFirstPage` does exactly what the name implies: it makes a request for a subject area search result page, and returns a pointer to a goquery [Document](https://godoc.org/github.com/PuerkitoBio/goquery#Document), which will be used later to parse the page. The function is longer than the simple GET in `FetchSubjectAreas` because of the need to add parameters to the URL. Other than that, though, it’s a fairly standard Go HTTP request.
 
 ```go
 func FetchFirstPage(subjectArea registrar.SubjectArea, term string) (*goquery.Document, error) {
@@ -511,7 +512,7 @@ func ParseCourses(subjectAreaID string, doc *goquery.Document) []Course {
 }
 ```
 
-You may notice that in addition to a course’s title and number, we also store its model – the little JSON blob used by `Iwe_ClassSearch_SearchResults.AddToCourseData` to make a network request to fetch section info. This is because I later realized I’d need it to fetch sections! Expect details about that in a bit.
+You may notice that in addition to a course’s title and number, I also store its model – the little JSON blob used by `Iwe_ClassSearch_SearchResults.AddToCourseData` to make a network request to fetch section info. This is because I later realized I’d need it to fetch sections. Expect details about that in a bit.
 
 #### Tying it together
 
@@ -553,7 +554,7 @@ func FetchAndParseCourses(subjectArea registrar.SubjectArea) (courses []Course, 
 
 #### Handling pagination with /CourseTitlesView
 
-Now that the single page course scraping was working, it was time to move on to scraping additional pages with `/CoursesTitlesView`[^5]
+Now that the single page course scraping was working, it was time to move on to scraping additional pages with `/CoursesTitlesView`[^10]
 
 The response of the endpoint looks something like this:
 
@@ -608,7 +609,7 @@ The response of the endpoint looks something like this:
 </div>
 ```
 
-There's our data! But instead of being nicely formatted into JSON, it’s in raw HTML, which looked to be exactly what was then inserted into the DOM and displayed on the page. Since these responses were just HTML fragments, we could parse them! The tricky part would be constructing the URLs.
+There's our data! But instead of being nicely formatted into JSON, it’s in raw HTML, which looked to be exactly what was then inserted into the DOM and displayed on the page. Since these responses were just HTML fragments, the scraper could parse them. The tricky part would be constructing the URLs.
 
 Using Chrome’s URL decoding from earlier, I found that the parameters were:
 
@@ -624,7 +625,7 @@ The `filterFlags` object looked to be similar among all requests and a way for s
 
 ![The UI for setting filter flags.](./filter-flags.png)
 
-The `_` parameter didn’t seem to do anything; I could omit it and the request would be the same. `search_by: subject` didn’t seem to change in my experimenting but was required, so I left it as is. `pageNumber` was pretty self-explanatory, and would need to change depending the page requested.
+The `_` parameter didn’t seem to do anything; I could omit it and the request would be the same. `search_by: subject` didn’t seem to change in my experimenting but was required, so I left it as is. `pageNumber` was pretty self-explanatory, and would need to change depending on the page requested.
 
 `model` is where things got interesting. All of the keys in the JSON object correspond to keys in the search results page. Interestingly, not all keys of the object seem to be required – the same keys that can be omitted in requests to `https://sa.ucla.edu/ro/Public/SOC/Results` can be omitted in the model. I figured the model had to be generated somewhere on the frontend, so I grepped for it in the results HTML page. And sure enough:
 
@@ -659,7 +660,7 @@ And I got back a 404 error. Interesting. I thought perhaps there was some cookie
 
 Then I tried Chrome’s [Copy as cURL feature](https://developers.google.com/web/updates/2015/05/replay-a-network-request-in-curl), to see if a header of some kind was required. And it worked! From there, I began removing headers to see what the required header was.
 
-The answer? `X-Requested-With: XMLHttpRequest`. I actually wasn’t familiar with `X-Requested-With` before I encountered it here. Apparently, it’s a header added by a lot of JavaScript libraries to denote an AJAX request. Why the registrar blocks non-AJAX requests, I don’t know. But at least my requests to the endpoint worked!
+The answer? `X-Requested-With: XMLHttpRequest`. I actually wasn’t familiar with `X-Requested-With` before I encountered it here. [Apparently](https://stackoverflow.com/questions/17478731/whats-the-point-of-the-x-requested-with-header), it’s a header added by a lot of JavaScript libraries to denote an AJAX request. Why the registrar blocks non-AJAX requests, I don’t know. But at least my requests to the endpoint worked.
 
 The fetching code in Go turned out to be pretty similar to `FetchFirstPage`.
 
@@ -760,16 +761,10 @@ Similar to the last endpoint, I started by examining the output response.
         </div>
       </div>
       <div class="sectionColumn">
-        <div class="cls-section click_info" id="187336200_COMSCI0111-section">
-          <p class="hide-small">
-            <a
-              href="/ro/Public/SOC/Results/ClassDetail?term_cd=19F&amp;subj_area_cd=COM%20SCI&amp;crs_catlg_no=0111%20%20%20%20&amp;class_id=187336200&amp;class_no=%20001%20%20"
-              target="_blank"
-              title="Class Detail for 187336200"
-              >Lec 1</a
-            >
-          </p>
-        </div>
+        <div
+          class="cls-section click_info"
+          id="187336200_COMSCI0111-section"
+        ></div>
       </div>
       <div class="statusColumn" id="187336200_COMSCI0111-status_data">
         <p>
@@ -846,9 +841,9 @@ Similar to the last endpoint, I started by examining the output response.
 </div>
 ```
 
-It was a lot of HTML, so I don't blame you if you skimmed over it! The main thing to note is that this is the HTML that creates a table of sections! In fact, the rendered HTML looks like:
+It was a lot of HTML, so I don't blame you if you skimmed over it! The main thing to note is that this is the HTML that creates a table of sections! In fact, the rendered HTML looks very familiar:
 
-![](./table-rendered.png)
+![The rendered HTML. Surprise, it's a section row!](./table-rendered.png)
 
 I had already scraped this table with Puppeteer, so rewriting it in Go would be pretty straightforward.
 
@@ -886,26 +881,28 @@ Like before, `_` could be omitted and `FilterFlags` was constant. Also like befo
 </script>
 ```
 
-However, unlike `/CourseTitlesView` where we could extract this model out into a local variable and use it immediately, we’d need to store each course’s model somewhere when running `ScrapeCourses` then extract it in order to scrape the sections for that given course. The logical place to do this would be in the database, so I figured it was time to finally get around to storing the data I was scraping.
+However, unlike `/CourseTitlesView` where I could extract this model out into a local variable and use it immediately, I needed to store each course’s model somewhere when running `ScrapeCourses` then extract it in order to scrape the sections for that given course. The logical place to do this would be in the database, so I figured it was time to finally get around to storing the data I was scraping.
 
 ## Conclusion
 
 Sorry to leave you on a bit of a cliffhanger with the database schema, but I figured it was best to leave designing the database to its own post!
 
-I found this experiment into choosing a programming language to be a great way to improve my knowledge about each of the languages I explored. Python, when coupled with Requests and BeautifulSoup, is by far the easiest language to start scraping webpages with and is where I'd reccomend anyone interested in scraping start. Using a headless browser and library such as Selenium or Puppeteer sounds like a good alternative for dynamic content scraping, but is often too slow or unreliable to consistently use. In practice, any dynamic content you need to scrape is likely better received by just manually invoking the endpoint than attempting to render it on the page. Scraping in Go is definitely a more verbose option, but promises greater control and performance.
+I found this experiment into choosing a programming language to be a great way to improve my knowledge about each of the languages I explored. Python, when coupled with Requests and Beautiful Soup, is by far the easiest language to start scraping webpages with and is where I'd reccomend anyone interested in scraping start. Using a headless browser and library such as Selenium or Puppeteer sounds like a good alternative for dynamic content scraping, but is often too slow or unreliable to consistently use. In practice, any dynamic content you need to scrape is likely better received by just manually invoking the endpoint than attempting to render it on the page. Although the task of teasing apart URL request parameters can seem daunting, programs like your browser's developer tools and cURL make the task much more managable. Web scraping in Go is definitely a more verbose option, but promises greater control and performance.
 
-Now that I have seven months of hindsight on this project, I think that choosing Go was the correct choice for me at the time.[^9] An added bonus I didn't expect was that it forced me to learn Go as a language better.
+Now that I have seven months of hindsight on this project, I think that choosing Go was the correct choice for me at the time.[^11] As an added bonus, choosing Go for this project gave me experience with language features and libraries I wouldn't have otherwise had reason to use.
 
-As you start your next project, I'd encourage you to take a similar approach to the one I did here. You might find that a couple days of prototyping and refining lead to a much clearer vision of what to build and how to build it.
+As you start your next project, I'd encourage you to take a similar approach to the one I did here. You might find that a couple days of prototyping and refining your requirements lead to a much clearer vision of what to build and how to build it.
 
-<p className="text-gray-600 text-sm italic">Thanks to Timothy Gu and Ashley Sanders-Garcia for reviewing drafts of this post.</p>
+<p className="text-gray-600 text-sm italic">Thanks to Mackenzie Possee, Timothy Gu, and Ashley Sanders-Garcia for reviewing drafts of this post.</p>
 
-[^1]: Funnily enough, as I was working on this project, the Daily Bruin's Data Blog did a [similar scraping project](https://stack.dailybruin.com/2020/02/05/class-fill-ups/). However, I think my data is better for a few of reasons: it differentiates courses by time and professor, tracks graduate level classes, and has been scraping for a longer period of time.
-[^2]: I asked Registrar's Office if they keep any enrollment trend statistics. They snapshot enrollment changes at the end of weeks 3 and 8 of the quarter, but don't do any tracking of how many/which classes fill up during first vs. second enrollment passes.
-[^3]: There’s also a private list of classes available at [my.ucla.edu](http://my.ucla.edu/) that’s updated more frequently, but I figured that an hour resolution on enrollment data was a good place to start and would make my job easier.
-[^4]: The Department of Asian Languages and Culturses [offers](https://www.alc.ucla.edu/undergraduate/languages-offered/) courses in Chinese, Japanese, Korean, Filipino, Hindi-Urdu, Indonesian, Thai and Vietnamese, if you were curious.
-[^5]: The Stack article mentioned previously, "How Quickly Do Classes Fill Up?", also used Selenium to scrape their data. One of the authors, Andrew, later told me it took them about 30 minutes to completely scrape all of the courses from start to finish.
-[^6]: This later turned out to be a false assumption, but we’ll get there.
-[^7]: Although this is apparently changing in Requests 3, which I haven’t tried at all and is still experimental as of writing this.
-[^8]: You may be wondering why I didn't fetch the first page with `CoursesTitleView`. The main reason is that the endpoint doesn’t provide a page count, which meant I wouldn’t know how many additional pages to request.
-[^9]: Once I decided to deploy my scraper as Lambda functions, I think much of the appeal of Go's concurrency features becomes moot as multiple lambdas can run simultaneously, removing the need for concurrency from the language. I'll talk about this more in part two.
+[^1]: Funnily enough, as I was working on this project, the Daily Bruin's Data Blog did a [similar scraping project](https://stack.dailybruin.com/2020/02/05/class-fill-ups/). However, I think my data is better for a few reasons: it differentiates courses by time and professor, tracks graduate level classes, and has been scraping for a longer period of time.
+[^2]: I asked the Registrar's Office if they keep any enrollment trend statistics. They snapshot enrollment changes at the end of weeks 3 and 8 of the quarter, but don't do any tracking of how many/which classes fill up during first vs. second enrollment passes.
+[^3]: Full disclosure, I previously interned at Datadog.
+[^4]: There’s also a private list of classes available at [my.ucla.edu](http://my.ucla.edu/) that’s updated more frequently, but I figured that an hour resolution on enrollment data was a good place to start and would make my job easier.
+[^5]: The Department of Asian Languages and Culturses [offers](https://www.alc.ucla.edu/undergraduate/languages-offered/) courses in Chinese, Japanese, Korean, Filipino, Hindi-Urdu, Indonesian, Thai and Vietnamese, if you were curious.
+[^6]: The Stack article mentioned previously, "How Quickly Do Classes Fill Up?", also used Selenium to scrape their data. One of the authors, Andrew, later told me it took them about 30 minutes to completely scrape all of the courses from start to finish.
+[^7]: This later turned out to be a false assumption, but we’ll get there in part two.
+[^8]: Although this is apparently changing in Requests 3, which I haven’t tried at all and is still experimental as of writing this.
+[^9]: My only experience writing async Python code before this project when I had to [develop a proxy herd for my programming languages class](http://web.cs.ucla.edu/classes/winter18/cs131/hw/pr.html). Funnily enough, in the [project report](/cs131-async-python-report.pdf), I wrote: "I see the async module in Python as a very good step forward, but think that as of now, the ecosystem needs a little longer to grow and stabilize before writing code with it can become enjoyable." Although the statement is two years old now, I think it still holds true.
+[^10]: You may be wondering why I didn't fetch the first page with `CoursesTitleView`. The main reason is that the endpoint doesn’t provide a page count, which meant I wouldn’t know how many additional pages to request.
+[^11]: Once I decided to deploy my scraper as Lambda functions, I think much of the appeal of Go's concurrency features becomes moot as multiple functions can run simultaneously, removing the need for concurrency from the language. I'll talk about this more in part two.

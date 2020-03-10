@@ -13,7 +13,7 @@ This past summer, I was a returning software engineering intern at [Keybase](htt
 I formerly managed a team of 30 student developers and coded websites for my
 [school newspaper](https://dailybruin.com). Prior to that, I led web and mobile development for my [school radio station](https://uclaradio.com). I currently sit on the [publishing board](http://uclacommunicationsboard.org) for all student media at UCLA.
 
-I usually spend my free time bouldering, reading, or hacking on the odd side-project.
+I usually spend my free time bouldering, reading, or hacking on the odd side-project. I occasionally [write](/posts) about my technical adventures.
 
 The best way to contact me is via [email](mailto:nathan.smith@ucla.edu). For additional security, you can find my public key on [Keybase](https://keybase.io/nathunsmitty).
 

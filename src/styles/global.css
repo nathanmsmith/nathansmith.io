@@ -264,6 +264,10 @@ pre[class*='language-'] {
   @apply rounded;
 }
 
+code[class*='language-'] {
+  word-break: break-all;
+}
+
 .dropcap {
   @apply float-left;
   font-size: 75px;

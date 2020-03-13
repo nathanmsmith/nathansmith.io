@@ -13,7 +13,7 @@ import convertIndexQueryProjectsToProjects from '../utils/convertQueryToProject'
 
 export const query = graphql`
   query Index {
-    markdownRemark(fileAbsolutePath: { regex: "/index/" }) {
+    markdownRemark(fileAbsolutePath: { regex: "/content/index.md/" }) {
       htmlAst
     }
     projects: allMarkdownRemark(

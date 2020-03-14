@@ -824,7 +824,7 @@ For instance, there's an endpoint, `/ClassDetailTooltip`, that's triggered every
 
 ![The class tooltip UI.](./section-tooltip.png)
 
-I also would love to have more professor information than just the provided `LastName, FirstInitial` that the registrar provides. I briefly looked into converting this format into the format of `FirstInitial* LastName` – a format that one could then put into the [UCLA Directory](http://www.directory.ucla.edu/) to search and retrieve a full name – but the following privacy notice on the directory gave me pause:
+I also would love to have more professor information than just the provided "LastName, FirstInitial" that the registrar provides. I briefly looked into converting this format into the format of "FirstInitial\* LastName" – a format that one could then put into the [UCLA Directory](http://www.directory.ucla.edu/) to search and retrieve a full name – but the following privacy notice on the directory gave me pause:
 
 > To protect the privacy of the individuals listed herein, in accordance with the State of California Information Practices Act, this directory may not be used, rented, distributed or sold for commercial purposes. … Compilation or redistribution of information from this directory is strictly forbidden.
 
@@ -850,6 +850,14 @@ There are also probably better ways the current data could be stored in the data
 
 I also wonder if course times could be better stored – as an array of [ranges](https://www.postgresql.org/docs/current/rangetypes.html) of [times](https://www.postgresql.org/docs/current/datatype-datetime.html), perhaps, instead of as a string array.
 
+### Concurrency through lambda functions instead of goroutines
+
+I spent a good amount of time in part one of this series talking about how Go appealed to me as a language because of its accessible concurrency features, which allowed me to scrape endpoints in parallel. While this is true for local runs, it turns out that lambda functions generally only have one CPU core. As Luc Hendriks put it,
+
+> Instead of having 1 100-core computer, you have 100 1-core computers.
+
+I think a much better way of lambda-izing my scraper would be to have a lambda function that is give a specific course and just scrapes the sections for that particular course, rather than retrieve and scrape all courses. Of course, this design presents its own problems, such as requiring some type of connection pooling[^6] to ensure the database is overwhelmed.
+
 ## Conclusion
 
 Overall, this has been one of my favorite technical projects I've worked on. I'm super excited to continue developing it and I hope you found this writeup of it interesting and that it inspires you to go out and scrape a dataset of your own.
@@ -859,3 +867,4 @@ Overall, this has been one of my favorite technical projects I've worked on. I'm
 [^3]: In newer versions of SAM, you actually don't need to package – `deploy` implicitly does it for you! That change happened after I wrote the makefile.
 [^4]: E.g., computer science courses from Spring 2002: https://sa.ucla.edu/ro/Public/SOC/Results?t=02S&sBy=subject&subj=COM+SCI
 [^5]: I realize there's probably a better way to get a CSV into a Postgres table, but it was the first way that occurred to me.
+[^6]: I've been told [PgBouncer](https://www.pgbouncer.org/) is the connection pooler to use for Postgres.

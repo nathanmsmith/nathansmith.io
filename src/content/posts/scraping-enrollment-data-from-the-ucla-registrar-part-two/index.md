@@ -379,7 +379,7 @@ func ScrapeSections() {
 	}
 	courses = RetrieveCourses(db)
 
-  // Set up semaphore
+	// Set up semaphore
 	maxConnections, err := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
 	if err != nil {
 		return err
@@ -856,7 +856,7 @@ I spent a good amount of time in part one of this series talking about how Go ap
 
 > Instead of having 1 100-core computer, you have 100 1-core computers.
 
-I think a much better way of lambda-izing my scraper would be to have a lambda function that is give a specific course and just scrapes the sections for that particular course, rather than retrieve and scrape all courses. Of course, this design presents its own problems, such as requiring some type of connection pooling[^6] to ensure the database is overwhelmed.
+I think a much better way of lambda-izing my scraper would be to have a lambda function that is give a specific course and just scrapes the sections for that particular course, rather than retrieve and scrape all courses. Of course, this design presents its own problems, such as requiring some type of connection pooling[^6] to ensure the database is overwhelmed. However, this would mean I could get rid of the `maxConnections` code I use to ensure that the database isn't overwhelmed.
 
 ## Conclusion
 

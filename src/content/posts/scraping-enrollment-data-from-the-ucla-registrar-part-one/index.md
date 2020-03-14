@@ -2,6 +2,7 @@
 title: Scraping Enrollment Data From the UCLA Registrar, Part One
 subtitle: Lessons learned from rewriting the same web scraper in Python, JavaScript, and Go.
 date: '2020-03-09'
+draft: false
 ---
 
 <span class="dropcap">A</span>fter taking the first nine months of 2019 off from school to intern at several companies, I was excited to come back to UCLA and once again learn in a formal academic setting. I had a great fall schedule planned. I'd take Compiler Construction, Introduction to Digital Humanities, [the probability class taught entirely through Texas Hold' Em examples](http://www.stat.ucla.edu/~frederic/100a/F19/100asyllabusF19.html), and a computer science class taught by [Appfolio](https://www.appfolio.com/) engineers, [Scalable Internet Services](https://www.scalableinternetservices.com/).

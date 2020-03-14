@@ -5,7 +5,7 @@ date: '2020-03-14'
 draft: true
 ---
 
-<span class="dropcap">I</span>n [part one](/posts/scraping-enrollment-data-from-the-ucla-registrar-part-one) of this series, I discussed my initial exploration into scraping the various pages and APIs of the UCLA Registrar's online "[Schedule of Classes](https://sa.ucla.edu/ro/public/soc)" in order to extract enrollment data on classes at UCLA. After experimenting with a couple of different languages and libraries, I settled on writing the scraper in Go. I finished part one by writing the code to scrape all of the subject areas offered for a term and all of the courses for a given subject area, but did not finish the code to scrape a section, as I realized that scraping sections meant we'd have to store the courses we previously scraped somewhere.
+<span class="dropcap">I</span>n [part one](/posts/scraping-enrollment-data-from-the-ucla-registrar-part-one) of this series, I discussed my initial exploration into scraping the various pages and APIs of the UCLA Registrar's online [Schedule of Classes](https://sa.ucla.edu/ro/public/soc) in order to extract enrollment data on classes at UCLA. After experimenting with a couple of different languages and libraries, I settled on writing the scraper in Go. I finished part one by writing the code to scrape all of the subject areas offered for a term and all of the courses for a given subject area, but did not finish the code to scrape a section, as I realized that scraping sections meant we'd have to store the courses we previously scraped somewhere.
 
 This part of the post will finish up the discussion of the development of the scraper by covering how I stored the data I scraped – and finished up scraping all sections. I'll then discuss how I deployed the scraper onto AWS Lambda, various post-deployment bugs I encountered, and future improvements that could be made to the scraper. That's a lot, so let's hop right on in!
 
@@ -188,11 +188,16 @@ func RetrieveSubjectAreas(db *sql.DB) (subjectAreas []SubjectArea, err error) {
 	return subjectAreas, nil
 }
 
+db, err := ConnectToDatabase()
+if err != nil {
+  return err
+}
+var subjectAreas = RetrieveSubjectAreas(db)
 ```
 
 Note that we read out the unique ID that Postgres creates for each subject area, which we can then use to relate courses and subject areas when we call `SaveCourses`.
 
-## Scraping sections, part 2
+## Finally scraping sections
 
 Now that courses were being saved by `ScrapeCourses`, we could retrieve them in a `RetrieveCourses` function that queried the database and returned a Go slice, similar to the previous `RetrieveSubjectAreas`.
 
@@ -202,7 +207,13 @@ The top-level `ScrapeSections` function established the same parallel scraping t
 
 ```go
 func ScrapeSections() {
+	db, err := ConnectToDatabase()
+	if err != nil {
+		return err
+	}
+
   courses = RetrieveCourses()
+
 	for _, course := range courses {
 		wg.Add(1)
 		go func(course Course) {
@@ -219,7 +230,7 @@ func ScrapeSections() {
 }
 ```
 
-I'm not gonna go over `RetrieveCourses`, since `RetrieveSections` is pretty similar. Besides, the interesting stuff is in `FetchAndSaveSections`. In `FetchAndSaveSections`, we:
+I'm not gonna go over `RetrieveCourses`, since `RetrieveSubjectAreas` is pretty similar. Besides, the interesting stuff is in `FetchAndSaveSections`. In `FetchAndSaveSections`, we:
 
 1. Make a HTTP request to the endpoint with the section information we care about
 1. Parse the response
@@ -229,62 +240,60 @@ I'm not gonna go over `RetrieveCourses`, since `RetrieveSections` is pretty simi
 
 ```go
 func FetchAndSaveSections(course Course, db *sql.DB) error {
-	{
-    // Step 1: make HTTP request to /GetCourseSummary endpoint
-		const queryURL = "https://sa.ucla.edu/ro/Public/SOC/Results/GetCourseSummary"
-		req, err := http.NewRequest("GET", queryURL, nil)
-		if err != nil {
-			return err
-		}
-		params := req.URL.Query()
-		params.Add("model", course.Model)
-		params.Add("FilterFlags", FilterFlags)
-		req.URL.RawQuery = params.Encode()
-		response, err := client.Do(req)
-		if err != nil {
-			return err
-		}
-		defer response.Body.Close()
+	// Step 1: make HTTP request to /GetCourseSummary endpoint
+	const queryURL = "https://sa.ucla.edu/ro/Public/SOC/Results/GetCourseSummary"
+	req, err := http.NewRequest("GET", queryURL, nil)
+	if err != nil {
+		return err
+	}
+	params := req.URL.Query()
+	params.Add("model", course.Model)
+	params.Add("FilterFlags", FilterFlags)
+	req.URL.RawQuery = params.Encode()
+	response, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
 
-    // Step 2: parse the response into a goquery object
-		doc, err := goquery.NewDocumentFromReader(response.Body)
-		if err != nil {
-			return err
+	// Step 2: parse the response into a goquery object
+	doc, err := goquery.NewDocumentFromReader(response.Body)
+	if err != nil {
+		return err
+	}
+
+	// Step 3: iterate through each row of the section table
+	table := doc.Find("div[id$=-children]")
+	rows := table.ChildrenFiltered("div")
+	for i := range rows.Nodes {
+		row := rows.Eq(i)
+		rowID, exists := row.Attr("id")
+		if !exists {
+			return errors.New("could not find row id")
 		}
+		idRegex := regexp.MustCompile(`([0-9]+)_`)
+		matches := idRegex.FindStringSubmatch(rowID)
 
-    // Step 3: iterate through each row of the section table
-		table := doc.Find("div[id$=-children]")
-		rows := table.ChildrenFiltered("div")
-		for i := range rows.Nodes {
-			row := rows.Eq(i)
-			rowID, exists := row.Attr("id")
-			if !exists {
-				return errors.New("could not find row id")
-			}
-			idRegex := regexp.MustCompile(`([0-9]+)_`)
-			matches := idRegex.FindStringSubmatch(rowID)
+		// Step 4: extract the section information
+		sectionID := matches[1]
+		enrollmentData := strings.TrimSpace(row.Find("div[id$=-status_data]").Text())
+		enrollmentStatus, enrollmentCount := ParseEnrollmentData(sectionID, enrollmentData)
+		days := strings.TrimSpace(row.Find("div[id$=-days_data]").First().Text())
+		// ...
 
-      // Step 4: extract the section information
-			sectionID := matches[1]
-      enrollmentData := strings.TrimSpace(row.Find("div[id$=-status_data]").Text())
-			enrollmentStatus, enrollmentCount := ParseEnrollmentData(sectionID, enrollmentData)
-			days := strings.TrimSpace(row.Find("div[id$=-days_data]").First().Text())
-      // ...
-
-      // Step 5: save section to database
-			section := registrar.Section{
-				SectionID:          sectionID,
-				CourseID:           course.ID,
-        EnrollmentStatus:   enrollmentStatus,
-				EnrollmentCount:    enrollmentCount,
-				Days:               days,
-        // ...
-			}
-			SaveSection(section, db)
+		// Step 5: save section to database
+		section := registrar.Section{
+			SectionID:        sectionID,
+			CourseID:         course.ID,
+			EnrollmentStatus: enrollmentStatus,
+			EnrollmentCount:  enrollmentCount,
+			Days:             days,
+			// ...
 		}
+		SaveSection(section, db)
+	}
 	return nil
 }
-
 ```
 
 `ParseEnrollmentData` employs a lot of conditional logic and regexes to properly parse the numbers and status of a class.[^1] I'll get to it in a bit, but just pretend it works for now.
@@ -324,7 +333,7 @@ INSERT INTO enrollment_data (
 	err := db.QueryRow(insertSection,
 		section.SectionID,
 		section.CourseID,
-  	...
+		...
 	).Scan(&id)
 	if err != nil {
 		log.Error(err)
@@ -335,7 +344,7 @@ INSERT INTO enrollment_data (
 		id,
 		section.EnrollmentCount,
 		section.WaitlistCount,
-    ...
+		...
 	)
 	if err != nil {
 		log.Error(err)
@@ -350,49 +359,64 @@ And with that, the scraper was complete! It locally could scrape subjects, cours
 
 It just now needed to be run every hour.
 
-## Going Serverless
+## Going serverless
 
 Running the scraper every hour meant I'd need to do some kind of job scheduling on remote server – it wasn't practical to keep my laptop running every hour and scrape from my home network. My initial thought was to use [cron](https://en.wikipedia.org/wiki/Cron) on a Digital Ocean droplet or similar, but I didn't like the idea of paying for a server to run 24/7 just so it could execute a ~5 minute script every hour. JavaScript Twitter loves to talk about the magic of running semi-occasional jobs in a serverless manner, so I decided to look into it as a cheaper and simpler option.
 
-There are a lot of different "Functions as a Service" providers out there, but I figured I'd go with AWS Lambda since they had a generous free plan, supported Go, and seemed to be pretty popular. The AWS console is a daunting webpage, so I was also looking for a tool that could allow me to write my infrastructure as code. There are a ton of different options in this space: [Serverless](https://serverless.com/), [Terraform](https://www.terraform.io/), and [CloudFormation](https://aws.amazon.com/cloudformation/) were just some of the options I looked at.
+There are a lot of different "Functions as a Service" providers out there, but I figured I'd go with [AWS Lambda](https://aws.amazon.com/lambda/) since they had a generous free plan, supported Go, and seemed to be pretty popular. The AWS console is a daunting webpage, so I was also looking for a tool that could allow me to write my infrastructure as code. There are a ton of different options in this space: [Serverless](https://serverless.com/), [Terraform](https://www.terraform.io/), and [CloudFormation](https://aws.amazon.com/cloudformation/) were just some of the options I looked at.
 
-Ultimately, I went with [AWS SAM](https://aws.amazon.com/serverless/sam/) because it came with good examples, was easy to set up, was highly integrated with AWS services, and had support for offline testing. This was my first foray into working with AWS and I found it immensely helpful to use a simpler tool that shared all its terminology with AWS. The biggest con of SAM I found was that it's less popular than some of the bigger tools, and it was tough to figure out how to utilize some of its lesser know features.
+Ultimately, I went with [AWS SAM](https://aws.amazon.com/serverless/sam/) because it came with good examples, was easy to set up, was highly integrated with AWS services, and had support for offline testing. This was my first foray into working with AWS and I found it immensely helpful to use a simpler tool that shared all its terminology with AWS. The biggest con of SAM I found was that it's less popular than some of the bigger tools, and it was tough to figure out how to utilize some of its lesser known features.
 
-Setting up a lambda function is pretty easy, once you have a solid grasp on various components of AWS. In Go, you have to call `lambda.Start` in your `main` function with a handler function. The handler function can take in a `struct` of data. Here's an example for `ScrapeSubjectAreas`:
+Setting up a lambda function is pretty easy, once you have a solid grasp on various components of AWS. There are AWS-provided libraries for all the supported lambda languages/runtimes that allow you to the define the logical start function, which AWS calles a "handler function". In Go, you have to call `lambda.Start` in your `main` function with the handler function as an argument. Here's what `ScrapeSections` looked like, once lambda-ized:
 
 ```go
 import "github.com/aws/aws-lambda-go/lambda"
 
-func HandleRequest() error {
-	log.Info("Starting request")
-
+func ScrapeSections() {
 	db, err := ConnectToDatabase()
 	if err != nil {
 		return err
 	}
+	courses = RetrieveCourses(db)
 
-	subjectAreas := ScrapeSubjectAreas(content)
-	SaveSubjectAreas(db, subjectAreas)
+  // Set up semaphore
+	maxConnections, err := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
+	if err != nil {
+		return err
+	}
+	sem := make(chan struct{}, maxConnections)
 
-	return nil
+	for _, course := range courses {
+		wg.Add(1)
+		go func(course Course) {
+			sem <- struct{}{}
+			defer func() { <-sem }()
+			defer wg.Done()
+			err := FetchAndSaveSections(course, db)
+			if err != nil {
+				log.Error(err)
+			}
+		}(course)
+	}
+	wg.Wait()
 }
 
 func main() {
-	lambda.Start(HandleRequest)
+	lambda.Start(ScrapeSections)
 }
 
 
 ```
 
-Once your code is lambda-ized, you create a `template.yaml` file that defines your function. Here's what it looks like for `ScrapeSections`:
+From a design perspective, I decided it made sense to make my three main functions: `ScrapeSubjectAreas`, `ScrapeCourses`, and `ScrapeSections` each its own lambda function. This allowed me to set a different schedule for each function: sections would be scraped hourly, but course and subject area updates could be scraped less frequently.[^2] In addition to scheduling, this distinction helped distinguish each lambda's role and prevented the scraper from becoming too monolithic.
+
+Once your function is written, SAM requires a `template.yaml` file. This file defines your function, any other AWS resources it needs, environment variables, etc. SAM uses this file locally in order to create a Docker environment so that you can test your function, as well as to to simplify production deployments.
+
+Here's what the `template.yaml` looks like for `ScrapeSections`:
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  ScrapeSections
-
-  A lambda function to scrape all course sections from the UCLA registrar.
 
 Globals:
   Function:
@@ -416,10 +440,10 @@ Resources:
       Environment:
         Variables:
           DB_MAX_CONNECTIONS: 75
-          DB_USER:
-          DB_PASS:
-          DB_HOST:
-          DB_NAME:
+          DB_USER: nathan
+          DB_PASS: password
+          DB_HOST: my-db.example.com
+          DB_NAME: registrar_data
 Outputs:
   ScrapeSectionsFunction:
     Description: 'ScrapeSections ARN'
@@ -432,9 +456,11 @@ Outputs:
 A lot of this is boilerplate that I generated from the AWS Go [example template.yaml](https://github.com/awslabs/aws-sam-cli-app-templates/blob/master/go1.x/cookiecutter-aws-sam-hello-golang/%7B%7Bcookiecutter.project_name%7D%7D/template.yaml). The interesting bits are:
 
 - I set environment variables via the `Environment.Variables` property on the resource. Environment variables include the max connection limit and DB login info.
-- The `Events` section is where I schedule the scraping, which happens hourly for sections.[^6] AWS [supports cron syntax](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html)!
+- The `Events` section is where I schedule the scraping, which happens hourly for sections.[^2] AWS [supports cron syntax](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html)!
 
-From that, I was ready to test locally (and then deploy!) To locally test your code, SAM provides a command, `sam local invoke`. For Go, you also need to compile your changes before you can `invoke` them. I found myself using `go build` and `sam local invoke` a lot, so I started a simple makefile.
+From that, I was ready to test locally (and then deploy!) To locally test your code, SAM provides a command, [`sam local invoke`](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html). `invoke` takes a `--event` argument that is a path to a JSON file representing event data passed into the lambda. Since I don't pass any data into the lambdas, I just made a simple empty JSON file to test with.
+
+For Go, you also need to compile your changes before you can `invoke` them. I found myself using `go build` and `sam local invoke` a lot, so I started a simple makefile.
 
 ```makefile
 build:
@@ -446,7 +472,7 @@ local: build
 
 Now I could just type `make local` and run the scraper locally!
 
-The makefile also ended up being useful for deployment, where you have to first package the build, then deploy it.
+The makefile also ended up being useful for deployment, where you have to first [package](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-package.html) the build, then [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) it.[^3]
 
 ```makefile
 S3_BUCKET=my-s3-bucket-url
@@ -471,13 +497,13 @@ I chose `us-west-1` as my availability zone, as it was the closest to the UCLA s
 
 If my scrapers would be running every hour, I needed to have a database that would always be available. [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) was perfect for my needs. The database runs `db.t2.micro` instance because it's free and works well enough.
 
-## Logging and Error Detection
+## Logging and error detection
 
 After deploying the functions and letting them run for a couple of days, I soon realized that there was no error detection the functions.
 
 Since I'm pretty familiar with Datadog and they offer a great [free student plan](https://www.datadoghq.com/blog/datadog-github-student-developer-pack/), it was a no-brainer that I'd use Datadog. For Go logging, they [recommend](https://www.datadoghq.com/blog/go-logging/) [Logrus](https://github.com/Sirupsen/logrus), which was super easy to set up.
 
-An interesting quirk I found is that Logrus seems to only be initializable in Go's [init](https://golang.org/doc/effective_go.html#init) function, not `main`. So every function has an `init` that looks like:
+An interesting quirk I found is that Logrus seems to only be initializable in Go's [init](https://golang.org/doc/effective_go.html#init) function, not `main`. So every lambda function has an `init` that looks like:
 
 ```go
 func init() {
@@ -486,17 +512,9 @@ func init() {
 
 ```
 
-`InitializeLogging` is pretty straightforward.
+`InitializeLogging` is pretty straightforward. I use `LOGGING` environment variable to distinguish between environments I'm testing in vs production. In production, I want to log in json because it goes to Datadog, but locally, it's easier to see log output as text.
 
 ```go
-import (
-	"os"
-
-	log "github.com/sirupsen/logrus"
-)
-
-
-
 func InitializeLogging() {
 	if os.Getenv("LOGGING") == "json" {
 		log.SetFormatter(&log.JSONFormatter{})
@@ -512,18 +530,20 @@ func InitializeLogging() {
 
 	log.Info("Logging Initialized")
 }
-
 ```
 
-## Fine tuning the Regular Expressions
+## Fine tuning the regular expressions
 
 Over the first few months of scraping the registrar, I ran into some edge cases that my original regular expressions couldn't handle. For example: a class that is closed by a department but has enrolled students.
 
 ![Comm 171, which is closed even with an enrollment of over 100 students. A lot of upper div Comm classes are closed like this, perhaps department policy is to close these sections after second or third week?](./comm-171.png)
 
-After many tweaks, I've settled on the following for enrollment statuses:
+Originally, my scraper was just marking this section as closed with an enrollment count of 0! That wouldn't work at all.
+
+After many tweaks, I've settled on the following regular expressions for enrollment and waitlist statuses.
 
 ```go
+// Enrollment regexes
 var tenativeRegex = regexp.MustCompile(`^Tenative`)
 var canceledRegex = regexp.MustCompile(`^Cancelled`)
 var closedByDeptRegex = regexp.MustCompile(`^Closed by Dept[a-zA-Z,/ ]*(\((?P<Capacity>\d+) capacity, (?P<EnrolledCount>\d+) enrolled, (?P<WaitlistedCount>\d+) waitlisted\))?`)
@@ -531,7 +551,10 @@ var classFullRegex = regexp.MustCompile(`ClosedClass Full \((?P<Capacity>\d+)\)(
 var classOpenRegex = regexp.MustCompile(`Open(\d+) of (\d+) Enrolled(\d+) Spots? Left`)
 var waitlistOnlyRegex = regexp.MustCompile(`^Waitlist$`)
 var waitlistFullRegex = regexp.MustCompile(`^WaitlistClass Full \((?P<Capacity>\d+)\)(, Over Enrolled By (?P<OverenrolledCount>\d+))?`)
-
+// Waitlist regexes
+var waitlistOpenRegex = regexp.MustCompile(`(\d+) of (\d+) Taken`)
+var noWaitlistRegex = regexp.MustCompile(`No Waitlist`)
+var waitlistClosedRegex = regexp.MustCompile(`Waitlist Full \((\d+)\)`)
 ```
 
 Like most regular expressions, these can seem daunting at first but actually don't use many regular expression features.
@@ -541,20 +564,72 @@ Like most regular expressions, these can seem daunting at first but actually don
 - Match 0 or 1 `?`
 - Match 1 or more `*`
 - Match digits `\d`
-- Capturing groups `()`, and named capturing groups
+- Capturing groups `()` and named capturing groups `(?P<name>...)`
 
-Note that the waitlist options are a little easier to parse.
+The named capturing groups are especially useful, as I use a function that extracts all named matches out of a string into a map:
 
 ```go
-// Waitlist Regexes
-var waitlistOpenRegex = regexp.MustCompile(`(\d+) of (\d+) Taken`)
-var noWaitlistRegex = regexp.MustCompile(`No Waitlist`)
-var waitlistClosedRegex = regexp.MustCompile(`Waitlist Full \((\d+)\)`)
+func CreateRegexMatchMap(re *regexp.Regexp, str string) (matchMap map[string]string) {
+	match := re.FindStringSubmatch(str)
+	matchMap = make(map[string]string)
+	for i, name := range re.SubexpNames() {
+		if i > 0 && i <= len(match) {
+			matchMap[name] = match[i]
+		}
+	}
+	return matchMap
+}
 ```
 
-Most regexes make use of capturing groups in order to extract relevant strings/integers. Some of them even make use of capturing groups in capturing groups, which I found to become unwieldy. Now, all groups that need to be captured are named, using Go's named capturing groups.
+This makes parsing the info from one of the above regexes much easier to understand. For example, here's the code for a function that parses and returns the numbers from a section that is closed, like Comm 171.
 
-### Handling Multiple Locations/Times/Professors
+```go
+func ParseClosedStatus(enrollmentData string) (enrollmentStatus string, enrollmentCount, enrollmentCapacity int) {
+	enrollmentStatus = "Closed"
+	matchMap := CreateRegexMatchMap(closedByDeptRegex, enrollmentData)
+
+	enrollmentCount, err := strconv.Atoi(matchMap["Capacity"])
+	if err != nil {
+		log.Error("cannot parse capacity")
+	}
+
+	count, err := strconv.Atoi(matchMap["EnrolledCount"])
+	if err != nil {
+		log.Error("cannot parse enrollment count")
+	}
+
+	return enrollmentStatus, enrollmentCount, enrollmentCapacity
+}
+```
+
+Remember the `ParseEnrollmentData` function that appeared earlier? It basically just determines which `ParseXStatus` to run.
+
+```go
+func ParseEnrollmentData(sectionID, enrollmentData string) (enrollmentStatus string, enrollmentCount, enrollmentCapacity int) {
+	if tenativeRegex.MatchString(enrollmentData) {
+		enrollmentStatus = "Tenative"
+	} else if canceledRegex.MatchString(enrollmentData) {
+		enrollmentStatus = "Cancelled"
+	} else if closedByDeptRegex.MatchString(enrollmentData) {
+		return ParseClosedStatus(sectionID, enrollmentData)
+	} else if classFullRegex.MatchString(enrollmentData) {
+		return ParseFullStatus(sectionID, enrollmentData)
+	} else if classOpenRegex.MatchString(enrollmentData) {
+		return ParseOpenStatus(sectionID, enrollmentData)
+	} else if waitlistFullRegex.MatchString(enrollmentData) {
+		return ParseWaitlistStatus(sectionID, enrollmentData)
+	} else if waitlistOnlyRegex.MatchString(enrollmentData) {
+		enrollmentStatus = "Waitlist"
+	} else {
+		log.WithFields(log.Fields{"enrollmentData": enrollmentData}).Error("unrecognized string")
+	}
+	return enrollmentStatus, enrollmentCount, enrollmentCapacity
+}
+```
+
+I've found parsing info from regexes like this to be pretty robust.
+
+### Handling multiple locations/times/professors
 
 I initially assumed that a section could only have one location, time, or professor. Not true! For example, take Theater 134E: Dance for Musical Theater III.
 ![4 instructors, 3 days, 3 times, and 2 locations!](./theater-134e.png)
@@ -579,7 +654,7 @@ The first few lines clean up the text by stripping extraneous HTML tags, removin
 
 Postgres has [support for arrays](https://www.postgresql.org/docs/current/arrays.html), so all I needed to do then was update the database schema and wrap the arrays in [pq.Array()](https://godoc.org/github.com/lib/pq#Array) when inserting them.
 
-The database migration ended up looking like this; it uses Postgres' [string_to_array](https://www.postgresql.org/docs/current/functions-array.html) function.
+The database migration ended up looking like this; it uses Postgres' [`string_to_array`](https://www.postgresql.org/docs/current/functions-array.html) function.
 
 ```sql
 BEGIN;
@@ -616,15 +691,15 @@ err := db.QueryRow(insertSection,
 )
 ```
 
-## Scraping Multiple Terms
+## Scraping multiple terms
 
 I originally wrote the scraper last summer, to scrape Fall 2019 classes at UCLA. As winter rolled around, I realized I needed to update the scraper and database to accommodate multiple terms.
 
 My initial approach to multiple terms was to create a new database for each term. My original database was named to `fall2019` and the new database was renamed to `winter2020`. However, this didn't seem like a sustainable option, especially if I wanted to compare data across terms.
 
-Around this time, my friend [Richard](http://ryang72.com/) also pointed out an interesting tidbit to me: even though they weren't listed on the main "Schedule of Classes" page, one could create course search page urls for any term back to 1999 by modifying the `t` variable. The webpages were all in the same format as the current page, so I could scrape 20 years of course enrollment data. This was exciting.
+Around this time, my friend [Richard](http://ryang72.com/) also pointed out an interesting tidbit to me: even though they weren't listed on the main Schedule of Classes page, one could create course search page urls for any term back to 1999 by modifying the `t` variable.[^4] The webpages were all in the same format as the current page, so I could scrape 20 years of course enrollment data. This was exciting.
 
-### Subject Area Changes
+### Subject area changes
 
 I set out to think about how multiple terms would affect my current data, and how the schema could grow to handle more courses/sections. I figured the easiest place to start would be with subject areas, which should be constant throughout terms.
 
@@ -635,7 +710,7 @@ I was pretty stumped on this, so I sent an email over to the registrar asking if
 
 ![Back in business!](./excel.png)
 
-After converting the spreadsheet into a csv and writing a quick script to parse the csv and insert it into the database[^7], I was ready to scrape courses.
+After converting the spreadsheet into a csv and writing a quick Python script to parse the csv and insert it into the database[^5], I was ready to scrape courses.
 
 ### Course changes
 
@@ -727,11 +802,11 @@ ALTER TABLE sections ADD UNIQUE (section_id, term);
 
 ### Scraping 20 years of data
 
-Even though my scraper was pretty fast compared to the other solutions I knew of, it took me just over an hour to scrape all of the courses from 1999 to present. I ended up scraping all the sections in batches over the period of a few days. But, then I was done!
+Even though my scraper was pretty fast compared to the other solutions I knew of, it took me just over an hour to scrape all of the courses from 1999 to present. (I did all the scraping locally, and not on AWS because I only needed to scrape this data once and not every hour.) I ended up scraping all the sections in batches over the period of a few days.
 
 ## What are you doing with this data?
 
-That's a good question. As I mentioned in the beginning, I'm currently doing a digital humanities project exploring enrollments trends over the past 20 years. I'll be publishing my dataset (this data) as part of that project.
+As I mentioned in part one, I'm currently doing a digital humanities project exploring enrollments trends over the past 20 years. I'll be publishing my dataset (this data) as part of that project.
 
 I've also heard from my friends who run services such as [Bruinwalk](https://bruinwalk.com/) or [Radius](https://tinyurl.com/radius-app) that they'd be interested in using this data to integrate more accurate section offerings into a given quarter. I'm exploring creating an API service so that they and other UCLA student developers can create awesome new things.
 
@@ -757,7 +832,7 @@ While I understand how information such as one's name is considered personal inf
 
 I'm currently working on some improvements to scrape data about departments, divisions, schools, buildings, and classrooms. Stay tuned – there may be another blog post about that.
 
-### Summer Courses
+### Summer courses
 
 Another source of data that the registrar scraper doesn't collect is data on summer courses at UCLA. This is mainly because Summer courses vary in length and duration, which makes it hard to classify what a summer term is. Is it all the same term? Are A and C session different terms? What about 6 vs. 8 vs. 10 week courses?
 
@@ -780,5 +855,7 @@ I also wonder if course times could be better stored – as an array of [ranges]
 Overall, this has been one of my favorite technical projects I've worked on. I'm super excited to continue developing it and I hope you found this writeup of it interesting and that it inspires you to go out and scrape a dataset of your own.
 
 [^1]: There's also a `ParseWaitlistData` function that functions similarly. I omitted it from the code sample from brevity.
-[^2]: Courses are scraped daily, subject areas are scraped on a pretty ad-hoc basis.
-[^3]: I realize there's probably a better way to get a CSV into a Postgres table, but it was the first way that occurred to me.
+[^2]: Courses are updated every 24 hours. Subject areas are scraped on a pretty ad-hoc basis.
+[^3]: In newer versions of SAM, you actually don't need to package – `deploy` implicitly does it for you! That change happened after I wrote the makefile.
+[^4]: E.g., computer science courses from Spring 2002: https://sa.ucla.edu/ro/Public/SOC/Results?t=02S&sBy=subject&subj=COM+SCI
+[^5]: I realize there's probably a better way to get a CSV into a Postgres table, but it was the first way that occurred to me.

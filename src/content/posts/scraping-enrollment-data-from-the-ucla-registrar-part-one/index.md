@@ -221,7 +221,7 @@ async function scrapeDepartment(page, link) {
 }
 ```
 
-### Fetching Sections
+### Fetching sections
 
 Courses are cool, but the data that's really interesting is data for a section. This is where info about the location, the instructor, and enrollment is.
 

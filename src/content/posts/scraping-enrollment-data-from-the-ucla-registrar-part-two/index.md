@@ -1,7 +1,9 @@
+---
 title: Scraping Enrollment Data From the UCLA Registrar, Part Two
 subtitle: Designing a database schema to handle 20 years of course enrollment data, plus deploying the scraper on AWS Lambda.
 date: '2020-03-14'
 draft: true
+---
 
 <span class="dropcap">I</span>n [part one](/posts/scraping-enrollment-data-from-the-ucla-registrar-part-one) of this series, I discussed my initial exploration into scraping the various pages and APIs of the UCLA Registrar's online [Schedule of Classes](https://sa.ucla.edu/ro/public/soc) in order to extract enrollment data on classes at UCLA. After experimenting with a couple of different languages and libraries, I settled on writing the scraper in Go. I finished part one by writing the code to scrape all of the subject areas offered for a term and all of the courses for a given subject area, but did not finish the code to scrape a section, as I realized that scraping sections meant I'd have to store the courses I previously scraped somewhere.
 
@@ -11,7 +13,7 @@ Part two of the post will finish up the discussion of the development of the scr
 
 It was finally time to put the data I was scraping into a database. I had heard a lot of great things about [PostgreSQL](https://www.postgresql.org/), so I decided to try it.
 
-Although I was initially only interested in the data of individual sections, I realized that'd it'd make sense to have three tables: one for subject areas, one for courses, and one for sections. This way, I could use the information from one table in scraping the data for another, reducing the number of network requests to the site I'd have to make!
+Although I was initially only interested in the data of individual sections, I realized that'd it'd make sense to have three tables: one for subject areas, one for courses, and one for sections. This way, I could use the information from one table in scraping the data for another, reducing the number of network requests to the site I'd have to make.
 
 My initial stab at writing the schema looked like this:
 
@@ -353,7 +355,7 @@ INSERT INTO enrollment_data (
 }
 ```
 
-And with that, the scraper was complete! It locally could scrape subjects, courses, and sections and save them all in a local Postgres database. I tried running it locally and it worked!
+And with that, the scraper was complete. It locally could scrape subjects, courses, and sections and save them all in a local Postgres database. I tried running it locally and it worked!
 
 It just now needed to be run every hour.
 
@@ -454,9 +456,9 @@ Outputs:
 A lot of this is boilerplate that I generated from the AWS Go [example template.yaml](https://github.com/awslabs/aws-sam-cli-app-templates/blob/master/go1.x/cookiecutter-aws-sam-hello-golang/%7B%7Bcookiecutter.project_name%7D%7D/template.yaml). The interesting bits are:
 
 - I set environment variables via the `Environment.Variables` property on the resource. Environment variables include the max connection limit and DB login info.
-- The `Events` section is where I schedule the scraping, which happens hourly for sections.[^2] AWS [supports cron syntax](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html)!
+- The `Events` section is where I schedule the scraping, which happens hourly for sections.[^2] AWS [supports cron syntax](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html).
 
-From that, I was ready to test locally (and then deploy!) To locally test your code, SAM provides a command, [`sam local invoke`](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html). `invoke` takes a `--event` argument that is a path to a JSON file representing event data passed into the lambda. Since I don't pass any data into the lambdas, I just made a simple empty JSON file to test with.
+From that, I was ready to test locally (and then deploy!). To locally test your code, SAM provides a command, [`sam local invoke`](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-invoke.html). `invoke` takes a `--event` argument that is a path to a JSON file representing event data passed into the lambda. Since I don't pass any data into the lambdas, I just made a simple empty JSON file to test with.
 
 For Go, you also need to compile your changes before you can `invoke` them. I found myself using `go build` and `sam local invoke` a lot, so I started a simple makefile.
 
@@ -468,7 +470,7 @@ local: build
 	sam local invoke --event event.json
 ```
 
-Now I could just type `make local` and run the scraper locally!
+Now I could just type `make local` and run the scraper locally.
 
 The makefile also ended up being useful for deployment, where you have to first [package](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-package.html) the build, then [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) it.[^3]
 
@@ -629,7 +631,7 @@ I've found parsing info from regexes like this to be pretty robust.
 
 ### Handling multiple locations/times/professors
 
-I initially assumed that a section could only have one location, time, or professor. Not true! For example, take Theater 134E: Dance for Musical Theater III.
+I initially assumed that a section could only have one location, time, or professor. Not true. For example, take Theater 134E: Dance for Musical Theater III.
 ![4 instructors, 3 days, 3 times, and 2 locations!](./theater-134e.png)
 
 Yikes! How would the scraper handle that?
@@ -740,7 +742,7 @@ For `ClassNumber`, there was a more subtle issue. There are some courses in UCLA
 
 ![Two sections of "Applying Science of Happiness to Life Desgin".](./mgmt-298d.png)
 
-There were multiple sections of the same course, listed as if they were different courses! The two sections of "Applying Science of Happiness to Life Desgin" had ever so slightly different models:
+There were multiple sections of the same course, listed as if they were different courses. The two sections of "Applying Science of Happiness to Life Desgin" had ever so slightly different models:
 
 ```json
 {
@@ -772,7 +774,7 @@ There were multiple sections of the same course, listed as if they were differen
 }
 ```
 
-I wondered what would happen if I set `ClassNumber` to `%` instead of a number. Initially, I got a 404 error, but with some updating of `Path` and `Token` so that they didn't refer to a specific section number, I got a response. It was the markup for all sections of MGMT 298D! Unfortunately, however, there was no title or distinguishing features for each row, just the section's number. When scraping courses, I'd need to associate each course title listed with a section number, then, when scraping sections, recall these numbers to parse out which section belongs to which course.
+I wondered what would happen if I set `ClassNumber` to `%` instead of a number. Initially, I got a 404 error, but with some updating of `Path` and `Token` so that they didn't refer to a specific section number, I got a response. It was the markup for all sections of MGMT 298D. Unfortunately, however, there was no title or distinguishing features for each row, just the section's number. When scraping courses, I'd need to associate each course title listed with a section number, then, when scraping sections, recall these numbers to parse out which section belongs to which course.
 
 So I made a new table in the database, `course_section_indices`, specifically for this. It keeps track of which courses are offered under which section number for a term. Note that only courses with variable titles, like MGMT 298D, end up in this table.
 
@@ -815,7 +817,7 @@ There is still a lot of interesting work that could be done to improve the scrap
 
 ### More data
 
-Even though I'm currently scraping a lot of data from the Registrar, there's still more that could be obtained!
+Even though I'm currently scraping a lot of data from the Registrar, there's still more that could be obtained.
 
 For instance, there's an endpoint, `/ClassDetailTooltip`, that's triggered every time a detail tooltip is opened on a course. This tooltip provides info about prerequisites, enrollment restrictions, grading type, the class webpage, and final exam time.
 
@@ -835,13 +837,13 @@ The same section at UCLA can be listed under two different departments. Right no
 
 ### Better storage of values
 
-There are also probably better ways the current data could be stored in the database! Days are stored as an array of string, although since there are only seven days (and a couple of other values, such as "Varies", "Tentative", "Not Scheduled", etc.), I've wondered if this could become an [enum](https://www.postgresql.org/docs/current/datatype-enum.html). The tricky part about converting it to an enum would be handling courses that have multiple days/times.
+There are also probably better ways the current data could be stored in the database. Days are stored as an array of string, although since there are only seven days (and a couple of other values, such as "Varies", "Tentative", "Not Scheduled", etc.), I've wondered if this could become an [enum](https://www.postgresql.org/docs/current/datatype-enum.html). The tricky part about converting it to an enum would be handling courses that have multiple days/times.
 
 I also wonder if course times could be better stored – as an array of [ranges](https://www.postgresql.org/docs/current/rangetypes.html) of [times](https://www.postgresql.org/docs/current/datatype-datetime.html), perhaps, instead of as a string array.
 
 ### Concurrency through lambda functions instead of goroutines
 
-I spent a good amount of time in part one of this series talking about how Go appealed to me as a language because of its accessible concurrency features, which allowed me to scrape endpoints in parallel. While this is true for local runs, it turns out that lambda functions generally only have one CPU core. As Luc Hendriks put it,
+I spent a good amount of time in part one of this series talking about how Go appealed to me as a language because of its accessible concurrency features, which allowed me to scrape endpoints in parallel. While this is true for local runs, it turns out that lambda functions generally only have one CPU core. As Luc Hendriks [put it](https://stackoverflow.com/a/34257238),
 
 > Instead of having 1 100-core computer, you have 100 1-core computers.
 
@@ -853,7 +855,7 @@ Overall, this has been one of my favorite technical projects I've worked on. I'm
 
 [^1]: There's also a `ParseWaitlistData` function that functions similarly. I omitted it from the code sample from brevity.
 [^2]: Courses are updated every 24 hours. Subject areas are scraped on a pretty ad-hoc basis.
-[^3]: In newer versions of SAM, you actually don't need to package – `deploy` implicitly does it for you! That change happened after I wrote the makefile.
+[^3]: In newer versions of SAM, you actually don't need to package – `deploy` implicitly does it for you.
 [^4]: E.g., computer science courses from Spring 2002: https://sa.ucla.edu/ro/Public/SOC/Results?t=02S&sBy=subject&subj=COM+SCI
 [^5]: I realize there's probably a better way to get a CSV into a Postgres table, but it was the first way that occurred to me.
 [^6]: I've been told [PgBouncer](https://www.pgbouncer.org/) is the connection pooler to use for Postgres.

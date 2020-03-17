@@ -2,7 +2,7 @@
 title: Scraping Enrollment Data From the UCLA Registrar, Part Two
 subtitle: Designing a database schema to handle 20 years of course enrollment data, plus deploying the scraper on AWS Lambda.
 date: '2020-03-14'
-draft: true
+draft: false
 ---
 
 <span class="dropcap">I</span>n [part one](/posts/scraping-enrollment-data-from-the-ucla-registrar-part-one) of this series, I discussed my initial exploration into scraping the various pages and APIs of the UCLA Registrar's online [Schedule of Classes](https://sa.ucla.edu/ro/public/soc) in order to extract enrollment data on classes at UCLA. After experimenting with a couple of different languages and libraries, I settled on writing the scraper in Go. I finished part one by writing the code to scrape all of the subject areas offered for a term and all of the courses for a given subject area, but did not finish the code to scrape a section, as I realized that scraping sections meant I'd have to store the courses I previously scraped somewhere.

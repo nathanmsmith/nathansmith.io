@@ -1,7 +1,7 @@
 ---
 title: Scraping Enrollment Data From the UCLA Registrar, Part Two
 subtitle: Designing a database schema to handle 20 years of course enrollment data, plus deploying the scraper on AWS Lambda.
-date: '2020-03-14'
+date: '2020-03-16'
 draft: false
 ---
 

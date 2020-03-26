@@ -14,7 +14,7 @@ export function Head(props: HeadProps) {
   const title = props.pageTitle
     ? props.pageTitle + ' | ' + props.siteTitle
     : props.siteTitle
-  const imageUrl = siteURL + '/nathan.jpg'
+  const imageUrl = props.siteUrl + '/nathan.jpg'
   return (
     <Helmet>
       <title>{title}</title>

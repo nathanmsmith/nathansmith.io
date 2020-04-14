@@ -15,7 +15,9 @@ export const query = graphql`
       timeToRead
       tableOfContents
       frontmatter {
+        toc
         title
+        link
         subtitle
         date(formatString: "MMMM D, YYYY")
         draft
@@ -33,7 +35,7 @@ const Post = ({ data }: { data: PostQuery }) => {
   const post = data.markdownRemark
   const isDraft = data.markdownRemark.frontmatter.draft
   const content = post.htmlAst
-  const { title, subtitle } = post.frontmatter
+  const { title, subtitle, toc, link } = post.frontmatter
   return (
     <>
       <Head pageTitle={title} />
@@ -49,7 +51,15 @@ const Post = ({ data }: { data: PostQuery }) => {
       )}
       <div className="max-w-2xl mx-auto my-0 p-6 text-xl">
         <Header />
-        <h1 className="text-4xl mb-1">{title}</h1>
+        <h1 className="text-4xl mb-1">
+          {!!link ? (
+            <a className="link nonanimated-link" href={link}>
+              {title} →
+            </a>
+          ) : (
+            title
+          )}
+        </h1>
         {!!subtitle && (
           <div className="text-base text-gray-600 italic mb-2">{subtitle}</div>
         )}
@@ -57,10 +67,12 @@ const Post = ({ data }: { data: PostQuery }) => {
           <time>{post.frontmatter.date}</time> &middot;{' '}
           <span>{post.timeToRead} minute read</span>
         </div>
-        <details className="table-of-contents">
-          <summary className="text-lg">Table of Contents</summary>
-          <div dangerouslySetInnerHTML={{ __html: post.tableOfContents }} />
-        </details>
+        {!!toc && (
+          <details className="table-of-contents">
+            <summary className="text-lg">Table of Contents</summary>
+            <div dangerouslySetInnerHTML={{ __html: post.tableOfContents }} />
+          </details>
+        )}
         <div className="markdown">{renderAst(content)}</div>
       </div>
     </>

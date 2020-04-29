@@ -5,6 +5,9 @@
   --color-border: rgba(0, 0, 0, 0.025);
   --color-link-underline: rgba(0, 0, 0, 0.1);
 
+  --color-cs: #003b5c;
+  --color-dh: #fdca40;
+  --color-la: #3492d1;
   --color-datadog: #774aa4;
   --color-ucla: #3284bf;
   --color-keybase: #fd7039;
@@ -58,8 +61,17 @@ body {
   }
 
   &.colored {
+    &[href*='ceils.ucla.edu/learningassistants'] {
+      color: var(--color-la);
+    }
     &[href*='www.ucla.edu'] {
       color: var(--color-ucla);
+    }
+    &[href*='dh.ucla.edu'] {
+      color: var(--color-dh);
+    }
+    &[href*='www.cs.ucla.edu'] {
+      color: var(--color-cs);
     }
     &[href*='datadoghq.com'] {
       color: var(--color-datadog);

@@ -4,13 +4,13 @@ title: Nathan Smith in HTML
 
 Hi, I'm Nathan. 👋
 
-I'm a junior at [UCLA](http://www.ucla.edu) studying [Computer Science](https://www.cs.ucla.edu) and [Digital Humanities](https://dh.ucla.edu). My interests include telling stories through data, functional programming languages, and improving developer workflows through tooling.
+I'm currently a software engineering intern at [Stripe](https://stripe.com). My interests include telling stories through data, functional programming languages, and improving developer workflows through tooling.
 
-This summer, I'll be a software engineering intern at [Stripe](https://stripe.com). After that, in the fall, I'll be a production engineering intern at [Facebook](https://www.facebook.com). My expected graduation date from UCLA is June 2021.
+In the fall, I'll be a production engineering intern at [Facebook](https://www.facebook.com). I'm going into my last year at [UCLA](http://www.ucla.edu) next winter, where I am majoring [Computer Science](https://www.cs.ucla.edu) with a minor in [Digital Humanities](https://dh.ucla.edu). I'll graduate in June 2021.
 
 Last summer, I was a returning software engineering intern at [Keybase](https://keybase.io) in New York City, where I primarily worked on auto-generating types for Keybase's bot libraries. I've also previously done frontend internships with [Datadog](https://www.datadoghq.com) and [Autodesk](https://www.autodesk.com).
 
-At school, I'm currently a [Learning Assistant](https://ceils.ucla.edu/learningassistants/) for [CS 97: Software Construction Projects](http://web.cs.ucla.edu/classes/spring20/cs97-1/index.html). I formerly managed a team of 30 student developers and coded websites for my [school newspaper](https://dailybruin.com). Prior to that, I led web and mobile development for my [school radio station](https://uclaradio.com). I've since traded in my student media career for a lot more free time, but I stay involved as a member of the [publishing board](http://uclacommunicationsboard.org) for all student media at UCLA.
+At UCLA, I was a [Learning Assistant](https://ceils.ucla.edu/learningassistants/) for [CS 97: Software Construction Projects](http://web.cs.ucla.edu/classes/spring20/cs97-1/index.html). I also formerly managed a team of 30 student developers and coded websites for my [school newspaper](https://dailybruin.com). Prior to that, I led web and mobile development for my [school radio station](https://uclaradio.com). I've since traded in my student media career for a lot more free time, but I stay involved as a member of the [publishing board](http://uclacommunicationsboard.org) for all student media at UCLA.
 
 I usually spend my free time bouldering, reading, or hacking on the odd side-project. I occasionally [write](/posts) about my technical adventures.
 

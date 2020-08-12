@@ -25,7 +25,7 @@ That's a good question. If your editor already supports typo info, auto-completi
 
 However, the main advantage of the LSP is that it brings together developers who use different editors. The LSP is editor agnostic – if your editor speaks the protocol, it can talk to the server running. That is, instead of developers having to create an Emacs JavaScript plugin, and a Vim JavaScript plugin, and a VS Code JavaScript plugin, they need only create a single JavaScript language server and language server plugins for each editor.
 
-[Langserver.org](https://langserver.org) calls this problem "the matrix", and it's easy to see why. If we have $n$ languages and $m$ editors, instead of making $n \\times m$ integrations we only have to create $n$ language servers plus $m$ editor LSP plugins.
+[Langserver.org](https://langserver.org) calls this problem "the matrix", and it's easy to see why. If we have $n$ languages and $m$ editors, instead of making $n \times m$ integrations we only have to create $n$ language servers plus $m$ editor LSP plugins.
 
 ![The Matrix Problem. The Language Server Protocol ideally means we have to write less tools and can share tools across editors and environments more easily.](./matrix-problem.png)
 
@@ -72,7 +72,6 @@ You can put Lua code directly in vimscript files, like so:
 lua << EOF
 print("hello world")
 EOF
-
 ```
 
 This is great for small to medium snippets of Lua code.
@@ -93,19 +92,18 @@ Neovim provides the LSP client built-in, but it needs to which language servers 
 
 ```lua
 local root_dir = buffer_find_root_dir(bufnr, function(dir)
-      return is_dir(path_join(dir, 'node_modules'))
+  return is_dir(path_join(dir, 'node_modules'))
 end)
 
 local bufnr = vim.api.nvim_get_current_buf()
-  local javascript_lsp_config = {
-    name = "javascript";
-    cmd = { path_join(os.getenv("JAVASCRIPT_LANGUAGE_SERVER_DIRECTORY"), "lib", "language-server-stdio.js") };
-  }
+local javascript_lsp_config = {
+  name = "javascript";
+  cmd = { path_join(os.getenv("JAVASCRIPT_LANGUAGE_SERVER_DIRECTORY"), "lib", "language-server-stdio.js") };
+}
 
-local new_config = vim.tbl_extend("error",
-	javascript_lsp_config, {
-    	root_dir = root_dir;
-	})
+local new_config = vim.tbl_extend("error", javascript_lsp_config, {
+  root_dir = root_dir;
+})
 client_id = vim.lsp.start_client(new_config)
 vim.lsp.buf_attach_client(bufnr, client_id)
 ```
@@ -138,15 +136,15 @@ There are also [configuration options](https://github.com/neovim/nvim-lsp#tsserv
 
 While we're configuring stuff, let's add some nice, vim-like shortcuts for LSP features:
 
-```lua
+```vim
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
-  nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-  nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-  nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-  nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 ```
 
 Note that these mappings override some Vim defaults, so in order to ensure they only work on
@@ -155,7 +153,7 @@ Note that the `omnifunc` line makes it so that Vim's omnicompletion uses the LSP
 
 Awesome! However, unless you have the TypeScript language server already installed, you still won't notice any LSP features. This is because you need to install the language server. The bad news is that each language server has its own installation instructions. The good news is the nvim-lsp takes care of it by providing a `LspInstall` command. All we have to do is run:
 
-```lua
+```
 :LspInstall tsserver
 ```
 
@@ -169,7 +167,7 @@ There are a few other optional plugins for Neovim that will improve your LSP qua
 
 [completion-nvim](https://github.com/nvim-lua/completion-nvim), as the name implies, is an autocompletion plugin. It's similar to something like [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) or [Deoplete](https://github.com/Shougo/deoplete.nvim) in that it gives auto popup and other improvements on top of Neovim's LSP api, as well as some other sources.
 
-```lua
+```vim
 call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
 packadd completion-nvim
 ```
@@ -224,7 +222,6 @@ nvim_lsp.rust_analyzer.setup({
   on_attach = lsp_status.on_attach,
   capabilities = lsp_status.capabilities
 })
-
 ```
 
 One thing I'll note is that by default, the symbols used on the statusline don't render well across all fonts and terminals. In the code snippet above (at the `lsp_status.config` line), I replaced them all with letters, but you'll likely want to play around them.
@@ -243,7 +240,6 @@ local diagnostic = require('diagnostic')
 nvim_lsp.rust_analyzer.setup({
   on_attach = diagnostic.on_attach,
 })
-
 ```
 
 ## Give me the code and a demo!
@@ -280,7 +276,6 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 let g:completion_enable_snippet = 'UltiSnips'
-
 ```
 
 ### Lua
@@ -363,6 +358,6 @@ Some general areas of friction I encountered were:
 - TypeScript's "language server", TSServer, doesn't actually follow the LSP spec and thus isn't supported by Neovim. This is more of a TypeScript problem though.
 - The current plugin ecosystem is small and not yet very configurable.
 
-However, these are all problems will likely be resolved with time as Neovim's LSP implementation matures.
+However, these are all problems will likely be resolved with time as Neovim's LSP implementation matures. I'm looking forward to seeing the future progress the Neovim developers make!
 
-If you liked this, consider [contributing](https://github.com/neovim/neovim) or [donating](https://salt.bountysource.com/teams/neovim) to Neovim.
+<p className="text-gray-600 text-sm italic">If you liked this, consider [contributing](https://github.com/neovim/neovim) or [donating](https://salt.bountysource.com/teams/neovim) to Neovim.</p>

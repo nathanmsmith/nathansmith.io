@@ -166,7 +166,8 @@ body {
 
   ol,
   ul {
-    @apply list-inside;
+    @apply list-outside;
+    @apply ml-6;
   }
 
   ol {
@@ -217,25 +218,25 @@ body {
 }
 
 h2 {
-  @apply text-3xl;
+  @apply text-4xl;
   @apply my-6;
   @apply font-extrabold;
 }
 
 h3 {
-  @apply text-2xl;
+  @apply text-3xl;
   @apply my-4;
   @apply font-extrabold;
 }
 
 h4 {
-  @apply text-xl;
+  @apply text-2xl;
   @apply my-4;
   @apply font-extrabold;
 }
 
 h5 {
-  @apply text-lg;
+  @apply text-xl;
   @apply my-4;
   @apply font-extrabold;
 }

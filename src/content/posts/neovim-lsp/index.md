@@ -1,11 +1,11 @@
 ---
 title: "Things I'm excited for in Neovim 0.5.0: Language Server Protocol"
-date: '2020-08-11'
-draft: true
+date: '2020-08-12'
+draft: false
 toc: true
 ---
 
-The next major release of Neovim, 0.5.0, is currently in development and has five promised features:
+The next major release of [Neovim](https://neovim.io/), 0.5.0, is currently in development and has five [promised features](https://neovim.io/roadmap/):
 
 > - Lua remote plugin host
 > - Lua user-config: init.lua
@@ -17,11 +17,11 @@ Enticed by offerings of the Neovim roadmap, I decided to install the nightly bui
 
 ## What is Language Server Protocol?
 
-The Language Server Protocol, or LSP, is a JSON RPC protocol introduced in 2016 by Microsoft that defines how an editor should talk to a language server. What is a language server? It's a small program that runs locally on your computer that can provide information about the code you're writing. The idea is that you tell the LSP where your project is, it scans all your files, and then has an understanding about your project. It can then provide go-to-definition, type info, compiler errors, completion suggestions, and more back to your editor. As the name implies, each language server generally supports only one language. Sourcegraph maintains [a list](https://langserver.org/) of major LSP implementations.
+The [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), or LSP, is a JSON RPC protocol introduced in 2016 by Microsoft that defines how an editor should talk to a language server. What is a language server? It's a small program that runs locally on your computer that can provide information about the code you're writing. The idea is that you tell the LSP where your project is, it scans all your files, and then has an understanding about your project. It can then provide go-to-definition, type info, compiler errors, completion suggestions, and more back to your editor. As the name implies, each language server generally supports only one language. There's a [community maintained list](https://langserver.org/) of major LSP implementations.
 
 That's cool, you say, but my editor already supports these features. Why should I start using a language server?
 
-That's a good question. If your editor already supports typo info, auto-completion, and everything else, you likely don't need an LSP. In fact, an LSP might slow you down – it's likely a built-in editor feature would be faster than your editor making an RPC request to a server running on your computer.
+That's a good question. If your editor already supports typo info, auto-completion, and everything else, you likely don't need a language server. In fact, the LSP might slow you down – it's likely a built-in editor feature would be faster than your editor making an RPC request to a server running on your computer.
 
 However, the main advantage of the LSP is that it brings together developers who use different editors. The LSP is editor agnostic – if your editor speaks the protocol, it can talk to the server running. That is, instead of developers having to create an Emacs JavaScript plugin, and a Vim JavaScript plugin, and a VS Code JavaScript plugin, they need only create a single JavaScript language server and language server plugins for each editor.
 
@@ -31,7 +31,9 @@ However, the main advantage of the LSP is that it brings together developers who
 
 Okay, you tell me, so now you've just proved [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law) also applies to open source. But you didn't answer my original question: why should I use a language server?
 
-Since the community of all JavaScript developers is a superset of all JavaScript Vim developers, this means a better language server. Since the community of all Vim developers is also better than all JavaScript Vim developers, this means better LSP integration support.
+Since the community of all JavaScript developers is a superset of all JavaScript Vim developers, this means that you should see more developers working on a JavaScript language server as opposed to a JavaScript Vim plugin. This should ideally mean a generally better language server.
+
+Additionally, since the community of all Vim developers is also better than all JavaScript Vim developers, this should mean better LSP integration support. Vim users can unite and benefit around building a common language server, even if the day-to-day languages they use are different.
 
 While this may not necessarily be true for all editor plugins, it certainly is for Vim. Vim completion can be done for already existing keywords, dictionary words, ctags results, or omnicomplete. Of these, ctags and omnicomplete are the most IDE-like. In my experience, while ctags is pretty good, it can often give inaccurate results if the same name is used in different contexts across a codebase. And omnicomplete is often left neglected: JavaScript omnicomplete hasn't been [updated since 2017](https://github.com/vim/vim/blob/5be4ceecea5520265066eac972460ebb1cdf05e7/runtime/autoload/javascriptcomplete.vim), a sign of the matrix problem.
 
@@ -62,7 +64,7 @@ Yes and no. Just as Vimscript is the language for which Vim apis are exposed, Lu
 
 If you haven't written any Lua, don't fear! Ample code examples will be provided for your copy/pasting pleasure. Lua is a fairly easy language to read if you know any programming language already. If you're interested in more Lua, [Learn X in Y minutes](https://learnxinyminutes.com/docs/lua/) is a great place to start.
 
-However, most Vimmers don't currently have any lua configuration files lying around, so we need to cover the basics of going from an `init.vim` Vimscript file into triggering Lua code. There are a couple ways to do this.
+However, most Vimmers don't currently have any Lua configuration files lying around, so we need to cover the basics of going from an `init.vim` Vimscript file into triggering Lua code. There are a couple ways to do this.
 
 ### Lua in your vim
 
@@ -124,7 +126,7 @@ call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
 packadd nvim-lsp
 ```
 
-Note that if you're using a Vim 8's native package manager (or a package manager that leverages the native package manager, like [minpac](https://github.com/k-takata/minpac)), then you need to add the line `packadd nvim-lsp`. This is because Neovim [currently does not source Lua plugins before your `init.vim` file](https://github.com/neovim/neovim/issues/12670), meaning that your LSP config will execute before nvim-lsp is loaded, giving errors. With an older [runtimepath](https://neovim.io/doc/user/options.html#'runtimepath')-based plugin manager like [vim-plug](https://github.com/junegunn/vim-plug) this is not an issue.
+Note that if you're using a Vim 8's native package manager (or a package manager that leverages the native package manager, like [minpac](https://github.com/k-takata/minpac)), then you need to add the line `packadd nvim-lsp`. This is because Neovim [currently does not source Lua plugins before your `init.vim` file](https://github.com/neovim/neovim/issues/12670), meaning that your LSP config will execute before nvim-lsp is loaded, giving errors. With an older [runtimepath](https://neovim.io/doc/user/options.html#'runtimepath')-based plugin manager like [vim-plug](https://github.com/junegunn/vim-plug), this is not an issue.
 
 Now that we've downloaded nvim-lsp, we can configure a language server. To set up the [TypeScript language server](https://github.com/theia-ide/typescript-language-server), we simply need to add:
 
@@ -148,8 +150,6 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 ```
 
 Note that these mappings override some Vim defaults, so in order to ensure they only work on
-
-Note that the `omnifunc` line makes it so that Vim's omnicompletion uses the LSP as a source. You can trigger omnicompletion with `<C-x><C-o>`.
 
 Awesome! However, unless you have the TypeScript language server already installed, you still won't notice any LSP features. This is because you need to install the language server. The bad news is that each language server has its own installation instructions. The good news is the nvim-lsp takes care of it by providing a `LspInstall` command. All we have to do is run:
 
@@ -296,6 +296,7 @@ local on_attach = function(client, bufnr)
   completion.on_attach(client, bufnr)
 
   -- Keybindings for LSPs
+  -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
   vim.fn.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", {noremap = true, silent = true})
   vim.fn.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
@@ -340,12 +341,6 @@ nvim_lsp.html.setup{
 
 You can also see the code in [my dotfiles](https://github.com/nathunsmitty/.config), specifically in [integrations.vim](https://github.com/nathunsmitty/.config/blob/master/nvim/config/integrations.vim) and [lsp/init.lua](https://github.com/nathunsmitty/.config/tree/master/nvim/lua/lsp).
 
-## Demo!
-
-This is what that config looks like in action.
-
-TODO
-
 ## Conclusion
 
 Neovim 0.5.0 is in active development still, so it's very possible that this blog post will be out of date by the time an official release is out. Overall, I was very impressed with the features and stability of Neovim nightly, though. I'll likely be sticking with the nightly releases for the foreseeable future.
@@ -360,4 +355,4 @@ Some general areas of friction I encountered were:
 
 However, these are all problems will likely be resolved with time as Neovim's LSP implementation matures. I'm looking forward to seeing the future progress the Neovim developers make!
 
-<p className="text-gray-600 text-sm italic">If you liked this, consider [contributing](https://github.com/neovim/neovim) or [donating](https://salt.bountysource.com/teams/neovim) to Neovim.</p>
+<p className="text-gray-600 text-sm italic">If you find Neovim's LSP feature useful consider <a href="https://salt.bountysource.com/teams/neovim">donating</a> to Neovim.</p>

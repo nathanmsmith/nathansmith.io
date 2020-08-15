@@ -41,7 +41,8 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-            filter: { fileAbsolutePath: { regex: "/posts/" } }
+            filter: { fileAbsolutePath: { regex: "/posts/" },
+              frontmatter: { draft: { eq: false } }}
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   edges {

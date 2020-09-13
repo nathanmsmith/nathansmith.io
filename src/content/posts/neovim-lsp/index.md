@@ -1,6 +1,7 @@
 ---
 title: "Things I'm excited for in Neovim 0.5.0: Language Server Protocol"
 date: '2020-08-12'
+updatedDate: '2020-09-13'
 draft: false
 toc: true
 ---
@@ -56,13 +57,13 @@ Recall the first two features of 0.5.0:
 > - Lua remote plugin host
 > - Lua user-config: init.lua
 
-Vimscript, or VimL, is the de facto configuration of Vim. However, it's also [not that great of a language](https://www.reddit.com/r/vim/comments/1bf672/why_does_viml_suck/): there are lots of odd quirks and performance issues that come with it. As a result, the Neovim core developers decided to add support for Lua in Neovim. Justin M. Keyes goes over the rationale for this decision in a [great VimConf presentation](https://youtu.be/Bt-vmPC_-Ho). The tl;dr is that Lua is a fast language that already exists and is simpler to learn than Vimscript.
+Vimscript, or VimL, is the de facto configuration of Vim. However, it's also [not that great of a language](https://www.reddit.com/r/vim/comments/1bf672/why_does_viml_suck/): there are lots of odd quirks and performance issues that come with it. As a result, the Neovim core developers decided to add support for Lua in Neovim. Justin M. Keyes goes over the rationale for this decision in a [great VimConf 2019 presentation](https://youtu.be/Bt-vmPC_-Ho). The tl;dr is that Lua is a fast language that already exists and is simpler to learn than Vimscript.
 
 Why does this matter? We were going to go over the LSP today, not Lua, right?
 
 Yes and no. Just as Vimscript is the language for which Vim apis are exposed, Lua is becoming the preferred language for which Neovim apis are being exposed. The LSP api is in Lua, meaning we'll have to write a little bit of Lua to set it up.
 
-If you haven't written any Lua, don't fear! Ample code examples will be provided for your copy/pasting pleasure. Lua is a fairly easy language to read if you know any programming language already. If you're interested in more Lua, [Learn X in Y minutes](https://learnxinyminutes.com/docs/lua/) is a great place to start.
+If you haven't written any Lua, don't fear! Ample code examples will be provided for your copy/pasting pleasure. Lua is a fairly easy language to read if you know any programming language already. If you're interested in more Lua, [Timothée Sterle's guide](https://github.com/nanotee/nvim-lua-guide) is a great place to start. I tend to learn best through doing, so if you're like me, you might also find [Lua Missions](https://github.com/kikito/lua_missions) to be useful.
 
 However, most Vimmers don't currently have any Lua configuration files lying around, so we need to cover the basics of going from an `init.vim` Vimscript file into triggering Lua code. There are a couple ways to do this.
 
@@ -114,27 +115,27 @@ vim.lsp.buf_attach_client(bufnr, client_id)
 
 However, this is a lot of configuration. Is there a better solution?
 
-### nvim-lsp: Common Server Configuration
+### nvim-lspconfig: Common Server Configuration
 
-To give a higher level of abstraction for end users who just want to start using a LSP, Neovim provides an official plugin: [nvim-lsp](https://github.com/neovim/nvim-lsp). This is a collection of common LSPs with integrations ready to go. Let's install it!
+To give a higher level of abstraction for end users who just want to start using a LSP, Neovim provides an official plugin: [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) (née nvim-lspconfig). This is a collection of common LSPs with integrations ready to go. Let's install it!
 
 ```vim
 " vim-plug
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 " minpac
-call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
-packadd nvim-lsp
+call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
+packadd nvim-lspconfig
 ```
 
-Note that if you're using a Vim 8's native package manager (or a package manager that leverages the native package manager, like [minpac](https://github.com/k-takata/minpac)), then you need to add the line `packadd nvim-lsp`. This is because Neovim [currently does not source Lua plugins before your `init.vim` file](https://github.com/neovim/neovim/issues/12670), meaning that your LSP config will execute before nvim-lsp is loaded, giving errors. With an older [runtimepath](https://neovim.io/doc/user/options.html#'runtimepath')-based plugin manager like [vim-plug](https://github.com/junegunn/vim-plug), this is not an issue.
+Note that if you're using a Vim 8's native package manager (or a package manager that leverages the native package manager, like [minpac](https://github.com/k-takata/minpac)), then you need to add the line `packadd nvim-lspconfig`. This is because Neovim [currently does not source Lua plugins before your `init.vim` file](https://github.com/neovim/neovim/issues/12670), meaning that your LSP config will execute before nvim-lspconfig is loaded, giving errors. With an older [runtimepath](https://neovim.io/doc/user/options.html#'runtimepath')-based plugin manager like [vim-plug](https://github.com/junegunn/vim-plug), this is not an issue.
 
-Now that we've downloaded nvim-lsp, we can configure a language server. To set up the [TypeScript language server](https://github.com/theia-ide/typescript-language-server), we simply need to add:
+Now that we've downloaded nvim-lspconfig, we can configure a language server. To set up the [TypeScript language server](https://github.com/theia-ide/typescript-language-server), we simply need to add:
 
 ```vim
 require'nvim_lsp'.tsserver.setup{}
 ```
 
-There are also [configuration options](https://github.com/neovim/nvim-lsp#tsserver) for which filetypes to run it on, how to detect your project's root directory, etc.
+There are also [configuration options](https://github.com/neovim/nvim-lspconfig#tsserver) for which filetypes to run it on, how to detect your project's root directory, etc.
 
 While we're configuring stuff, let's add some nice, vim-like shortcuts for LSP features:
 
@@ -151,7 +152,7 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 Note that these mappings override some Vim defaults, so in order to ensure they only work on
 
-Awesome! However, unless you have the TypeScript language server already installed, you still won't notice any LSP features. This is because you need to install the language server. The bad news is that each language server has its own installation instructions. The good news is the nvim-lsp takes care of it by providing a `LspInstall` command. All we have to do is run:
+Awesome! However, unless you have the TypeScript language server already installed, you still won't notice any LSP features. This is because you need to install the language server. The bad news is that each language server has its own installation instructions. The good news is the nvim-lspconfig takes care of it by providing a `LspInstall` command. All we have to do is run:
 
 ```
 :LspInstall tsserver
@@ -251,11 +252,11 @@ If you scrolled ahead to this section, I get it, I'm impatient too. If you didn'
 This can be in your `init.vim` or similar.
 
 ```vim
-call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
+call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
 call minpac#add('nvim-lua/lsp-status.nvim', {'type': 'opt'})
 call minpac#add('nathunsmitty/diagnostic-nvim', {'type': 'opt'})
 call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
-packadd nvim-lsp
+packadd nvim-lspconfig
 packadd lsp-status.nvim
 packadd diagnostic-nvim
 packadd completion-nvim
@@ -339,7 +340,7 @@ nvim_lsp.html.setup{
 -- More language servers here! ...
 ```
 
-You can also see the code in [my dotfiles](https://github.com/nathunsmitty/.config), specifically in [integrations.vim](https://github.com/nathunsmitty/.config/blob/master/nvim/config/integrations.vim) and [lsp/init.lua](https://github.com/nathunsmitty/.config/tree/master/nvim/lua/lsp).
+You can also see the code in [my dotfiles](https://github.com/nathunsmitty/.config), specifically in [lsp.vim](https://github.com/nathunsmitty/.config/blob/master/nvim/config/lsp.vim), [completion.vim](https://github.com/nathunsmitty/.config/blob/master/nvim/config/completion.vim), and [lsp/init.lua](https://github.com/nathunsmitty/.config/tree/master/nvim/lua/lsp).
 
 ## Conclusion
 
@@ -349,7 +350,7 @@ Some general areas of friction I encountered were:
 
 - Documentation and examples around using Lua with Vimscript is currently very lacking.
 - Documentation on Neovim's LSP API is out-of-date and also very lacking.
-- nvim-lsp has only a small list of supported LSPs.
+- nvim-lspconfig has only a small list of supported LSPs.
 - TypeScript's "language server", TSServer, doesn't actually follow the LSP spec and thus isn't supported by Neovim. This is more of a TypeScript problem though.
 - The current plugin ecosystem is small and not yet very configurable.
 

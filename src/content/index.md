@@ -4,7 +4,7 @@ title: Nathan Smith in HTML
 
 Hi, I’m Nathan. 👋
 
-I’m senior at [UCLA](http://www.ucla.edu), where I’m majoring computer science with a minor in digital humanities. Currently, I'm between jobs -- I'll be starting as a production engineering intern at [Facebook](https://www.facebook.com) in a couple weeks.
+Currently, I'm a production engineering intern at [Facebook](https://www.facebook.com). I’m senior at [UCLA](http://www.ucla.edu), where I’m majoring computer science with a minor in digital humanities. I graduate June 2021.
 
 This summer, I was a software engineering intern at [Stripe](https://stripe.com), where I worked on the backend services that power Terminal. Before that, most of my previous experience was in frontend development, which I did at [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com) and [Autodesk](https://www.autodesk.com).
 

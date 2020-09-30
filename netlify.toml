@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/exploring-enrollment/*"
-  to = "https://kind-knuth-2493b1.netlify.com/:splat"
-  status = 200
-  force = true

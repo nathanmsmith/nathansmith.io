@@ -20,6 +20,7 @@ export const query = graphql`
         link
         subtitle
         date(formatString: "MMMM D, YYYY")
+        updatedDate(formatString: "MMMM D, YYYY")
         draft
       }
     }
@@ -65,6 +66,11 @@ const Post = ({ data }: { data: PostQuery }) => {
         )}
         <div className="text-sm text-gray-600 mb-3">
           <time>{post.frontmatter.date}</time> &middot;{' '}
+          {!!post.frontmatter.updatedDate && (
+            <span>
+              Updated on <time>{post.frontmatter.updatedDate}</time> &middot;{' '}
+            </span>
+          )}
           <span>{post.timeToRead} minute read</span>
         </div>
         {!!toc && (

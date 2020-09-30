@@ -2,7 +2,6 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import * as rehypeReact from 'rehype-react'
 
-import Body from '../components/Body'
 import Head from '../components/Head'
 import PortraitPicker from '../components/PortraitPicker'
 import ProjectGrid from '../components/ProjectGrid'

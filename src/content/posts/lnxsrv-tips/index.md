@@ -1,7 +1,7 @@
 ---
 title: '5 tips for a nicer SEASnet lnxsrv experience'
 date: '2020-10-08'
-draft: true
+draft: false
 toc: true
 ---
 

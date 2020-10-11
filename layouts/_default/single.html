@@ -1,13 +1,15 @@
 {{ define "main" }}
-{{ if eq .Type "blog" }}{{ if not .Params.menu }}
+{{ if eq .Type "posts" }}{{ if not .Params.menu }}
 <h1>{{ .Title }}</h1>
-<p>
-  <i>
+<div class="text-sm text-gray-600 mb-3">
+
     <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-      {{ .Date.Format "02 Jan, 2006" }}
+      {{ .Date.Format "January 2, 2006" }}
     </time>
-  </i>
-</p>
+    <span>{{.ReadingTime}} minute read</span>
+</div>
+
+    {{.ReadingTime}}
 {{ end }}{{ end }}
 <content>
   {{ .Content }}

@@ -1,4 +1,10 @@
-<a href="{{ "/" | relURL }}" class="title">
-  <h2>{{ .Site.Title }}</h2>
-</a>
-<nav>{{- partial "nav.html" . -}}</nav>
+<header class="mb-6">
+  <a href="{{ "/" | relURL }}" class="title">
+    <h2 class="m-0">{{ .Site.Title }}</h2>
+  </a>
+  <nav>
+    <a href="{{ "/" | relURL }}">Home</a>
+    <a href="{{ "/portfolio" | relURL }}">Portfolio</a>
+    <a href="{{ "/posts" | relURL }}">Posts</a>
+  </nav>
+</header>

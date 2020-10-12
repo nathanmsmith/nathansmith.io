@@ -14,19 +14,17 @@
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
 
-  {{- partial "style.html" . -}}
-
   {{ $main := resources.Get "css/main.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $main.Permalink }}">
   {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $colorlinks.Permalink }}">
+  {{ $poststyles := resources.Get "css/post.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $poststyles.Permalink }}">
 
 </head>
 
 <body>
-  <header>
-    {{- partial "header.html" . -}}
-  </header>
+  {{- partial "header.html" . -}}
   <main>
     {{- block "main" . }}{{- end }}
   </main>
@@ -34,7 +32,6 @@
   <!-- A partial to be overwritten by the user.
   Simply place a custom_body.html into
   your local /layouts/partials-directory -->
-  {{- partial "custom_body.html" . -}}
 </body>
 
 </html>

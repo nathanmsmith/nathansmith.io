@@ -9,3 +9,10 @@ title = "nathansmith.io"
 
 [params]
 hideMadeWithLine = true
+
+[markup]
+  [markup.highlight]
+    lineNos = true
+    lineNumbersInTable = true
+    style = "monokai"
+    tabWidth = 2

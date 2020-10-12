@@ -24,14 +24,14 @@
 </head>
 
 <body>
-  {{- partial "header.html" . -}}
-  <main>
-    {{- block "main" . }}{{- end }}
-  </main>
-
-  <!-- A partial to be overwritten by the user.
-  Simply place a custom_body.html into
-  your local /layouts/partials-directory -->
+  <div class="max-w-2xl mx-auto my-0 p-6 text-lg">
+    {{ if not (.IsHome)}}
+      {{- partial "header.html" . -}}
+    {{end}}
+    <main>
+      {{- block "main" . }}{{- end }}
+    </main>
+  </div>
 </body>
 
 </html>

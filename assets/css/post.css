@@ -1,9 +1,14 @@
 .footnotes {
-  @apply text-gray-800 border-gray-400;
-  @media (prefers-color-scheme: dark) {
-    @apply text-gray-200 border-gray-500;
+  hr {
+    @apply mt-6;
+    @apply mb-4;
+    @apply text-gray-800 border-gray-400;
+    @media (prefers-color-scheme: dark) {
+      @apply text-gray-200 border-gray-500;
+    }
+    /* @apply text-lg border-solid border-t p-4; */
   }
-  @apply text-lg border-solid border-t p-4;
+
   li p {
     display: inline;
   }
@@ -133,4 +138,8 @@ h5 {
   ul {
     @apply my-0;
   }
+}
+
+li > ul {
+  margin-left: 1.45rem;
 }

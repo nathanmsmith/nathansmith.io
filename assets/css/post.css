@@ -14,19 +14,6 @@
   }
 }
 
-/* code[class*='language-'], */
-/* pre[class*='language-'] { */
-/*   @apply text-base; */
-/* } */
-
-/* pre[class*='language-'] { */
-/*   @apply rounded; */
-/* } */
-
-/* code[class*='language-'] { */
-/*   word-break: break-all; */
-/* } */
-
 .dropcap {
   @apply float-left;
   font-size: 75px;
@@ -38,7 +25,7 @@
 
 .markdown {
   p {
-    @apply my-3;
+    margin-bottom: 0.75rem;
   }
 
   /* a { */
@@ -53,6 +40,7 @@
   ul {
     @apply list-outside;
     @apply ml-6;
+    margin-bottom: 0.75rem;
   }
 
   ol {
@@ -104,13 +92,13 @@
 
 h2 {
   @apply text-4xl;
-  @apply my-6;
+  margin-top: 4rem;
   @apply font-extrabold;
 }
 
 h3 {
   @apply text-3xl;
-  @apply my-4;
+  margin-top: 2rem;
   @apply font-extrabold;
 }
 

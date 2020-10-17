@@ -8,7 +8,7 @@ hideMadeWithLine = true
 
 [markup]
   [markup.highlight]
-    lineNos = true
-    lineNumbersInTable = true
+    lineNos = false
     style = "monokai"
     tabWidth = 2
+    noClasses = false

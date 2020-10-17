@@ -14,18 +14,18 @@
   }
 }
 
-code[class*='language-'],
-pre[class*='language-'] {
-  @apply text-base;
-}
+/* code[class*='language-'], */
+/* pre[class*='language-'] { */
+/*   @apply text-base; */
+/* } */
 
-pre[class*='language-'] {
-  @apply rounded;
-}
+/* pre[class*='language-'] { */
+/*   @apply rounded; */
+/* } */
 
-code[class*='language-'] {
-  word-break: break-all;
-}
+/* code[class*='language-'] { */
+/*   word-break: break-all; */
+/* } */
 
 .dropcap {
   @apply float-left;

@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
   {{ $poststyles := resources.Get "css/post.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $poststyles.RelPermalink }}">
+  {{ $syntaxstyles := resources.Get "css/syntax.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $syntaxstyles.RelPermalink }}">
 
 </head>
 

@@ -1,11 +1,7 @@
 baseURL = "https://nathansmith.io/"
 languageCode = "en-us"
 title = "nathansmith.io"
-# theme = 'hugo-bearblog'
 
-# [permalinks]
-#   blog = "/:slug/"
-#   tags = "/blog/:slug"
 
 [params]
 hideMadeWithLine = true

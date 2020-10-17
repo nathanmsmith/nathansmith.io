@@ -15,11 +15,11 @@
   {{ end -}}
 
   {{ $main := resources.Get "css/main.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $main.Permalink }}">
+  <link rel="stylesheet" href="{{ $main.RelPermalink }}">
   {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $colorlinks.Permalink }}">
+  <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
   {{ $poststyles := resources.Get "css/post.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $poststyles.Permalink }}">
+  <link rel="stylesheet" href="{{ $poststyles.RelPermalink }}">
 
 </head>
 

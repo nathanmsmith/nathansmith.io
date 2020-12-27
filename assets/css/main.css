@@ -1,7 +1,5 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 :root {
@@ -23,11 +21,6 @@
 
     --image-filter: brightness(0.7);
   }
-}
-
-body {
-  color: var(--color-primary);
-  background-color: var(--color-background);
 }
 
 

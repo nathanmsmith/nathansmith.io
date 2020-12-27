@@ -1,6 +1,6 @@
 ---
-title: "5 tips for a nicer SEASnet lnxsrv experience"
-date: "2020-10-08"
+title: '5 tips for a nicer SEASnet lnxsrv experience'
+date: '2020-10-08'
 draft: false
 toc: true
 ---
@@ -113,7 +113,7 @@ Although I've never used it, I know a lot of people who swear by VS Code's SSH e
 
 ## Conclusion
 
-Hopefully these tips will help remove some of the stress and friction around lnxsrv so you can focus on doing your assignments. If you have any more tips, please [let me know](mailto:nathan.smith@ucla.edu)!
+Hopefully these tips will help remove some of the stress and friction around lnxsrv so you can focus on doing your assignments. If you have any more tips, please[ let me know](mailto:nathan.smith@ucla.edu)!
 
 [^1]: They require a campus VPN to access.
 [^2]: REHL 6. Packages such as vim have not been updated since then. Applications like screen or tmux are nowhere to be found.

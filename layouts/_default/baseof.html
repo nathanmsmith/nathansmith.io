@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {{- partial "favicon.html" . -}}
+  <title>{{- block "title" . }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{- end }}</title>
+
+  {{- partial "seo_tags.html" . -}}
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  {{ with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
+  {{ $main := resources.Get "css/main.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $main.RelPermalink }}">
+  {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
+  {{ $poststyles := resources.Get "css/post.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $poststyles.RelPermalink }}">
+  {{ $syntaxstyles := resources.Get "css/syntax.css" | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $syntaxstyles.RelPermalink }}">
+
+</head>
+
+<body>
+  <div class="max-w-2xl mx-auto my-0 p-6 text-lg">
+    {{ if not (.IsHome)}}
+      {{- partial "header.html" . -}}
+    {{end}}
+    <main>
+      {{- block "main" . }}{{- end }}
+    </main>
+  </div>
+</body>
+
+</html>

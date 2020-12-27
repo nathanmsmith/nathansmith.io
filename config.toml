@@ -1,0 +1,14 @@
+baseURL = "https://nathansmith.io/"
+languageCode = "en-us"
+title = "nathansmith.io"
+
+
+[params]
+hideMadeWithLine = true
+
+[markup]
+  [markup.highlight]
+    lineNos = false
+    style = "monokai"
+    tabWidth = 2
+    noClasses = false

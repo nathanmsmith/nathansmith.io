@@ -1,0 +1,69 @@
+:root {
+  --color-cs: #003b5c;
+  --color-dh: #fdca40;
+  --color-la: #3492d1;
+  --color-datadog: #774aa4;
+  --color-ucla: #3284bf;
+  --color-keybase: #fd7039;
+  --color-autodesk: #87bc40;
+  --color-dailybruin: #0080c6;
+  --color-acm: #3b59ed;
+  --color-uclaradio: #e76c9c;
+  --color-github: #24292e;
+  --color-linkedin: #0077b5;
+  --color-stripe: #32325d;
+  --color-facebook: #5890ff;
+  --color-commboard: #005072;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-github: #fff;
+    --color-stripe: #fff;
+  }
+}
+
+a {
+  &[href*='ceils.ucla.edu/learningassistants'] {
+    color: var(--color-la);
+  }
+  &[href*='www.ucla.edu'] {
+    color: var(--color-ucla);
+  }
+  &[href*='dh.ucla.edu'] {
+    color: var(--color-dh);
+  }
+  &[href*='www.cs.ucla.edu'] {
+    color: var(--color-cs);
+  }
+  &[href*='datadoghq.com'] {
+    color: var(--color-datadog);
+  }
+  &[href*='keybase.io'] {
+    color: var(--color-keybase);
+  }
+  &[href*='autodesk.com'] {
+    color: var(--color-autodesk);
+  }
+  &[href*='dailybruin.com'] {
+    color: var(--color-dailybruin);
+  }
+  &[href*='uclaradio.com'] {
+    color: var(--color-uclaradio);
+  }
+  &[href*='github.com'] {
+    color: var(--color-github);
+  }
+  &[href*='linkedin.com'] {
+    color: var(--color-linkedin);
+  }
+  &[href*='stripe.com'] {
+    color: var(--color-stripe);
+  }
+  &[href*='facebook.com'] {
+    color: var(--color-facebook);
+  }
+  &[href*='uclacommunicationsboard.org'] {
+    color: var(--color-commboard);
+  }
+}

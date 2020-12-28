@@ -6,7 +6,7 @@ draft: false
 toc: true
 ---
 
-The next major release of [Neovim](https://neovim.io/), 0.5.0, is currently in development and has five [promised features](https://neovim.io/roadmap/):
+<span class="dropcap">T</span>he next major release of [Neovim](https://neovim.io/), 0.5.0, is currently in development and has five [promised features](https://neovim.io/roadmap/):
 
 > - Lua remote plugin host
 > - Lua user-config: init.lua

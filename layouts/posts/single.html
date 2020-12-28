@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <h1 class="text-4xl mb-1 leading-none">{{ .Title }}</h1>
-<div class="text-sm text-gray-600 mb-3">
+<div class="text-sm text-gray-600 dark:text-gray-300 mb-3">
   <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
     {{ .Date.Format "January 2, 2006" }}
   </time>
@@ -10,7 +10,7 @@
 </div>
 
 <details class="table-of-contents">
-  <summary class="text-lg">Table of Contents</summary>
+  <summary class="text-lg leading">Table of Contents</summary>
   {{.TableOfContents}}
 </details>
 

@@ -1,10 +1,33 @@
+const colors = require('tailwindcss/colors')
+
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '')
+// const rem = (px) => `${round(px / 16)}rem`
+const em = (px, base) => `${round(px / base)}em`
+
 module.exports = {
   darkMode: 'media',
   theme: {
     extend: {
+      colors: {
+        gray: colors.trueGray,
+      },
+      lineHeight: {
+        'extra-none': '0.75',
+      },
+      borderWidth: {
+        12: '12px',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            hr: {
+              marginTop: em(36, 16),
+              marginBottom: em(24, 16),
+            },
             a: {
               'text-decoration': 'none',
               color: 'var(--color-primary)',
@@ -21,10 +44,32 @@ module.exports = {
             },
           },
         },
+        lg: {
+          css: {
+            img: {
+              marginTop: em(16, 16),
+              marginBottom: em(16, 16),
+            },
+          },
+        },
         dark: {
           css: {
-            // color: theme('colors.gray.700', defaultTheme.colors.gray[700]),
-            color: 'red',
+            color: theme('colors.gray.200'),
+            h1: {
+              color: theme('colors.gray.50'),
+            },
+            h2: {
+              color: theme('colors.gray.50'),
+            },
+            h3: {
+              color: theme('colors.gray.50'),
+            },
+            h4: {
+              color: theme('colors.gray.50'),
+            },
+            code: {
+              color: theme('colors.gray.50'),
+            },
           },
         },
       }),

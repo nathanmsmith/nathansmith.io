@@ -13,8 +13,8 @@ At school, I led developers and coded websites for my [school newspaper](https:/
 
 On this site, you can:
 
-- binge my [blog posts](/posts)
-- peruse my [portfolio](/portfolio)
+- skim my [blog posts](/posts)
+- view my [portfolio](/portfolio)
 - read my [résumé](/resume)
 
 Feel free to also explore my [GitHub](https://github.com/nathunsmitty) or [LinkedIn](https://www.linkedin.com/in/nathanmatthewsmith/).

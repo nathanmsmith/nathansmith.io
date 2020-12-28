@@ -18,14 +18,12 @@
   <link rel="stylesheet" href="{{ $main.RelPermalink }}">
   {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
-  {{ $poststyles := resources.Get "css/post.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $poststyles.RelPermalink }}">
   {{ $syntaxstyles := resources.Get "css/syntax.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $syntaxstyles.RelPermalink }}">
 
 </head>
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
   <div class="max-w-2xl mx-auto my-0 p-6 text-lg">
     {{ if not (.IsHome)}}
       {{- partial "header.html" . -}}

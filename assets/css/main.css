@@ -1,8 +1,17 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+@layer utilities {
+  @variants dark {
+    .filter-none {
+      filter: none;
+    }
+    .filter-dark {
+      filter: brightness(0.7);
+    }
+  }
+}
 
 :root {
   --color-primary: #000;
@@ -10,7 +19,6 @@
   --color-background: #fff;
   --color-border: rgba(0, 0, 0, 0.025);
   --color-link-underline: rgba(0, 0, 0, 0.1);
-  --image-filter: none;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,14 +28,7 @@
     --color-background: #1a1a1a;
     --color-border: rgba(255, 255, 255, 0.025);
     --color-link-underline: rgba(255, 255, 255, 0.1);
-
-    --image-filter: brightness(0.7);
   }
-}
-
-body {
-  color: var(--color-primary);
-  background-color: var(--color-background);
 }
 
 
@@ -53,19 +54,25 @@ a {
 }
 
 .nonanimated-link:hover {
-    opacity: 0.6;
-    border: none;
-    padding: 0;
+  opacity: 0.6;
+  border: none;
+  padding: 0;
+}
+
+.table-of-contents {
+  @apply text-sm;
+  @apply mb-4;
+  @apply text-gray-700 dark:text-gray-200;
+
+  li,
+  p {
+    @apply my-1;
+  }
+  ul {
+    @apply my-0;
   }
 
-.portrait {
-  filter: var(--image-filter);
-  margin-left: auto;
-  margin-right: auto;
-  max-height: 20rem;
-  max-width: 20rem;
-  border-radius: 9999px;
-  border-style: solid;
-  border-width: 12px;
-  border-color: var(--color-border);
+  li > ul {
+    @apply ml-6;
+  }
 }

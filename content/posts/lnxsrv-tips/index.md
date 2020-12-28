@@ -5,7 +5,7 @@ draft: false
 toc: true
 ---
 
-Every UCLA CS student will at some point encounter SEASnet's [lnxsrv](https://www.seasnet.ucla.edu/lnxsrv/) servers, which are required for many computer science classes. These lnxsrv servers are notorious for being hard to access[^1], running limited and outdated software[^2], triggering flashbacks to CS 35L, and generally not providing a nice development experience.
+{{< dropcap "E" >}}very UCLA CS student will at some point encounter SEASnet's [lnxsrv](https://www.seasnet.ucla.edu/lnxsrv/) servers, which are required for many computer science classes. These lnxsrv servers are notorious for being hard to access[^1], running limited and outdated software[^2], triggering flashbacks to CS 35L, and generally not providing a nice development experience.
 
 However, I don't know many people who realize that for all of lnxsrv's limitations, there are a few easy tweaks one can make to obtain a nicer development experience.
 

@@ -5,7 +5,7 @@
 
 Hi, I’m Nathan. 👋
 
-I’m senior at [UCLA](http://www.ucla.edu), where I’m majoring in computer science with a minor in digital humanities. I graduate June 2021, and will joining [Stripe](https://stripe.com) as a full-time software engineer based in Seattle.
+I’m senior at [UCLA](http://www.ucla.edu), where I’m majoring in computer science with a minor in digital humanities. I graduate June 2021, and will then be joining [Stripe](https://stripe.com) as a full-time software engineer based in Seattle.
 
 My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously worked at [Facebook](https://www.facebook.com), [Stripe](https://stripe.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com) and [Autodesk](https://www.autodesk.com).
 

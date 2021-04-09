@@ -12,6 +12,7 @@
   --color-github: #24292e;
   --color-linkedin: #0077b5;
   --color-stripe: #32325d;
+  --color-stripe-atlas: #e39f48;
   --color-facebook: #5890ff;
   --color-commboard: #005072;
 }
@@ -24,46 +25,49 @@
 }
 
 a {
-  &[href*='ceils.ucla.edu/learningassistants'] {
+  &[href*="ceils.ucla.edu/learningassistants"] {
     color: var(--color-la);
   }
-  &[href*='www.ucla.edu'] {
+  &[href*="www.ucla.edu"] {
     color: var(--color-ucla);
   }
-  &[href*='dh.ucla.edu'] {
+  &[href*="dh.ucla.edu"] {
     color: var(--color-dh);
   }
-  &[href*='www.cs.ucla.edu'] {
+  &[href*="www.cs.ucla.edu"] {
     color: var(--color-cs);
   }
-  &[href*='datadoghq.com'] {
+  &[href*="datadoghq.com"] {
     color: var(--color-datadog);
   }
-  &[href*='keybase.io'] {
+  &[href*="keybase.io"] {
     color: var(--color-keybase);
   }
-  &[href*='autodesk.com'] {
+  &[href*="autodesk.com"] {
     color: var(--color-autodesk);
   }
-  &[href*='dailybruin.com'] {
+  &[href*="dailybruin.com"] {
     color: var(--color-dailybruin);
   }
-  &[href*='uclaradio.com'] {
+  &[href*="uclaradio.com"] {
     color: var(--color-uclaradio);
   }
-  &[href*='github.com'] {
+  &[href*="github.com"] {
     color: var(--color-github);
   }
-  &[href*='linkedin.com'] {
+  &[href*="linkedin.com"] {
     color: var(--color-linkedin);
   }
-  &[href*='stripe.com'] {
+  &[href*="stripe.com"] {
     color: var(--color-stripe);
   }
-  &[href*='facebook.com'] {
+  &[href*="stripe.com/atlas"] {
+    color: var(--color-stripe-atlas);
+  }
+  &[href*="facebook.com"] {
     color: var(--color-facebook);
   }
-  &[href*='uclacommunicationsboard.org'] {
+  &[href*="uclacommunicationsboard.org"] {
     color: var(--color-commboard);
   }
 }

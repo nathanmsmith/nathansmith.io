@@ -3,3 +3,8 @@
   to = "https://kind-knuth-2493b1.netlify.com/:splat"
   status = 200
   force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "interest-cohort=()"

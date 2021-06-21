@@ -14,7 +14,7 @@ In my free time, I maintain [Hotseat](https://hotseat.io/), a website that provi
 On this site, you can:
 
 - skim my [blog posts](/posts)
-- view my [portfolio](/portfolio)
+- view my [portfolio](/projects)
 - read my [résumé](/resume.pdf)
 
 Feel free to also explore my [GitHub](https://github.com/nathunsmitty) or [LinkedIn](https://www.linkedin.com/in/nathanmatthewsmith/).

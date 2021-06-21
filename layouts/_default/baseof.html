@@ -16,8 +16,10 @@
 
   {{ $main := resources.Get "css/main.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $main.RelPermalink }}">
-  {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
+  {{ if (.IsHome)}}
+    {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
+    <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
+  {{ end }}
   {{ $syntaxstyles := resources.Get "css/syntax.css" | resources.PostCSS }}
   <link rel="stylesheet" href="{{ $syntaxstyles.RelPermalink }}">
 

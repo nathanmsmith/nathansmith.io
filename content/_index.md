@@ -5,11 +5,11 @@
 
 Hi, I’m Nathan. 👋
 
-I’m senior at [UCLA](https://www.ucla.edu), where I’m majoring in computer science with a minor in digital humanities. I graduate in June 2021. After school, I'll be working on [Stripe Atlas](https://stripe.com/atlas) as a full-time software engineer based in Seattle.
+I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas). I recently graduated from [UCLA](https://www.ucla.edu) with a major in computer science with a minor in digital humanities.
 
-My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously interned at [Facebook](https://www.facebook.com), [Stripe](https://stripe.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com) and [Autodesk](https://www.autodesk.com).
+My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously interned at [Facebook](https://www.facebook.com), [Stripe](https://stripe.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com), and [Autodesk](https://www.autodesk.com).
 
-At UCLA, I led developers and coded websites for my [school newspaper](https://dailybruin.com/) and [radio station](https://uclaradio.com/). Last spring, I was an undergraduate teaching assistant for a [course on software development and tooling](http://web.cs.ucla.edu/classes/spring20/cs97-1/index.html).
+In my free time, I maintain [Hotseat](https://hotseat.io/), a website that provides real-time enrollment statistics, grade distributions, and professor reviews for all UCLA courses.
 
 On this site, you can:
 
@@ -19,4 +19,4 @@ On this site, you can:
 
 Feel free to also explore my [GitHub](https://github.com/nathunsmitty) or [LinkedIn](https://www.linkedin.com/in/nathanmatthewsmith/).
 
-The best way to contact me is via [email](mailto:nathan.smith@ucla.edu). For additional security, you can find my public key on [Keybase](https://keybase.io/nathunsmitty).
+The best way to contact me is via [email](mailto:hi@nathansmith.io). For additional security, you can find my public key on [Keybase](https://keybase.io/nathunsmitty).

@@ -15,6 +15,7 @@
   --color-stripe-atlas: #e39f48;
   --color-facebook: #5890ff;
   --color-commboard: #005072;
+  --color-hotseat: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,6 +58,9 @@ a {
   }
   &[href*="linkedin.com"] {
     color: var(--color-linkedin);
+  }
+  &[href*="hotseat.io"] {
+    color: var(--color-hotseat);
   }
   &[href*="stripe.com"] {
     color: var(--color-stripe);

@@ -2,7 +2,6 @@ baseURL = "https://nathansmith.io/"
 languageCode = "en-us"
 title = "nathansmith.io"
 
-
 [params]
 hideMadeWithLine = true
 

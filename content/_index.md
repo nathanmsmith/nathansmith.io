@@ -5,7 +5,7 @@
 
 Hi, I’m Nathan. 👋
 
-I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas). I recently graduated from [UCLA](https://www.ucla.edu) with a major in computer science with a minor in digital humanities.
+I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas). I graduated from [UCLA](https://www.ucla.edu) in 2021 with a major in computer science and a minor in digital humanities.
 
 My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously interned at [Facebook](https://www.facebook.com), [Stripe](https://stripe.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com), and [Autodesk](https://www.autodesk.com).
 

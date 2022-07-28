@@ -1,0 +1,6 @@
+Blog ideas go here:
+
+- Update Neovim LSP post
+- Write a post about package managers for Neovim
+- Write Neovim Tree-Sitter post
+- Write Neovim fuzzy-finder post

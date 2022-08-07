@@ -12,6 +12,12 @@ There are a lot of emoji and manually entering all of them via System Preference
 
 On the macOS side, I came across a [couple](https://apple.stackexchange.com/questions/124048/where-is-the-replace-with-list-stored/127850#127850) [different](https://apple.stackexchange.com/questions/114222/how-can-i-add-autocorrect-shortcuts-programmatically) StackExchange posts about how I could set these snippets programmatically. I found working with `UserDictionary.db` and `.GlobalPreferences.plist` to be unreliable, the options would be unset a few minutes after I set them. But what did work was to drag a plist file with my snippets into System Preferences itself.
 
-![Screen recording on me dragging the emojis.plist file into the text replacement table of macOS](./emoijs-in-sys-prefs.gif)
+![Screen recording on me dragging the emojis.plist file into the text replacement table of macOS](./install.gif)
 
-You can download the plist I generated of all emoji snippets for your own use! And if you're curious, you can also check out the script that generates the plist on GitHub.
+And boom, emoji everywhere!
+
+![Screen recording of me expanding emoji](./demo.gif)
+
+You can [download the plist](https://github.com/nathanmsmith/macos-emoji-snippets/releases) I generated of all emoji snippets for your own use! And if you're curious, you can also check out the script that generates the plist on [GitHub](https://github.com/nathanmsmith/macos-emoji-snippets).
+
+{{< buttonlink href="https://github.com/nathanmsmith/macos-emoji-snippets/releases" label="Get the emojis!" >}}

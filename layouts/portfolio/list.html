@@ -1,5 +1,8 @@
 {{ define "main" }}
   <h1 class="text-5xl mb-4 font-bold">Projects</h1>
+  <p class="mb-8">
+    Here are some projects I’ve worked on.
+  </p>
   {{.Content}}
   <ul>
     {{ range .Pages.ByWeight.Reverse }}

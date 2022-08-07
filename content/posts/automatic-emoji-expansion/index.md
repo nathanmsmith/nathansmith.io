@@ -1,12 +1,12 @@
 ---
-title: 'Automatic Emoji Expansion'
+title: 'Automatic Emoji Expansion in macOS'
 date: 2022-08-06
 include_toc: false
 ---
 
 My preferred way of typing emoji is using the `:emoji_name:` [shortcode syntax](https://emojipedia.org/shortcodes/). This is great if I'm using Slack or GitHub, but doesn't translate as well to other applications.
 
-There are apps like Rocket that bring shortcodes to all inputs and more general text expansion apps like Espanso that have support for emoji shortcodes, but I didn't really want to install an app to do this. After all, text expansion is built in to macOS.
+There are apps like [Rocket](https://matthewpalmer.net/rocket/) that bring shortcodes to all inputs and more general text expansion apps like [Espanso](https://espanso.org) that have [support for emoji shortcodes](https://hub.espanso.org/all-emojis), but I didn't really want to install an app to do this. After all, text expansion is [built in to macOS](https://support.apple.com/guide/mac-help/replace-text-punctuation-documents-mac-mh35735/mac).
 
 There are a lot of emoji and manually entering all of them via System Preferences was definitely too tedious to be feasible, so I started to look for a programmatic solution. GitHub maintains a library called [gemoji](https://github.com/github/gemoji) with information about every emoji and its shortcodes, which would be how I could enumerate all the snippets to add and what emoji they'd map to.
 

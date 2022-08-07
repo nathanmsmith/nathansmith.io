@@ -9,10 +9,12 @@
   <span>{{.ReadingTime}} minute read</span>
 </div>
 
+{{ if .Params.include_toc }}
 <details class="table-of-contents">
   <summary class="text-lg leading">Table of Contents</summary>
   {{.TableOfContents}}
 </details>
+{{ end }}
 
 
 <content class="prose dark:prose-invert">

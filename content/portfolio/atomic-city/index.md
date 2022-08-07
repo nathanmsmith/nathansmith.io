@@ -5,7 +5,7 @@ organization: Daily Bruin
 dates: June 2018
 link: https://features.dailybruin.com/2018/atomic-city/
 githubLink: dailybruin/interactive.2018.atomic-city
-technologies: ["Nunjucks", "Sass", "JavaScript"]
+technologies: ['Nunjucks', 'Sass', 'JavaScript']
 role: Sole Developer and Designer
 ---
 

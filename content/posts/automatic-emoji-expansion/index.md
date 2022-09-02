@@ -20,4 +20,6 @@ And boom, emoji everywhere!
 
 You can [download the plist](https://github.com/nathanmsmith/macos-emoji-snippets/releases) I generated of all emoji snippets for your own use! And if you're curious, you can also check out the script that generates the plist on [GitHub](https://github.com/nathanmsmith/macos-emoji-snippets).
 
+Note: Apple syncs your snippets between your devices. Importing these snippets on your computer will make them available on your iPhone and/or iPad as well!
+
 {{< buttonlink href="https://github.com/nathanmsmith/macos-emoji-snippets/releases" label="Get the emojis!" >}}

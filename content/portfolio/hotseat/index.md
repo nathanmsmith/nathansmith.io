@@ -1,9 +1,11 @@
 ---
 weight: 20
 title: Hotseat
-dates: August 2020 – Present
+dates: April 2020 – Present
+githubLink: hotseatio/hotseat.io
 link: https://hotseat.io
-technologies: [Ruby, Rails, Go, TypeScript, React, D3, Tailwind, Postgres]
+technologies: [Ruby, Rails, Go, TypeScript, React, D3, Tailwind, Postgres, Elasticsearch]
 role: Author & Developer
-image: "../../images/projects/datadog.png"
 ---
+
+

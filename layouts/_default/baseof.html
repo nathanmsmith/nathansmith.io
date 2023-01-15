@@ -14,8 +14,7 @@
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
 
-  {{ $main := resources.Get "css/main.css" | resources.PostCSS }}
-  <link rel="stylesheet" href="{{ $main.RelPermalink }}">
+  {{ partialCached "css.html" . }}
   {{ if (.IsHome)}}
     {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
     <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">

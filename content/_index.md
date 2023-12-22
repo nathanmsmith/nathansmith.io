@@ -5,11 +5,11 @@
 
 Hi, I’m Nathan. 👋
 
-I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas). I graduated from [UCLA](https://www.ucla.edu) in 2021 with a major in computer science and a minor in digital humanities.
+I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas).
 
-My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously interned at [Facebook](https://www.facebook.com), [Stripe](https://stripe.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com), and [Autodesk](https://www.autodesk.com).
+My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously worked at [Facebook](https://www.facebook.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com), and [Autodesk](https://www.autodesk.com).
 
-In my free time, I maintain [Hotseat](https://hotseat.io/), a website that provides real-time enrollment statistics, grade distributions, and professor reviews for all UCLA courses.
+I'm a graduate of [UCLA](https://www.ucla.edu), where I majored in computer science with a minor in digital humanities.
 
 On this site, you can:
 

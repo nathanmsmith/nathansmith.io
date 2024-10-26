@@ -5,7 +5,7 @@
 
 Hi, I’m Nathan. 👋
 
-I am a software engineer who works on [Stripe Atlas](https://stripe.com/atlas).
+I am a software engineer living in Seattle. I currently work on [Stripe Atlas](https://stripe.com/atlas).
 
 My interests include data visualization, functional programming, developer tooling, and full stack development. I've previously worked at [Facebook](https://www.facebook.com), [Keybase](https://keybase.io), [Datadog](https://www.datadoghq.com), and [Autodesk](https://www.autodesk.com).
 

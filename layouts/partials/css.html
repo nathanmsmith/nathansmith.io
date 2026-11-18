@@ -1,8 +1,8 @@
 {{/* see https://www.brycewray.com/posts/2022/03/making-tailwind-jit-work-hugo-version-3-edition/ */}}
 {{ $styles := resources.Get "css/main.css" }}
-{{ $styles = $styles | resources.PostCSS }}
+{{ $styles = $styles | css.PostCSS }}
 {{ if hugo.IsProduction }}
-{{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ $styles = $styles | minify | fingerprint }}
 {{ else }}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/main.dev.%v.css" now.UnixMilli) .}}
 {{ end }}

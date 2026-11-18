@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+<html lang="{{ with .Site.Language.Locale }}{{ . }}{{ else }}en-US{{ end }}">
 
 <head>
   <meta charset="utf-8">
@@ -16,10 +16,10 @@
 
   {{ partialCached "css.html" . }}
   {{ if (.IsHome)}}
-    {{ $colorlinks := resources.Get "css/color-links.css" | resources.PostCSS }}
+    {{ $colorlinks := resources.Get "css/color-links.css" | css.PostCSS }}
     <link rel="stylesheet" href="{{ $colorlinks.RelPermalink }}">
   {{ end }}
-  {{ $syntaxstyles := resources.Get "css/syntax.css" | resources.PostCSS }}
+  {{ $syntaxstyles := resources.Get "css/syntax.css" | css.PostCSS }}
   <link rel="stylesheet" href="{{ $syntaxstyles.RelPermalink }}">
 
 </head>

@@ -29,7 +29,7 @@ poteto describes how a clean codebase has _exactly_ one way to solve a problem.
 > So you want to make your codebase as pristine as possible so that agents are
 > always copying the good stuff.](https://youtu.be/O_zcc6Xl12g?t=257)
 
-When I started writing Ruby, I was amazed by by how inconsistent it could
+When I started writing Ruby, I was amazed by how inconsistent it could
 be. I loved it. `arr.select` or `arr.reduce`? `if !` or `unless`? Parentheses?
 Take your pick! My favorite Ruby code blended these choices and read like prose.
 
